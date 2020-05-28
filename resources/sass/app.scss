@@ -1,0 +1,104 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+//Font-awesome
+@import '~font-awesome/scss/font-awesome';
+
+@import "settings";
+
+//Global Styles
+
+#app {
+    font-size: $base-font-size;
+    color: $dark-gray;
+    font-family: $custom-font;
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .loading {
+        padding: 0 5px;
+    }
+    .preloader {
+        display: flex;
+        position: fixed;
+        width:100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        img {
+            height: 50px;
+            width: 50px;
+        }
+    }
+    header {
+        background-color: #96004f;
+        &.adminHeader {
+            padding: 10px;
+        }
+        .logo {
+            .adminLogo  {
+                height: 70px;
+                width: 70px;
+            }
+            .publicLogo {
+                height: 100px;
+                width: 100px
+            }
+        }
+    }
+    #loginAdmin {
+        margin: 300px auto 0 auto;
+        width: 400px;
+    }
+    main {
+        background: $lighter-gray;
+        &#adminMain {
+            margin-top: 85px;
+            padding-bottom: 20px;
+            .title {
+                padding: 20px 0 0 0;
+            }
+            .content {
+                .form {
+                    max-width: 500px;
+                    width: 100%;
+                }
+                .table {
+                    margin-top: 27px;
+                    .buttonPanel {
+                        display: block;
+                        margin: 0;
+                    }
+
+                    .buttonPanel li {
+                        display: inline-block;
+                        margin: 0 10px;
+                    }
+
+                    .buttonPanel button {
+                        height: 40px;
+                        width: 40px;
+                    }
+
+                }
+            }
+        }
+    }
+    .sidebar {
+        margin-top: 23px;
+        .logout {
+            cursor: pointer;
+        }
+    }
+
+}

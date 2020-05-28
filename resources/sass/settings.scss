@@ -1,0 +1,258 @@
+.navbar-laravel {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+//Variables
+$primary-color: #30a5ff;
+$primary-color-hover: #50b3ff;
+$lighter-gray: #f1f4f7;
+$light-gray: #e9ecf2;
+$medium-gray: #7c7c7c;
+$dark-gray: #444444;
+$base-font-size: 14px;
+$custom-font: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+p {
+    color: #777;
+}
+
+a, a:hover, a:focus {
+    color: $primary-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $dark-gray;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 40px;
+}
+
+h2 {
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+h3, h4 {
+    font-weight: 300;
+}
+
+.navbar-custom {
+    background: #222;
+    height: 60px;
+}
+
+.navbar-header .navbar-brand {
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+    height: 60px;
+    padding-top: 18px;
+}
+
+.navbar-header .navbar-brand span {
+    color: $primary-color;
+}
+
+//Top Dropdown
+
+.navbar-toggle {
+    background: rgba(255, 255, 255, .1);
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.navbar-toggle:hover {
+    background: rgba(255, 255, 255, .05);
+}
+
+.icon-bar {
+    background: #fff;
+}
+
+.navbar-top-links li:last-child {
+    margin-right: 15px;
+}
+
+.nav {
+    display: block;
+}
+
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+.nav>li>a:hover, .nav>li>a:focus, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, .2);
+    background: none;
+}
+
+.divider, .clear {
+    clear: both;
+}
+
+//Navbar
+
+.navbar {
+    border: 0;
+    position: fixed;
+    padding: 0.65rem 1rem;
+}
+
+.navbar input {
+    border: 0;
+    background: #444;
+    color: #fff;
+}
+
+.navbar input:focus {
+    color: #fff;
+    background: #555;
+    border: 1px solid $primary-color;
+    outline: 0;
+    box-shadow: inset 0px 0px 0px 1px $primary-color;
+}
+
+// Sidebar
+
+.sidebar {
+    display: block;
+    padding: 0;
+    display: none;
+    box-shadow: none;
+    background: #fff;
+}
+
+.sidebar ul {
+    margin: 20px 0px;
+}
+
+.sidebar form {
+    padding: 10px 0 0 0;
+    margin: 10px 10px 20px 10px;
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        display: block;
+        position: fixed;
+        top: 60px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        display: block;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .navbar-header {
+        width: 100%;
+    }
+}
+
+.sidebar ul.nav a:hover, .sidebar ul.nav li.parent ul li a:hover {
+    text-decoration: none;
+    background-color: $primary-color;
+    color: #fff;
+}
+
+.sidebar ul.nav .active a, .sidebar ul.nav li.parent a.active, .sidebar ul.nav .active > a:hover, .sidebar ul.nav li.parent a.active:hover, .sidebar ul.nav .active > a:focus, .sidebar ul.nav li.parent a.active:focus {
+    color: #fff;
+    background-color: $primary-color;
+}
+
+.sidebar ul.nav ul, .sidebar ul.nav ul li {
+    list-style: none;
+    list-style-type: none;
+}
+
+.sidebar ul.nav li a {
+    height: 50px;
+    font-size: 15px;
+    line-height: 2em;
+    color: $dark-gray;
+}
+
+.sidebar ul.nav ul.children {
+    width: auto;
+    padding: 0;
+    margin: 0;
+    background: #f9f9f9;
+}
+
+.sidebar ul.nav ul.children li a {
+    height: 40px;
+    background: $lighter-gray;
+    color: $dark-gray;
+}
+
+.sidebar ul.nav li.current a {
+    background-color: $primary-color;
+    color: #fff!important;
+}
+
+.sidebar ul.nav li.parent ul li a {
+    border: none;
+    display: block;
+    padding-left: 30px;
+    line-height: 40px;
+    border-radius: 0;
+}
+
+.sidebar ul.nav li.divider {
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    margin: 0px 0;
+}
+
+//User Profile Sidebar
+
+.profile-sidebar {
+    padding: 10px 0;
+    border-bottom: 1px solid $light-gray;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 9999px;
+    margin-right: 5px;
+}
+
+.profile-userpic img {
+    float: left;
+    margin: 10px 0px 0px 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 9999px !important;
+}
+
+.profile-usertitle {
+    float: left;
+    text-align: left;
+    margin: 10px 0 0 12px;
+}
+
+.profile-usertitle-name {
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+.profile-usertitle-status {
+    text-transform: uppercase;
+    color: #AAA;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+.label-success {
+    background-color: #8ad919;
+}
