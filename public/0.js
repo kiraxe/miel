@@ -55,6 +55,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_auth_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/auth-reducer */ "./resources/js/redux/auth-reducer.js");
 /* harmony import */ var _Admin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Admin */ "./resources/js/components/Admin/Admin.jsx");
 /* harmony import */ var _hoc_withAuthRedirect__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../hoc/withAuthRedirect */ "./resources/js/hoc/withAuthRedirect.js");
+/* harmony import */ var _redux_admin_selectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../redux/admin-selectors */ "./resources/js/redux/admin-selectors.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -76,6 +77,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -111,8 +113,8 @@ var AdminContainer = /*#__PURE__*/function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    adminPage: state.adminPage,
-    currentUser: state.auth.name
+    adminPage: Object(_redux_admin_selectors__WEBPACK_IMPORTED_MODULE_6__["getAdminPageSelector"])(state),
+    currentUser: Object(_redux_admin_selectors__WEBPACK_IMPORTED_MODULE_6__["getCurrentUserSelector"])(state)
   };
 };
 
@@ -188,11 +190,18 @@ var rus = {
       },
       'edit': {
         'title': 'Редактировать',
-        'button': 'Обновить'
+        'button': 'Обновить',
+        'success': 'Обновление...'
       },
       'new': {
         'title': 'Создать товар',
-        'button': 'Создать'
+        'button': 'Создать',
+        'success': 'Создание...'
+      },
+      'error': {
+        'name': 'Введите название',
+        'detail': 'Введите описание',
+        'price': 'Введите цену'
       }
     },
     'clientele': {
@@ -217,11 +226,19 @@ var rus = {
       },
       'edit': {
         'title': 'Редактировать',
-        'button': 'Обновить'
+        'button': 'Обновить',
+        'success': 'Обновление...'
       },
       'new': {
         'title': 'Создать клиента',
-        'button': 'Создать'
+        'button': 'Создать',
+        'success': 'Создание...'
+      },
+      'error': {
+        'name': 'Введите ФИО',
+        'phone': 'Введите телефон',
+        'email': 'Введите email',
+        'password': 'Введите пароль'
       }
     }
   }
@@ -275,6 +292,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-form */ "./node_modules/redux-form/es/index.js");
 /* harmony import */ var _public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../public/images/loading.svg */ "./public/images/loading.svg");
 /* harmony import */ var _public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Validator_Validate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Validator/Validate */ "./resources/js/components/Admin/Products/Validator/Validate.js");
+/* harmony import */ var _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/FormsControls/FormControls */ "./resources/js/components/common/FormsControls/FormControls.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -286,53 +319,73 @@ var ProductEdit = function ProductEdit(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.edit.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "content"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ProductEditReduxForm, {
-    isFetching: props.isFetching,
+    errSer: props.error,
     initialValues: props.product[0],
     onSubmit: props.editProduct
   })));
 };
 
 var ProductEditForm = function ProductEditForm(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isFetching = _useState2[0],
+      setFetching = _useState2[1];
+
+  var handleSubmit = props.handleSubmit,
+      pristine = props.pristine,
+      reset = props.reset,
+      submitting = props.submitting,
+      errSer = props.errSer,
+      submitSucceeded = props.submitSucceeded,
+      submitFailed = props.submitFailed;
+  submitSucceeded || submitFailed || errSer ? setTimeout(function () {
+    setFetching(false);
+  }, 1000) : null;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    onSubmit: props.handleSubmit,
+    onSubmit: handleSubmit,
     className: "form"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "productName",
-    className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.name,
+    type: "text",
+    idName: "productName",
     name: "name",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.name
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "productDetail",
-    className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.description,
+    type: "textarea",
+    idName: "productDetail",
     name: "detail",
-    component: "textarea",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Textarea"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.description
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "productPrice",
-    className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.price,
+    type: "text",
+    idName: "productPrice",
     name: "price",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.price
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return setFetching(true);
+    },
     type: "submit",
-    className: "btn btn-primary"
-  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.edit.button, " ", props.isFetching ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "btn btn-primary",
+    disabled: submitting
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.edit.button, " ", isFetching ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: _public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3___default.a
-  }) : null));
+  }) : null), errSer === null && submitSucceeded && isFetching && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: 'success'
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.edit.success));
 };
 
 var ProductEditReduxForm = Object(redux_form__WEBPACK_IMPORTED_MODULE_2__["reduxForm"])({
-  form: "ProductEdit"
+  form: "ProductEdit",
+  validate: _Validator_Validate__WEBPACK_IMPORTED_MODULE_4__["default"],
+  asyncBlurFields: ['name', 'detail', 'price']
 })(ProductEditForm);
 /* harmony default export */ __webpack_exports__["default"] = (ProductEdit);
 
@@ -353,6 +406,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-form */ "./node_modules/redux-form/es/index.js");
 /* harmony import */ var _public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../public/images/loading.svg */ "./public/images/loading.svg");
 /* harmony import */ var _public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Validator_Validate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Validator/Validate */ "./resources/js/components/Admin/Products/Validator/Validate.js");
+/* harmony import */ var _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/FormsControls/FormControls */ "./resources/js/components/common/FormsControls/FormControls.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -364,52 +433,72 @@ var ProductNew = function ProductNew(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products["new"].title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "content"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ProductNewReduxForm, {
-    isFetching: props.isFetching,
+    errSer: props.error,
     onSubmit: props.addProduct
   })));
 };
 
 var ProductNewForm = function ProductNewForm(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isFetching = _useState2[0],
+      setFetching = _useState2[1];
+
+  var handleSubmit = props.handleSubmit,
+      pristine = props.pristine,
+      reset = props.reset,
+      submitting = props.submitting,
+      errSer = props.errSer,
+      submitSucceeded = props.submitSucceeded,
+      submitFailed = props.submitFailed;
+  submitSucceeded || submitFailed || errSer ? setTimeout(function () {
+    setFetching(false);
+  }, 1000) : null;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    onSubmit: props.handleSubmit,
+    onSubmit: handleSubmit,
     className: "form"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "productName",
-    className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.name,
+    type: "text",
+    idName: "productName",
     name: "name",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.name
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "productDetail",
-    className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.description,
+    type: "textarea",
+    idName: "productDetail",
     name: "detail",
-    component: "textarea",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Textarea"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.description
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "productPrice",
-    className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.price,
+    type: "text",
+    idName: "productPrice",
     name: "price",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.price
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return setFetching(true);
+    },
     type: "submit",
-    className: "btn btn-primary"
-  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products["new"].button, " ", props.isFetching ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "btn btn-primary",
+    disabled: submitting
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.edit.button, " ", isFetching ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: _public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3___default.a
-  }) : null));
+  }) : null), errSer === null && submitSucceeded && isFetching && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: 'success'
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.edit.success));
 };
 
 var ProductNewReduxForm = Object(redux_form__WEBPACK_IMPORTED_MODULE_2__["reduxForm"])({
-  form: "ProductNew"
+  form: "ProductNew",
+  validate: _Validator_Validate__WEBPACK_IMPORTED_MODULE_4__["default"],
+  asyncBlurFields: ['name', 'detail', 'price']
 })(ProductNewForm);
 /* harmony default export */ __webpack_exports__["default"] = (ProductNew);
 
@@ -486,6 +575,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _redux_products_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../redux/products-reducer */ "./resources/js/redux/products-reducer.js");
+/* harmony import */ var _redux_product_selectors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../redux/product-selectors */ "./resources/js/redux/product-selectors.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -519,6 +609,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var ProductsContainer = /*#__PURE__*/function (_React$Component) {
   _inherits(ProductsContainer, _React$Component);
 
@@ -532,37 +623,13 @@ var ProductsContainer = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "onAddSubmit", function (formData) {
-      _this.setState({
-        isFetching: true
-      });
-
       _this.props.addProduct(formData);
-
-      setTimeout(function () {
-        _this.setState({
-          isFetching: false
-        });
-      }, 2000);
     });
 
     _defineProperty(_assertThisInitialized(_this), "onEditSubmit", function (formData) {
-      _this.setState({
-        isFetching: true
-      });
-
       _this.props.editProduct(formData);
-
-      setTimeout(function () {
-        _this.setState({
-          isFetching: false
-        });
-      }, 2000);
     });
 
-    _this.state = {
-      isFetching: false
-    };
-    _this.timerFetching = null;
     return _this;
   }
 
@@ -570,11 +637,6 @@ var ProductsContainer = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.getProducts();
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      clearTimeout(this.timerFetching);
     }
   }, {
     key: "render",
@@ -586,13 +648,13 @@ var ProductsContainer = /*#__PURE__*/function (_React$Component) {
         url: this.props.match.url,
         products: this.props.products
       }) : this.props.match.params.slug === 'edit' && this.props.match.params.id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductEdit_ProductEdit__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        isFetching: this.state.isFetching,
+        error: this.props.error,
         editProduct: this.onEditSubmit,
         product: this.props.products ? this.props.products.filter(function (item) {
           return item.id == _this2.props.match.params.id;
         }) : null
       }) : this.props.match.params.slug === 'add' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductNew_ProductNew__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        isFetching: this.state.isFetching,
+        error: this.props.error,
         addProduct: this.onAddSubmit
       }) : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, product);
@@ -604,8 +666,8 @@ var ProductsContainer = /*#__PURE__*/function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    products: state.productsAdmin.products,
-    error: state.productsAdmin.error
+    products: Object(_redux_product_selectors__WEBPACK_IMPORTED_MODULE_8__["getProductsSelectors"])(state),
+    error: Object(_redux_product_selectors__WEBPACK_IMPORTED_MODULE_8__["getErrorSelector"])(state)
   };
 };
 
@@ -614,6 +676,40 @@ var mapStateToProps = function mapStateToProps(state) {
   addProduct: _redux_products_reducer__WEBPACK_IMPORTED_MODULE_7__["addProduct"],
   editProduct: _redux_products_reducer__WEBPACK_IMPORTED_MODULE_7__["editProduct"]
 }), react_router_dom__WEBPACK_IMPORTED_MODULE_6__["withRouter"])(ProductsContainer));
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Products/Validator/Validate.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/Validator/Validate.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Language__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Language */ "./resources/js/components/Admin/Language.js");
+
+
+var validate = function validate(values) {
+  var errors = {};
+
+  if (!values.name) {
+    errors.name = _Language__WEBPACK_IMPORTED_MODULE_0__["rus"].page.products.error.name;
+  }
+
+  if (!values.detail) {
+    errors.detail = _Language__WEBPACK_IMPORTED_MODULE_0__["rus"].page.products.error.detail;
+  }
+
+  if (!values.price) {
+    errors.price = _Language__WEBPACK_IMPORTED_MODULE_0__["rus"].page.products.error.price;
+  }
+
+  return errors;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (validate);
 
 /***/ }),
 
@@ -792,6 +888,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-form */ "./node_modules/redux-form/es/index.js");
 /* harmony import */ var _public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../public/images/loading.svg */ "./public/images/loading.svg");
 /* harmony import */ var _public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Validator_Validate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Validator/Validate */ "./resources/js/components/Admin/Сlientele/Validator/Validate");
+/* harmony import */ var _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/FormsControls/FormControls */ "./resources/js/components/common/FormsControls/FormControls.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -803,124 +915,139 @@ var ClientEdit = function ClientEdit(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.edit.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "content"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ClientEditReduxForm, {
-    isFetching: props.isFetching,
+    errSer: props.error,
     initialValues: props.client[0],
     onSubmit: props.editClient
   })));
 };
 
 var ClientEditForm = function ClientEditForm(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isFetching = _useState2[0],
+      setFetching = _useState2[1];
+
+  var handleSubmit = props.handleSubmit,
+      pristine = props.pristine,
+      reset = props.reset,
+      submitting = props.submitting,
+      errSer = props.errSer,
+      submitSucceeded = props.submitSucceeded,
+      submitFailed = props.submitFailed;
+  submitSucceeded || submitFailed || errSer ? setTimeout(function () {
+    setFetching(false);
+  }, 1000) : null;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    onSubmit: props.handleSubmit,
+    onSubmit: handleSubmit,
     className: "form"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientName",
+    type: "text",
+    idName: "clientName",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.name,
     name: "name",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.name
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientEmail",
+    type: "text",
+    errSer: errSer,
+    idName: "clientEmail",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.email,
     name: "email",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.email
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientPhone",
+    type: "text",
+    idName: "clientPhone",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.phone,
     name: "phone",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.phone
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.company), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientCompany",
+    type: "text",
+    idName: "clientCompany",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.company,
     name: "company",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.company
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressK), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientAddressK",
+    type: "text",
+    idName: "clientAddressK",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressK,
     name: "addressK",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressK
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressP), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientAddressP",
+    type: "text",
+    idName: "clientAddressP",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressP,
     name: "addressP",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressP
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.inn), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientInn",
+    type: "text",
+    idName: "clientInn",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.inn,
     name: "inn",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.inn
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.kpp), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientKpp",
+    type: "text",
+    idName: "clientKpp",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.kpp,
     name: "kpp",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.kpp
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.rs), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientRs",
+    type: "text",
+    idName: "clientRs",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.rs,
     name: "rs",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.rs
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.bik), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientBik",
+    type: "text",
+    idName: "clientBik",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.bik,
     name: "bik",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.bik
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.ks), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientKs",
+    type: "text",
+    idName: "clientKs",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.ks,
     name: "ks",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.ks
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.password), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientPassword",
+    idName: "clientPassword",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.password,
     type: "password",
     name: "password",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.password
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
@@ -951,15 +1078,22 @@ var ClientEditForm = function ClientEditForm(props) {
   }, "Green"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     value: "0000ff"
   }, "Blue"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return setFetching(true);
+    },
     type: "submit",
     className: "btn btn-primary"
-  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.edit.button, " ", props.isFetching ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.edit.button, " ", isFetching ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: _public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3___default.a
-  }) : null));
+  }) : null), errSer === null && submitSucceeded && isFetching && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: 'success'
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.edit.success)));
 };
 
 var ClientEditReduxForm = Object(redux_form__WEBPACK_IMPORTED_MODULE_2__["reduxForm"])({
-  form: "ClientEdit"
+  form: "ClientEdit",
+  validate: _Validator_Validate__WEBPACK_IMPORTED_MODULE_4__["default"],
+  asyncBlurFields: ['name', 'email', 'phone']
 })(ClientEditForm);
 /* harmony default export */ __webpack_exports__["default"] = (ClientEdit);
 
@@ -980,6 +1114,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-form */ "./node_modules/redux-form/es/index.js");
 /* harmony import */ var _public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../public/images/loading.svg */ "./public/images/loading.svg");
 /* harmony import */ var _public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Validator_Validate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Validator/Validate */ "./resources/js/components/Admin/Сlientele/Validator/Validate");
+/* harmony import */ var _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/FormsControls/FormControls */ "./resources/js/components/common/FormsControls/FormControls.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -988,137 +1138,189 @@ __webpack_require__.r(__webpack_exports__);
 var ClientNew = function ClientNew(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "title"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.edit.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele["new"].title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "content"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ClientNewReduxForm, {
+    errSer: props.error,
     isFetching: props.isFetching,
     onSubmit: props.addClient
   })));
 };
 
 var ClientNewForm = function ClientNewForm(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isFetching = _useState2[0],
+      setFetching = _useState2[1];
+
+  var handleSubmit = props.handleSubmit,
+      pristine = props.pristine,
+      reset = props.reset,
+      submitting = props.submitting,
+      errSer = props.errSer,
+      submitSucceeded = props.submitSucceeded,
+      submitFailed = props.submitFailed;
+  submitSucceeded || submitFailed || errSer ? setTimeout(function () {
+    setFetching(false);
+  }, 1000) : null;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    onSubmit: props.handleSubmit,
+    onSubmit: handleSubmit,
     className: "form"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientName",
+    type: "text",
+    idName: "clientName",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.name,
     name: "name",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.name
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientEmail",
+    type: "text",
+    errSer: errSer,
+    idName: "clientEmail",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.email,
     name: "email",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.email
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientPhone",
+    type: "text",
+    idName: "clientPhone",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.phone,
     name: "phone",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.phone
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.company), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientCompany",
+    type: "text",
+    idName: "clientCompany",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.company,
     name: "company",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.company
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressK), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientAddressK",
+    type: "text",
+    idName: "clientAddressK",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressK,
     name: "addressK",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressK
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressP), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientAddressP",
+    type: "text",
+    idName: "clientAddressP",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressP,
     name: "addressP",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressP
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.inn), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientInn",
+    type: "text",
+    idName: "clientInn",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.inn,
     name: "inn",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.inn
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.kpp), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientKpp",
+    type: "text",
+    idName: "clientKpp",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.kpp,
     name: "kpp",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.kpp
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.rs), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientRs",
+    type: "text",
+    idName: "clientRs",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.rs,
     name: "rs",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.rs
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.bik), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientBik",
+    type: "text",
+    idName: "clientBik",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.bik,
     name: "bik",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.bik
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.ks), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientKs",
+    type: "text",
+    idName: "clientKs",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.ks,
     name: "ks",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.ks
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.password), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    id: "clientPassword",
+    idName: "clientPassword",
     className: "form-control",
-    placeholder: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.password,
     type: "password",
     name: "password",
-    component: "input",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.password
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.permission), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    id: "clientPermission",
+    className: "form-control",
+    name: "clientPermission",
+    component: "select",
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.permission
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "ff0000"
+  }, "Red"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "00ff00"
+  }, "Green"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "0000ff"
+  }, "Blue"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.role), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    id: "clientRole",
+    className: "form-control",
+    name: "clientRole",
+    component: "select",
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.role
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "ff0000"
+  }, "Red"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "00ff00"
+  }, "Green"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "0000ff"
+  }, "Blue"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return setFetching(true);
+    },
     type: "submit",
-    className: "btn btn-primary"
-  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.edit.button, " ", props.isFetching ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "btn btn-primary",
+    disabled: submitting
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele["new"].button, " ", isFetching ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: _public_images_loading_svg__WEBPACK_IMPORTED_MODULE_3___default.a
-  }) : null));
+  }) : null), errSer === null && submitSucceeded && isFetching && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: 'success'
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele["new"].success));
 };
 
 var ClientNewReduxForm = Object(redux_form__WEBPACK_IMPORTED_MODULE_2__["reduxForm"])({
-  form: "ClientNew"
+  form: "ClientNew",
+  validate: _Validator_Validate__WEBPACK_IMPORTED_MODULE_4__["default"],
+  asyncBlurFields: ['name', 'email', 'phone']
 })(ClientNewForm);
 /* harmony default export */ __webpack_exports__["default"] = (ClientNew);
 
@@ -1211,6 +1413,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _redux_clientele_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../redux/clientele-reducer */ "./resources/js/redux/clientele-reducer.js");
+/* harmony import */ var _redux_clientele_selectors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../redux/clientele-selectors */ "./resources/js/redux/clientele-selectors.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1244,6 +1447,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var ClienteleContainer = /*#__PURE__*/function (_React$Component) {
   _inherits(ClienteleContainer, _React$Component);
 
@@ -1257,37 +1461,13 @@ var ClienteleContainer = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "onAddSubmit", function (formData) {
-      _this.setState({
-        isFetching: true
-      });
-
       _this.props.addClient(formData);
-
-      setTimeout(function () {
-        _this.setState({
-          isFetching: false
-        });
-      }, 2000);
     });
 
     _defineProperty(_assertThisInitialized(_this), "onEditSubmit", function (formData) {
-      _this.setState({
-        isFetching: true
-      });
-
       _this.props.editClient(formData);
-
-      setTimeout(function () {
-        _this.setState({
-          isFetching: false
-        });
-      }, 2000);
     });
 
-    _this.state = {
-      isFetching: false
-    };
-    _this.timerFetching = null;
     return _this;
   }
 
@@ -1311,13 +1491,13 @@ var ClienteleContainer = /*#__PURE__*/function (_React$Component) {
         url: this.props.match.url,
         clientele: this.props.clientele
       }) : this.props.match.params.slug === 'edit' && this.props.match.params.id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClientEdit_ClientEdit__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        isFetching: this.state.isFetching,
+        error: this.props.error,
         editClient: this.onEditSubmit,
         client: this.props.clientele ? this.props.clientele.filter(function (item) {
           return item.id == _this2.props.match.params.id;
         }) : null
       }) : this.props.match.params.slug === 'add' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClientNew_ClientNew__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        isFetching: this.state.isFetching,
+        error: this.props.error,
         addClient: this.onAddSubmit
       }) : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, client);
@@ -1329,8 +1509,8 @@ var ClienteleContainer = /*#__PURE__*/function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    clientele: state.clienteleAdmin.clientele,
-    error: state.clienteleAdmin.error
+    clientele: Object(_redux_clientele_selectors__WEBPACK_IMPORTED_MODULE_8__["getClienteleSelectors"])(state),
+    error: Object(_redux_clientele_selectors__WEBPACK_IMPORTED_MODULE_8__["getErrorSelector"])(state)
   };
 };
 
@@ -1339,6 +1519,46 @@ var mapStateToProps = function mapStateToProps(state) {
   addClient: _redux_clientele_reducer__WEBPACK_IMPORTED_MODULE_7__["addClient"],
   editClient: _redux_clientele_reducer__WEBPACK_IMPORTED_MODULE_7__["editClient"]
 }), react_router_dom__WEBPACK_IMPORTED_MODULE_6__["withRouter"])(ClienteleContainer));
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Сlientele/Validator/Validate":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/Admin/Сlientele/Validator/Validate ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Language__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Language */ "./resources/js/components/Admin/Language.js");
+
+
+const validate = (values, allValues, props) => {
+
+    const errors = {}
+
+    if (!values.name) {
+        errors.name = _Language__WEBPACK_IMPORTED_MODULE_0__["rus"].page.clientele.error.name;
+    }
+    if (!values.email) {
+        errors.email = _Language__WEBPACK_IMPORTED_MODULE_0__["rus"].page.clientele.error.email;
+    }
+    if (!values.phone) {
+        errors.phone = _Language__WEBPACK_IMPORTED_MODULE_0__["rus"].page.clientele.error.phone;
+    }
+    if (allValues.form == 'ClientNew') {
+        if (!values.password) {
+            errors.password = _Language__WEBPACK_IMPORTED_MODULE_0__["rus"].page.clientele.error.password;
+        }
+    }
+
+    return errors;
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (validate);
+
 
 /***/ }),
 
@@ -1521,6 +1741,66 @@ var mapStateToProps = function mapStateToProps(state) {
 
 /***/ }),
 
+/***/ "./resources/js/components/common/FormsControls/FormControls.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/common/FormsControls/FormControls.js ***!
+  \**********************************************************************/
+/*! exports provided: Input, Textarea */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Input", function() { return Input; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Textarea", function() { return Textarea; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+var FormControl = function FormControl(_ref) {
+  var idName = _ref.idName,
+      input = _ref.input,
+      label = _ref.label,
+      type = _ref.type,
+      errSer = _ref.errSer,
+      _ref$meta = _ref.meta,
+      touched = _ref$meta.touched,
+      error = _ref$meta.error,
+      props = _objectWithoutProperties(_ref, ["idName", "input", "label", "type", "errSer", "meta"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.children, touched && error && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "error"
+  }, error) || touched && errSer && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "error"
+  }, errSer));
+};
+
+var Input = function Input(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(FormControl, props, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
+    id: props.idName,
+    className: "form-control"
+  }, props.input, {
+    type: props.type,
+    placeholder: props.label
+  })));
+};
+var Textarea = function Textarea(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(FormControl, props, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", _extends({
+    id: props.idName,
+    className: "form-control"
+  }, props.input, {
+    type: props.type,
+    placeholder: props.label
+  })));
+};
+
+/***/ }),
+
 /***/ "./resources/js/hoc/withAuthRedirect.js":
 /*!**********************************************!*\
   !*** ./resources/js/hoc/withAuthRedirect.js ***!
@@ -1595,6 +1875,72 @@ var withAuthRedirect = function withAuthRedirect(Component) {
 
   var ConnectedAuthRedirectComponent = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToPropsForRedirect)(RedirectComponent);
   return ConnectedAuthRedirectComponent;
+};
+
+/***/ }),
+
+/***/ "./resources/js/redux/admin-selectors.js":
+/*!***********************************************!*\
+  !*** ./resources/js/redux/admin-selectors.js ***!
+  \***********************************************/
+/*! exports provided: getAdminPageSelector, getCurrentUserSelector */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAdminPageSelector", function() { return getAdminPageSelector; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCurrentUserSelector", function() { return getCurrentUserSelector; });
+/* harmony import */ var reselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reselect */ "./node_modules/reselect/es/index.js");
+
+var getAdminPageSelector = function getAdminPageSelector(state) {
+  return state.adminPage;
+};
+var getCurrentUserSelector = function getCurrentUserSelector(state) {
+  return state.auth.name;
+};
+
+/***/ }),
+
+/***/ "./resources/js/redux/clientele-selectors.js":
+/*!***************************************************!*\
+  !*** ./resources/js/redux/clientele-selectors.js ***!
+  \***************************************************/
+/*! exports provided: getClienteleSelectors, getErrorSelector */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClienteleSelectors", function() { return getClienteleSelectors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getErrorSelector", function() { return getErrorSelector; });
+/* harmony import */ var reselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reselect */ "./node_modules/reselect/es/index.js");
+
+var getClienteleSelectors = function getClienteleSelectors(state) {
+  return state.clienteleAdmin.clientele;
+};
+var getErrorSelector = function getErrorSelector(state) {
+  return state.clienteleAdmin.error;
+};
+
+/***/ }),
+
+/***/ "./resources/js/redux/product-selectors.js":
+/*!*************************************************!*\
+  !*** ./resources/js/redux/product-selectors.js ***!
+  \*************************************************/
+/*! exports provided: getProductsSelectors, getErrorSelector */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProductsSelectors", function() { return getProductsSelectors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getErrorSelector", function() { return getErrorSelector; });
+/* harmony import */ var reselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reselect */ "./node_modules/reselect/es/index.js");
+
+var getProductsSelectors = function getProductsSelectors(state) {
+  return state.productsAdmin.products;
+};
+var getErrorSelector = function getErrorSelector(state) {
+  return state.productsAdmin.error;
 };
 
 /***/ })

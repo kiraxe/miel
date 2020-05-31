@@ -38,15 +38,18 @@ let clienteleReducer = (state = initialState, action) => {
         case EDIT_CLIENTELE: {
 
             let clientele = state.clientele.map(item => {
+
                 if (item.id === action.data.id) {
                     item = action.data;
                 }
+
                 return item;
             });
 
             return {
                 ...state,
-                clientele: [...clientele]
+                clientele: [...clientele],
+                error: action.error
             }
         }
         default:
@@ -60,7 +63,7 @@ let clienteleReducer = (state = initialState, action) => {
 export const setClienteleAC = (data) => ({type: SET_CLIENTELE, data: data});
 export const deleteClienteleAC = (data) => ({type: DELETE_CLIENTELE, data: data});
 export const addClienteleAC = (data, error) => ({type: ADD_CLIENTELE, data: {data, error}});
-export const editClienteleAC = (data) => ({type: EDIT_CLIENTELE, data: data});
+export const editClienteleAC = (data, error) => ({type: EDIT_CLIENTELE, data: data, error: error});
 
 export const getClientele = () => async dispatch => {
     let response = await adminAPI.getClientele();
@@ -78,16 +81,22 @@ export const deleteClient = (id) => async dispatch => {
 export const addClient = (clientele) => async dispatch => {
     let response = await adminAPI.addClient(clientele);
 
-    if (response.success) {
+    if (response.message === "Client created successfully.") {
         dispatch(addClienteleAC([response.data], null));
-    } else {
-        dispatch(addClienteleAC([], response.data.message));
+    } else if (response.message === "Client error.") {
+        dispatch(addClienteleAC([], response.data));
     }
 };
 
 export const editClient = (clientele) => async dispatch => {
     let response = await adminAPI.editClient(clientele);
-    dispatch(editClienteleAC(response.data));
+
+    if (response.message === "Client updated successfully.") {
+        dispatch(editClienteleAC(response.data, null));
+    } else if (response.message === "Client error.") {
+        dispatch(editClienteleAC([], response.data));
+    }
+
 }
 
 export default clienteleReducer;

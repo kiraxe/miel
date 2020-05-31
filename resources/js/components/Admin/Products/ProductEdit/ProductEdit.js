@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {rus as LanguageRus} from "../../Language";
 import {Field, reduxForm} from "redux-form";
 import loading from '../../../../../../public/images/loading.svg';
+import validate from "../Validator/Validate";
+import {Input, Textarea} from '../../../common/FormsControls/FormControls';
 
 
 const ProductEdit = (props) => {
@@ -10,7 +12,7 @@ const ProductEdit = (props) => {
         <>
             <div className="title"><h1>{LanguageRus.page.products.edit.title}</h1></div>
             <div className="content">
-                <ProductEditReduxForm isFetching={props.isFetching} initialValues={props.product[0]} onSubmit={props.editProduct}/>
+                <ProductEditReduxForm errSer={props.error} initialValues={props.product[0]} onSubmit={props.editProduct}/>
             </div>
         </>
     )
@@ -18,25 +20,33 @@ const ProductEdit = (props) => {
 
 const ProductEditForm = (props) => {
 
+    const [isFetching, setFetching] = useState(false);
+
+    const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed } = props;
+
+    submitSucceeded || submitFailed || errSer ? setTimeout(() => {setFetching(false)}, 1000) : null;
+
     return (
-        <form onSubmit={props.handleSubmit} className="form">
+        <form onSubmit={handleSubmit} className="form">
             <div className="form-group">
                 <label>{LanguageRus.page.products.table.name}</label>
-                <Field id="productName" className={"form-control"} placeholder={LanguageRus.page.products.table.name} name={"name"} component={"input"} label={LanguageRus.page.products.table.name} />
+                <Field type="text" idName="productName" name={"name"} component={Input} label={LanguageRus.page.products.table.name} />
             </div>
             <div className="form-group">
                 <label>{LanguageRus.page.products.table.description}</label>
-                <Field id="productDetail" className={"form-control"} placeholder={LanguageRus.page.products.table.description} name={"detail"} component={"textarea"} label={LanguageRus.page.products.table.description} />
+                <Field type="textarea" idName="productDetail" name={"detail"} component={Textarea} label={LanguageRus.page.products.table.description} />
             </div>
             <div className="form-group">
                 <label>{LanguageRus.page.products.table.price}</label>
-                <Field id="productPrice" className={"form-control"} placeholder={LanguageRus.page.products.table.price} name={"price"} component={"input"} label={LanguageRus.page.products.table.price} />
+                <Field type="text" idName="productPrice" name={"price"} component={Input} label={LanguageRus.page.products.table.price} />
             </div>
-            <button type="submit" className="btn btn-primary">{LanguageRus.page.products.edit.button} {props.isFetching ? <img src={loading}/> : null}</button>
+            <button onClick={() => setFetching(true)} type="submit" className="btn btn-primary" disabled={submitting} >{LanguageRus.page.products.edit.button} {isFetching ? <img src={loading}/> : null}</button>
+            {errSer === null && submitSucceeded && isFetching &&
+            <p className={'success'}>{LanguageRus.page.clientele.edit.success}</p>}
         </form>
     )
 }
 
-const ProductEditReduxForm = reduxForm({form:"ProductEdit"})(ProductEditForm);
+const ProductEditReduxForm = reduxForm({form:"ProductEdit", validate, asyncBlurFields: ['name', 'detail', 'price']})(ProductEditForm);
 
 export default ProductEdit;

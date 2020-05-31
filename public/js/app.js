@@ -80512,6 +80512,142 @@ try {
 
 /***/ }),
 
+/***/ "./node_modules/reselect/es/index.js":
+/*!*******************************************!*\
+  !*** ./node_modules/reselect/es/index.js ***!
+  \*******************************************/
+/*! exports provided: defaultMemoize, createSelectorCreator, createSelector, createStructuredSelector */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultMemoize", function() { return defaultMemoize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSelectorCreator", function() { return createSelectorCreator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSelector", function() { return createSelector; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createStructuredSelector", function() { return createStructuredSelector; });
+function defaultEqualityCheck(a, b) {
+  return a === b;
+}
+
+function areArgumentsShallowlyEqual(equalityCheck, prev, next) {
+  if (prev === null || next === null || prev.length !== next.length) {
+    return false;
+  }
+
+  // Do this in a for loop (and not a `forEach` or an `every`) so we can determine equality as fast as possible.
+  var length = prev.length;
+  for (var i = 0; i < length; i++) {
+    if (!equalityCheck(prev[i], next[i])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function defaultMemoize(func) {
+  var equalityCheck = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultEqualityCheck;
+
+  var lastArgs = null;
+  var lastResult = null;
+  // we reference arguments instead of spreading them for performance reasons
+  return function () {
+    if (!areArgumentsShallowlyEqual(equalityCheck, lastArgs, arguments)) {
+      // apply arguments instead of spreading for performance.
+      lastResult = func.apply(null, arguments);
+    }
+
+    lastArgs = arguments;
+    return lastResult;
+  };
+}
+
+function getDependencies(funcs) {
+  var dependencies = Array.isArray(funcs[0]) ? funcs[0] : funcs;
+
+  if (!dependencies.every(function (dep) {
+    return typeof dep === 'function';
+  })) {
+    var dependencyTypes = dependencies.map(function (dep) {
+      return typeof dep;
+    }).join(', ');
+    throw new Error('Selector creators expect all input-selectors to be functions, ' + ('instead received the following types: [' + dependencyTypes + ']'));
+  }
+
+  return dependencies;
+}
+
+function createSelectorCreator(memoize) {
+  for (var _len = arguments.length, memoizeOptions = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    memoizeOptions[_key - 1] = arguments[_key];
+  }
+
+  return function () {
+    for (var _len2 = arguments.length, funcs = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      funcs[_key2] = arguments[_key2];
+    }
+
+    var recomputations = 0;
+    var resultFunc = funcs.pop();
+    var dependencies = getDependencies(funcs);
+
+    var memoizedResultFunc = memoize.apply(undefined, [function () {
+      recomputations++;
+      // apply arguments instead of spreading for performance.
+      return resultFunc.apply(null, arguments);
+    }].concat(memoizeOptions));
+
+    // If a selector is called with the exact same arguments we don't need to traverse our dependencies again.
+    var selector = memoize(function () {
+      var params = [];
+      var length = dependencies.length;
+
+      for (var i = 0; i < length; i++) {
+        // apply arguments instead of spreading and mutate a local list of params for performance.
+        params.push(dependencies[i].apply(null, arguments));
+      }
+
+      // apply arguments instead of spreading for performance.
+      return memoizedResultFunc.apply(null, params);
+    });
+
+    selector.resultFunc = resultFunc;
+    selector.dependencies = dependencies;
+    selector.recomputations = function () {
+      return recomputations;
+    };
+    selector.resetRecomputations = function () {
+      return recomputations = 0;
+    };
+    return selector;
+  };
+}
+
+var createSelector = createSelectorCreator(defaultMemoize);
+
+function createStructuredSelector(selectors) {
+  var selectorCreator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : createSelector;
+
+  if (typeof selectors !== 'object') {
+    throw new Error('createStructuredSelector expects first argument to be an object ' + ('where each property is a selector, instead received a ' + typeof selectors));
+  }
+  var objectKeys = Object.keys(selectors);
+  return selectorCreator(objectKeys.map(function (key) {
+    return selectors[key];
+  }), function () {
+    for (var _len3 = arguments.length, values = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      values[_key3] = arguments[_key3];
+    }
+
+    return values.reduce(function (composition, value, index) {
+      composition[objectKeys[index]] = value;
+      return composition;
+    }, {});
+  });
+}
+
+/***/ }),
+
 /***/ "./node_modules/resolve-pathname/index.js":
 /*!************************************************!*\
   !*** ./node_modules/resolve-pathname/index.js ***!
@@ -82409,6 +82545,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _redux_app_selectors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/app-selectors */ "./resources/js/redux/app-selectors.js");
+
 
 
 
@@ -82419,8 +82557,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateForProps = function mapStateForProps(state) {
   return {
-    app: state.app,
-    auth: state.auth.isLoggedIn
+    app: Object(_redux_app_selectors__WEBPACK_IMPORTED_MODULE_7__["getAppSelector"])(state),
+    auth: Object(_redux_app_selectors__WEBPACK_IMPORTED_MODULE_7__["getIsLoggedInSelector"])(state)
   };
 };
 
@@ -82579,6 +82717,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_login_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../redux/login-reducer */ "./resources/js/redux/login-reducer.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _redux_app_selectors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../redux/app-selectors */ "./resources/js/redux/app-selectors.js");
+/* harmony import */ var _redux_login_selectors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../redux/login-selectors */ "./resources/js/redux/login-selectors");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -82602,6 +82742,8 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
 
 
 
@@ -82683,11 +82825,11 @@ var LoginContainer = /*#__PURE__*/function (_React$Component) {
 
 var mapStateForProps = function mapStateForProps(state) {
   return {
-    email: state.loginPage.email,
-    password: state.loginPage.password,
-    error: state.auth.error,
-    newHandlerChange: state.loginPage.newHandlerChange,
-    isLoggedIn: state.auth.isLoggedIn
+    email: Object(_redux_login_selectors__WEBPACK_IMPORTED_MODULE_8__["getEmailSelector"])(state),
+    password: Object(_redux_login_selectors__WEBPACK_IMPORTED_MODULE_8__["getPasswordSelector"])(state),
+    error: Object(_redux_app_selectors__WEBPACK_IMPORTED_MODULE_7__["getErrorSelector"])(state),
+    newHandlerChange: Object(_redux_login_selectors__WEBPACK_IMPORTED_MODULE_8__["getNewHandlerChange"])(state),
+    isLoggedIn: Object(_redux_app_selectors__WEBPACK_IMPORTED_MODULE_7__["getIsLoggedInSelector"])(state)
   };
 };
 
@@ -83303,6 +83445,37 @@ var initializeApp = function initializeApp() {
 
 /***/ }),
 
+/***/ "./resources/js/redux/app-selectors.js":
+/*!*********************************************!*\
+  !*** ./resources/js/redux/app-selectors.js ***!
+  \*********************************************/
+/*! exports provided: getAppSelector, getIsLoggedInSelector, getErrorSelector */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAppSelector", function() { return getAppSelector; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getIsLoggedInSelector", function() { return getIsLoggedInSelector; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getErrorSelector", function() { return getErrorSelector; });
+/* harmony import */ var reselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reselect */ "./node_modules/reselect/es/index.js");
+
+var getAppSelector = function getAppSelector(state) {
+  return state.app;
+};
+var getIsLoggedInSelector = function getIsLoggedInSelector(state) {
+  return state.auth.isLoggedIn;
+};
+var getErrorSelector = function getErrorSelector(state) {
+  return state.auth.error;
+};
+/* use reselect*/
+
+/*export const getApp = createSelector(getAppSelector, (app) => {
+    return app;
+});*/
+
+/***/ }),
+
 /***/ "./resources/js/redux/auth-reducer.js":
 /*!********************************************!*\
   !*** ./resources/js/redux/auth-reducer.js ***!
@@ -83576,7 +83749,8 @@ var clienteleReducer = function clienteleReducer() {
         });
 
         return _objectSpread(_objectSpread({}, state), {}, {
-          clientele: _toConsumableArray(_clientele)
+          clientele: _toConsumableArray(_clientele),
+          error: action.error
         });
       }
 
@@ -83606,10 +83780,11 @@ var addClienteleAC = function addClienteleAC(data, error) {
     }
   };
 };
-var editClienteleAC = function editClienteleAC(data) {
+var editClienteleAC = function editClienteleAC(data, error) {
   return {
     type: EDIT_CLIENTELE,
-    data: data
+    data: data,
+    error: error
   };
 };
 var getClientele = function getClientele() {
@@ -83685,10 +83860,10 @@ var addClient = function addClient(clientele) {
             case 2:
               response = _context3.sent;
 
-              if (response.success) {
+              if (response.message === "Client created successfully.") {
                 dispatch(addClienteleAC([response.data], null));
-              } else {
-                dispatch(addClienteleAC([], response.data.message));
+              } else if (response.message === "Client error.") {
+                dispatch(addClienteleAC([], response.data));
               }
 
             case 4:
@@ -83717,7 +83892,12 @@ var editClient = function editClient(clientele) {
 
             case 2:
               response = _context4.sent;
-              dispatch(editClienteleAC(response.data));
+
+              if (response.message === "Client updated successfully.") {
+                dispatch(editClienteleAC(response.data, null));
+              } else if (response.message === "Client error.") {
+                dispatch(editClienteleAC([], response.data));
+              }
 
             case 4:
             case "end":
@@ -83786,6 +83966,37 @@ var getHandler = function getHandler(e) {
   };
 };
 /* harmony default export */ __webpack_exports__["default"] = (loginReducer);
+
+/***/ }),
+
+/***/ "./resources/js/redux/login-selectors":
+/*!********************************************!*\
+  !*** ./resources/js/redux/login-selectors ***!
+  \********************************************/
+/*! exports provided: getEmailSelector, getPasswordSelector, getNewHandlerChange */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEmailSelector", function() { return getEmailSelector; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPasswordSelector", function() { return getPasswordSelector; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNewHandlerChange", function() { return getNewHandlerChange; });
+/* harmony import */ var reselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reselect */ "./node_modules/reselect/es/index.js");
+
+
+
+const getEmailSelector = (state) => {
+    return state.loginPage.email;
+}
+
+const getPasswordSelector = (state) => {
+    return state.loginPage.password;
+}
+
+const getNewHandlerChange = (state) => {
+    return state.loginPage.newHandlerChange;
+}
+
 
 /***/ }),
 
@@ -84096,7 +84307,10 @@ var reducers = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   clienteleAdmin: _clientele_reducer__WEBPACK_IMPORTED_MODULE_9__["default"],
   form: redux_form__WEBPACK_IMPORTED_MODULE_8__["reducer"]
 });
-var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducers, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_5__["default"]));
+var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducers,
+/* preloadedState, */
+composeEnhancers(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_5__["default"])));
 window.__store__ = store;
 /* harmony default export */ __webpack_exports__["default"] = (store);
 

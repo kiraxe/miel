@@ -5,6 +5,8 @@ import {login} from "../../redux/auth-reducer";
 import {getHandler} from "../../redux/login-reducer";
 import {Redirect} from "react-router-dom";
 import {compose} from "redux";
+import {getErrorSelector, getIsLoggedInSelector} from "../../redux/app-selectors";
+import {getEmailSelector, getPasswordSelector, getNewHandlerChange} from "../../redux/login-selectors";
 
 class LoginContainer extends React.Component {
 
@@ -52,11 +54,11 @@ class LoginContainer extends React.Component {
 
 let mapStateForProps = (state) => {
   return {
-      email: state.loginPage.email,
-      password: state.loginPage.password,
-      error: state.auth.error,
-      newHandlerChange: state.loginPage.newHandlerChange,
-      isLoggedIn: state.auth.isLoggedIn
+      email: getEmailSelector(state),
+      password: getPasswordSelector(state),
+      error: getErrorSelector(state),
+      newHandlerChange: getNewHandlerChange(state),
+      isLoggedIn: getIsLoggedInSelector(state)
   }
 };
 

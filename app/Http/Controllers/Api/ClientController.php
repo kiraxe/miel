@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
+use Illuminate\Database\QueryException;
 use App\Client;
 use App\Permission;
 use App\Role;
@@ -31,15 +32,29 @@ class ClientController extends BaseController
         $validator = Validator::make($input, [
             'name' => 'required',
             'phone' => 'required',
-            'email' => 'required'
+            'email' => 'required',
+            'password' => 'required'
         ]);
+
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
         $input['password'] = \Hash::make($input['password']);
 
-        $client = Client::create($input);
+        try {
+            $client = Client::create($input);
+        } catch (QueryException $exception) {
+
+            $errorInfo = $exception->errorInfo;
+
+            if ($errorInfo[0] === "23000") {
+                $messageErr = "Такой адрес электронной почты уже зарегистрирован";
+            }
+
+            return $this->sendResponse($messageErr, 'Client error.');
+        }
+
         return $this->sendResponse($client->toArray(), 'Client created successfully.');
     }
     /**
@@ -91,7 +106,18 @@ class ClientController extends BaseController
         $client->ks = $input['ks'];
         $client->password = empty($input['password']) ? $client->password : \Hash::make($input['password']);
 
-        $client->save();
+        try {
+            $client->save();
+        } catch (QueryException $exception) {
+
+            $errorInfo = $exception->errorInfo;
+
+            if ($errorInfo[0] === "23000") {
+                $messageErr = "Такой адрес электронной почты уже зарегистрирован";
+            }
+
+            return $this->sendResponse($messageErr, 'Client error.');
+        }
 
         return $this->sendResponse($client->toArray(), 'Client updated successfully.');
     }

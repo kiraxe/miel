@@ -4,6 +4,7 @@ import {compose} from "redux";
 import {logout} from "../../redux/auth-reducer";
 import Admin from "./Admin";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {getAdminPageSelector, getCurrentUserSelector} from "../../redux/admin-selectors";
 
 class AdminContainer extends Component {
 
@@ -21,8 +22,8 @@ class AdminContainer extends Component {
 
 let mapStateToProps = (state) => {
     return {
-        adminPage: state.adminPage,
-        currentUser: state.auth.name,
+        adminPage: getAdminPageSelector(state),
+        currentUser: getCurrentUserSelector(state),
     }
 };
 
