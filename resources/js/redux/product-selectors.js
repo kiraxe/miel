@@ -7,3 +7,7 @@ export const getProductsSelectors = (state) => {
 export const getErrorSelector = (state) => {
     return state.productsAdmin.error;
 }
+
+export const getPaginatorSelector = (state) => {
+    return state.productsAdmin.paginator;
+}

@@ -13,6 +13,7 @@ const Clientele = (props) => {
                 <table className="table">
                     <thead className="thead-dark">
                     <tr>
+                        <th scope="col">{LanguageRus.page.clientele.table.id}</th>
                         <th scope="col">{LanguageRus.page.clientele.table.name}</th>
                         <th scope="col">{LanguageRus.page.clientele.table.email}</th>
                         <th scope="col">{LanguageRus.page.clientele.table.phone}</th>

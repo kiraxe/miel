@@ -6,6 +6,7 @@ const Product = (props) => {
     let buttons = ['edit','delete'];
     return (
         <tr>
+            <td>{props.product.id}</td>
             <td>{props.product.name}</td>
             <td>{props.product.detail}</td>
             <td>{props.product.price} {LanguageRus.page.products.rub}</td>

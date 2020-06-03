@@ -7,6 +7,11 @@ const EDIT_PRODUCT = 'EDIT_PRODUCT';
 
 let initialState = {
     products: [],
+    paginator: {
+        total_page : null,
+        current_page : null,
+        per_page : null,
+    },
     error: null
 }
 
@@ -16,7 +21,13 @@ let productsReducer = (state = initialState, action) => {
         case SET_PRODUCTS: {
             return {
                 ...state,
-                products: [...action.data],
+                products: [...action.data.data],
+                paginator: {
+                    total_page: action.data.last_page,
+                    current_page: action.data.current_page,
+                    per_page: action.data.per_page
+                }
+
             }
         }
         case DELETE_PRODUCTS: {
@@ -62,8 +73,8 @@ export const deleteProductAC = (data) => ({type: DELETE_PRODUCTS, data: data});
 export const addProductAC = (data, error) => ({type: ADD_PRODUCT, data: {data, error}});
 export const editProductAC = (data) => ({type: EDIT_PRODUCT, data: data});
 
-export const getProducts = () => async dispatch => {
-    let response = await adminAPI.getProducts();
+export const getProducts = (page) => async dispatch => {
+    let response = await adminAPI.getProducts(page);
     if (response.success) {
         dispatch(setProductsAC(response.data));
     }

@@ -2,7 +2,7 @@ import React from "react";
 
 
 const FormControl = ({idName, input, label, type, errSer, meta: {touched, error}, ...props}) => {
-    return (
+    return(
         <>
             {props.children}
             {touched &&

@@ -6,6 +6,7 @@ const Client = (props) => {
     let buttons = ['edit', 'delete'];
     return (
         <tr>
+            <td>{props.client.id}</td>
             <td>{props.client.name}</td>
             <td>{props.client.email}</td>
             <td>{props.client.phone}</td>

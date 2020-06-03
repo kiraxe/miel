@@ -82222,8 +82222,8 @@ var getAxiosSettings = function getAxiosSettings() {
 };
 
 var adminAPI = {
-  getProducts: function getProducts() {
-    return getAxiosSettings().get('products').then(function (response) {
+  getProducts: function getProducts(page) {
+    return getAxiosSettings().get("products/?page=".concat(page)).then(function (response) {
       return response.data;
     })["catch"](function (error) {
       return error.response;
@@ -82248,8 +82248,8 @@ var adminAPI = {
       return error.response;
     });
   },
-  getClientele: function getClientele() {
-    return getAxiosSettings().get('clientele').then(function (response) {
+  getClientele: function getClientele(page) {
+    return getAxiosSettings().get("clientele/?page=".concat(page)).then(function (response) {
       return response.data;
     })["catch"](function (error) {
       return error.response;
@@ -83705,6 +83705,11 @@ var ADD_CLIENTELE = 'ADD_CLIENTELE';
 var EDIT_CLIENTELE = 'EDIT_CLIENTELE';
 var initialState = {
   clientele: [],
+  paginator: {
+    total_page: null,
+    current_page: null,
+    per_page: null
+  },
   error: null
 };
 
@@ -83716,7 +83721,12 @@ var clienteleReducer = function clienteleReducer() {
     case SET_CLIENTELE:
       {
         return _objectSpread(_objectSpread({}, state), {}, {
-          clientele: _toConsumableArray(action.data)
+          clientele: _toConsumableArray(action.data.data),
+          paginator: {
+            total_page: action.data.last_page,
+            current_page: action.data.current_page,
+            per_page: action.data.per_page
+          }
         });
       }
 
@@ -84051,6 +84061,11 @@ var ADD_PRODUCT = 'ADD_PRODUCT';
 var EDIT_PRODUCT = 'EDIT_PRODUCT';
 var initialState = {
   products: [],
+  paginator: {
+    total_page: null,
+    current_page: null,
+    per_page: null
+  },
   error: null
 };
 
@@ -84062,7 +84077,12 @@ var productsReducer = function productsReducer() {
     case SET_PRODUCTS:
       {
         return _objectSpread(_objectSpread({}, state), {}, {
-          products: _toConsumableArray(action.data)
+          products: _toConsumableArray(action.data.data),
+          paginator: {
+            total_page: action.data.last_page,
+            current_page: action.data.current_page,
+            per_page: action.data.per_page
+          }
         });
       }
 
@@ -84131,7 +84151,7 @@ var editProductAC = function editProductAC(data) {
     data: data
   };
 };
-var getProducts = function getProducts() {
+var getProducts = function getProducts(page) {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(dispatch) {
       var response;
@@ -84140,7 +84160,7 @@ var getProducts = function getProducts() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _api_api__WEBPACK_IMPORTED_MODULE_1__["adminAPI"].getProducts();
+              return _api_api__WEBPACK_IMPORTED_MODULE_1__["adminAPI"].getProducts(page);
 
             case 2:
               response = _context.sent;

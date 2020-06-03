@@ -7,6 +7,11 @@ const EDIT_CLIENTELE = 'EDIT_CLIENTELE';
 
 let initialState = {
     clientele: [],
+    paginator: {
+        total_page : null,
+        current_page : null,
+        per_page : null,
+    },
     error: null
 }
 
@@ -16,7 +21,12 @@ let clienteleReducer = (state = initialState, action) => {
         case SET_CLIENTELE: {
             return {
                 ...state,
-                clientele: [...action.data],
+                clientele: [...action.data.data],
+                paginator: {
+                    total_page: action.data.last_page,
+                    current_page: action.data.current_page,
+                    per_page: action.data.per_page
+                }
             }
         }
         case DELETE_CLIENTELE: {

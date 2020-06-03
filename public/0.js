@@ -265,7 +265,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var Product = function Product(props) {
   var buttons = ['edit', 'delete'];
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.detail), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.price, " ", _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.products.rub), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.detail), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.price, " ", _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.products.rub), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
     page: props.page,
     buttons: buttons,
     elementId: props.product.id,
@@ -534,6 +534,8 @@ var Products = function Products(props) {
     className: "thead-dark"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.products.table.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
   }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.products.table.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "col"
   }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.products.table.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
@@ -571,11 +573,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Products__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Products */ "./resources/js/components/Admin/Products/Products.jsx");
 /* harmony import */ var _ProductEdit_ProductEdit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductEdit/ProductEdit */ "./resources/js/components/Admin/Products/ProductEdit/ProductEdit.js");
 /* harmony import */ var _ProductNew_ProductNew__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProductNew/ProductNew */ "./resources/js/components/Admin/Products/ProductNew/ProductNew.jsx");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _redux_products_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../redux/products-reducer */ "./resources/js/redux/products-reducer.js");
-/* harmony import */ var _redux_product_selectors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../redux/product-selectors */ "./resources/js/redux/product-selectors.js");
+/* harmony import */ var _common_Paginator_Paginator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../common/Paginator/Paginator */ "./resources/js/components/common/Paginator/Paginator.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _redux_products_reducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../redux/products-reducer */ "./resources/js/redux/products-reducer.js");
+/* harmony import */ var _redux_product_selectors__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../redux/product-selectors */ "./resources/js/redux/product-selectors.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -610,6 +613,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var ProductsContainer = /*#__PURE__*/function (_React$Component) {
   _inherits(ProductsContainer, _React$Component);
 
@@ -630,13 +634,19 @@ var ProductsContainer = /*#__PURE__*/function (_React$Component) {
       _this.props.editProduct(formData);
     });
 
+    _defineProperty(_assertThisInitialized(_this), "onGetPageProducts", function (e) {
+      var page = e.target.getAttribute('page');
+
+      _this.props.getProducts(page);
+    });
+
     return _this;
   }
 
   _createClass(ProductsContainer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.getProducts();
+      this.props.getProducts(1);
     }
   }, {
     key: "render",
@@ -657,7 +667,11 @@ var ProductsContainer = /*#__PURE__*/function (_React$Component) {
         error: this.props.error,
         addProduct: this.onAddSubmit
       }) : null;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, product);
+      var paginator = this.props.paginator.total_page > 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Paginator_Paginator__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        onGetPageProducts: this.onGetPageProducts,
+        paginator: this.props.paginator
+      }) : null;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, product, !this.props.match.params.slug && paginator);
     }
   }]);
 
@@ -666,16 +680,17 @@ var ProductsContainer = /*#__PURE__*/function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    products: Object(_redux_product_selectors__WEBPACK_IMPORTED_MODULE_8__["getProductsSelectors"])(state),
-    error: Object(_redux_product_selectors__WEBPACK_IMPORTED_MODULE_8__["getErrorSelector"])(state)
+    products: Object(_redux_product_selectors__WEBPACK_IMPORTED_MODULE_9__["getProductsSelectors"])(state),
+    paginator: Object(_redux_product_selectors__WEBPACK_IMPORTED_MODULE_9__["getPaginatorSelector"])(state),
+    error: Object(_redux_product_selectors__WEBPACK_IMPORTED_MODULE_9__["getErrorSelector"])(state)
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_5__["compose"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, {
-  getProducts: _redux_products_reducer__WEBPACK_IMPORTED_MODULE_7__["getProducts"],
-  addProduct: _redux_products_reducer__WEBPACK_IMPORTED_MODULE_7__["addProduct"],
-  editProduct: _redux_products_reducer__WEBPACK_IMPORTED_MODULE_7__["editProduct"]
-}), react_router_dom__WEBPACK_IMPORTED_MODULE_6__["withRouter"])(ProductsContainer));
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_6__["compose"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(mapStateToProps, {
+  getProducts: _redux_products_reducer__WEBPACK_IMPORTED_MODULE_8__["getProducts"],
+  addProduct: _redux_products_reducer__WEBPACK_IMPORTED_MODULE_8__["addProduct"],
+  editProduct: _redux_products_reducer__WEBPACK_IMPORTED_MODULE_8__["editProduct"]
+}), react_router_dom__WEBPACK_IMPORTED_MODULE_7__["withRouter"])(ProductsContainer));
 
 /***/ }),
 
@@ -861,7 +876,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var Client = function Client(props) {
   var buttons = ['edit', 'delete'];
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.company), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.addressK), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.addressP), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.inn), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.kpp), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.rs), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.bik), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.ks), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.company), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.addressK), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.addressP), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.inn), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.kpp), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.rs), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.bik), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.client.ks), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
     page: props.page,
     buttons: buttons,
     elementId: props.client.id,
@@ -1356,6 +1371,8 @@ var Clientele = function Clientele(props) {
     className: "thead-dark"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.clientele.table.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
   }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.clientele.table.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "col"
   }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.clientele.table.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
@@ -1414,6 +1431,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _redux_clientele_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../redux/clientele-reducer */ "./resources/js/redux/clientele-reducer.js");
 /* harmony import */ var _redux_clientele_selectors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../redux/clientele-selectors */ "./resources/js/redux/clientele-selectors.js");
+/* harmony import */ var _common_Paginator_Paginator__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../common/Paginator/Paginator */ "./resources/js/components/common/Paginator/Paginator.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1448,6 +1466,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var ClienteleContainer = /*#__PURE__*/function (_React$Component) {
   _inherits(ClienteleContainer, _React$Component);
 
@@ -1466,6 +1485,12 @@ var ClienteleContainer = /*#__PURE__*/function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_this), "onEditSubmit", function (formData) {
       _this.props.editClient(formData);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onGetPageClientele", function (e) {
+      var page = e.target.getAttribute('page');
+
+      _this.props.getClientele(page);
     });
 
     return _this;
@@ -1500,7 +1525,11 @@ var ClienteleContainer = /*#__PURE__*/function (_React$Component) {
         error: this.props.error,
         addClient: this.onAddSubmit
       }) : null;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, client);
+      var paginator = this.props.paginator.total_page > 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Paginator_Paginator__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        onGetPageProducts: this.onGetPageClientele,
+        paginator: this.props.paginator
+      }) : null;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, client, !this.props.match.params.slug && paginator);
     }
   }]);
 
@@ -1510,6 +1539,7 @@ var ClienteleContainer = /*#__PURE__*/function (_React$Component) {
 var mapStateToProps = function mapStateToProps(state) {
   return {
     clientele: Object(_redux_clientele_selectors__WEBPACK_IMPORTED_MODULE_8__["getClienteleSelectors"])(state),
+    paginator: Object(_redux_clientele_selectors__WEBPACK_IMPORTED_MODULE_8__["getPaginatorSelector"])(state),
     error: Object(_redux_clientele_selectors__WEBPACK_IMPORTED_MODULE_8__["getErrorSelector"])(state)
   };
 };
@@ -1801,6 +1831,121 @@ var Textarea = function Textarea(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/common/Paginator/Items.jsx":
+/*!************************************************************!*\
+  !*** ./resources/js/components/common/Paginator/Items.jsx ***!
+  \************************************************************/
+/*! exports provided: Items, ItemPrev, ItemNext */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Items", function() { return Items; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ItemPrev", function() { return ItemPrev; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ItemNext", function() { return ItemNext; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var Items = function Items(_ref) {
+  var paginator = _ref.paginator,
+      onGetPageProducts = _ref.onGetPageProducts,
+      props = _ref.props;
+  var elements = [];
+  var prev = null;
+  var next = null;
+  var start = null;
+  var end = null;
+
+  if (paginator.total_page > 1) {
+    prev = paginator.current_page - 1;
+    next = paginator.total_page - paginator.current_page;
+    if (prev < Math.floor(paginator.per_page / 2)) start = 1;else start = paginator.current_page - Math.floor(paginator.per_page / 2);
+    end = start + paginator.per_page - 1;
+
+    if (end > paginator.total_page) {
+      start -= end - paginator.total_page;
+      end = paginator.total_page;
+      if (start < 1) start = 1;
+    }
+  }
+
+  for (var i = start; i <= end; i++) {
+    if (i === paginator.current_page) elements.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: i,
+      className: "page-item active"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      page: paginator.current_page,
+      className: "page-link",
+      href: "#"
+    }, i)));else elements.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: i,
+      className: "page-item"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      onClick: onGetPageProducts,
+      page: i,
+      className: "page-link",
+      href: "#"
+    }, i)));
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, elements);
+};
+var ItemPrev = function ItemPrev(_ref2) {
+  var paginator = _ref2.paginator,
+      onGetPageProducts = _ref2.onGetPageProducts,
+      props = _ref2.props;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, paginator.current_page !== 1 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "page-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    onClick: onGetPageProducts,
+    page: paginator.current_page - 1,
+    className: "page-link",
+    href: "#"
+  }, "\xAB")));
+};
+var ItemNext = function ItemNext(_ref3) {
+  var paginator = _ref3.paginator,
+      onGetPageProducts = _ref3.onGetPageProducts,
+      props = _ref3.props;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, paginator !== paginator.total_page && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "page-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    onClick: onGetPageProducts,
+    page: paginator.current_page + 1,
+    className: "page-link",
+    href: "#"
+  }, "\xBB")));
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/common/Paginator/Paginator.jsx":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/common/Paginator/Paginator.jsx ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Items__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Items */ "./resources/js/components/common/Paginator/Items.jsx");
+
+
+
+var Paginator = function Paginator(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+    "aria-label": "Page navigation example"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "pagination"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Items__WEBPACK_IMPORTED_MODULE_1__["ItemPrev"], props), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Items__WEBPACK_IMPORTED_MODULE_1__["Items"], props), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Items__WEBPACK_IMPORTED_MODULE_1__["ItemNext"], props))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Paginator);
+
+/***/ }),
+
 /***/ "./resources/js/hoc/withAuthRedirect.js":
 /*!**********************************************!*\
   !*** ./resources/js/hoc/withAuthRedirect.js ***!
@@ -1905,13 +2050,14 @@ var getCurrentUserSelector = function getCurrentUserSelector(state) {
 /*!***************************************************!*\
   !*** ./resources/js/redux/clientele-selectors.js ***!
   \***************************************************/
-/*! exports provided: getClienteleSelectors, getErrorSelector */
+/*! exports provided: getClienteleSelectors, getErrorSelector, getPaginatorSelector */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClienteleSelectors", function() { return getClienteleSelectors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getErrorSelector", function() { return getErrorSelector; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPaginatorSelector", function() { return getPaginatorSelector; });
 /* harmony import */ var reselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reselect */ "./node_modules/reselect/es/index.js");
 
 var getClienteleSelectors = function getClienteleSelectors(state) {
@@ -1920,6 +2066,9 @@ var getClienteleSelectors = function getClienteleSelectors(state) {
 var getErrorSelector = function getErrorSelector(state) {
   return state.clienteleAdmin.error;
 };
+var getPaginatorSelector = function getPaginatorSelector(state) {
+  return state.clienteleAdmin.paginator;
+};
 
 /***/ }),
 
@@ -1927,13 +2076,14 @@ var getErrorSelector = function getErrorSelector(state) {
 /*!*************************************************!*\
   !*** ./resources/js/redux/product-selectors.js ***!
   \*************************************************/
-/*! exports provided: getProductsSelectors, getErrorSelector */
+/*! exports provided: getProductsSelectors, getErrorSelector, getPaginatorSelector */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProductsSelectors", function() { return getProductsSelectors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getErrorSelector", function() { return getErrorSelector; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPaginatorSelector", function() { return getPaginatorSelector; });
 /* harmony import */ var reselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reselect */ "./node_modules/reselect/es/index.js");
 
 var getProductsSelectors = function getProductsSelectors(state) {
@@ -1941,6 +2091,9 @@ var getProductsSelectors = function getProductsSelectors(state) {
 };
 var getErrorSelector = function getErrorSelector(state) {
   return state.productsAdmin.error;
+};
+var getPaginatorSelector = function getPaginatorSelector(state) {
+  return state.productsAdmin.paginator;
 };
 
 /***/ })

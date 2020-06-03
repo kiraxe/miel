@@ -6,7 +6,8 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
 import {getClientele, addClient, editClient} from "../../../redux/clientele-reducer";
-import {getClienteleSelectors, getErrorSelector} from "../../../redux/clientele-selectors";
+import {getClienteleSelectors, getErrorSelector, getPaginatorSelector} from "../../../redux/clientele-selectors";
+import Paginator from "../../common/Paginator/Paginator";
 
 
 class ClienteleContainer extends React.Component {
@@ -31,15 +32,23 @@ class ClienteleContainer extends React.Component {
         this.props.editClient(formData);
     }
 
+    onGetPageClientele = (e) => {
+        let page = e.target.getAttribute('page');
+        this.props.getClientele(page);
+    }
+
     render() {
 
         let client = !this.props.match.params.slug ? <Clientele page={this.props.match.params.page} url={this.props.match.url} clientele={this.props.clientele}/> :
                      this.props.match.params.slug === 'edit' && this.props.match.params.id ?  <ClientEdit error={this.props.error} editClient={this.onEditSubmit} client={this.props.clientele ? this.props.clientele.filter(item => item.id == this.props.match.params.id ) : null}/> :
                      this.props.match.params.slug === 'add' ? <ClientNew error={this.props.error}  addClient={this.onAddSubmit}/> : null;
 
+        let paginator = this.props.paginator.total_page > 1 ? <Paginator onGetPageProducts={this.onGetPageClientele} paginator={this.props.paginator}/> : null;
+
         return (
             <>
                 {client}
+                {!this.props.match.params.slug && paginator}
             </>
         )
     }
@@ -48,6 +57,7 @@ class ClienteleContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         clientele: getClienteleSelectors(state),
+        paginator: getPaginatorSelector(state),
         error: getErrorSelector(state),
     }
 };

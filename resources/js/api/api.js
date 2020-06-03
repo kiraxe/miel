@@ -15,8 +15,8 @@ const getAxiosSettings = () => {
 };
 
 export const adminAPI = {
-    getProducts() {
-        return getAxiosSettings().get('products')
+    getProducts(page) {
+        return getAxiosSettings().get(`products/?page=${page}`)
             .then(response => response.data)
             .catch(error => error.response);
     },
@@ -34,8 +34,8 @@ export const adminAPI = {
             .then(response => response.data)
             .catch(error => error.response)
     },
-    getClientele() {
-        return getAxiosSettings().get('clientele')
+    getClientele(page) {
+        return getAxiosSettings().get(`clientele/?page=${page}`)
             .then(response => response.data)
             .catch(error => error.response);
     },

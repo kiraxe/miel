@@ -17,7 +17,7 @@ class ClientController extends BaseController
      */
     public function index()
     {
-        $clientele = Client::all();
+        $clientele = Client::paginate(5);
         return $this->sendResponse($clientele->toArray(), 'Clientele retrieved successfully.');
     }
     /**
