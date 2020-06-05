@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->text('detail')->nullable();
             $table->decimal('price', 10, 2);
             $table->json('options')->nullable();
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

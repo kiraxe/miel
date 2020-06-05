@@ -14,6 +14,7 @@ const Products = (props) => {
                     <thead className="thead-dark">
                     <tr>
                         <th scope="col">{LanguageRus.page.products.table.id}</th>
+                        <th scope="col">{LanguageRus.page.products.table.image}</th>
                         <th scope="col">{LanguageRus.page.products.table.name}</th>
                         <th scope="col">{LanguageRus.page.products.table.description}</th>
                         <th scope="col">{LanguageRus.page.products.table.price}</th>

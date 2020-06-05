@@ -1,4 +1,5 @@
 import axios, {AxiosResponse} from "axios";
+import {getFormData} from "./getFormData";
 
 
 const getAxiosSettings = () => {
@@ -25,12 +26,14 @@ export const adminAPI = {
             .then(response => response.data);
     },
     addProduct(product) {
-        return getAxiosSettings().post('products', product)
+        let formData = getFormData(product);
+        return getAxiosSettings().post('products', formData, {headers:{'Content-Type' : 'multipart/form-data'}})
             .then(response => response.data)
             .catch(error => error.response);
     },
     editProduct(product) {
-        return getAxiosSettings().put(`products/${product.id}`, product)
+        let formData = getFormData(product, "PUT");
+        return getAxiosSettings().post(`products/${product.id}`, formData, {headers:{'Content-Type' : 'multipart/form-data'}})
             .then(response => response.data)
             .catch(error => error.response)
     },

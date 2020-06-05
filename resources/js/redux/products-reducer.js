@@ -87,6 +87,7 @@ export const deleteProduct = (id) => async dispatch => {
 
 export const addProduct = (product) => async dispatch => {
     let response = await adminAPI.addProduct(product);
+
     if (response.success) {
         dispatch(addProductAC([response.data], null));
     } else {

@@ -82208,6 +82208,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authAPI", function() { return authAPI; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _getFormData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getFormData */ "./resources/js/api/getFormData.js");
+
 
 
 var getAxiosSettings = function getAxiosSettings() {
@@ -82235,14 +82237,24 @@ var adminAPI = {
     });
   },
   addProduct: function addProduct(product) {
-    return getAxiosSettings().post('products', product).then(function (response) {
+    var formData = Object(_getFormData__WEBPACK_IMPORTED_MODULE_1__["getFormData"])(product);
+    return getAxiosSettings().post('products', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(function (response) {
       return response.data;
     })["catch"](function (error) {
       return error.response;
     });
   },
   editProduct: function editProduct(product) {
-    return getAxiosSettings().put("products/".concat(product.id), product).then(function (response) {
+    var formData = Object(_getFormData__WEBPACK_IMPORTED_MODULE_1__["getFormData"])(product, "PUT");
+    return getAxiosSettings().post("products/".concat(product.id), formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(function (response) {
       return response.data;
     })["catch"](function (error) {
       return error.response;
@@ -82299,6 +82311,32 @@ var authAPI = {
       return response;
     });
   }
+};
+
+/***/ }),
+
+/***/ "./resources/js/api/getFormData.js":
+/*!*****************************************!*\
+  !*** ./resources/js/api/getFormData.js ***!
+  \*****************************************/
+/*! exports provided: getFormData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFormData", function() { return getFormData; });
+var getFormData = function getFormData(elements, method) {
+  var formData = new FormData();
+
+  for (var key in elements) {
+    formData.append(key, elements[key]);
+  }
+
+  if (method) {
+    formData.append('_method', method);
+  }
+
+  return formData;
 };
 
 /***/ }),
@@ -82466,7 +82504,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 /**********************/
 
 var AdminContainer = react__WEBPACK_IMPORTED_MODULE_0___default.a.lazy(function () {
-  return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./Admin/AdminContainer */ "./resources/js/components/Admin/AdminContainer.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, /*! ./Admin/AdminContainer */ "./resources/js/components/Admin/AdminContainer.js"));
 });
 
 var App = /*#__PURE__*/function (_Component) {

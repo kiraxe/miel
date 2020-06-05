@@ -3,10 +3,13 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Product;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class ProductController extends BaseController
 {
+    private $storagePath = "/storage/";
+
     /**
      * Display a listing of the resource.
      *
@@ -31,10 +34,21 @@ class ProductController extends BaseController
             'detail' => 'required',
             'price' => 'required'
         ]);
+
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());
         }
+
         $product = Product::create($input);
+
+        $image = $request->file('image');
+
+        if($image) {
+            $path = $image->store("uploads/$product->id", 'public');
+            $product->image = $this->storagePath.$path;
+            $product->save();
+        }
+
         return $this->sendResponse($product->toArray(), 'Product created successfully.');
     }
     /**
@@ -60,18 +74,31 @@ class ProductController extends BaseController
      */
     public function update(Request $request, Product $product)
     {
+
         $input = $request->all();
+
         $validator = Validator::make($input, [
             'name' => 'required',
             'detail' => 'required',
             'price' => 'required'
         ]);
+
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());
         }
+
+        $image = $request->file('image');
+        $path = $image->store("uploads/$product->id", 'public');
+
+        if ($product->image && $image) {
+            $img = str_replace($this->storagePath,"", $product->image);
+            Storage::disk('public')->delete($img);
+        }
+
         $product->name = $input['name'];
         $product->detail = $input['detail'];
         $product->price = $input['price'];
+        $product->image = $this->storagePath.$path;
         $product->save();
 
         return $this->sendResponse($product->toArray(), 'Product updated successfully.');
@@ -84,7 +111,12 @@ class ProductController extends BaseController
      */
     public function destroy(Product $product)
     {
+        if ($product->image) {
+            Storage::disk('public')->deleteDirectory("/uploads/$product->id");
+        }
+
         $product->delete();
+
         return $this->sendResponse($product->toArray(), 'Product deleted successfully.');
     }
 }

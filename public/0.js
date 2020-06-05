@@ -186,6 +186,7 @@ var rus = {
         'name': 'Название',
         'description': 'Описание',
         'price': 'Цена',
+        'image': 'Картинка',
         'action': 'Действия'
       },
       'edit': {
@@ -265,7 +266,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var Product = function Product(props) {
   var buttons = ['edit', 'delete'];
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.detail), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.price, " ", _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.products.rub), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.image && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: props.product.image
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.detail), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.product.price, " ", _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.products.rub), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
     page: props.page,
     buttons: buttons,
     elementId: props.product.id,
@@ -342,6 +345,7 @@ var ProductEditForm = function ProductEditForm(props) {
     setFetching(false);
   }, 1000) : null;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    id: "productForm",
     onSubmit: handleSubmit,
     className: "form"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -368,6 +372,14 @@ var ProductEditForm = function ProductEditForm(props) {
     name: "price",
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.price
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "file",
+    idName: "productFiles",
+    name: "image",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["File"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.image
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return setFetching(true);
@@ -481,6 +493,14 @@ var ProductNewForm = function ProductNewForm(props) {
     name: "price",
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.price
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "file",
+    idName: "productFiles",
+    name: "image",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["File"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.image
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return setFetching(true);
@@ -535,6 +555,8 @@ var Products = function Products(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "col"
   }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.products.table.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.products.table.image), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "col"
   }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.products.table.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "col"
@@ -1775,20 +1797,35 @@ var mapStateToProps = function mapStateToProps(state) {
 /*!**********************************************************************!*\
   !*** ./resources/js/components/common/FormsControls/FormControls.js ***!
   \**********************************************************************/
-/*! exports provided: Input, Textarea */
+/*! exports provided: Input, Textarea, File */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Input", function() { return Input; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Textarea", function() { return Textarea; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "File", function() { return File; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dropzone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dropzone */ "./node_modules/react-dropzone/dist/es/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
 
 
 
@@ -1827,6 +1864,76 @@ var Textarea = function Textarea(props) {
     type: props.type,
     placeholder: props.label
   })));
+};
+var File = function File(_ref2) {
+  var idName = _ref2.idName,
+      input = _ref2.input,
+      label = _ref2.label,
+      type = _ref2.type,
+      errSer = _ref2.errSer,
+      _ref2$meta = _ref2.meta,
+      touched = _ref2$meta.touched,
+      error = _ref2$meta.error,
+      props = _objectWithoutProperties(_ref2, ["idName", "input", "label", "type", "errSer", "meta"]);
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      files = _useState2[0],
+      setFiles = _useState2[1];
+
+  var _useDropzone = Object(react_dropzone__WEBPACK_IMPORTED_MODULE_1__["useDropzone"])({
+    accept: 'image/*',
+    multiple: false,
+    onDrop: function onDrop(acceptedFiles) {
+      setFiles(acceptedFiles.map(function (file) {
+        return Object.assign(file, {
+          preview: URL.createObjectURL(file)
+        });
+      }));
+    }
+  }),
+      getRootProps = _useDropzone.getRootProps,
+      getInputProps = _useDropzone.getInputProps;
+
+  var thumbs = files.map(function (file) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: 'thumb',
+      key: file.name
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: 'thumbInner'
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: file.preview
+    })));
+  });
+  var placeholder = thumbs.length === 0 ? [input.value].map(function (item, key) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: key,
+      className: 'thumb'
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: 'thumbInner'
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: item
+    })));
+  }) : null;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    return function () {
+      // Make sure to revoke the data uris to avoid memory leaks
+      files.forEach(function (file) {
+        return URL.revokeObjectURL(file.preview);
+      });
+    };
+  }, [files]);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    id: 'files'
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", getRootProps({
+    className: 'dropzone'
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
+    id: idName,
+    onChange: input.onChange(files[0]),
+    name: input.name
+  }, getInputProps())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, label)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
+    className: 'thumbsContainer'
+  }, placeholder && placeholder || thumbs.length !== 0 && thumbs));
 };
 
 /***/ }),
@@ -1907,7 +2014,7 @@ var ItemNext = function ItemNext(_ref3) {
   var paginator = _ref3.paginator,
       onGetPageProducts = _ref3.onGetPageProducts,
       props = _ref3.props;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, paginator !== paginator.total_page && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, paginator.current_page !== paginator.total_page && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "page-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     onClick: onGetPageProducts,

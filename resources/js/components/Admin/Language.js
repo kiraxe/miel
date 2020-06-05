@@ -15,6 +15,7 @@ export const rus = {
                 'name': 'Название',
                 'description': 'Описание',
                 'price': 'Цена',
+                'image': 'Картинка',
                 'action': 'Действия'
             },
             'edit' : {
