@@ -14,9 +14,13 @@ require('laravel-mix-react-css-modules');
 
 //.sass('resources/sass/app.scss', 'public/css')
 
-mix.react('resources/js/app.js', 'public/js').sass('resources/sass/app.scss', 'public/css');
+mix
+    .react('resources/js/app.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css')
+    .babelConfig({
+        plugins: ['@babel/plugin-syntax-dynamic-import', '@babel/plugin-proposal-class-properties']
+    })
+    .version();
 
-mix.babelConfig({
-    plugins: ['@babel/plugin-syntax-dynamic-import', '@babel/plugin-proposal-class-properties']
-});
+
 

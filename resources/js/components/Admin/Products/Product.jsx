@@ -7,7 +7,7 @@ const Product = (props) => {
     return (
         <tr>
             <td>{props.product.id}</td>
-            <td>{props.product.image && <img src={props.product.image}/>}</td>
+            <td>{props.product.image && <img src={props.product.image}/> || <img src={"/storage/no-image.jpg"}/>}</td>
             <td>{props.product.name}</td>
             <td>{props.product.detail}</td>
             <td>{props.product.price} {LanguageRus.page.products.rub}</td>

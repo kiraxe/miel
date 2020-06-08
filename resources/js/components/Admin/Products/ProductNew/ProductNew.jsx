@@ -22,7 +22,7 @@ const ProductNewForm = (props) => {
 
     const [isFetching, setFetching] = useState(false);
 
-    const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed} = props;
+    const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed, change} = props;
 
     submitSucceeded || submitFailed || errSer ? setTimeout(() => {setFetching(false)}, 1000) : null;
 
@@ -41,7 +41,7 @@ const ProductNewForm = (props) => {
                 <Field type="text" idName="productPrice" name={"price"} component={Input} label={LanguageRus.page.products.table.price} />
             </div>
             <div className="form-group">
-                <Field type="file" idName="productFiles" name={"image"} component={File} label={LanguageRus.page.products.table.image} />
+                <Field type="file" idName="productFiles" name={"image"} change={change} component={File} label={LanguageRus.page.products.table.image} />
             </div>
             <button onClick={() => setFetching(true)} type="submit" className="btn btn-primary" disabled={submitting} >{LanguageRus.page.products.edit.button} {isFetching ? <img src={loading}/> : null}</button>
             {errSer === null && submitSucceeded && isFetching &&

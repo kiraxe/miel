@@ -10,6 +10,7 @@ class ProductController extends BaseController
 {
     private $storagePath = "/storage/";
 
+
     /**
      * Display a listing of the resource.
      *
@@ -88,17 +89,20 @@ class ProductController extends BaseController
         }
 
         $image = $request->file('image');
-        $path = $image->store("uploads/$product->id", 'public');
 
-        if ($product->image && $image) {
-            $img = str_replace($this->storagePath,"", $product->image);
-            Storage::disk('public')->delete($img);
+        if ($product->image && !empty($image)) {
+            $product->image = $this->storagePath.$image->store("uploads/$product->id", 'public');
+            Storage::disk('public')->delete(str_replace($this->storagePath,"", $product->image));
+        } elseif($product->image && is_null($input['image'])) {
+            Storage::disk('public')->delete(str_replace($this->storagePath,"", $product->image));
+            $product->image = null;
+        } elseif(!$product->image && !empty($image)) {
+            $product->image = $this->storagePath.$image->store("uploads/$product->id", 'public');
         }
 
         $product->name = $input['name'];
         $product->detail = $input['detail'];
         $product->price = $input['price'];
-        $product->image = $this->storagePath.$path;
         $product->save();
 
         return $this->sendResponse($product->toArray(), 'Product updated successfully.');

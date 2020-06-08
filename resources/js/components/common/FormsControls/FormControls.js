@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useDropzone} from 'react-dropzone';
+import validate from "../../Admin/Products/Validator/Validate";
+import ChangeImage from "../../Admin/Products/ProductEdit/ChangeImage";
 
 
 const FormControl = ({idName, input, label, type, errSer, meta: {touched, error}, ...props}) => {
@@ -31,7 +33,7 @@ export const Textarea = (props) => {
     return <FormControl {...props}><textarea id={props.idName} className={"form-control"} {...props.input} type={props.type} placeholder={props.label} /></FormControl>
 }
 
-export const File = ({idName, input, label, type, errSer, meta: {touched, error}, ...props}) => {
+export const File = ({idName, input, label, type, errSer, change, meta: {touched, error}, ...props}) => {
 
     const [files, setFiles] = useState([]);
     const {getRootProps, getInputProps} = useDropzone({
@@ -44,14 +46,19 @@ export const File = ({idName, input, label, type, errSer, meta: {touched, error}
         }
     });
 
-    const thumbs = files.map(file => (<div className={'thumb'} key={file.name}><div className={'thumbInner'}><img src={file.preview}/></div></div>));
-
-    const placeholder = thumbs.length === 0 ? [input.value].map( (item, key) => (<div key={key} className={'thumb'} ><div className={'thumbInner'}><img src={item}/></div></div>)): null;
-
     useEffect(() => () => {
         // Make sure to revoke the data uris to avoid memory leaks
         files.forEach(file => URL.revokeObjectURL(file.preview));
     }, [files]);
+
+    const onDeleteImage = () => {
+        setFiles([]);
+        change(input.name, "");
+    }
+
+    const thumbs = files.map(file => (<div className={'thumb'} key={file.name}><i onClick={onDeleteImage} className="fa fa-times h" aria-hidden="true"></i><div className={'thumbInner'}><img src={file.preview}/></div></div>));
+
+    const placeholder = thumbs.length === 0 ? [input.value].map( (item, key) => (<div key={key} className={'thumb'} >{item && <i onClick={onDeleteImage} className="fa fa-times" aria-hidden="true"></i>}<div className={'thumbInner'}>{item && <img src={item}/>}</div></div>)): null;
 
     return (
         <section id={'files'} >
@@ -60,7 +67,7 @@ export const File = ({idName, input, label, type, errSer, meta: {touched, error}
                 <p>{label}</p>
             </div>
             <aside className={'thumbsContainer'}>
-                { placeholder && placeholder || thumbs.length !== 0 && thumbs }
+                { placeholder || thumbs.length !== 0 && thumbs }
             </aside>
         </section>
     );
