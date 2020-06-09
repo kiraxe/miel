@@ -3,4 +3,7 @@
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="JSX" />
   </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/database/migrations/2020_06_08_202752_creat_purpose_table.php" />
+  </component>
 </project>
