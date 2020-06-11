@@ -2,6 +2,7 @@ export const rus = {
     'sidebar' : {
         'menu' : {
             'products' : 'Продукция',
+            'categories' : 'Категории',
             'clientele' : 'Клиенты',
             'logout' : 'Выход'
         }
@@ -12,10 +13,13 @@ export const rus = {
             'rub' : 'руб.',
             'table' : {
                 'id' : 'Номер',
+                'article' : 'Артикул',
                 'name': 'Название',
                 'description': 'Описание',
                 'price': 'Цена',
+                'property': 'Характеристики',
                 'image': 'Картинка',
+                'novelty' : 'Новинка',
                 'action': 'Действия'
             },
             'edit' : {
@@ -30,8 +34,33 @@ export const rus = {
             },
             'error' : {
                 'name' : 'Введите название',
+                'article' : 'Введите артикул',
                 'detail' : 'Введите описание',
                 'price' : 'Введите цену',
+            },
+        },
+        'categories': {
+            'title':'Категории',
+            'table' : {
+                'id' : 'Номер',
+                'name': 'Название',
+                'description': 'Описание',
+                'parent':'Родительская категория',
+                'image': 'Картинка',
+                'action': 'Действия'
+            },
+            'edit' : {
+                'title' : 'Редактировать',
+                'button' : 'Обновить',
+                'success' : 'Обновление...'
+            },
+            'new' : {
+                'title' : 'Создать категорию',
+                'button' : 'Создать',
+                'success' : 'Создание...'
+            },
+            'error' : {
+                'name' : 'Введите название',
             },
         },
         'clientele': {

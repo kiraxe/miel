@@ -14,7 +14,7 @@ class CreateOptionValueDescriptionTable extends Migration
     public function up()
     {
         Schema::create('option_value_description', function (Blueprint $table) {
-            $table->bigIncrements('option_value_id');
+            $table->bigInteger('option_value_id')->unsigned();
             $table->foreign('option_value_id')->references('option_value_id')->on('option_value')->onDelete('cascade');
             $table->bigInteger('option_id');
             $table->string('name', 255);

@@ -4,7 +4,7 @@ import validate from "../../Admin/Products/Validator/Validate";
 import ChangeImage from "../../Admin/Products/ProductEdit/ChangeImage";
 
 
-const FormControl = ({idName, input, label, type, errSer, meta: {touched, error}, ...props}) => {
+const FormControl = ({idName, input, label, type, errSer, categories, ourCategory, meta: {touched, error}, ...props}) => {
     return(
         <>
             {props.children}
@@ -33,6 +33,15 @@ export const Textarea = (props) => {
     return <FormControl {...props}><textarea id={props.idName} className={"form-control"} {...props.input} type={props.type} placeholder={props.label} /></FormControl>
 }
 
+export const Checkbox = (props) => {
+    return <FormControl {...props}><input id={props.idName} className={"form-check-input"} {...props.input} type={props.type} placeholder={props.label} /></FormControl>
+}
+
+export const Select = (props) => {
+    let options = props.select.map((item, key) => Number(props.ourCategory) !== item.category_id ? <option key={key} value={item.category_id}>{item.name}</option>: null)
+    return <FormControl {...props}><select {...props.input} id={props.idName} className={"form-control"}><option>Выберите</option>{options}</select></FormControl>
+}
+
 export const File = ({idName, input, label, type, errSer, change, meta: {touched, error}, ...props}) => {
 
     const [files, setFiles] = useState([]);
@@ -46,10 +55,12 @@ export const File = ({idName, input, label, type, errSer, change, meta: {touched
         }
     });
 
-    useEffect(() => () => {
+    useEffect(() => {
+        input.onChange(files[0]);
+        return () => {
         // Make sure to revoke the data uris to avoid memory leaks
         files.forEach(file => URL.revokeObjectURL(file.preview));
-    }, [files]);
+    }}, [files]);
 
     const onDeleteImage = () => {
         setFiles([]);
@@ -63,7 +74,7 @@ export const File = ({idName, input, label, type, errSer, change, meta: {touched
     return (
         <section id={'files'} >
             <div {...getRootProps({className: 'dropzone'})}>
-                <input id={idName} onChange={input.onChange(files[0])} name={input.name} {...getInputProps()} />
+                <input id={idName} name={input.name} {...getInputProps()} />
                 <p>{label}</p>
             </div>
             <aside className={'thumbsContainer'}>

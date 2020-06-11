@@ -1,7 +1,7 @@
 import React from 'react';
 import ErrorsAlert from '../Errors/ErrorsAlert';
 import {rus as languageRu} from './Language';
-import loading from '../../../../public/images/loading.svg';
+import loading from '../../assets/images/loading.svg';
 const Login = (props) => {
     //HANDLE INPUT ERRORS
     const error = props.error;

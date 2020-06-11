@@ -33,7 +33,7 @@ export const adminAPI = {
     },
     editProduct(product) {
         let formData = getFormData(product, "PUT");
-        return getAxiosSettings().post(`products/${product.id}`, formData, {headers:{'Content-Type' : 'multipart/form-data'}})
+        return getAxiosSettings().post(`products/${product.product_id}`, formData, {headers:{'Content-Type' : 'multipart/form-data'}})
             .then(response => response.data)
             .catch(error => error.response)
     },
@@ -55,7 +55,29 @@ export const adminAPI = {
         return getAxiosSettings().put(`clientele/${client.id}`, client)
             .then(response => response.data)
             .catch(error => error.response)
-    }
+    },
+    getCategories(page) {
+        return getAxiosSettings().get(`category/?page=${page}`)
+            .then(response => response.data)
+            .catch(error => error.response);
+    },
+    deleteCategory(id) {
+        return getAxiosSettings().delete(`category/${id}`)
+            .then(response => response.data);
+    },
+    addCategory(category) {
+        let formData = getFormData(category);
+        return getAxiosSettings().post('category', formData, {headers:{'Content-Type' : 'multipart/form-data'}})
+            .then(response => response.data)
+            .catch(error => error.response);
+    },
+    editCategory(category) {
+        let formData = getFormData(category, "PUT");
+        return getAxiosSettings().post(`category/${category.category_id}`, formData, {headers:{'Content-Type' : 'multipart/form-data'}})
+            .then(response => response.data)
+            .catch(error => error.response)
+    },
+
 };
 
 export const authAPI = {

@@ -5,6 +5,9 @@ const validate = values => {
     if (!values.name) {
         errors.name = LanguageRus.page.products.error.name;
     }
+    if (!values.name) {
+        errors.article = LanguageRus.page.products.error.article;
+    }
     if (!values.detail) {
         errors.detail = LanguageRus.page.products.error.detail;
     }

@@ -19,7 +19,7 @@ assets-rebuild:
 assets-dev:
 	docker-compose exec node yarn run dev
 
-assets-watch:
+assets-wa
 	docker-compose exec node yarn run watch
 
 queue:

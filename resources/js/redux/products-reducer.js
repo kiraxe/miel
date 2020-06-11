@@ -32,7 +32,7 @@ let productsReducer = (state = initialState, action) => {
         }
         case DELETE_PRODUCTS: {
 
-            let products = state.products.filter(item => item.id !== action.data.id);
+            let products = state.products.filter(item => item.product_id !== action.data.product_id);
 
             return {
                 ...state,
@@ -49,7 +49,7 @@ let productsReducer = (state = initialState, action) => {
         case EDIT_PRODUCT: {
 
             let products = state.products.map(item => {
-                if (item.id === action.data.id) {
+                if (item.product_id === action.data.product_id) {
                     item = action.data;
                 }
                 return item;

@@ -13,21 +13,24 @@ use Illuminate\Http\Request;
 |
 */
 
+// public routes
+
 Route::middleware('json.response')->group(function () {
 
-    // public routes
     //->login - POST
     Route::post('/login', 'Api\AuthController@login')->name('login.api');
 
     //->register - POST
     Route::post('/register', 'Api\AuthController@register')->name('register.api');
-    //->me
-    //Route::get('/me', 'Api\AuthController@me')->name('me.api');
+
     //->product - POST
     Route::resource('/products', 'Api\ProductController');
 
     //->clientele
     Route::resource('/clientele', 'Api\ClientController');
+
+    //->categories
+    Route::resource('/category', 'Api\CategoryController');
 
 });
 
@@ -46,6 +49,9 @@ Route::middleware(['auth:api','json.response'])->group(function () {
 
      //->clientele
      Route::resource('/clientele', 'Api\ClientController');
+
+    //->categories
+    Route::resource('/category', 'Api\CategoryController');
 
 });
 

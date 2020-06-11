@@ -14,13 +14,12 @@ class CreatPurposeDescriptionTable extends Migration
     public function up()
     {
         Schema::create('purpose_description', function (Blueprint $table) {
-            $table->bigIncrements('purpose_id');
+            $table->bigInteger('purpose_id')->unsigned();
             $table->foreign('purpose_id')->references('purpose_id')->on('purpose')->onDelete('cascade');
             $table->string('name', 255);
             $table->mediumText('description')->nullable();
             $table->string('meta_description', 255)->nullable();
             $table->string('meta_keywords', 255)->nullable();
-            $table->timestamps();
         });
     }
 

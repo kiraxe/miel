@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {rus as LanguageRus} from "../../Language";
 import {Field, reduxForm} from "redux-form";
-import loading from '../../../../../../public/images/loading.svg';
+import loading from '../../../../assets/images/loading.svg';
 import validate from "../Validator/Validate";
 import {Input, Textarea} from '../../../common/FormsControls/FormControls';
 
@@ -24,7 +24,7 @@ const ClientNewForm = (props) => {
 
     const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed } = props;
 
-    submitSucceeded || submitFailed || errSer ? setTimeout(() => {setFetching(false)}, 1000) : null;
+    submitSucceeded || submitFailed || errSer ? setTimeout(() => {setFetching(false)}, 2000) : null;
 
     return (
         <form onSubmit={handleSubmit} className="form">

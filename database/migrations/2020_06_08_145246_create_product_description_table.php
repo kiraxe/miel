@@ -14,13 +14,12 @@ class CreateProductDescriptionTable extends Migration
     public function up()
     {
         Schema::create('product_description', function (Blueprint $table) {
-            $table->bigIncrements('product_id');
+            $table->bigInteger('product_id')->unsigned();
             $table->string('name', 255);
             $table->mediumText('description')->nullable();
             $table->string('meta_description', 255)->nullable();
             $table->string('meta_keywords', 255)->nullable();
             $table->foreign('product_id')->references('product_id')->on('products')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

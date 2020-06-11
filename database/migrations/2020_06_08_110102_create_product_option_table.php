@@ -20,7 +20,7 @@ class CreateProductOptionTable extends Migration
             $table->foreign('option_id')->references('option_id')->on('option')->onDelete('cascade');
             $table->foreign('product_id')->references('product_id')->on('products')->onDelete('cascade');
             $table->text('option_value');
-            $table->smallInteger('required')->unsigned();
+            $table->boolean('required');
         });
     }
 

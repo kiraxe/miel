@@ -29,7 +29,7 @@ const Clientele = (props) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {props.clientele ? props.clientele.map(p => <Client page={props.page} url={props.url} client={p} key={p.id}/>) : null}
+                    {props.clientele ? props.clientele.map((p, index) => <Client onDelete={props.onDelete} page={props.page} url={props.url} client={p} key={index}/>) : null}
                     </tbody>
                 </table>
                 <ButtonPanelContainer buttons={['add']} url={props.url}/>

@@ -18,7 +18,7 @@ const Client = (props) => {
             <td>{props.client.rs}</td>
             <td>{props.client.bik}</td>
             <td>{props.client.ks}</td>
-            <td><ButtonPanelContainer page={props.page} buttons={buttons} elementId={props.client.id}  url={props.url}/></td>
+            <td><ButtonPanelContainer onDelete={props.onDelete} page={props.page} buttons={buttons} elementId={props.client.id}  url={props.url}/></td>
         </tr>
     )
 }

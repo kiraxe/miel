@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export const Items = ({paginator, onGetPageProducts, props}) => {
+export const Items = ({paginator, onGetPage, props}) => {
 
     let elements = [];
     let prev = null;
@@ -28,18 +28,18 @@ export const Items = ({paginator, onGetPageProducts, props}) => {
 
     for (let i = start; i <= end; i++) {
         if (i === paginator.current_page) elements.push(<li key={i} className="page-item active"><a page={paginator.current_page} className="page-link" href="#">{i}</a></li>);
-        else elements.push(<li key={i} className="page-item"><a onClick={onGetPageProducts} page={i} className="page-link" href="#">{i}</a></li>);
+        else elements.push(<li key={i} className="page-item"><a onClick={onGetPage} page={i} className="page-link" href="#">{i}</a></li>);
     }
 
     return <>{elements}</>
 
 }
 
-export const ItemPrev = ({paginator, onGetPageProducts, props}) => {
-    return <>{paginator.current_page !== 1 && <li className="page-item"><a onClick={onGetPageProducts} page={paginator.current_page - 1} className="page-link" href="#">&laquo;</a></li>}</>
+export const ItemPrev = ({paginator, onGetPage, props}) => {
+    return <>{paginator.current_page !== 1 && <li className="page-item"><a onClick={onGetPage} page={paginator.current_page - 1} className="page-link" href="#">&laquo;</a></li>}</>
 }
 
-export const ItemNext = ({paginator, onGetPageProducts, props}) => {
-    return <>{paginator.current_page !== paginator.total_page && <li className="page-item"><a onClick={onGetPageProducts} page={paginator.current_page + 1} className="page-link" href="#">&raquo;</a></li>}</>
+export const ItemNext = ({paginator, onGetPage, props}) => {
+    return <>{paginator.current_page !== paginator.total_page && <li className="page-item"><a onClick={onGetPage} page={paginator.current_page + 1} className="page-link" href="#">&raquo;</a></li>}</>
 }
 

@@ -5,7 +5,7 @@ import ClientNew from "./ClientNew/ClientNew";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
-import {getClientele, addClient, editClient} from "../../../redux/clientele-reducer";
+import {getClientele, addClient, editClient, deleteClient} from "../../../redux/clientele-reducer";
 import {getClienteleSelectors, getErrorSelector, getPaginatorSelector} from "../../../redux/clientele-selectors";
 import Paginator from "../../common/Paginator/Paginator";
 
@@ -37,13 +37,18 @@ class ClienteleContainer extends React.Component {
         this.props.getClientele(page);
     }
 
+    onDelete = (e) => {
+        let elementId = e.currentTarget.getAttribute('data-element');
+        this.props.deleteClient(elementId);
+    }
+
     render() {
 
-        let client = !this.props.match.params.slug ? <Clientele page={this.props.match.params.page} url={this.props.match.url} clientele={this.props.clientele}/> :
+        let client = !this.props.match.params.slug ? <Clientele onDelete={this.onDelete} page={this.props.match.params.page} url={this.props.match.url} clientele={this.props.clientele}/> :
                      this.props.match.params.slug === 'edit' && this.props.match.params.id ?  <ClientEdit error={this.props.error} editClient={this.onEditSubmit} client={this.props.clientele ? this.props.clientele.filter(item => item.id == this.props.match.params.id ) : null}/> :
                      this.props.match.params.slug === 'add' ? <ClientNew error={this.props.error}  addClient={this.onAddSubmit}/> : null;
 
-        let paginator = this.props.paginator.total_page > 1 ? <Paginator onGetPageProducts={this.onGetPageClientele} paginator={this.props.paginator}/> : null;
+        let paginator = this.props.paginator.total_page > 1 ? <Paginator onGetPage={this.onGetPageClientele} paginator={this.props.paginator}/> : null;
 
         return (
             <>
@@ -64,6 +69,6 @@ let mapStateToProps = (state) => {
 
 
 export default compose(
-    connect(mapStateToProps, {getClientele, addClient, editClient}),
+    connect(mapStateToProps, {getClientele, addClient, editClient, deleteClient}),
     withRouter,
 )(ClienteleContainer);

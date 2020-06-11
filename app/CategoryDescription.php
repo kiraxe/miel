@@ -2,17 +2,23 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class CategoryDescription extends Model
 {
+    protected $table = 'category_description';
+
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'detail', 'article', 'price', 'property', 'novelty', 'options'
+        'name', 'description', 'meta_description', 'meta_keywords'
     ];
 
-    protected $primaryKey = 'product_id';
+
+
+
 
 }

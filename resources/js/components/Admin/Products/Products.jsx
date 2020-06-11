@@ -22,7 +22,7 @@ const Products = (props) => {
                     </tr>
                     </thead>
                     <tbody>
-                        {props.products ? props.products.map(p => <Product page={props.page} url={props.url} product={p} key={p.id}/>) : null}
+                        {props.products ? props.products.map((p, index) => <Product onDelete={props.onDelete} page={props.page} url={props.url} product={p} key={index}/>) : null}
                     </tbody>
                 </table>
                 <ButtonPanelContainer buttons={['add']} url={props.url}/>

@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->text('property')->nullable();
             $table->decimal('price', 10, 2);
             $table->text('image')->nullable();
-            $table->smallInteger('novelty');
+            $table->boolean('novelty')->default(0);
             $table->timestamps();
         });
     }

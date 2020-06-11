@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Kalnoy\Nestedset\NestedSet;
 
 class CreateCategoryTable extends Migration
 {
@@ -15,11 +16,11 @@ class CreateCategoryTable extends Migration
     {
         Schema::create('category', function (Blueprint $table) {
             $table->bigIncrements('category_id');
-            $table->bigInteger('parent_id')->unsigned()->nullable();
             $table->string('image', 255)->nullable();
             $table->integer('sort_order')->unsigned()->nullable();
-            $table->smallInteger('status')->unsigned()->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
+            NestedSet::columns($table);
         });
     }
 
