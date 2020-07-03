@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api;
+use App\Category;
+use App\Services\SelectForm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Product;
@@ -9,6 +11,7 @@ use Validator;
 class ProductController extends BaseController
 {
     private $storagePath = "/storage/";
+    private $storageProductsPath = "products/";
 
 
     /**
@@ -18,8 +21,15 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        $products = Product::paginate(5);
-        return $this->sendResponse($products->toArray(), 'Categories retrieved successfully.');
+        $query = Product::with('attributes');
+
+        $category = Category::with('attributes')->get();
+
+        $products = $query->paginate(5)->toArray();
+
+        $products['select'] = SelectForm::getSelectCategory($category);
+
+        return $this->sendResponse($products, 'Products retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
@@ -30,6 +40,7 @@ class ProductController extends BaseController
     public function store(Request $request)
     {
         $input = $request->all();
+
         $validator = Validator::make($input, [
             'name' => 'required',
             'article' => 'required',
@@ -41,19 +52,40 @@ class ProductController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
-        $input['novelty'] = ($input['novelty'] === 'true');
+        if(isset($input['novelty'])) {
+            $input['novelty'] = ($input['novelty'] === 'true');
+        }
 
         $product = Product::create($input);
+
+        /*if (isset($input['categories_id'])) {
+
+            $categories_id = explode(",", $input['categories_id']);
+
+            foreach ($categories_id as $value) {
+                $prod_to_cat[] = ['category_id' => (int)$value];
+            }
+
+            $product->addAttributes($prod_to_cat);
+        }*/
+
+        if (isset($input['categories_id'])) {
+            $product->makeAttributes($input['categories_id']);
+        }
 
         $image = $request->file('image');
 
         if($image) {
-            $path = $image->store("uploads/$product->product_id", 'public');
+            $path = $image->store("uploads/$this->storageProductsPath"."$product->product_id", 'public');
             $product->image = $this->storagePath.$path;
             $product->save();
         }
 
-        return $this->sendResponse($product->toArray(), 'Category created successfully.');
+        $product->toArray();
+
+        $product['categories_id'] = $input['categories_id'];
+
+        return $this->sendResponse($product, 'Product created successfully.');
     }
     /**
      * Display the specified resource.
@@ -67,7 +99,7 @@ class ProductController extends BaseController
         if (is_null($product)) {
             return $this->sendError('Category not found.');
         }
-        return $this->sendResponse($product->toArray(), 'Category retrieved successfully.');
+        return $this->sendResponse($product->toArray(), 'Product retrieved successfully.');
     }
     /**
      * Update the specified resource in storage.
@@ -96,25 +128,41 @@ class ProductController extends BaseController
 
         if ($product->image && !empty($image)) {
             Storage::disk('public')->delete(str_replace($this->storagePath,"", $product->image));
-            $product->image = $this->storagePath.$image->store("uploads/$product->product_id", 'public');
+            $product->image = $this->storagePath.$image->store("uploads/$this->storageProductsPath"."$product->product_id", 'public');
         } elseif($product->image && is_null($input['image'])) {
             Storage::disk('public')->delete(str_replace($this->storagePath,"", $product->image));
             $product->image = null;
         } elseif(!$product->image && !empty($image)) {
-            $product->image = $this->storagePath.$image->store("uploads/$product->product_id", 'public');
+            $product->image = $this->storagePath.$image->store("uploads/$this->storageProductsPath"."$product->product_id", 'public');
         }
 
-        $input['novelty'] = ($input['novelty'] === 'true');
+
+        if (isset($input['categories_id'])) {
+            $product->makeAttributes($input['categories_id']);
+        } else {
+            $product->deleteAttributes([]);
+        }
+
+        if(isset($input['novelty'])) {
+            $input['novelty'] = ($input['novelty'] === 'true');
+            $product->novelty = $input['novelty'];
+        }
 
         $product->name = $input['name'];
         $product->detail = $input['detail'];
-        $product->novelty = $input['novelty'];
         $product->article = $input['article'];
         $product->property = $input['property'];
         $product->price = $input['price'];
+        $product->percent = $input['percent'];
+        $product->minfree = $input['minfree'];
+        $product->min = $input['min'];
         $product->save();
 
-        return $this->sendResponse($product->toArray(), 'Category updated successfully.');
+        $product->toArray();
+
+        $product['categories_id'] = $input['categories_id'];
+
+        return $this->sendResponse($product, 'Product updated successfully.');
     }
     /**
      * Remove the specified resource from storage.
@@ -130,6 +178,6 @@ class ProductController extends BaseController
 
         $product->delete();
 
-        return $this->sendResponse($product->toArray(), 'Category deleted successfully.');
+        return $this->sendResponse($product->toArray(), 'Product deleted successfully.');
     }
 }

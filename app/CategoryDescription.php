@@ -17,8 +17,4 @@ class CategoryDescription extends Model
         'name', 'description', 'meta_description', 'meta_keywords'
     ];
 
-
-
-
-
 }

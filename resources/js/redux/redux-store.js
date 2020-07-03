@@ -9,6 +9,8 @@ import publicReducer from "./public-reducer";
 import { reducer as formReducer } from 'redux-form'
 import clienteleReducer from "./clientele-reducer";
 import categoriesReducer from "./category-reducer";
+import settingsReducer from "./settings-reducer";
+import optionsReducer from "./option-reducer";
 
 let reducers = combineReducers({
     loginPage: loginReducer,
@@ -19,6 +21,8 @@ let reducers = combineReducers({
     publicPage: publicReducer,
     clienteleAdmin: clienteleReducer,
     categoriesAdmin: categoriesReducer,
+    settingsAdmin: settingsReducer,
+    optionsAdmin: optionsReducer,
     form: formReducer
 });
 

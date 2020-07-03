@@ -4,6 +4,8 @@ export const rus = {
             'products' : 'Продукция',
             'categories' : 'Категории',
             'clientele' : 'Клиенты',
+            'options' : 'Опции',
+            'settings' : 'Настройки',
             'logout' : 'Выход'
         }
     },
@@ -18,6 +20,9 @@ export const rus = {
                 'description': 'Описание',
                 'price': 'Цена',
                 'property': 'Характеристики',
+                'percent' : 'Процент',
+                'minfree': 'Минимальное количество',
+                'min': 'Минимальное количество (квартал)',
                 'image': 'Картинка',
                 'novelty' : 'Новинка',
                 'action': 'Действия'
@@ -98,6 +103,32 @@ export const rus = {
                 'phone' : 'Введите телефон',
                 'email' : 'Введите email',
                 'password' : 'Введите пароль'
+            },
+        },
+        'settings': {
+            'title': "Настройки",
+            'from': "От (квартал)",
+            'to': "До (квартал)",
+            'button': "Сохранить",
+            'success' : 'Сохранение...'
+        },
+        'options': {
+            'title':'Опции',
+            'table' : {
+                'id' : 'Номер',
+                'name': 'Название',
+                'type' : 'Тип',
+                'action': 'Действия'
+            },
+            'edit' : {
+                'title' : 'Редактировать',
+                'button' : 'Обновить',
+                'success' : 'Обновление...'
+            },
+            'new' : {
+                'title' : 'Создать опцию',
+                'button' : 'Создать',
+                'success' : 'Создание...'
             },
         },
     }

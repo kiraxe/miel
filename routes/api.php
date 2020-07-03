@@ -32,6 +32,12 @@ Route::middleware('json.response')->group(function () {
     //->categories
     Route::resource('/category', 'Api\CategoryController');
 
+    //->settings
+    Route::resource('/settings', 'Api\SettingsController');
+
+    //->options
+    Route::resource('/options', 'Api\OptionController');
+
 });
 
 // private routes
@@ -52,6 +58,12 @@ Route::middleware(['auth:api','json.response'])->group(function () {
 
     //->categories
     Route::resource('/category', 'Api\CategoryController');
+
+    //->settings
+    Route::resource('/settings', 'Api\SettingsController');
+
+    //->options
+    Route::resource('/options', 'Api\OptionController');
 
 });
 

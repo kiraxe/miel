@@ -15,6 +15,8 @@ class Navbar extends Component {
                 <li><NavLink to="/admin/products"><em className="fa fa-tags">&nbsp;</em> {LanguageRus.sidebar.menu.products}</NavLink></li>
                 <li><NavLink to="/admin/categories"><em className="fa fa-folder">&nbsp;</em> {LanguageRus.sidebar.menu.categories}</NavLink></li>
                 <li><NavLink to="/admin/clientele"><em className="fa fa-user-circle">&nbsp;</em> {LanguageRus.sidebar.menu.clientele}</NavLink></li>
+                <li><NavLink to="/admin/options"><em className="fa fa-filter">&nbsp;</em> {LanguageRus.sidebar.menu.options}</NavLink></li>
+                <li><NavLink to="/admin/settings"><em className="fa fa-cog">&nbsp;</em> {LanguageRus.sidebar.menu.settings}</NavLink></li>
                 <li><a className="logout" onClick={logoutBtnClicked} ><em className="fa fa-power-off">&nbsp;</em> {LanguageRus.sidebar.menu.logout}</a></li>
             </ul>
         );

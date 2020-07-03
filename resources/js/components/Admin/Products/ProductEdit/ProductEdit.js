@@ -3,14 +3,18 @@ import {rus as LanguageRus} from "../../Language";
 import {Field, reduxForm} from "redux-form";
 import loading from '../../../../assets/images/loading.svg';
 import validate from "../Validator/Validate";
-import {Input, Textarea, File, Checkbox} from '../../../common/FormsControls/FormControls';
+import {Input, Textarea, File, Checkbox, Select} from '../../../common/FormsControls/FormControls';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 
 const ProductEdit = (props) => {
+    let attributes = props.product[0] && props.product[0].attributes ? props.product[0].attributes.map(item => item.category_id) : props.product[0] && props.product[0].categories_id ? props.product[0].categories_id.split(','): null;
+
     return (
         <>
             <div className="title"><h1>{LanguageRus.page.products.edit.title}</h1></div>
             <div className="content">
-                <ProductEditReduxForm errSer={props.error} initialValues={props.product[0]} onSubmit={props.editProduct}/>
+                <ProductEditReduxForm errSer={props.error} product={props.product[0]} attributes={attributes} select={props.select} /*initialValues={props.product[0]}*/ onSubmit={props.editProduct}/>
             </div>
         </>
     )
@@ -20,39 +24,79 @@ const ProductEditForm = (props) => {
 
     const [isFetching, setFetching] = useState(false);
 
-    const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed, change} = props;
+    const [key, setKey] = useState('general');
+
+    const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed, change, select, attributes, initialize, product} = props;
+
+    useEffect(() => {
+        initialize({...product, categories_id: attributes});
+    }, []);
 
     submitSucceeded || submitFailed || errSer ? setTimeout(() => {setFetching(false)}, 2000) : null;
 
     return (
         <form id="productForm" onSubmit={handleSubmit} className="form" >
-            <div className="form-group">
-                <label>{LanguageRus.page.products.table.name}</label>
-                <Field type="text" idName="productName" name={"name"} component={Input} label={LanguageRus.page.products.table.name} />
-            </div>
-            <div className="form-group">
-                <label>{LanguageRus.page.products.table.article}</label>
-                <Field type="text" idName="productArticle" name={"article"} component={Input} label={LanguageRus.page.products.table.article} />
-            </div>
-            <div className="form-group">
-                <label>{LanguageRus.page.products.table.description}</label>
-                <Field type="textarea" idName="productDetail" name={"detail"} component={Textarea} label={LanguageRus.page.products.table.description} />
-            </div>
-            <div className="form-group">
-                <label>{LanguageRus.page.products.table.property}</label>
-                <Field type="textarea" idName="productProperty" name={"property"} component={Textarea} label={LanguageRus.page.products.table.property} />
-            </div>
-            <div className="form-group">
-                <label>{LanguageRus.page.products.table.price}</label>
-                <Field type="text" idName="productPrice" name={"price"} component={Input} label={LanguageRus.page.products.table.price} />
-            </div>
-            <div className="form-check">
-                <label className="form-check-label" htmlFor="productNovelty">{LanguageRus.page.products.table.novelty}</label>
-                <Field type="checkbox" idName="productNovelty" name={"novelty"} component={Checkbox} label={LanguageRus.page.products.table.novelty} />
-            </div>
-            <div className="form-group">
-                <Field type="file" idName="productFiles" name={"image"} change={change} component={File} label={LanguageRus.page.products.table.image} />
-            </div>
+
+
+            <Tabs
+                id="controlled-tab-example"
+                activeKey={key}
+                onSelect={(k) => setKey(k)}
+            >
+                <Tab eventKey="general" title="Основные">
+                    <div className="form-group">
+                        <label>{LanguageRus.page.products.table.name}</label>
+                        <Field type="text" idName="productName" name={"name"} component={Input} label={LanguageRus.page.products.table.name} />
+                    </div>
+                    <div className="form-group">
+                        <label>{LanguageRus.page.products.table.article}</label>
+                        <Field type="text" idName="productArticle" name={"article"} component={Input} label={LanguageRus.page.products.table.article} />
+                    </div>
+                    <div className="form-group">
+                        <label>{LanguageRus.page.products.table.description}</label>
+                        <Field type="textarea" idName="productDetail" name={"detail"} component={Textarea} label={LanguageRus.page.products.table.description} />
+                    </div>
+                    <div className="form-group">
+                        <label>{LanguageRus.page.products.table.property}</label>
+                        <Field type="textarea" idName="productProperty" name={"property"} component={Textarea} label={LanguageRus.page.products.table.property} />
+                    </div>
+                    <div className="form-group">
+                        <label>{LanguageRus.page.products.table.price}</label>
+                        <Field type="text" idName="productPrice" name={'price'} component={Input} label={LanguageRus.page.products.table.price} />
+                    </div>
+                    <div className="form-group">
+                        <label>{LanguageRus.page.products.table.percent}</label>
+                        <Field type="text" idName="productPercent" name={'percent'} component={Input} label={LanguageRus.page.products.table.percent} />
+                    </div>
+                    <div className="form-group">
+                        <label>{LanguageRus.page.products.table.minfree}</label>
+                        <Field type="text" idName="productMinfree" name={'minfree'} component={Input} label={LanguageRus.page.products.table.minfree} />
+                    </div>
+                    <div className="form-group">
+                        <label>{LanguageRus.page.products.table.min}</label>
+                        <Field type="text" idName="productMin" name={'min'} component={Input} label={LanguageRus.page.products.table.min} />
+                    </div>
+                    <div className="form-check">
+                        <label className="form-check-label" htmlFor="productNovelty">{LanguageRus.page.products.table.novelty}</label>
+                        <Field type="checkbox" idName="productNovelty" name={"novelty"} component={Checkbox} label={LanguageRus.page.products.table.novelty} />
+                    </div>
+                </Tab>
+                <Tab eventKey="category" title="Категории">
+                    <div className="form-group">
+                        <label>{LanguageRus.page.products.table.categories}</label>
+                        <Field type={"select-multiple"} idName="propductCategories" multiple={true} name={'categories_id'} ourCategory={null} select={select} component={Select}/>
+                    </div>
+                </Tab>
+                <Tab eventKey="image" title="Картинка">
+                    <div className="form-group">
+                        <Field type="file" idName="productFiles" name={"image"} change={change} component={File} label={LanguageRus.page.products.table.image} />
+                    </div>
+                </Tab>
+                <Tab eventKey="option" title="Опции">
+
+                </Tab>
+            </Tabs>
+
             <button onClick={() => setFetching(true)} type="submit" className="btn btn-primary" disabled={submitting} >{LanguageRus.page.products.edit.button} {isFetching ? <img src={loading}/> : null}</button>
             {errSer === null && submitSucceeded && isFetching &&
             <p className={'success'}>{LanguageRus.page.products.edit.success}</p>}

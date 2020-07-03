@@ -42,9 +42,14 @@ let categoriesReducer = (state = initialState, action) => {
             }
         }
         case ADD_CATEGORY: {
+
+            let categories = [];
+
+            state.paginator.current_page === state.paginator.total_page ? categories = [...state.categories ,...action.data.data] : categories = [...state.categories];
+
             return {
                 ...state,
-                categories: [...state.categories ,...action.data.data],
+                categories: categories,
                 error: action.data.error
             }
         }
@@ -77,7 +82,6 @@ export const editCategoryAC = (data) => ({type: EDIT_CATEGORY, data: data});
 
 export const getCategory = (page) => async dispatch => {
     let response = await adminAPI.getCategories(page);
-    console.log(response);
     if (response.success) {
         dispatch(setCategoryAC(response.data));
     }
@@ -97,10 +101,15 @@ export const addCategory = (category) => async dispatch => {
     }
 };
 
-export const editCategory = (category) => async dispatch => {
+export const editCategory = (category, action, page) => async dispatch => {
     let response = await adminAPI.editCategory(category);
-    console.log(response);
     dispatch(editCategoryAC(response.data));
+    if (response && action) {
+        response = await adminAPI.getCategories(page);
+        if (response.success) {
+            dispatch(setCategoryAC(response.data));
+        }
+    }
 }
 
 export default categoriesReducer;

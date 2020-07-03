@@ -2,9 +2,15 @@ import React, {useState, useEffect} from "react";
 import {useDropzone} from 'react-dropzone';
 import validate from "../../Admin/Products/Validator/Validate";
 import ChangeImage from "../../Admin/Products/ProductEdit/ChangeImage";
+import {Field} from "redux-form";
+import Moment from 'moment';
+import momentLocalizer from 'react-widgets-moment';
+import DateTimePicker from 'react-widgets/lib/DateTimePicker';
 
+Moment.locale('en');
+momentLocalizer();
 
-const FormControl = ({idName, input, label, type, errSer, categories, ourCategory, meta: {touched, error}, ...props}) => {
+const FormControl = ({idName, input, label, type, errSer, categories, ourCategory, multiple, meta: {touched, error}, ...props}) => {
     return(
         <>
             {props.children}
@@ -24,6 +30,45 @@ const FormControl = ({idName, input, label, type, errSer, categories, ourCategor
 }
 
 
+const renderField = ({ input, label, type, meta: { touched, error } }) => (
+    <div className="form-group">
+            <input className={'form-control'} {...input} type={type} placeholder={label} />
+            {touched && error && <span>{error}</span>}
+    </div>
+)
+
+
+export const inputMultiple = ({ title, fields, meta: { error } }) => (
+    <ul className={"arrayItems"}>
+        <li className={'buttonAdd'}>
+            <div className="form-group">
+                <button type="button" className="btn btn-primary" onClick={() => fields.push()}>
+                    Добавить значение
+                </button>
+            </div>
+        </li>
+        {fields.map((element, index) => (
+            <li key={index}>
+                <Field
+                    name={element}
+                    type="text"
+                    component={renderField}
+                    label={`${title} ${index + 1}`}
+                />
+                <button
+                    type="button"
+                    className={"btn btn-danger"}
+                    title="Удалить значение"
+                    onClick={() => fields.remove(index)}
+                >
+                    <i className="fa fa-times" aria-hidden="true"></i>
+                </button>
+            </li>
+        ))}
+        {error && <li className="error">{error}</li>}
+    </ul>
+)
+
 
 export const Input = (props) => {
     return <FormControl {...props}><input id={props.idName} className={"form-control"} {...props.input} type={props.type} placeholder={props.label} /></FormControl>
@@ -38,9 +83,17 @@ export const Checkbox = (props) => {
 }
 
 export const Select = (props) => {
-    let options = props.select.map((item, key) => Number(props.ourCategory) !== item.category_id ? <option key={key} value={item.category_id}>{item.name}</option>: null)
-    return <FormControl {...props}><select {...props.input} id={props.idName} className={"form-control"}><option>Выберите</option>{options}</select></FormControl>
+    let options = props.select.map((item, key) => Number(props.ourCategory) !== item.category_id ? <option key={key} value={item.category_id}>{item.name}</option>: null);
+    return <FormControl {...props}><select multiple={props.multiple} {...props.input} id={props.idName} className={"form-control"} >{!props.multiple && <option value={0}>Выберите</option>}{options}</select></FormControl>
 }
+
+export const renderDateTimePicker = ({ input: { onChange, value }, showTime }) =>
+    <DateTimePicker
+        onChange={onChange}
+        format="YYYY-MM-DD"
+        time={showTime}
+        value={!value ? null : new Date(value)}
+    />
 
 export const File = ({idName, input, label, type, errSer, change, meta: {touched, error}, ...props}) => {
 

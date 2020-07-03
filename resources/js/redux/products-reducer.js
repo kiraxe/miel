@@ -12,6 +12,7 @@ let initialState = {
         current_page : null,
         per_page : null,
     },
+    select: [],
     error: null
 }
 
@@ -26,7 +27,8 @@ let productsReducer = (state = initialState, action) => {
                     total_page: action.data.last_page,
                     current_page: action.data.current_page,
                     per_page: action.data.per_page
-                }
+                },
+                select:[...action.data.select]
 
             }
         }
@@ -40,9 +42,14 @@ let productsReducer = (state = initialState, action) => {
             }
         }
         case ADD_PRODUCT: {
+
+            let products = [];
+
+            state.paginator.current_page === state.paginator.total_page ? products = [...state.products ,...action.data.data] : products = [...state.products];
+
             return {
                 ...state,
-                products: [...state.products ,...action.data.data],
+                products: products,
                 error: action.data.error
             }
         }
@@ -75,6 +82,7 @@ export const editProductAC = (data) => ({type: EDIT_PRODUCT, data: data});
 
 export const getProducts = (page) => async dispatch => {
     let response = await adminAPI.getProducts(page);
+
     if (response.success) {
         dispatch(setProductsAC(response.data));
     }
@@ -87,7 +95,6 @@ export const deleteProduct = (id) => async dispatch => {
 
 export const addProduct = (product) => async dispatch => {
     let response = await adminAPI.addProduct(product);
-
     if (response.success) {
         dispatch(addProductAC([response.data], null));
     } else {
@@ -96,7 +103,9 @@ export const addProduct = (product) => async dispatch => {
 };
 
 export const editProduct = (product) => async dispatch => {
+    console.log(product);
     let response = await adminAPI.editProduct(product);
+    console.log(response);
     dispatch(editProductAC(response.data));
 }
 

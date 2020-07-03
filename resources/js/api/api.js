@@ -16,6 +16,7 @@ const getAxiosSettings = () => {
 };
 
 export const adminAPI = {
+
     getProducts(page) {
         return getAxiosSettings().get(`products/?page=${page}`)
             .then(response => response.data)
@@ -37,6 +38,7 @@ export const adminAPI = {
             .then(response => response.data)
             .catch(error => error.response)
     },
+
     getClientele(page) {
         return getAxiosSettings().get(`clientele/?page=${page}`)
             .then(response => response.data)
@@ -56,6 +58,7 @@ export const adminAPI = {
             .then(response => response.data)
             .catch(error => error.response)
     },
+
     getCategories(page) {
         return getAxiosSettings().get(`category/?page=${page}`)
             .then(response => response.data)
@@ -74,6 +77,41 @@ export const adminAPI = {
     editCategory(category) {
         let formData = getFormData(category, "PUT");
         return getAxiosSettings().post(`category/${category.category_id}`, formData, {headers:{'Content-Type' : 'multipart/form-data'}})
+            .then(response => response.data)
+            .catch(error => error.response)
+    },
+
+    getSettings() {
+        return getAxiosSettings().get('settings')
+            .then(response => response.data)
+            .catch(error => error.response);
+    },
+    editSettings(settings) {
+        let formData = getFormData(settings, "PUT");
+        return getAxiosSettings().put(`settings/${settings.id}`, settings)
+            .then(response => response.data)
+            .catch(error => error.response)
+    },
+
+    getOptions(page) {
+        return getAxiosSettings().get(`options/?page=${page}`)
+            .then(response => response.data)
+            .catch(error => error.response);
+    },
+    deleteOption(id) {
+        return getAxiosSettings().delete(`options/${id}`)
+            .then(response => response.data)
+            .catch(error => error.response)
+    },
+    addOption(option) {
+        let formData = getFormData(option);
+        return getAxiosSettings().post('options', formData, {headers:{'Content-Type' : 'multipart/form-data'}})
+            .then(response => response.data)
+            .catch(error => error.response);
+    },
+    editOption(option) {
+        let formData = getFormData(option, "PUT");
+        return getAxiosSettings().post(`options/${option.option_id}`, formData, {headers:{'Content-Type' : 'multipart/form-data'}})
             .then(response => response.data)
             .catch(error => error.response)
     },

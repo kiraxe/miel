@@ -20,6 +20,9 @@ class CreateProductsTable extends Migration
             $table->text('detail')->nullable();
             $table->text('property')->nullable();
             $table->decimal('price', 10, 2);
+            $table->decimal('percent', 10, 2);
+            $table->bigInteger('minfree');
+            $table->bigInteger('min');
             $table->text('image')->nullable();
             $table->boolean('novelty')->default(0);
             $table->timestamps();

@@ -13,7 +13,7 @@ const validate = (values, allValues, props) => {
     if (!values.phone) {
         errors.phone = LanguageRus.page.clientele.error.phone;
     }
-    if (allValues.form == 'ClientNew') {
+    if (allValues.form == 'OptionNew') {
         if (!values.password) {
             errors.password = LanguageRus.page.clientele.error.password;
         }

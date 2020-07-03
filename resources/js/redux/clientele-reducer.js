@@ -39,9 +39,14 @@ let clienteleReducer = (state = initialState, action) => {
             }
         }
         case ADD_CLIENTELE: {
+
+            let clientele = [];
+
+            state.paginator.current_page === state.paginator.total_page ? clientele = [...state.clientele ,...action.data.data] : clientele = [...state.clientele];
+
             return {
                 ...state,
-                clientele: [...state.clientele ,...action.data.data],
+                clientele: clientele,
                 error: action.data.error
             }
         }

@@ -16,7 +16,7 @@ class CreateOptionTable extends Migration
         Schema::create('option', function (Blueprint $table) {
             $table->bigIncrements('option_id');
             $table->string('type', 32);
-            $table->integer('sort_order')->unsigned();
+            $table->integer('sort_order')->unsigned()->nullable();
         });
     }
 

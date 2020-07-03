@@ -11,3 +11,7 @@ export const getErrorSelector = (state) => {
 export const getPaginatorSelector = (state) => {
     return state.productsAdmin.paginator;
 }
+
+export const getSelectSelector = (state) => {
+    return state.productsAdmin.select;
+}

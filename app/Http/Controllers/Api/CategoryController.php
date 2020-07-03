@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Category;
 use Illuminate\Support\Facades\Storage;
+use App\Services\SelectForm;
 use Validator;
 
 class CategoryController extends BaseController
@@ -40,11 +41,7 @@ class CategoryController extends BaseController
             }
         }
 
-        $category['select'] = collect([]);
-
-        foreach ($queryGet as $value) {
-            $category['select']->push(['category_id' => $value->category_id, 'name' => $value->attributes->name]);
-        }
+        $category['select'] = SelectForm::getSelectCategory($queryGet);
 
         return $this->sendResponse($category, 'Categories retrieved successfully.');
     }
@@ -129,7 +126,12 @@ class CategoryController extends BaseController
             $category->image = $this->storagePath.$image->store("uploads/$this->storageCategoryPath"."$category->category_id", 'public');
         }
 
+        if($input['parent_id'] == 'null') {
+            settype($input['parent_id'], "null");
+        }
+
         $category->parent_id = $input['parent_id'];
+
         $category->attributes()->update(['name' => $input['name']]);
 
         $category->save();

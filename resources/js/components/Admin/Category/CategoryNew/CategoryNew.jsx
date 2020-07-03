@@ -37,7 +37,7 @@ const CategoryNewForm = (props) => {
             </div>
             <div className="form-group">
                 <label>{LanguageRus.page.categories.table.parent}</label>
-                <Field idName="categoryParent" name={"parent_id"} ourCategory={id} select={select} component={Select}/>
+                <Field idName="categoryParent" multiple={false} name={"parent_id"} ourCategory={id} select={select} component={Select}/>
             </div>
             <button onClick={() => setFetching(true)} type="submit" className="btn btn-primary" disabled={submitting} >{LanguageRus.page.categories.edit.button} {isFetching ? <img src={loading}/> : null}</button>
             {errSer === null && submitSucceeded && isFetching &&

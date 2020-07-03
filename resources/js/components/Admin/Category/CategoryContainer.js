@@ -26,7 +26,13 @@ class CategoryContainer extends React.Component {
     }
 
     onEditSubmit = (formData) => {
-        this.props.editCategory(formData);
+
+        let action = false;
+        let page = this.props.paginator.current_page;
+
+        this.props.categories.some(item => item.category_id === formData.category_id ? action = item.attributes.name !== formData.name: null);
+
+        this.props.editCategory(formData, action, page);
     }
 
     onGetPageCategory = (e) => {

@@ -285,11 +285,38 @@ button img {
     height: 20px;
 }
 
+.nav-item.nav-link {
+    display: inline-block;
+}
+
+.tab-pane {
+    margin-top: 20px;
+}
+
 .form-check {
     padding: 0;
     margin-bottom: 1rem;
     .form-check-input {
         margin-left: 0.45rem;
+    }
+}
+
+.arrayItems {
+    li {
+        display: flex; justify-content: space-between;
+        button {
+            width: 40px;
+            height: 40px;
+        }
+        &.buttonAdd {
+            button {
+                width: auto;
+            }
+        }
+        .form-group {
+            flex: 0 0 auto;
+            width: calc(100% - 60px);
+        }
     }
 }
 
