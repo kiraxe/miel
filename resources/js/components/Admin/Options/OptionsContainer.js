@@ -49,7 +49,7 @@ class OptionsContainer extends React.Component {
             this.props.match.params.slug === 'edit' && this.props.match.params.id ?  <OptionEdit error={this.props.error} editOption={this.onEditSubmit} option={this.props.options ? this.props.options.filter(item => item.option_id == this.props.match.params.id ) : null}/> :
                 this.props.match.params.slug === 'add' ? <OptionNew error={this.props.error}  addOption={this.onAddSubmit}/> : null;
 
-        let paginator = this.props.paginator.total_page > 1 ? <Paginator onGetPage={this.onGetPageoptions} paginator={this.props.paginator}/> : null;
+        let paginator = this.props.paginator.total_page > 1 ? <Paginator onGetPage={this.onGetPageOptions} paginator={this.props.paginator}/> : null;
 
         return (
             <>

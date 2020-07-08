@@ -31,7 +31,7 @@ let optionsReducer = (state = initialState, action) => {
         }
         case DELETE_OPTIONS: {
 
-            let options = state.options.filter(item => item.id !== action.data.id);
+            let options = state.options.filter(item => item.option_id !== action.data.option_id);
 
             return {
                 ...state,

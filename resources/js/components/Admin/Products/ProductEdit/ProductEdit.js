@@ -1,9 +1,17 @@
 import React, {useState, useEffect} from "react";
 import {rus as LanguageRus} from "../../Language";
-import {Field, reduxForm} from "redux-form";
+import {Field, FieldArray, reduxForm} from "redux-form";
 import loading from '../../../../assets/images/loading.svg';
 import validate from "../Validator/Validate";
-import {Input, Textarea, File, Checkbox, Select} from '../../../common/FormsControls/FormControls';
+import {
+    Input,
+    Textarea,
+    File,
+    Checkbox,
+    Select,
+    optionMultiple,
+    inputMultiple
+} from '../../../common/FormsControls/FormControls';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
@@ -14,7 +22,7 @@ const ProductEdit = (props) => {
         <>
             <div className="title"><h1>{LanguageRus.page.products.edit.title}</h1></div>
             <div className="content">
-                <ProductEditReduxForm errSer={props.error} product={props.product[0]} attributes={attributes} select={props.select} /*initialValues={props.product[0]}*/ onSubmit={props.editProduct}/>
+                <ProductEditReduxForm errSer={props.error} product={props.product[0]} attributes={attributes} select={props.select} options={props.options}/*initialValues={props.product[0]}*/ onSubmit={props.editProduct}/>
             </div>
         </>
     )
@@ -26,7 +34,7 @@ const ProductEditForm = (props) => {
 
     const [key, setKey] = useState('general');
 
-    const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed, change, select, attributes, initialize, product} = props;
+    const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed, change, select, options, attributes, initialize, product} = props;
 
     useEffect(() => {
         initialize({...product, categories_id: attributes});
@@ -93,7 +101,7 @@ const ProductEditForm = (props) => {
                     </div>
                 </Tab>
                 <Tab eventKey="option" title="Опции">
-
+                    <FieldArray title={'Значение'} name="option" product={product} options={options} component={optionMultiple} type={"select"} />
                 </Tab>
             </Tabs>
 

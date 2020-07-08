@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api;
 use App\Category;
+use App\Option;
 use App\Services\SelectForm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
@@ -25,9 +26,13 @@ class ProductController extends BaseController
 
         $category = Category::with('attributes')->get();
 
+        $options = Option::with(['description', 'valueDescription'])->get();
+
         $products = $query->paginate(5)->toArray();
 
         $products['select'] = SelectForm::getSelectCategory($category);
+
+        $products['options'] = $options;
 
         return $this->sendResponse($products, 'Products retrieved successfully.');
     }
@@ -83,7 +88,7 @@ class ProductController extends BaseController
 
         $product->toArray();
 
-        $product['categories_id'] = $input['categories_id'];
+        isset($input['categories_id']) ? $product['categories_id'] = $input['categories_id'] : null;
 
         return $this->sendResponse($product, 'Product created successfully.');
     }
@@ -148,6 +153,21 @@ class ProductController extends BaseController
             $product->novelty = $input['novelty'];
         }
 
+        $options = [];
+        if (isset($input['option'])) {
+
+            $params = json_decode($input['option'], true);
+
+            foreach ($params as $key => $value) {
+                $option =  $product->productOptions()->create(['option_id' => $value['option'], 'option_value' => 'Опция', 'required' => 1]);
+                $options[$key]['option'] = $option->option_id;
+                foreach ($value['optionval'] as $k => $v) {
+                    $optionsValue = $product->productOptionsValue()->create(['option_id' => $value['option'], 'option_value_id' => $v, 'product_option_id' => $option->id ]);
+                    $options[$key]['optionval'][] = $optionsValue->option_value_id;
+                }
+            }
+        }
+
         $product->name = $input['name'];
         $product->detail = $input['detail'];
         $product->article = $input['article'];
@@ -160,7 +180,9 @@ class ProductController extends BaseController
 
         $product->toArray();
 
-        $product['categories_id'] = $input['categories_id'];
+        isset($input['categories_id']) ? $product['categories_id'] = $input['categories_id'] : null;
+
+        isset($input['option']) ? $product['option'] = $options : null;
 
         return $this->sendResponse($product, 'Product updated successfully.');
     }

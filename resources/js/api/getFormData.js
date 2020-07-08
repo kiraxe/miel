@@ -4,7 +4,11 @@ export const getFormData = (elements, method) => {
 
 
     for(let key in elements) {
-        formData.append(key, elements[key]);
+        if (key === 'option') {
+            formData.append(key, JSON.stringify(elements[key]));
+        } else {
+            formData.append(key, elements[key]);
+        }
     }
 
     if (method) {

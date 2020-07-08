@@ -23,6 +23,22 @@ class Product extends Model
         return $this->hasMany(ProductToCategory::class, 'product_id', 'product_id');
     }
 
+    public function productOptions() {
+        return $this->hasMany(ProductOption::class, 'product_id', 'product_id');
+    }
+
+    public function productOptionsRelations() {
+        return $this->hasMany(ProductOption::class, 'product_id', 'product_id')->with('options');
+    }
+
+    public function productOptionsValue() {
+        return $this->hasMany(ProductOptionValue::class, 'product_id', 'product_id');
+    }
+
+    public function productOptionsValueRelations() {
+        return $this->hasMany(ProductOption::class, 'product_id', 'product_id')->with('options');
+    }
+
     public function addAttributes($record) {
         $this->attributes()->createMany($record);
     }

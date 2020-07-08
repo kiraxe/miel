@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
 import {getProducts, addProduct, editProduct, deleteProduct} from "../../../redux/products-reducer"
-import {getProductsSelectors, getErrorSelector, getPaginatorSelector} from "../../../redux/product-selectors";
+import {getProductsSelectors, getErrorSelector, getPaginatorSelector, getOptionsSelector} from "../../../redux/product-selectors";
 import {getSelectSelector} from "../../../redux/product-selectors";
 
 
@@ -43,8 +43,8 @@ class ProductsContainer extends React.Component {
     render() {
 
         let product = !this.props.match.params.slug ? <Products onDelete={this.onDelete} page={this.props.match.params.page} url={this.props.match.url} products={this.props.products}/>:
-                       this.props.match.params.slug === 'edit' && this.props.match.params.id ?  <ProductEdit select={this.props.select} error={this.props.error} editProduct={this.onEditSubmit} product={this.props.products ? this.props.products.filter(item => item.product_id == this.props.match.params.id ) : null}/> :
-                       this.props.match.params.slug === 'add' ? <ProductNew  select={this.props.select} error={this.props.error} addProduct={this.onAddSubmit}/> : null;
+                       this.props.match.params.slug === 'edit' && this.props.match.params.id ?  <ProductEdit options={this.props.options} select={this.props.select} error={this.props.error} editProduct={this.onEditSubmit} product={this.props.products ? this.props.products.filter(item => item.product_id == this.props.match.params.id ) : null}/> :
+                       this.props.match.params.slug === 'add' ? <ProductNew  options={this.props.options} select={this.props.select} error={this.props.error} addProduct={this.onAddSubmit}/> : null;
 
         let paginator = this.props.paginator.total_page > 1 ? <Paginator onGetPage={this.onGetPageProducts} paginator={this.props.paginator}/> : null;
 
@@ -63,6 +63,7 @@ let mapStateToProps = (state) => {
         products: getProductsSelectors(state),
         paginator: getPaginatorSelector(state),
         select: getSelectSelector(state),
+        options: getOptionsSelector(state),
         error: getErrorSelector(state),
     }
 };

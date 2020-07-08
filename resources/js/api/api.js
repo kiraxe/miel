@@ -34,6 +34,7 @@ export const adminAPI = {
     },
     editProduct(product) {
         let formData = getFormData(product, "PUT");
+        console.log(product);
         return getAxiosSettings().post(`products/${product.product_id}`, formData, {headers:{'Content-Type' : 'multipart/form-data'}})
             .then(response => response.data)
             .catch(error => error.response)

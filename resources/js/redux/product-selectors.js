@@ -15,3 +15,7 @@ export const getPaginatorSelector = (state) => {
 export const getSelectSelector = (state) => {
     return state.productsAdmin.select;
 }
+
+export const getOptionsSelector = (state) => {
+    return state.productsAdmin.options;
+}

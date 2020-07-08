@@ -302,6 +302,15 @@ button img {
 }
 
 .arrayItems {
+    &.arrayItemsParent {
+        li {
+            &.buttonAdd {
+                button {
+                    width: 180px!important;
+                }
+            }
+        }
+    }
     li {
         display: flex; justify-content: space-between;
         button {

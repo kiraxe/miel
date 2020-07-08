@@ -13,6 +13,7 @@ let initialState = {
         per_page : null,
     },
     select: [],
+    options: [],
     error: null
 }
 
@@ -28,7 +29,8 @@ let productsReducer = (state = initialState, action) => {
                     current_page: action.data.current_page,
                     per_page: action.data.per_page
                 },
-                select:[...action.data.select]
+                select:[...action.data.select],
+                options:[...action.data.options]
 
             }
         }
@@ -82,7 +84,7 @@ export const editProductAC = (data) => ({type: EDIT_PRODUCT, data: data});
 
 export const getProducts = (page) => async dispatch => {
     let response = await adminAPI.getProducts(page);
-
+    console.log(response);
     if (response.success) {
         dispatch(setProductsAC(response.data));
     }
@@ -95,6 +97,7 @@ export const deleteProduct = (id) => async dispatch => {
 
 export const addProduct = (product) => async dispatch => {
     let response = await adminAPI.addProduct(product);
+    console.log(response);
     if (response.success) {
         dispatch(addProductAC([response.data], null));
     } else {
@@ -103,7 +106,6 @@ export const addProduct = (product) => async dispatch => {
 };
 
 export const editProduct = (product) => async dispatch => {
-    console.log(product);
     let response = await adminAPI.editProduct(product);
     console.log(response);
     dispatch(editProductAC(response.data));

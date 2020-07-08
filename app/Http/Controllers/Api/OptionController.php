@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\Api;
+use App\OptionValue;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Option;
@@ -15,7 +16,7 @@ class OptionController extends BaseController
     public function index()
     {
 
-        $query = Option::with('description', 'valueDescription')->get();
+        $query = Option::with(['description', 'valueDescription']);
 
         $options = $query->paginate(5)->toArray();
 
@@ -31,11 +32,19 @@ class OptionController extends BaseController
     {
         $input = $request->all();
 
-        $options = Option::create($input);
+        $option = Option::create($input);
 
-        $options->description()->create($input);
+        $optionDescription = $option->description()->create($input);
 
-        return $this->sendResponse($options->toArray(), 'Option created successfully.');
+        if ($input['optionval']) {
+            $option->valueDescriptionDelete($input['optionval']);
+            $optionValue = $option->addOptionValueDescription($option->option_id, $input['optionval'] );
+        }
+
+        $option['value_description'] = $optionValue;
+        $option['description'] = $optionDescription;
+
+        return $this->sendResponse($option->toArray(), 'Option created successfully.');
     }
     /**
      * Display the specified resource.
@@ -66,26 +75,16 @@ class OptionController extends BaseController
         $option->type = $input['type'];
         $option->description->name = $input['name'];
 
-
-        $optionValue = [];
-
         if ($input['optionval']) {
-
-            $optionVal = explode(',', $input['optionval']);
-
-            foreach ($optionVal as $key => $value) {
-                $optionValue[$key] = OptionValue::create(['option_id' => (int)$input['option_id']]);
-                $optionValue[$key]->description()->create(['option_id' => (int)$input['option_id'], 'name' => $value]);
-                $optionValue[$key]->push();
-                $optionValue[$key]->name = $value;
-            }
+            $option->valueDescriptionDelete($input['optionval']);
+            $optionValue = $option->addOptionValueDescription($input['option_id'], $input['optionval'] );
         }
 
         $option->push();
 
         $option->toArray();
 
-        $option['option_value'] = $optionValue;
+        $option['value_description'] = $optionValue;
 
         return $this->sendResponse($option, 'Option updated successfully.');
     }
@@ -97,6 +96,7 @@ class OptionController extends BaseController
      */
     public function destroy(Option $option)
     {
+        $option->valueDescriptionDelete();
         $option->delete();
 
         return $this->sendResponse($option->toArray(), 'Option deleted successfully.');

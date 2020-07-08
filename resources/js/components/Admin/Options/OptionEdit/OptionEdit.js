@@ -32,7 +32,7 @@ const OptionEditForm = (props) => {
     useEffect(() => {
 
         if(option) {
-            initialize({...option, name: option.description.name});
+            initialize({...option, name: option.description.name, optionval: option.value_description.map(item => item.description ? item.description.name : item.name)});
         }
 
     },[option]);
@@ -59,7 +59,7 @@ const OptionEditForm = (props) => {
                     </div>
                 </Tab>
                 <Tab eventKey="value" title="Значения">
-                    <FieldArray title={'Значение'} name="optionval" component={inputMultiple} />
+                    <FieldArray title={'Значение'} name="optionval" component={inputMultiple} type={"text"} />
                 </Tab>
             </Tabs>
             <button onClick={() => setFetching(true)} type="submit" className="btn btn-primary">{LanguageRus.page.options.edit.button} {isFetching ? <img src={loading}/> : null}</button>

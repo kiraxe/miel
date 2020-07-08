@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {rus as LanguageRus} from "../../Language";
-import {Field, reduxForm} from "redux-form";
+import {Field, FieldArray, reduxForm} from "redux-form";
 import loading from '../../../../assets/images/loading.svg';
 import validate from "../Validator/Validate";
-import {File, Input, Textarea, Checkbox, Select} from '../../../common/FormsControls/FormControls';
+import {File, Input, Textarea, Checkbox, Select, optionMultiple} from '../../../common/FormsControls/FormControls';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
@@ -86,7 +86,7 @@ const ProductNewForm = (props) => {
                     </div>
                 </Tab>
                 <Tab eventKey="option" title="Опции">
-
+                    <FieldArray title={'Значение'} name="option" options={options} component={optionMultiple} type={"select"} />
                 </Tab>
             </Tabs>
 

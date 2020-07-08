@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {rus as LanguageRus} from "../../Language";
-import {Field, reduxForm} from "redux-form";
+import {Field, FieldArray, reduxForm} from "redux-form";
 import loading from '../../../../assets/images/loading.svg';
 //import validate from "../Validator/Validate";
-import {Input, Textarea} from '../../../common/FormsControls/FormControls';
+import {Input, inputMultiple, Textarea} from '../../../common/FormsControls/FormControls';
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 
@@ -51,7 +51,7 @@ const OptionNewForm = (props) => {
                     </div>
                 </Tab>
                 <Tab eventKey="value" title="Значения">
-
+                    <FieldArray title={'Значение'} name="optionval" component={inputMultiple} type={"text"} />
                 </Tab>
             </Tabs>
             <button onClick={() => setFetching(true)} type="submit" className="btn btn-primary" disabled={submitting}>{LanguageRus.page.options.new.button} {isFetching ? <img src={loading}/> : null}</button>
