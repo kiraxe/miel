@@ -28,7 +28,14 @@ class ProductController extends BaseController
 
         $options = Option::with(['description', 'valueDescription'])->get();
 
-        $products = $query->paginate(5)->toArray();
+        $products = $query->paginate(5);
+
+        foreach ($products->items() as $key => $value) {
+            $option = $value->getProductOptions();
+            $value->option = $option;
+        }
+
+        $products = $products->toArray();
 
         $products['select'] = SelectForm::getSelectCategory($category);
 
@@ -78,6 +85,10 @@ class ProductController extends BaseController
             $product->makeAttributes($input['categories_id']);
         }
 
+        if (isset($input['option'])) {
+            $options = $product->makeProductOptions($input['option']);
+        }
+
         $image = $request->file('image');
 
         if($image) {
@@ -88,7 +99,9 @@ class ProductController extends BaseController
 
         $product->toArray();
 
-        isset($input['categories_id']) ? $product['categories_id'] = $input['categories_id'] : null;
+        isset($input['categories_id']) ? $product['categories_id'] = $input['categories_id'] : 0;
+
+        isset($input['option']) ? $product['option'] = $options : 0;
 
         return $this->sendResponse($product, 'Product created successfully.');
     }
@@ -142,7 +155,7 @@ class ProductController extends BaseController
         }
 
 
-        if (isset($input['categories_id'])) {
+        if (isset($input['categories_id']) && $input['categories_id'] != 'null') {
             $product->makeAttributes($input['categories_id']);
         } else {
             $product->deleteAttributes([]);
@@ -153,19 +166,11 @@ class ProductController extends BaseController
             $product->novelty = $input['novelty'];
         }
 
-        $options = [];
+
         if (isset($input['option'])) {
-
-            $params = json_decode($input['option'], true);
-
-            foreach ($params as $key => $value) {
-                $option =  $product->productOptions()->create(['option_id' => $value['option'], 'option_value' => 'Опция', 'required' => 1]);
-                $options[$key]['option'] = $option->option_id;
-                foreach ($value['optionval'] as $k => $v) {
-                    $optionsValue = $product->productOptionsValue()->create(['option_id' => $value['option'], 'option_value_id' => $v, 'product_option_id' => $option->id ]);
-                    $options[$key]['optionval'][] = $optionsValue->option_value_id;
-                }
-            }
+            $options = $product->makeProductOptions($input['option']);
+        } else {
+            $product->deleteAllOptions();
         }
 
         $product->name = $input['name'];

@@ -24,28 +24,34 @@ class Option extends Model
     }
 
     public function valueDescription() {
-        return $this->optionValue()->with('description');
+        return $this->hasMany('App\OptionValueDescription', 'option_id', 'option_id');
     }
 
     public function optionValue() {
         return $this->hasMany('App\OptionValue', 'option_id', 'option_id');
     }
 
-    public function valueDescriptionDelete($name = null) {
-        //$this->valueDescription()->whereNotIn('name', $name)->delete();
+    public function valueDescriptionDelete() {
         $this->optionValue()->delete();
+    }
+
+    public function deleteValueDescription($optionVal) {
+        $this->valueDescription()->whereNotIn('name', $optionVal)->delete();
     }
 
     public function addOptionValueDescription($option_id, $optionval) {
         $optionValue = [];
-        $this->valueDescriptionDelete($optionval);
         $optionVal = explode(',', $optionval);
+        $this->valueDescriptionDelete();
+
         foreach ($optionVal as $key => $value) {
-            $optionValue[$key] = OptionValue::create(['option_id' => (int)$option_id]);
+            $optionValue[$key] = $this->optionValue()->create(['option_id' => (int)$option_id]);
             $optionValue[$key]->description()->create(['option_id' => (int)$option_id, 'name' => $value]);
             $optionValue[$key]->push();
             $optionValue[$key]->name = $value;
         }
+
+        //$this->deleteValueDescription($optionVal);
 
         return $optionValue;
 

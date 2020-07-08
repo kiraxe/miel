@@ -35,7 +35,7 @@ const renderField = ({ input, label, type, options, optionSelected, parent, meta
     return (
         <div className="form-group">
                 {type === "select" && parent && <select {...input} className={"form-control"} ><option value={0}>Выберите опцию</option> {options ? options.map((item, key) => <option key={key} value={item.option_id}>{item.description.name}</option>): null}</select>
-                || type === "select" && !parent && <select {...input} className={"form-control"} ><option value={0}>Выберите значение</option> {options && optionSelected ? options.map((item, key) => optionSelected === item.option_id ? item.value_description.map((item, key) => <option key={key} value={item.option_value_id}>{item.description.name}</option>): null): null}</select> ||
+                || type === "select" && !parent && <select {...input} className={"form-control"} ><option value={0}>Выберите значение</option> {options && optionSelected ? options.map((item, key) => optionSelected === item.option_id ? item.value_description.map((item, key) => <option key={key} value={item.option_value_id}>{item.name}</option>): null): null}</select> ||
                 <input className={'form-control'} {...input} type={type} placeholder={label} />}
                 {touched && error && <span>{error}</span>}
         </div>

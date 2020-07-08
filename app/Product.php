@@ -1,6 +1,7 @@
 <?php
 namespace App;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 
 class Product extends Model
 {
@@ -14,6 +15,7 @@ class Product extends Model
     ];
 
     protected $primaryKey = 'product_id';
+
 
     public function getAttributeCatId() {
         return $this->attributes()->get("category_id");
@@ -36,11 +38,78 @@ class Product extends Model
     }
 
     public function productOptionsValueRelations() {
-        return $this->hasMany(ProductOption::class, 'product_id', 'product_id')->with('options');
+        return $this->hasMany(ProductOptionValue::class, 'product_id', 'product_id')->with('options');
     }
 
     public function addAttributes($record) {
         $this->attributes()->createMany($record);
+    }
+
+    public function deleteProductOption($option_id = null) {
+        if ($option_id) {
+            $this->productOptions()->whereNotIn('option_id', $option_id)->delete();
+        } else {
+            $this->productOptions()->delete();
+        }
+    }
+
+    public function deleteProductOptionsValue($option_value_id = null) {
+        if ($option_value_id) {
+            $this->productOptionsValue()->whereNotIn('option_value_id', $option_value_id)->delete();
+        } else {
+            $this->productOptionsValue()->delete();
+        }
+    }
+
+    public function deleteAllOptions() {
+        $this->deleteProductOption();
+        $this->deleteProductOptionsValue();
+    }
+
+    public function makeProductOptions($params) {
+        $options = [];
+
+        $params = json_decode($params, true);
+
+        $options_id = collect([]);
+        $options_value_id = collect([]);
+        $id = null;
+
+        foreach ($params as $key => $value) {
+            $options_id->push($value['option']);
+            $option =  $this->productOptions()->updateOrCreate(['option_id' => $value['option'], 'option_value' => 'Опция', 'required' => 1]);
+            $option->id ? $id = $option->id : $id = $option->product_option_id;
+            $options[$key]['option'] = $option->option_id;
+            foreach ($value['optionval'] as $k => $v) {
+                $options_value_id->push($v);
+                $optionsValue = $this->productOptionsValue()->updateOrCreate(['option_id' => $value['option'], 'option_value_id' => $v, 'product_option_id' => $id ]);
+                $options[$key]['optionval'][] = $optionsValue->option_value_id;
+            }
+        }
+
+        $this->deleteProductOption($options_id);
+        $this->deleteProductOptionsValue($options_value_id);
+
+        return $options;
+    }
+
+    public function getProductOptions() {
+
+        $options = [];
+
+        $productOptions = $this->productOptionsRelations()->get();
+        $productOptionsValue = $this->productOptionsValueRelations()->get();
+
+        foreach ($productOptions as $key => $value) {
+            $options[$key]['option'] = $value->option_id;
+            foreach ($productOptionsValue as $k => $val) {
+                if ($val->option_id == $value->option_id) {
+                    $options[$key]['optionval'][] = $val->option_value_id;
+                }
+            }
+        }
+
+        return $options;
     }
 
     public function deleteAttributes(array $categories_id) {

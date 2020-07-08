@@ -112,6 +112,7 @@ export const adminAPI = {
     },
     editOption(option) {
         let formData = getFormData(option, "PUT");
+        console.log(option);
         return getAxiosSettings().post(`options/${option.option_id}`, formData, {headers:{'Content-Type' : 'multipart/form-data'}})
             .then(response => response.data)
             .catch(error => error.response)

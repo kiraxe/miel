@@ -75,16 +75,17 @@ class OptionController extends BaseController
         $option->type = $input['type'];
         $option->description->name = $input['name'];
 
-        if ($input['optionval']) {
-            $option->valueDescriptionDelete($input['optionval']);
+        if ($input['optionval'] && $input['option_id']) {
             $optionValue = $option->addOptionValueDescription($input['option_id'], $input['optionval'] );
+        } else {
+            $option->valueDescriptionDelete();
         }
 
         $option->push();
 
         $option->toArray();
 
-        $option['value_description'] = $optionValue;
+        $input['optionval'] && $input['option_id'] ? $option['value_description'] = $optionValue : $option['value_description'] = [];
 
         return $this->sendResponse($option, 'Option updated successfully.');
     }
