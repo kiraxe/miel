@@ -56,6 +56,7 @@ class CategoryController extends BaseController
         $input = $request->all();
         $validator = Validator::make($input, [
             'name' => 'required',
+            'link' => 'required',
         ]);
 
         if($validator->fails()){
@@ -64,7 +65,7 @@ class CategoryController extends BaseController
 
         $category = Category::create($input);
 
-        $category->attributes()->create(['name' => $input['name']]);
+        $category->attributes()->create(['name' => $input['name'], 'description' => $input['description']]);
 
         $image = $request->file('image');
 
@@ -131,8 +132,9 @@ class CategoryController extends BaseController
         }
 
         $category->parent_id = $input['parent_id'];
+        $category->link = $input['link'];
 
-        $category->attributes()->update(['name' => $input['name']]);
+        $category->attributes()->update(['name' => $input['name'], 'description' => $input['description']]);
 
         $category->save();
 

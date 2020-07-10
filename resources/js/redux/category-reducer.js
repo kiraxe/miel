@@ -103,6 +103,7 @@ export const addCategory = (category) => async dispatch => {
 
 export const editCategory = (category, action, page) => async dispatch => {
     let response = await adminAPI.editCategory(category);
+    console.log(response);
     dispatch(editCategoryAC(response.data));
     if (response && action) {
         response = await adminAPI.getCategories(page);

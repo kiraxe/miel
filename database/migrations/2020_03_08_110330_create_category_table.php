@@ -19,6 +19,7 @@ class CreateCategoryTable extends Migration
             $table->string('image', 255)->nullable();
             $table->integer('sort_order')->unsigned()->nullable();
             $table->boolean('status')->default(0);
+            $table->string('link', 255);
             $table->timestamps();
             NestedSet::columns($table);
         });

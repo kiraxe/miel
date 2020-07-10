@@ -34,7 +34,6 @@ export const adminAPI = {
     },
     editProduct(product) {
         let formData = getFormData(product, "PUT");
-        console.log(product);
         return getAxiosSettings().post(`products/${product.product_id}`, formData, {headers:{'Content-Type' : 'multipart/form-data'}})
             .then(response => response.data)
             .catch(error => error.response)
@@ -112,7 +111,6 @@ export const adminAPI = {
     },
     editOption(option) {
         let formData = getFormData(option, "PUT");
-        console.log(option);
         return getAxiosSettings().post(`options/${option.option_id}`, formData, {headers:{'Content-Type' : 'multipart/form-data'}})
             .then(response => response.data)
             .catch(error => error.response)
@@ -139,3 +137,17 @@ export const authAPI = {
           })
   }
 };
+
+
+export const publicAPI = {
+    getPublic() {
+        return getAxiosSettings().get('public')
+            .then(response => response)
+            .catch(error => error.response);
+    },
+    getIndexPage() {
+        return getAxiosSettings().get('settings')
+            .then(response => response)
+            .catch(error => error.response);
+    }
+}

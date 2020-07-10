@@ -4,14 +4,14 @@ import Logo from "./Logo/Logo";
 import RightPanel from "./RightPanel/RightPanel";
 
 
-const Header = () => {
+const Header = (props) => {
     return (
         <header>
             <div className="container-my">
                 <div className="row flex-nowrap">
                     <Bars/>
                     <Logo/>
-                    <RightPanel/>
+                    <RightPanel phone={props.phone}/>
                 </div>
             </div>
         </header>

@@ -2,13 +2,11 @@ import React from "react";
 import MenuItem from "./MenuItem/MenuItem";
 
 
-const Navigation = () => {
+const Navigation = (props) => {
     return (
         <div className="row">
             <div className="col-md-12 navigation">
-                <nav>
-                    <MenuItem/>
-                </nav>
+                <MenuItem categories={props.categories}/>
             </div>
         </div>
     )

@@ -5,12 +5,13 @@ import adminReducer from "./admin-reducer"
 import productsReducer from "./products-reducer";
 import thunkMiddleware from "redux-thunk";
 import authReducer from "./auth-reducer";
-import publicReducer from "./public-reducer";
 import { reducer as formReducer } from 'redux-form'
 import clienteleReducer from "./clientele-reducer";
 import categoriesReducer from "./category-reducer";
 import settingsReducer from "./settings-reducer";
 import optionsReducer from "./option-reducer";
+import publicReducer from "./Public/public-reducer";
+import indexPageReducer from "./Public/index-reducer";
 
 let reducers = combineReducers({
     loginPage: loginReducer,
@@ -18,11 +19,12 @@ let reducers = combineReducers({
     auth: authReducer,
     adminPage: adminReducer,
     productsAdmin: productsReducer,
-    publicPage: publicReducer,
     clienteleAdmin: clienteleReducer,
     categoriesAdmin: categoriesReducer,
     settingsAdmin: settingsReducer,
     optionsAdmin: optionsReducer,
+    public: publicReducer,
+    indexPagePublic: indexPageReducer,
     form: formReducer
 });
 

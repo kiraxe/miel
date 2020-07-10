@@ -9,7 +9,7 @@ const MainContent = (props) => {
         <div id="main-content">
             <div className="container-my">
                 <Title/>
-                <Navigation/>
+                <Navigation categories={props.categories}/>
                 <Popular/>
             </div>
         </div>

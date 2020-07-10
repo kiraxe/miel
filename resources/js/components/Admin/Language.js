@@ -52,6 +52,7 @@ export const rus = {
                 'name': 'Название',
                 'description': 'Описание',
                 'parent':'Родительская категория',
+                'link': 'Cсылка',
                 'image': 'Картинка',
                 'action': 'Действия'
             },

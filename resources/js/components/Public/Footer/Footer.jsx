@@ -12,10 +12,9 @@ const Footer = (props) => {
                             Согласие на обработку персональных данных</a></p>
                     </div>
                     <div className="col-md-6 col-sm-12">
-                        <div className="phone"><a className="phone"
-                                                  href="tel:+78005001990"><span>8 (800) 500-19-90</span></a></div>
+                        <div className="phone"><a className="phone" href={`tel:${props.phone}`}><span>{props.phone}</span></a></div>
                         <div className="social">
-                            <Social/>
+                            <Social social={props.social}/>
                         </div>
                     </div>
                 </div>

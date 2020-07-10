@@ -37,6 +37,10 @@ const CategoryEditForm = (props) => {
                 <Field type="text" idName="categoryName" name={"name"} component={Input} label={LanguageRus.page.categories.table.name} />
             </div>
             <div className="form-group">
+                <label>{LanguageRus.page.categories.table.link}</label>
+                <Field type="text" idName="categoryLink" name={"link"} component={Input} label={LanguageRus.page.categories.table.link} />
+            </div>
+            <div className="form-group">
                 <label>{LanguageRus.page.categories.table.description}</label>
                 <Field type="text" idName="categoryDescription" name={"description"} component={Input} label={LanguageRus.page.categories.table.description} />
             </div>

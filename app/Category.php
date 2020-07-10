@@ -18,7 +18,7 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'parent_id', 'image'
+        'parent_id', 'image', 'link'
     ];
 
     public function parentAttributes(): array
