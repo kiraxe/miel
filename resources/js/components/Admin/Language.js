@@ -25,6 +25,7 @@ export const rus = {
                 'min': 'Минимальное количество (квартал)',
                 'image': 'Картинка',
                 'novelty' : 'Новинка',
+                'popular' : 'Популярный',
                 'action': 'Действия'
             },
             'edit' : {
@@ -109,6 +110,16 @@ export const rus = {
             'title': "Настройки",
             'from': "От (квартал)",
             'to': "До (квартал)",
+            'phone' : 'Номер телефона',
+            'email' : 'Электронная почта',
+            'worktime' : 'Время работы',
+            'phone_manager' : 'Номер телефона менеджера',
+            'manager_name' : 'ФИО менеджера',
+            'manager_email' : 'Электронная почта менеджера',
+            'youtube' : 'Youtube',
+            'facebook' : 'Facebook',
+            'vk' : 'Vk',
+            'instagram' : 'instagram',
             'button': "Сохранить",
             'success' : 'Сохранение...'
         },

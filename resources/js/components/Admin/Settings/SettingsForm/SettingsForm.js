@@ -3,6 +3,7 @@ import {rus as LanguageRus} from "../../Language";
 import {Field, reduxForm} from "redux-form";
 import loading from '../../../../assets/images/loading.svg';
 //import validate from "../Validator/Validate";
+import {Input} from '../../../common/FormsControls/FormControls';
 import {renderDateTimePicker} from '../../../common/FormsControls/FormControls';
 
 
@@ -29,7 +30,46 @@ const SettingsForm = (props) => {
 
     return (
         <form id="settingsForm" onSubmit={handleSubmit} className="form" >
-
+            <div className="form-group">
+                <label>{LanguageRus.page.settings.phone}</label>
+                <Field type="text" idName="settingsPhone" name={"phone"} component={Input} label={LanguageRus.page.settings.phone} />
+            </div>
+            <div className="form-group">
+                <label>{LanguageRus.page.settings.email}</label>
+                <Field type="text" idName="settingsEmail" name={"email"} component={Input} label={LanguageRus.page.settings.email} />
+            </div>
+            <div className="form-group">
+                <label>{LanguageRus.page.settings.worktime}</label>
+                <Field type="text" idName="settingsWorktime" name={"worktime"} component={Input} label={LanguageRus.page.settings.worktime} />
+            </div>
+            <div className="form-group">
+                <label>{LanguageRus.page.settings.phone_manager}</label>
+                <Field type="text" idName="settingsPhoneManager" name={"phone_manager"} component={Input} label={LanguageRus.page.settings.phone_manager} />
+            </div>
+            <div className="form-group">
+                <label>{LanguageRus.page.settings.manager_name}</label>
+                <Field type="text" idName="settingsManagerName" name={"manager_name"} component={Input} label={LanguageRus.page.settings.manager_name} />
+            </div>
+            <div className="form-group">
+                <label>{LanguageRus.page.settings.manager_email}</label>
+                <Field type="text" idName="settingsManagerEmail" name={"manager_email"} component={Input} label={LanguageRus.page.settings.manager_email} />
+            </div>
+            <div className="form-group">
+                <label>{LanguageRus.page.settings.youtube}</label>
+                <Field type="text" idName="settingsYoutube" name={"youtube"} component={Input} label={LanguageRus.page.settings.youtube} />
+            </div>
+            <div className="form-group">
+                <label>{LanguageRus.page.settings.facebook}</label>
+                <Field type="text" idName="settingsFacebook" name={"facebook"} component={Input} label={LanguageRus.page.settings.facebook} />
+            </div>
+            <div className="form-group">
+                <label>{LanguageRus.page.settings.vk}</label>
+                <Field type="text" idName="settingsVk" name={"vk"} component={Input} label={LanguageRus.page.settings.vk} />
+            </div>
+            <div className="form-group">
+                <label>{LanguageRus.page.settings.instagram}</label>
+                <Field type="text" idName="settingsInstagram" name={"instagram"} component={Input} label={LanguageRus.page.settings.instagram} />
+            </div>
             <div className="form-group">
                 <label>{LanguageRus.page.settings.from}</label>
                 <Field type="text" idName="settingsFrom" name={"from"} showTime={false} component={renderDateTimePicker} label={LanguageRus.page.settings.from} />

@@ -40,6 +40,16 @@ class SettingsController extends BaseController
 
         $settings->from = $from[0];
         $settings->to = $to[0];
+        $settings->phone = $input['phone'];
+        $settings->email = $input['email'];
+        $settings->worktime = $input['worktime'];
+        $settings->phone_manager = $input['phone_manager'];
+        $settings->manager_name = $input['manager_name'];
+        $settings->manager_email = $input['manager_email'];
+        $settings->youtube = $input['youtube'];
+        $settings->facebook = $input['facebook'];
+        $settings->vk = $input['vk'];
+        $settings->instagram = $input['instagram'];
 
         $settings->save();
 

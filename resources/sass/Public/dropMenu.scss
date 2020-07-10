@@ -1,0 +1,90 @@
+#dropMenu {
+  display: none;
+  flex: 0 0 auto;
+  width: 270px;
+  header {
+    .leftMenu {
+      ul {
+        margin: 0;
+        padding: 0;
+        li {
+          cursor: pointer;
+          background-color: #fff;
+          list-style-type: none;
+          &:first-child {
+            a {
+              position: relative;
+              padding: 15px 20px 15px 0;
+              text-decoration: none;
+              &:after {
+                background: url('/images/next.svg') no-repeat 50%;
+                background-size: contain;
+                -o-background-size: contain;
+                -webkit-background-size: contain;
+                -moz-background-size: contain;
+                content: "";
+                position: absolute;
+                width: 6px;
+                height: 10px;
+                right: 20px;
+                transform: translateY(-50%) rotate(0deg);
+                top: 50%;
+                transition: all 1s ease 0s;
+              }
+              &.active:after {
+                transform: translateY(-50%) rotate(-90deg);
+              }
+            }
+          }
+          a {
+            border-bottom: 1px solid #F4F7FA;
+            text-decoration: none;
+            display: block;
+            line-height: 21px;
+            color: #2C373E;
+            padding: 20px 20px 20px 0;
+            margin-left: 20px;
+            span {
+              font-size: 0.75rem;
+              margin-bottom: 10px;
+              line-height: 0;
+              color: #798087;
+              display: block;
+            }
+          }
+          .leftDropMenu {
+            display:none;
+            li {
+              background-color: #F4F7FA;
+              a {
+                border-bottom: 1px solid #E4E8EB;
+                font-size: 0.875rem;
+                line-height: 18px;
+                color: #2C373E;
+                margin-left: 60px;
+                &:after {
+                  background: none!important;
+                }
+              }
+              &:last-child {
+                a {
+                  border-bottom: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  footer {
+    background-color: #F4F7FA;
+    padding: 20px;
+    p {
+      font-size: 0.75rem;
+      margin: 0;
+      line-height: 16px;
+      color: #798087;
+    }
+  }
+}

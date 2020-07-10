@@ -8,7 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Passport</title>
+    <title>Miel</title>
+    <!-- Scripts -->
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">

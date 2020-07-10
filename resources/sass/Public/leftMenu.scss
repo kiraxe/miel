@@ -1,0 +1,92 @@
+.left {
+    nav {
+      width:100%;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        &.active {
+          a {
+            font-family: $MainFontFamilyBold;
+            color: #F37021;
+          }
+        }
+        cursor: pointer;
+        background-color: #fff;
+        list-style-type: none;
+        &:first-child {
+          a {
+            &.active {
+              border-bottom: none;
+            }
+            position: relative;
+            padding: 15px 20px 15px 0;
+            &:after {
+              background: url('/images/next.svg') no-repeat 50%;
+              background-size: contain;
+              -o-background-size: contain;
+              -webkit-background-size: contain;
+              -moz-background-size: contain;
+              content: "";
+              position: absolute;
+              width: 6px;
+              height: 10px;
+              right: 20px;
+              transform: translateY(-50%) rotate(0deg);
+              top: 50%;
+              transition: all 1s ease 0s;
+            }
+            &.active:after {
+              transform: translateY(-50%) rotate(-90deg);
+            }
+          }
+        }
+        a {
+          border-bottom: 1px solid #F4F7FA;
+          text-decoration: none;
+          display: block;
+          line-height: 21px;
+          color: #2C373E;
+          padding: 20px 20px 20px 0;
+          span {
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            line-height: 0;
+            color: #798087;
+            display: block;
+          }
+        }
+        .dropLeftNavigation {
+          display:none;
+          li {
+            &.active {
+              font-family: PTSansBold;
+            }
+            a {
+              position: relative;
+              border-bottom: none;
+              font-size: 0.875rem;
+              line-height: 18px;
+              color: #686E74;
+              margin-left: 20px;
+              &:after {
+                background: none!important;
+              }
+              &:before {
+                background-color: #C7D0D8;
+                content: "";
+                position: absolute;
+                transform: translateY(-50%);
+                width: 5px;
+                height: 5px;
+                left: -20px;
+                top: 50%;
+              }
+            }
+          }
+        }
+      }
+    }
+}
+

@@ -1,0 +1,19 @@
+.button {
+  margin-top: 45px;
+  button, input[type="submit"] {
+    border:none;
+    background: url('/images/vector-button.png') no-repeat center right #F37021;
+    color: #fff;
+    width: 230px;
+    height: 42px;
+  }
+  p {
+    margin-top: 10px;
+    font-size: 0.75rem;
+    line-height: 16px;
+    color: #A4AAAF;
+    span {
+      color: $titleColor;
+    }
+  }
+}

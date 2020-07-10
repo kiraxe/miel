@@ -1,0 +1,769 @@
+// Экстрамалые девайсы («телефоны», < 576px)
+// Нет @media, т.к. это по умолчанию в Bootstrap
+
+@media (max-width: 320px) {
+  html {
+    body {
+      main#public {
+        &#basket {
+          #wrapper {
+            #main-content {
+              .block_1 {
+
+              }
+              .block_2 {
+                .cart {
+                  .item {
+                    .itemPartFirst {
+                      .content {
+                        .itemText {
+                          margin-left: -110px;
+                          margin-top: 20px;
+                        }
+                      }
+                    }
+                    .itemPartSecond {
+                      .checkbox {
+                        .checkInput {
+                          flex-wrap: wrap;
+                          .checkInputItem {
+                            width: 100% !important;
+                          }
+                        }
+                      }
+
+                    }
+                  }
+                }
+              }
+              .block_3 {
+
+              }
+              .block_4 {
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 360px) {
+  html {
+    body {
+      main#public {
+        &#basket {
+          #wrapper {
+            #main-content {
+              padding-bottom: 60px;
+              .block_2 {
+                .cart {
+                  .item {
+                    .itemPartSecond {
+                      .checkbox {
+                        .checkInput {
+                          .checkInputItem {
+                            width: auto;
+                          }
+                        }
+                      }
+
+                    }
+                  }
+                }
+              }
+              .block_3 {
+                  label {
+                    line-height: 16px!important;
+                  }
+                  .checkInputItem {
+                    margin-top: 20px;
+                  }
+                  .text {
+                    margin-top: 10px;
+                  }
+              }
+              .block_4 {
+                .button {
+                  button {
+                    width: 100%;
+                  }
+                }
+              }
+            }
+          }
+        }
+        &#item {
+          #wrapper {
+            #main-content {
+              .productCard {
+                .productCardSliderContent {
+                  .productCardImage {
+                    display: none;
+                  }
+                  .productCardSlider {
+                    margin-top:0;
+                    padding-left: 20px;
+                    .slick-arrow {
+                      display:none!important;
+                    }
+                    .slick-list {
+                      overflow: visible;
+                      width: auto!important;
+                      margin: 0 -20px;
+                      .item.slick-slide {
+                        border: none;
+                        background: #F4F7FA;
+                        transform: translate(15px, 15px);
+                        margin: 0 20px;
+                        width: 184px;
+                        height: 184px;
+                        .productCardImageFrameSlider {
+                          transform: translate(-15px, -15px);
+                          $map: (1: #C9DB49, 2: #00AAAD, 3: #F37021, 4: #812990, 5: #FFCB05);
+
+                          @each $element, $color in $map {
+                            &[attr-border="#{$element}"] {
+                              border-bottom:4px solid $color;
+                            }
+                          }
+                          img {
+                            box-shadow: 5px 5px 30px rgba(53, 65, 72, 0.1);
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    #popup {
+      .popup-box {
+        margin: 0;
+        /*height: 100vh;*/
+        padding: 0;
+        &.auth {
+          .header {
+            padding-top: 25px;
+          }
+          .content {
+            padding-bottom: 25px;
+          }
+        }
+        .header {
+          background: #FFFFFF;
+          box-shadow: 0px 0px 30px rgba(44, 55, 62, 0.1);
+          padding: 0 25px;
+          .popup-close {
+            background: url('/images/cross-mob.svg') no-repeat center center;
+            top: 23px;
+            right: 20px;
+            height: 15px;
+            width: 15px;
+          }
+          h2 {
+            font-size: 1.3125rem;
+          }
+        }
+        .content {
+          padding: 0 25px;
+          .button {
+            input {
+              width: 100% !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 420px) {
+  html {
+    body {
+      main#public {
+        &#catalog {
+          .loadMore {
+            .buttonLoadMore {
+              button {
+                width: 100%;
+              }
+            }
+          }
+        }
+        #wrapper {
+          #main-content {
+            .title-container {
+              background: none;
+              padding-bottom: 25px;
+
+              .title {
+                h1 {
+                  font-size: 1.625rem;
+                  line-height: normal;
+                }
+              }
+
+              .text {
+                margin-top: 30px;
+
+                p {
+                  &:before {
+                    background: none;
+                  }
+
+                  margin-left: 0;
+                  line-height: normal;
+                }
+              }
+            }
+
+            .navigation {
+              padding-top: 0;
+              padding-right: 15px;
+
+              nav {
+                .menu-item {
+                  $count: 1;
+                  @each $color in $colorDisc {
+                    &:nth-child(#{$count}):after {
+                      @if $count == 1 {
+                        background: url('/images/next_e.svg') no-repeat center center;
+                      } @else {
+                        background: url('/images/next.svg') no-repeat center center;
+                      }
+                    }
+                    &:nth-child(#{$count}) .title:before {
+                      background: #{$color};
+                      $count: $count + 1;
+                    }
+                  }
+
+                  &:after {
+                    background-size: contain;
+                    -o-background-size: contain;
+                    -webkit-background-size: contain;
+                    -moz-background-size: contain;
+                    content: "";
+                    position: absolute;
+                    width: 6px;
+                    height: 10px;
+                    right: 30px;
+                    transform: translateY(-50%);
+                    top: 50%;
+                  }
+
+                  &:nth-child(1) div {
+                    background-color: #F37021 !important;
+                    box-shadow: none;
+                  }
+
+                  .title {
+                    &:before {
+                      content: "";
+                      position: absolute;
+                      width: 10px;
+                      height: 10px;
+                      left: -30px;
+                      top: 3px;
+                    }
+                  }
+
+                  background-color: #fff;
+                  transform: none;
+                  padding: 0 15px;
+                  position: relative;
+                  margin: 0;
+                  height: auto;
+                  width: 100%;
+
+                  div {
+                    border-bottom: 1px solid #F4F7FA !important;
+                    background: none !important;
+                    padding: 15px 15px;
+                    transform: none;
+                    box-shadow: 0px 0px 30px rgba(53, 65, 72, 0.1);
+                  }
+                }
+              }
+            }
+          }
+
+          footer {
+            .row {
+              flex-direction: column-reverse;
+
+              .phone, .social {
+                text-align: left;
+              }
+
+              .agree {
+                display: none;
+              }
+
+              .copy {
+                margin-top: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// Малые девайсы («ландшафтные телефоны», >= 576px)
+@media (min-width: 576px) {}
+@media (max-width: 576px) {
+  html {
+    body {
+      main#public {
+        &#basket {
+          #wrapper {
+            #main-content {
+              .block_2 {
+                .cart {
+                  .item {
+                    grid-template-columns: 1fr 1fr;
+                    grid-column-gap: 0;
+
+                    .itemPartFirst {
+                      grid-column-gap: 10px;
+                    }
+
+                    .itemPartSecond {
+                      .checkbox {
+                        margin-left: 0 !important;
+                      }
+
+                      .costPanelItem {
+                        margin-left: 0 !important;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .block_3 {
+                .text {
+                  p {
+                    width: 100%;
+                  }
+                }
+
+                .textarea {
+                  textarea {
+                    height: 180px;
+                    width: 100%;
+                  }
+                }
+              }
+
+              .block_4 {
+
+              }
+            }
+          }
+        }
+
+        #wrapper {
+          header {
+            .right-panel {
+              .row {
+                justify-content: flex-end !important;
+
+                div {
+                  height: 15px;
+                  width: 15px;
+                  padding: 0 15px;
+
+                  a:before {
+                    left: -15px !important;
+                  }
+                }
+              }
+            }
+          }
+
+          #main-content {
+            .popular, .novelty {
+              .sliderProducts {
+                margin-top: 90px;
+              }
+            }
+          }
+        }
+      }
+      #popup {
+        overflow: scroll;
+        .popup-box {
+          &.auth {
+            margin-top: 0;
+          }
+          form[name=accountForm] {
+            .accountForm {
+              .section {
+                width:100%;
+                &:last-child {
+                  margin-top: 20px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    main#public {
+      &#account {
+        #wrapper {
+          #main-content {
+            padding-bottom: 50px;
+            .container-my:nth-child(2) {
+              margin-top: 0;
+            }
+            .left {
+              .leftNavigation {
+                box-shadow: 0px 0px 30px rgba(53, 65, 72, 0.1);
+                padding: 0 15px;
+              }
+            }
+            .center {
+              margin-top: 50px;
+              .row {
+                padding-left: 0;
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
+// Средние девайсы («таблетки», >= 768px)
+@media (min-width: 768px) {}
+@media (max-width: 768px) {
+  body {
+    main#public {
+      &#basket {
+        #wrapper {
+          #main-content {
+            .block_1 {
+              margin-top: 60px;
+              .title {
+                h1 {
+                  margin-bottom: 50px;
+                }
+              }
+            }
+            .block_3 {
+              .checkbox {
+                .checkInput {
+                  .checkInputItem {
+                    p {
+                      width: 100%;
+                      margin-left: 20px;
+                    }
+                  }
+                }
+              }
+              .text {
+                p {
+                  width: 60%;
+                }
+              }
+              .textarea {
+                textarea {
+                  width: 70%;
+                }
+              }
+            }
+          }
+        }
+      }
+      &#catalog {
+        #main-content {
+          padding-bottom: 50px;
+        }
+      }
+      &#account {
+        #wrapper {
+          #main-content {
+            .center {
+              form[name="accountForm"] {
+                .accountForm {
+                  .section {
+                    width: calc(100% - 15px);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      &#item {
+        #wrapper {
+          #main-content {
+            margin-top: 50px;
+            padding-bottom: 0;
+            .center {
+              padding: 0;
+            }
+            .productCard {
+              .productCardContent {
+                .info {
+                  padding-left: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+      #wrapper {
+        #main-content {
+          .navigation {
+            nav {
+              flex-wrap: wrap;
+
+              .menu-item {
+                margin-top: 20px;
+                margin-bottom: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Большие девайсы (десктопы, >= 992px)
+@media (min-width: 992px) {}
+
+@media (max-width: 720px) {
+  body {
+    main#public {
+      &#basket {
+        #wrapper {
+          #main-content {
+            .block_1 {
+
+            }
+            .block_2 {
+              .cart {
+                .item {
+                  .itemPartSecond {
+                    grid-template-columns: 100% 100% !important;
+                    grid-template-rows: auto auto;
+                    .costPanelItem {
+                      margin-left: 120px;
+                      grid-area: 2/1;
+                      .costPanel {
+
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            .block_3 {
+
+            }
+            .block_4 {
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  body {
+    main#public {
+      &#basket {
+        #wrapper {
+          #main-content {
+            .block_2 {
+              .cart {
+                .item {
+                  grid-template-rows: auto auto;
+                  .itemPartFirst {
+                    grid-area: 1/1/span 1/span 3;
+                  }
+                  .itemPartSecond {
+                    grid-area: 2/1/span 2/span 3;
+                    grid-column-gap: 0;
+                    grid-template-columns: 1fr 0.5fr;
+                    .checkbox {
+                      margin-left: 120px;
+                      .titleCheck {
+                        margin-top: 0;
+                      }
+                    }
+                    .costPanelItem {
+                      .costPanel {
+                        margin-top: 0;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            .block_3 {
+
+            }
+            .block_4 {
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  body {
+    main#public {
+      &#catalog, &#item {
+        .left {
+          display: none;
+        }
+      }
+      &#item {
+        #wrapper {
+          #main-content {
+            .hidden-title {
+              display: block;
+            }
+          }
+        }
+      }
+      #wrapper {
+        header {
+          a {
+            span {
+              display: none;
+            }
+          }
+
+          .right-panel {
+            a {
+              &:before {
+                display: inline-block;
+                left: 15px;
+              }
+            }
+          }
+
+          .bars {
+            display: block;
+          }
+
+          .logo {
+            a {
+              &.logo-mob {
+                text-align: center;
+                display: block;
+
+                img {
+                  position: relative;
+                }
+              }
+
+              &.logo-disktop {
+                display: none;
+              }
+            }
+          }
+        }
+
+        #main-content {
+          .title-container {
+            margin: 0;
+            padding-top: 50px;
+            background-size: contain;
+            -o-background-size: contain;
+            -webkit-background-size: contain;
+            -moz-background-size: contain;
+
+            .title {
+              h1 {
+                font-size: 1.875rem;
+              }
+            }
+
+            .text {
+              p {
+                font-size: 0.75rem;
+              }
+            }
+          }
+
+          .navigation {
+            padding-right: 30px;
+
+            nav {
+              .menu-item {
+                height: 152px;
+                width: 152px;
+
+                a {
+                  padding: 0 15px 10px;
+                }
+
+                p {
+                  margin: 3px 0 3px 16px;
+                }
+
+                .title {
+                  position: relative;
+                  font-size: 1rem;
+                  line-height: 16px;
+                }
+
+                .text {
+                  font-size: 0.68rem;
+                  line-height: 16px;
+                }
+              }
+            }
+          }
+
+          .popular, .novelty {
+            .sliderProducts {
+              .slick-list {
+                margin: 0 -15px;
+              }
+
+              .item {
+                padding: 0 15px;
+              }
+            }
+          }
+
+          .noveltyBlock {
+            .novelty {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Экстрабольшие девайсы (большие десктопы, >= 1200px)
+@media (min-width: 1200px) {}
+
+@media (max-width: 1200px) {}

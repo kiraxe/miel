@@ -73,6 +73,10 @@ const ProductNewForm = (props) => {
                         <label className="form-check-label" htmlFor="productNovelty">{LanguageRus.page.products.table.novelty}</label>
                         <Field type="checkbox" idName="productNovelty" name={"novelty"} component={Checkbox} label={LanguageRus.page.products.table.novelty} />
                     </div>
+                    <div className="form-check">
+                        <label className="form-check-label" htmlFor="productPopular">{LanguageRus.page.products.table.popular}</label>
+                        <Field type="checkbox" idName="productPopular" name={"popular"} component={Checkbox} label={LanguageRus.page.products.table.popular} />
+                    </div>
                 </Tab>
                 <Tab eventKey="category" title="Категории">
                     <div className="form-group">

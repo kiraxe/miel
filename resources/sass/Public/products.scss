@@ -1,0 +1,72 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: $padding;
+  .itemContainer {
+    max-width: 228px;
+  }
+
+  .images {
+    background-color: #f8f8f9;
+    border: 8px solid #E4ECF3;
+    height: 195px;
+    width: 195px;
+
+    &.active, &:hover {
+      border-color: #00AAAD;
+    }
+
+    img {
+      transform: translate(12px, 12px);
+      box-shadow: 5px 5px 30px rgba(53, 65, 72, 0.1);
+      height: calc(100% + 16px);
+      width: calc(100% + 16px);
+    }
+  }
+
+  .content {
+    margin-top: 60px;
+
+    .title {
+      h2 {
+        font-family: $MainFontFamilyBold;
+        font-size: $baseFontSize;
+        line-height: 21px;
+        color: $titleColor;
+      }
+    }
+
+    .article {
+      p {
+        margin: 0;
+      }
+    }
+
+    .text, .article {
+      p {
+        font-size: 0.875rem;
+      }
+    }
+  }
+
+  @import "cost_panel";
+
+  .button {
+    button {
+      background-color: #FFFFFF;
+      border: 1px solid #C7D0D8;
+      box-sizing: border-box;
+      font-size: 0.875rem;
+      padding: 10px 35px;
+      color: $titleColor;
+      line-height: 18px;
+      text-align: center;
+
+      &.active, &:hover {
+        background-color: #F37021;
+        border: 1px solid #F37021;
+        color: #FFFFFF;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@mixin icon-right-panel($type, $color) {
+  &.#{$type} {
+    &:before {
+      background-image: url('/images/#{$type}.svg');
+      @if $type == phone {
+        width: 17px;
+        height: 17px;
+      }
+    }
+    &:hover {
+      color: $color;
+      &:before {
+        background-image: url('/images/#{$type}_hover.svg');
+      }
+    }
+  }
+}
+
+@mixin titleBackground($bool: true) {
+  @if $bool == true {
+    background: url("/images/background.png") no-repeat center right;
+  } @else {
+    background: none;
+  }
+}
+

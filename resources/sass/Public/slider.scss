@@ -1,0 +1,43 @@
+$padding: 0 50px;
+
+.title {
+  h1 {
+    @extend %productsTitle;
+  }
+}
+
+.text {
+  p {
+    @extend %productsText;
+  }
+}
+
+.sliderProducts {
+  margin-top: 35px;
+  position: relative;
+
+  .slick-list {
+    margin: 0 -50px;
+  }
+
+  .slick-arrow {
+    background-color: #fff;
+    border: 1px solid #E4ECF3;
+    position: absolute;
+    top: -70px;
+    z-index: 2;
+    width: 30px;
+    height: 30px;
+
+    &.slick-next {
+      background: url("/images/next.svg") no-repeat center center;
+      right: 5px;
+    }
+
+    &.slick-prev {
+      background: url("/images/prev.svg") no-repeat center center;
+      right: 75px;
+    }
+  }
+  @import "products.scss";
+}

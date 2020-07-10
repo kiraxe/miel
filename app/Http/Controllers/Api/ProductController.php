@@ -68,6 +68,10 @@ class ProductController extends BaseController
             $input['novelty'] = ($input['novelty'] === 'true');
         }
 
+        if(isset($input['popular'])) {
+            $input['popular'] = ($input['popular'] === 'true');
+        }
+
         $product = Product::create($input);
 
         /*if (isset($input['categories_id'])) {
@@ -164,6 +168,12 @@ class ProductController extends BaseController
         if(isset($input['novelty'])) {
             $input['novelty'] = ($input['novelty'] === 'true');
             $product->novelty = $input['novelty'];
+        }
+
+
+        if(isset($input['popular'])) {
+            $input['popular'] = ($input['popular'] === 'true');
+            $product->popular = $input['popular'];
         }
 
 

@@ -1,20 +1,17 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
-import logo from '../../../assets/images/logo.png';
-import {NavLink} from "react-router-dom";
+import Bars from "./Bars/Bars";
+import Logo from "./Logo/Logo";
+import RightPanel from "./RightPanel/RightPanel";
 
 
 const Header = () => {
     return (
         <header>
-            <div className="container">
-                <div className="row">
-                    <div className="logo col-md-6">
-                        <NavLink to="/"><img className="publicLogo" src={logo}/></NavLink>
-                    </div>
-                    <div className="navigation col-md-6">
-                        <Navbar/>
-                    </div>
+            <div className="container-my">
+                <div className="row flex-nowrap">
+                    <Bars/>
+                    <Logo/>
+                    <RightPanel/>
                 </div>
             </div>
         </header>

@@ -1,0 +1,40 @@
+.title-container {
+  margin-top: 60px;
+  margin-left: 55px;
+  padding-top: 100px;
+  padding-bottom: 50px;
+  @include titleBackground();
+
+  .title {
+    h1 {
+      font-family: $MainFontFamilyBold;
+      font-size: 3rem;
+      line-height: 62px;
+      color: $titleColor;
+
+      span {
+        color: #96004F;
+      }
+    }
+  }
+
+  .text {
+    p {
+      font-family: $MainFontFamilyItalic;
+      line-height: 21px;
+      color: #686E74;
+      position: relative;
+      margin-left: 15px;
+
+      &:before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        left: -15px;
+        top: 5px;
+        background: #00AAAD;
+      }
+    }
+  }
+}

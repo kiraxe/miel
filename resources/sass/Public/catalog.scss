@@ -1,0 +1,9 @@
+$padding: 0 15px;
+
+.catalog {
+  padding-bottom: 50px;
+  .item {
+    margin-top: 35px;
+  }
+  @import "products.scss";
+}

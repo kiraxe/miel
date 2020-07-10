@@ -1,0 +1,57 @@
+header {
+  position: relative;
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-shadow: 0 0 30px rgba(44, 55, 62, 0.1);
+
+  a {
+    display: block;
+    text-decoration: none !important;
+    width: 100%;
+  }
+
+  .bars {
+    cursor: pointer;
+    display: none;
+  }
+
+  .logo {
+    a {
+      &.logo-disktop {
+        img {
+          position: absolute;
+          top: -25px;
+        }
+      }
+
+      &.logo-mob {
+        display: none;
+      }
+    }
+  }
+
+  .right-panel {
+    a {
+      color: $textColor;
+      font-size: 0.875rem;
+      text-align: center;
+      position: relative;
+      padding: 0 22.5px;
+
+      &:before {
+        display: none;
+        content: "";
+        position: absolute;
+        top: 2.5px;
+        left: 0;
+        height: 15px;
+        width: 15px;
+      }
+
+      @each $type in $typeRightPanel {
+        @include icon-right-panel($type, $RightPanelColor);
+      }
+    }
+  }
+}

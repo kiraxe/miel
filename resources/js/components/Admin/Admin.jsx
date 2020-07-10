@@ -9,7 +9,7 @@ import OptionsContainer from "./Options/OptionsContainer";
 
 const Admin = (props) => {
     return (
-        <>
+        <div id="admin">
             <Header/>
             <Sidebar currentUser={props.currentUser} logout={props.logout}/>
             <main id="adminMain" className="col-sm-9 offset-sm-3 col-lg-10 offset-lg-2">
@@ -23,7 +23,7 @@ const Admin = (props) => {
                     </div>
                 </div>
             </main>
-        </>
+        </div>
     )
 };
 

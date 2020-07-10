@@ -1,0 +1,28 @@
+.costPanel {
+  display: flex;
+  justify-content: space-between;
+  font-family: $MainFontFamilyBold;
+  line-height: 21px;
+  margin-bottom: 15px;
+  p {
+    margin: 0;
+  }
+
+  .cost {
+    p {
+      color: $titleColor;
+    }
+  }
+
+  .count {
+    display: flex;
+    align-items: center;
+    img {
+      cursor: pointer;
+    }
+
+    .number {
+      padding: 0 25px;
+    }
+  }
+}

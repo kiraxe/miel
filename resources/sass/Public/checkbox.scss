@@ -1,0 +1,53 @@
+.checkbox {
+  .checkInput {
+    .checkInputItem {
+      display: flex;
+      flex-wrap: wrap;
+      input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+      }
+      label {
+        font-family: $MainFontFamily;
+        font-size: 0.875rem;
+        line-height: 28px;
+        color: $titleColor;
+        display: inline-flex;
+        align-items: center;
+        user-select: none;
+        span {
+          font-family: $MainFontFamilyBold;
+        }
+      }
+      p {
+        border-bottom: 1px solid #C7D0D8;
+        display: flex;
+        align-items: center;
+        padding-right: 50px;
+        @extend %productsText;
+        margin-bottom: .5rem;
+        margin-left: 5px;
+      }
+      input + label:before {
+        content: '';
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
+        flex-grow: 0;
+        border: 1px solid #C7D0D8;
+        margin-right: 0.5em;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 50% 50%;
+      }
+      input:checked+label::before {
+        background-image: url("/images/cube.svg");
+      }
+      input:not(:disabled):active+label::before {
+        background-color: #FFF;
+      }
+    }
+  }
+}

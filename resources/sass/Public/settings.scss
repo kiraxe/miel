@@ -1,0 +1,105 @@
+$MainBackground: #fff;
+$MainFontFamily: PTSansRegular;
+$MainFontFamilyBold: PTSansBold;
+$MainFontFamilyItalic: PTSansItalic;
+$RightPanelColor : #2C373E;
+$typeRightPanel : login, cart, phone;
+$titleColor : #2C373E;
+$titleColorSpan: #96004F;
+$textColor : #798087;
+$baseFontSize: 16px;
+$colorDisc : #FFFFFF, #FFCB05, #00AAAD, #C9DB49;
+$placeholder : #A4AAAF;
+
+:focus::-webkit-input-placeholder {
+  color: transparent; }
+
+:focus::-moz-placeholder {
+  color: transparent; }
+
+:focus:-moz-placeholder {
+  color: transparent; }
+
+:focus:-ms-input-placeholder {
+  color: transparent; }
+
+::-webkit-input-placeholder {
+  color: $placeholder;
+  font-family: $MainFontFamily;}
+
+::-moz-placeholder {
+  color: $placeholder;
+  font-family: $MainFontFamily;}
+
+:-moz-placeholder {
+  color: $placeholder;
+  font-family: $MainFontFamily;}
+
+:-ms-input-placeholder {
+  color: $placeholder;
+  font-family: $MainFontFamily;}
+
+a.active.focus,
+a.active:focus,
+a.focus,
+a:active.focus,
+a:active:focus,
+a:focus,
+input:focus,
+textarea:focus,
+button.active.focus,
+button.active:focus,
+button.focus,
+button:active.focus,
+button:active:focus,
+button:focus,
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+  outline: 0!important;
+  outline-color: transparent!important;
+  outline-width: 0!important;
+  outline-style: none!important;
+  box-shadow: 0 0 0 0 rgba(0,123,255,0)!important;
+}
+
+%block-padding {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+%productsTitle {
+  font-family: $MainFontFamilyBold;
+  font-size: 1.3125rem;
+  line-height: 27px;
+  color: $titleColor;
+}
+
+%productsText {
+  font-size: 0.875rem;
+  line-height: 18px;
+  color: $textColor;
+}
+
+#public .container-my {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 1200px) {
+  main#public .container-my {
+    max-width: 1240px;
+  }
+}
+
+.column-5 .col-md-2 {
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+

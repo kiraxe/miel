@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('min');
             $table->text('image')->nullable();
             $table->boolean('novelty')->default(0);
+            $table->boolean('popular')->default(0);
             $table->timestamps();
         });
     }
