@@ -37,6 +37,7 @@ class CategoryController extends BaseController
             foreach ($arr as $val) {
                 if ($value['category_id'] == $val['id']) {
                     $category['data'][$key]['parentNames'] = implode('->', $val['parent']);
+                    $category['data'][$key]['parentLinks'] = implode('->', $val['link']);
                 }
             }
         }

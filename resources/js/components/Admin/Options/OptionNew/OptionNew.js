@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {rus as LanguageRus} from "../../Language";
 import {Field, FieldArray, reduxForm} from "redux-form";
 import loading from '../../../../assets/images/loading.svg';
-//import validate from "../Validator/Validate";
+//import validate from "../Validator/Validate.js";
 import {Input, inputMultiple, Textarea} from '../../../common/FormsControls/FormControls';
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";

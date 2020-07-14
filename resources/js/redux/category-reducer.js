@@ -82,6 +82,7 @@ export const editCategoryAC = (data) => ({type: EDIT_CATEGORY, data: data});
 
 export const getCategory = (page) => async dispatch => {
     let response = await adminAPI.getCategories(page);
+    console.log(response);
     if (response.success) {
         dispatch(setCategoryAC(response.data));
     }
@@ -94,6 +95,7 @@ export const deleteCategory = (id) => async dispatch => {
 
 export const addCategory = (category) => async dispatch => {
     let response = await adminAPI.addCategory(category);
+    console.log(response);
     if (response.success) {
         dispatch(addCategoryAC([response.data], null));
     } else {

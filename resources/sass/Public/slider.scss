@@ -25,9 +25,14 @@ $padding: 0 50px;
     border: 1px solid #E4ECF3;
     position: absolute;
     top: -70px;
+    left: auto;
     z-index: 2;
     width: 30px;
     height: 30px;
+
+    &:before {
+        content: "";
+    }
 
     &.slick-next {
       background: url("/images/next.svg") no-repeat center center;

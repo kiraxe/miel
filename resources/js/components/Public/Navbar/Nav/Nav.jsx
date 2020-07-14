@@ -4,7 +4,7 @@ import Links from "./Links";
 const Nav = (props) => {
     return (
         <ul>
-            <Links/>
+            <Links categories={props.categories} leftDropMenu={props.leftDropMenu} leftDropMenuHandler={props.leftDropMenuHandler} />
         </ul>
     )
 }

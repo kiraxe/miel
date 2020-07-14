@@ -46,6 +46,7 @@ class Category extends Model
     public function getAllParentNameAndId(): array {
 
         $parents = collect([]);
+        $links = collect([]);
 
         $attr = $this->attributes;
 
@@ -54,10 +55,11 @@ class Category extends Model
         while(!is_null($parent)) {
             $attributes = current($parent->attributes()->getModels());
             $parents->push($attributes->name);
+            $links->push($parent->link);
             $parent = $parent->parent;
         }
 
-        return ['id' => $attr['category_id'], 'parent' => array_reverse($parents->all())];
+        return ['id' => $attr['category_id'], 'parent' => array_reverse($parents->all()), 'link' => array_reverse($links->all())];
     }
 
 }

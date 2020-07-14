@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {rus as LanguageRus} from "../../Language";
 import {Field, reduxForm} from "redux-form";
 import loading from '../../../../assets/images/loading.svg';
-//import validate from "../Validator/Validate";
+//import validate from "../Validator/Validate.js";
 import {Input} from '../../../common/FormsControls/FormControls';
 import {renderDateTimePicker} from '../../../common/FormsControls/FormControls';
 

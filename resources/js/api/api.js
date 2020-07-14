@@ -146,7 +146,7 @@ export const publicAPI = {
             .catch(error => error.response);
     },
     getIndexPage() {
-        return getAxiosSettings().get('settings')
+        return getAxiosSettings().get('index')
             .then(response => response)
             .catch(error => error.response);
     }

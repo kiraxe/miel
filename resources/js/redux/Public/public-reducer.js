@@ -4,7 +4,6 @@ const SET_PUBLIC_SETTINGS = 'SET_PUBLIC_SETTINGS';
 
 let initialState = {
     settings: {},
-    categories: [],
     error: null
 }
 
@@ -15,7 +14,6 @@ let publicReducer = (state = initialState, action) => {
             return {
                 ...state,
                 settings: {...action.data.data.settings},
-                categories: [...action.data.data.categories]
             }
         }
         default:
@@ -27,6 +25,7 @@ let publicReducer = (state = initialState, action) => {
 
 
 export const setPublicAC = (data) => ({type: SET_PUBLIC_SETTINGS, data: data});
+export const initializeAC = () => ({type: INITIALIZE});
 
 
 export const getPublic = () => async dispatch => {

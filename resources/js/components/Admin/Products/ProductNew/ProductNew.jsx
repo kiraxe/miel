@@ -25,7 +25,7 @@ const ProductNewForm = (props) => {
 
     const [key, setKey] = useState('general');
 
-    const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed, change, select} = props;
+    const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed, change, select, options} = props;
 
     submitSucceeded || submitFailed || errSer ? setTimeout(() => {setFetching(false)}, 2000) : null;
 

@@ -1,20 +1,23 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import {NavLink} from "react-router-dom";
 
-const Links = () => {
+const Links = (props) => {
+
+    const [leftDropMenu, setLeftDropMenu] = useState(props.leftDropMenu);
+
+    useEffect(() => {
+        setLeftDropMenu(props.leftDropMenu);
+    });
+
+    let className = leftDropMenu ? "active" : "";
+
+    let categories = props.categories ? props.categories.map((item, key) => {
+        return  item.link === "catalog" ? <li key={key}><NavLink onClick={props.leftDropMenuHandler} activeClassName="act" className={`leftDropMenuRun ${className}`} to={"#"} ><span>ГК «МИЭЛЬ»</span> {item.attributes.name}</NavLink><ul className={`leftDropMenu ${className}`}>{ props.categories.map((it, key) => it.parent_id === item.category_id ? <li key={key}><NavLink to={it.link} >{it.attributes.name}</NavLink></li> : null)}</ul></li> : !item.parent_id ? <li key={key}><NavLink to={item.link} >{item.attributes.name}</NavLink></li> : null
+    } ) : null;
+
     return(
         <>
-            <li>
-                <a className="leftDropMenuRun" href="#"><span>ГК «МИЭЛЬ»</span>Весь Каталог</a>
-                <ul className="leftDropMenu">
-                    <li><a href="#">Канцелярия</a></li>
-                    <li><a href="#">Канцелярия</a></li>
-                    <li><a href="#">Канцелярия</a></li>
-                    <li><a href="#">Канцелярия</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Для офисов</a></li>
-            <li><a href="#">Для агентов</a></li>
-            <li><a href="#">Для клиентов</a></li>
+            {categories}
         </>
     )
 }

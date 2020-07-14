@@ -1,7 +1,10 @@
 #dropMenu {
-  display: none;
-  flex: 0 0 auto;
-  width: 270px;
+    display: none;
+    flex: 0 0 auto;
+    width: 270px;
+    &.active {
+        display: block;
+    }
   header {
     .leftMenu {
       ul {
@@ -54,6 +57,9 @@
           }
           .leftDropMenu {
             display:none;
+              &.active {
+                  display: block;
+              }
             li {
               background-color: #F4F7FA;
               a {

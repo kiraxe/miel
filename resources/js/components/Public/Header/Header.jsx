@@ -9,7 +9,7 @@ const Header = (props) => {
         <header>
             <div className="container-my">
                 <div className="row flex-nowrap">
-                    <Bars/>
+                    <Bars dropMenuHandler={props.dropMenuHandler}/>
                     <Logo/>
                     <RightPanel phone={props.phone}/>
                 </div>

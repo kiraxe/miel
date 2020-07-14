@@ -2,7 +2,7 @@ import React from "react";
 import Title from "./Title/Title";
 import Navigation from "./Navigation/Navigation";
 import Popular from "./Popular/Popular";
-
+import Novelty from "./Novelty/Novelty";
 
 const MainContent = (props) => {
     return (
@@ -10,8 +10,9 @@ const MainContent = (props) => {
             <div className="container-my">
                 <Title/>
                 <Navigation categories={props.categories}/>
-                <Popular/>
+                <Popular popular={props.popular}/>
             </div>
+            <Novelty novelty={props.novelty}/>
         </div>
     )
 }

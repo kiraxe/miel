@@ -64,15 +64,19 @@ class ProductController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
+        $product = Product::create($input);
+
+
         if(isset($input['novelty'])) {
             $input['novelty'] = ($input['novelty'] === 'true');
+            $product->novelty = $input['novelty'];
         }
+
 
         if(isset($input['popular'])) {
             $input['popular'] = ($input['popular'] === 'true');
+            $product->popular = $input['popular'];
         }
-
-        $product = Product::create($input);
 
         /*if (isset($input['categories_id'])) {
 
@@ -103,9 +107,9 @@ class ProductController extends BaseController
 
         $product->toArray();
 
-        isset($input['categories_id']) ? $product['categories_id'] = $input['categories_id'] : 0;
+        isset($input['categories_id']) ? $product['categories_id'] = $input['categories_id'] : null;
 
-        isset($input['option']) ? $product['option'] = $options : 0;
+        isset($input['option']) ? $product['option'] = $options : null;
 
         return $this->sendResponse($product, 'Product created successfully.');
     }

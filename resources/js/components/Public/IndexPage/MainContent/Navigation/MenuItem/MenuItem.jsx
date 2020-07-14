@@ -1,10 +1,11 @@
 import React from "react";
+import {NavLink} from 'react-router-dom';
 
 const MenuItem = (props) => {
 
     return (
         <nav>
-            {props.categories ? props.categories.map((item, key) => <div key={key} className="menu-item"><div style={{backgroundImage: `url(${item.image})`}}><a href={`${item.link}`}><p className="title">{item.attributes.name}</p><p className="text">{item.attributes.description}</p></a></div></div>) : null}
+            {props.categories ? props.categories.map((item, key) => !item.parent_id ? <div key={key} className="menu-item"><div style={{backgroundImage: `url(${item.image})`}}><NavLink to={`${item.link}`}><p className="title">{item.attributes.name}</p><p className="text">{item.attributes.description}</p></NavLink></div></div> : null) : null}
         </nav>
             )
 }

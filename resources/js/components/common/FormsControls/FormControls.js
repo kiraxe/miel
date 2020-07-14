@@ -81,7 +81,7 @@ export const inputMultiple = ({ title, fields, type, parent, optionSelected, opt
 
 export const optionMultiple = ({ fields, type, options, product, meta: { error, submitFailed } }) => {
 
-    const [sel, setSel] = useState(product.option ? product.option.map((item, key) => { return {id: Number(key), value : Number(item.option)}} ) : []);
+    const [sel, setSel] = useState(product && product.option ? product.option.map((item, key) => { return {id: Number(key), value : Number(item.option)}} ) : []);
 
     const onChangeSelect = (e) => {
         let key = Number(e.target.parentNode.parentNode.getAttribute('data-key'));
@@ -140,7 +140,7 @@ export const optionMultiple = ({ fields, type, options, product, meta: { error, 
 }
 
 export const Input = (props) => {
-    return <FormControl {...props}><input id={props.idName} className={"form-control"} {...props.input} type={props.type} placeholder={props.label} /></FormControl>
+    return <FormControl {...props}><input id={props.idName} {...props.input} type={props.type} placeholder={props.label} /></FormControl>
 }
 
 export const Textarea = (props) => {
