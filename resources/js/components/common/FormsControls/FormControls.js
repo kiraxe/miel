@@ -10,7 +10,7 @@ import DateTimePicker from 'react-widgets/lib/DateTimePicker';
 Moment.locale('en');
 momentLocalizer();
 
-const FormControl = ({idName, input, label, type, errSer, categories, ourCategory, multiple, meta: {touched, error}, ...props}) => {
+const FormControl = ({idName, input, label, type, errSer, categories, ourCategory, multiple, change, val, meta: {touched, error}, ...props}) => {
     return(
         <>
             {props.children}
@@ -140,7 +140,14 @@ export const optionMultiple = ({ fields, type, options, product, meta: { error, 
 }
 
 export const Input = (props) => {
-    return <FormControl {...props}><input id={props.idName} {...props.input} type={props.type} placeholder={props.label} /></FormControl>
+    return <FormControl {...props}><input id={props.idName} className={"form-control"} {...props.input} type={props.type} placeholder={props.label} /></FormControl>
+}
+
+export const Hidden = (props) => {
+    useEffect(() => {
+        props.change('type', props.val);
+    })
+    return <FormControl {...props}><input id={props.idName} {...props.input} type={props.type} placeholder={props.label} value={props.val} /></FormControl>
 }
 
 export const Textarea = (props) => {

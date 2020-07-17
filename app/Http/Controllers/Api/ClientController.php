@@ -50,9 +50,11 @@ class ClientController extends BaseController
 
             if ($errorInfo[0] === "23000") {
                 $messageErr = "Такой адрес электронной почты уже зарегистрирован";
+            } else {
+                $messageErr = $errorInfo;
             }
 
-            return $this->sendResponse($messageErr, 'Client error.');
+            return $this->sendError($messageErr);
         }
 
         return $this->sendResponse($client->toArray(), 'Client created successfully.');
@@ -116,7 +118,7 @@ class ClientController extends BaseController
                 $messageErr = "Такой адрес электронной почты уже зарегистрирован";
             }
 
-            return $this->sendResponse($messageErr, 'Client error.');
+            return $this->sendError($messageErr);
         }
 
         return $this->sendResponse($client->toArray(), 'Client updated successfully.');

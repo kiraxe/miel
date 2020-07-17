@@ -38,7 +38,7 @@ body {
       @import "footer";
     }
 
-    &#catalog {
+    &.catalog {
       #wrapper {
         #main-content {
           padding-bottom: 80px;
@@ -93,7 +93,7 @@ body {
         }
       }
     }
-    &#account {
+    &.account {
       #wrapper {
         #main-content {
           .container-my:nth-child(2) {
@@ -215,7 +215,7 @@ body {
         }
       }
     }
-    &#item {
+    &.item {
       #wrapper {
         #main-content {
           margin-top: 160px;
@@ -356,7 +356,7 @@ body {
         }
       }
     }
-    &#basket {
+    &.basket {
       #wrapper {
         #main-content {
           padding-bottom: 150px;

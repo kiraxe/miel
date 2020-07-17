@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 // public routes
 
+
 Route::middleware('json.response')->group(function () {
 
     //-Admin
@@ -24,6 +25,12 @@ Route::middleware('json.response')->group(function () {
 
     //->register - POST
     Route::post('/register', 'Api\AuthController@register')->name('register.api');
+
+    //->login_client - POST
+    Route::post('/login_client', 'Api\AuthClientController@login')->name('login.client');
+
+    //->register_client - POST
+    Route::post('/registration_client', 'Api\AuthClientController@register')->name('register.client');
 
     //->product - POST
     Route::resource('/products', 'Api\ProductController');
@@ -61,19 +68,29 @@ Route::middleware(['auth:api','json.response'])->group(function () {
     Route::get('/me', 'Api\AuthController@me')->name('me.api');
 
     //->product
-    Route::resource('/products', 'Api\ProductController');
+    //Route::resource('/products', 'Api\ProductController');
 
     //->clientele
-    Route::resource('/clientele', 'Api\ClientController');
+    //Route::resource('/clientele', 'Api\ClientController');
 
     //->categories
-    Route::resource('/category', 'Api\CategoryController');
+    //Route::resource('/category', 'Api\CategoryController');
 
     //->settings
-    Route::resource('/settings', 'Api\SettingsController');
+    //Route::resource('/settings', 'Api\SettingsController');
 
     //->options
-    Route::resource('/options', 'Api\OptionController');
+    //Route::resource('/options', 'Api\OptionController');
 
 });
 
+
+Route::middleware(['auth:client','json.response'])->group(function () {
+
+    //->logout - GET
+    Route::delete('/logout_client', 'Api\AuthClientController@logout')->name('logout');
+
+    //->me
+    Route::get('/me_client', 'Api\AuthClientController@me')->name('me.client');
+
+});

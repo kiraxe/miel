@@ -101,6 +101,7 @@ export const rus = {
                 'success' : 'Создание...'
             },
             'error' : {
+                'login' : 'Введите логин',
                 'name' : 'Введите ФИО',
                 'phone' : 'Введите телефон',
                 'email' : 'Введите email',

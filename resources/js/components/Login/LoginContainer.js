@@ -5,8 +5,9 @@ import {login} from "../../redux/auth-reducer";
 import {getHandler} from "../../redux/login-reducer";
 import {Redirect} from "react-router-dom";
 import {compose} from "redux";
-import {getErrorSelector, getIsLoggedInSelector} from "../../redux/app-selectors";
-import {getEmailSelector, getPasswordSelector, getNewHandlerChange} from "../../redux/login-selectors";
+import {getPermissionSelectors} from "../../redux/auth-selectors";
+import {getErrorSelector, getIsLoggedInSelector} from "../../redux/auth-selectors";
+import {getEmailSelector, getPasswordSelector, getNewHandlerChange, getTypeSelector} from "../../redux/login-selectors";
 
 class LoginContainer extends React.Component {
 
@@ -31,11 +32,11 @@ class LoginContainer extends React.Component {
         const onSubmit = (e) => {
             e.preventDefault();
             this.setState({isFetching: true});
-            this.props.login(this.props.email, this.props.password);
+            this.props.login(this.props.email, this.props.password, this.props.type);
             this.timerFetching = setTimeout(() => {this.setState({isFetching: false})}, 2000);
         };
 
-        if (this.props.isLoggedIn) {
+        if (this.props.isLoggedIn && this.props.permission === "Admin" ) {
             return <Redirect to={"/admin"}/>
         }
 
@@ -56,9 +57,11 @@ let mapStateForProps = (state) => {
   return {
       email: getEmailSelector(state),
       password: getPasswordSelector(state),
+      type: getTypeSelector(state),
       error: getErrorSelector(state),
       newHandlerChange: getNewHandlerChange(state),
-      isLoggedIn: getIsLoggedInSelector(state)
+      isLoggedIn: getIsLoggedInSelector(state),
+      permission: getPermissionSelectors(state),
   }
 };
 

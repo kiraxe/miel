@@ -5,7 +5,6 @@ import { Route, Switch } from 'react-router-dom';
 //Components
 import LoginContainer from "./Login/LoginContainer";
 import RegisterPage from './Register/RegisterPage';
-import PublicContainer from "./Public/PublicContainer";
 import Preloader from "./common/Preloader/Preloader";
 import {withSuspense} from "../hoc/withSuspense";
 
@@ -14,6 +13,8 @@ import {withSuspense} from "../hoc/withSuspense";
 /**********************/
 
 const AdminContainer = React.lazy(() => import('./Admin/AdminContainer'));
+
+const PublicContainer = React.lazy(() => import('./Public/PublicContainer'));
 
 export default class App extends Component {
 
@@ -31,19 +32,14 @@ export default class App extends Component {
               <>
                   <Switch>
 
-                      <Route exact path="/" render={() =><PublicContainer />}/>
+                      <Route exact path="/" render={withSuspense(PublicContainer)}/>
+
+                      <Route path="/account/:page?/" render={withSuspense(PublicContainer)}/>
 
                       <Route exact path="/login" render={() => (<LoginContainer />)}/>
 
-                      <Route
-                      exact path="/register"
-                      render={(props) => (<RegisterPage onRegister={this.registrationSubmit} {...props}/>)}
-                      />
+                      <Route path='/admin/:page?/:slug?/:id?' render={withSuspense(AdminContainer)}/>
 
-                      <Route
-                      path='/admin/:page?/:slug?/:id?'
-                      render={withSuspense(AdminContainer)}
-                      />
                   </Switch>
               </>
         )

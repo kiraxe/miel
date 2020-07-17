@@ -12,6 +12,7 @@ import settingsReducer from "./settings-reducer";
 import optionsReducer from "./option-reducer";
 import publicReducer from "./Public/public-reducer";
 import indexPageReducer from "./Public/index-reducer";
+import registrationReducer from "./Public/registration-reducer";
 
 let reducers = combineReducers({
     loginPage: loginReducer,
@@ -25,6 +26,7 @@ let reducers = combineReducers({
     optionsAdmin: optionsReducer,
     public: publicReducer,
     indexPagePublic: indexPageReducer,
+    registration: registrationReducer,
     form: formReducer
 });
 

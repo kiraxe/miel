@@ -25,7 +25,6 @@ let publicReducer = (state = initialState, action) => {
 
 
 export const setPublicAC = (data) => ({type: SET_PUBLIC_SETTINGS, data: data});
-export const initializeAC = () => ({type: INITIALIZE});
 
 
 export const getPublic = () => async dispatch => {

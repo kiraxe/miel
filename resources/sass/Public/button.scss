@@ -3,9 +3,18 @@
   button, input[type="submit"] {
     border:none;
     background: url('/images/vector-button.png') no-repeat center right #F37021;
+    position: relative;
     color: #fff;
     width: 230px;
     height: 42px;
+    img {
+        position: absolute;
+        top: 50%;
+        width: 25px;
+        height: 25px;
+        transform: translateY(-50%);
+        right: 10px;
+    }
   }
   p {
     margin-top: 10px;

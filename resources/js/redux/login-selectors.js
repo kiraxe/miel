@@ -12,3 +12,7 @@ export const getPasswordSelector = (state) => {
 export const getNewHandlerChange = (state) => {
     return state.loginPage.newHandlerChange;
 }
+
+export const getTypeSelector = (state) => {
+    return state.loginPage.type;
+}

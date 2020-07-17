@@ -5,7 +5,8 @@ import App from "./App";
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {compose} from "redux";
-import {getAppSelector, getIsLoggedInSelector} from "../redux/app-selectors";
+import {getAppSelector} from "../redux/app-selectors";
+import {getIsLoggedInSelector} from "../redux/auth-selectors";
 
 let mapStateForProps = (state) => {
     return {

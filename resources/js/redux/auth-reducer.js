@@ -1,4 +1,5 @@
 import {authAPI} from "../api/api";
+import {authClientAPI} from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -31,9 +32,16 @@ const authReducer = (state = initialState, action) => {
 
 export const setUserDataAC = (id, email, name, isLoggedIn, permission, token , error, isFetching) => ({type: SET_USER_DATA, data: {id, email, name, isLoggedIn, permission, token, error, isFetching}});
 
-export const getAuthUserData = (token, permission) => async (dispatch) => {
-    let meData = await authAPI.me();
-    if(!meData.data.error) {
+export const getAuthUserData = (token, permission, type) => async (dispatch) => {
+    let meData = null;
+
+    if (type === 'client') {
+        meData = await authClientAPI.me();
+    } else if (type === 'api') {
+        meData = await authAPI.me();
+    }
+    console.log(meData);
+    if(meData && !meData.data.error) {
         if (meData.data.user) {
             let {id, email, name} = meData.data.user;
             dispatch(setUserDataAC(id, email, name, true, permission, token, null, true))
@@ -41,25 +49,43 @@ export const getAuthUserData = (token, permission) => async (dispatch) => {
     }
 };
 
-export const login = (email, password) => async (dispatch) => {
-    let response = await authAPI.login(email, password);
-    if (!response.data.error) {
+export const login = (email, password, type) => async (dispatch) => {
+    let response = null;
+
+    if (type === 'client') {
+        response = await authClientAPI.login(email, password);
+    } else if ( type === 'api') {
+        response = await authAPI.login(email, password);
+    }
+    console.log(response);
+    if (response && !response.data.error) {
         let token = response.data.token;
         let permission = response.data.permission;
         localStorage.setItem('token', token);
-        dispatch(getAuthUserData(token, permission))
+        localStorage.setItem('permission', permission);
+        localStorage.setItem('type', type);
+        dispatch(getAuthUserData(token, permission, type))
     } else {
         dispatch(setUserDataAC(null, null, null, false, null, null, response.data.error, false))
     }
 
 };
 
-export const logout = () => async (dispatch) => {
-   let response = await authAPI.logout();
-   if (response.data.success) {
+export const logout = (type) => async (dispatch) => {
+    let  response = null;
+
+    if (type === 'api') {
+        response = await authAPI.logout();
+    } else if (type === 'client') {
+        response = await authClientAPI.logout();
+    }
+
+    if (response.data.success) {
        localStorage.removeItem('token');
+       localStorage.removeItem('permission');
+       localStorage.removeItem('type');
        dispatch(setUserDataAC(null, null, null, false, null, null, null, false))
-   }
+    }
 };
 
 

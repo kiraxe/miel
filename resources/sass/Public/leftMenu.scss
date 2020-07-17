@@ -6,12 +6,12 @@
       margin: 0;
       padding: 0;
       li {
-        &.active {
-          a {
+        //&.active {
+          a.active {
             font-family: $MainFontFamilyBold;
             color: #F37021;
           }
-        }
+        //}
         cursor: pointer;
         background-color: #fff;
         list-style-type: none;

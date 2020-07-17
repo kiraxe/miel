@@ -48,6 +48,9 @@ header {
         height: 15px;
         width: 15px;
       }
+      &.login:before, &.cart:before {
+          display: block;
+      }
 
       @each $type in $typeRightPanel {
         @include icon-right-panel($type, $RightPanelColor);

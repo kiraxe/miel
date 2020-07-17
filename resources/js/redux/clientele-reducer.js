@@ -96,20 +96,20 @@ export const deleteClient = (id) => async dispatch => {
 export const addClient = (clientele) => async dispatch => {
     let response = await adminAPI.addClient(clientele);
 
-    if (response.message === "Client created successfully.") {
+    if (response.success) {
         dispatch(addClienteleAC([response.data], null));
-    } else if (response.message === "Client error.") {
-        dispatch(addClienteleAC([], response.data));
+    } else if (!response.data.success) {
+        dispatch(addClienteleAC([], response.data.message));
     }
 };
 
 export const editClient = (clientele) => async dispatch => {
     let response = await adminAPI.editClient(clientele);
 
-    if (response.message === "Client updated successfully.") {
+    if (response.success) {
         dispatch(editClienteleAC(response.data, null));
-    } else if (response.message === "Client error.") {
-        dispatch(editClienteleAC([], response.data));
+    } else if (!response.data.success) {
+        dispatch(editClienteleAC([], response.data.message));
     }
 
 }

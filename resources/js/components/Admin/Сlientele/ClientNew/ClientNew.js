@@ -3,7 +3,7 @@ import {rus as LanguageRus} from "../../Language";
 import {Field, reduxForm} from "redux-form";
 import loading from '../../../../assets/images/loading.svg';
 import validate from "../Validator/Validate";
-import {Input, Textarea} from '../../../common/FormsControls/FormControls';
+import {Input} from '../../../common/FormsControls/FormControls';
 
 const ClientNew = (props) => {
 

@@ -3,6 +3,7 @@ const UPDATE_HANDLE_CHANGE = "UPDATE_HANDLE_CHANGE";
 let initialState = {
     email: '',
     password: '',
+    type: "api"
 };
 
 

@@ -120,11 +120,11 @@ export const adminAPI = {
 
 export const authAPI = {
   me() {
-      return getAxiosSettings().get('me')
+      return getAxiosSettings().get("me/")
           .then(response => response)
           .catch(error => error.response);
   },
-  login(email, password) {
+  login(email, password, type) {
       return getAxiosSettings().post('login', {email, password})
           .then(response => response)
           .catch(error => error.response);
@@ -137,6 +137,31 @@ export const authAPI = {
           })
   }
 };
+
+export const authClientAPI = {
+    registration(client) {
+        return getAxiosSettings().post('registration_client', client)
+            .then(response => response.data)
+            .catch(error => error.response);
+    },
+    me() {
+        return getAxiosSettings().get("me_client/")
+            .then(response => response)
+            .catch(error => error.response);
+    },
+    login(email, password) {
+        return getAxiosSettings().post('login_client', {email, password})
+            .then(response => response)
+            .catch(error => error.response);
+    },
+    logout() {
+        return getAxiosSettings().delete('logout_client')
+            .then(response => {
+                localStorage.removeItem('token');
+                return response;
+            })
+    }
+}
 
 
 export const publicAPI = {

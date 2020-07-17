@@ -8,7 +8,8 @@ class Navbar extends Component {
 
         const logoutBtnClicked = () => {
             //Perform Logout and then reach the homeepage anyway (success, fail)
-            this.props.logout();
+            let type = localStorage.getItem('type');
+            this.props.logout(type);
         }
         return (
             <ul className="nav menu">

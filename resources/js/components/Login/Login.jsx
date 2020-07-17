@@ -24,6 +24,7 @@ const Login = (props) => {
                         </div>
                         <div className="loginAdmin__form col-md-12">
                             <form onSubmit={props.onSubmit} >
+                                <input type="hidden" name="type" value={props.user} />
                                 <div className="form-group">
                                     <label htmlFor="emailInput">{languageRu.form.email}</label>
                                     <input onChange={props.handleChange} type="email" name="email" value={props.email} className="form-control" id="emailInput" aria-describedby="emailHelp" placeholder={languageRu.form.email}/>
