@@ -35,7 +35,7 @@ export const setIndexPageAC = (data) => ({type: SET_INDEX_PAGE, data: data});
 
 export const getIndexPage = () => async dispatch => {
     let response = await publicAPI.getIndexPage();
-
+    console.log(response);
     if (response.data.success) {
         dispatch(setIndexPageAC(response.data));
     }

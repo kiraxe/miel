@@ -1,12 +1,14 @@
 import React from "react";
 import Slider from "react-slick";
 import {SampleNextArrow, SamplePrevArrow} from "./Arrows/Arrows";
+import { NavLink} from 'react-router-dom';
 
 
 const SliderProducts = (props) => {
 
     const element = (item, key) => {
-        return <div key={key} className="item">
+        let link = item.attributes.map(item => item.attributes.parent_id ? item.attributes.link : "");
+        return <NavLink className="productNavLink" key={key} to={`/${link[link.length - 1]}/${item.product_id}`}><div className="item">
             <div className="itemContainer">
                 <div className="images"><img src={item.image} alt="prod" title="pen"/></div>
                 <div className="content">
@@ -29,6 +31,7 @@ const SliderProducts = (props) => {
                 </div>
             </div>
         </div>
+        </NavLink>
     }
 
     let elements = props.popular ? props.popular.map((item, key) => element(item, key)) : props.novelty ? props.novelty.map((item, key) => element(item, key)): null;

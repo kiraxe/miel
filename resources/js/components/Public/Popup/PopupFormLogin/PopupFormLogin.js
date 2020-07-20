@@ -27,7 +27,7 @@ const ClientPopupFormLogin = (props) => {
         userFeedback = (<ErrorsAlert error={errSer} />)
     }
 
-    let redirect = submitSucceeded && isLoggedIn ? (<Redirect to={"/account"}/>) : null;
+    let redirect = submitSucceeded && isLoggedIn ? (<Redirect to={"/account/company_data"}/>) : null;
 
 
     submitSucceeded || submitFailed || errSer ? setTimeout(() => {setFetching(false)}, 2000) : null;

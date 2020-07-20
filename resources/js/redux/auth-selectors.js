@@ -12,4 +12,8 @@ export const getErrorSelector = (state) => {
     return state.auth.error;
 }
 
+export const getIdSelector = (state) => {
+    return state.auth.id;
+}
+
 

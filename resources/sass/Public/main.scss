@@ -108,6 +108,9 @@ body {
               li {
                 &:first-child {
                   a {
+                      &.active {
+                          border-bottom: 1px solid #F4F7FA;
+                      }
                     &:after {
                       background: none;
                     }

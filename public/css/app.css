@@ -1191,6 +1191,12 @@ body main#public #wrapper #main-content .novelty .sliderProducts .slick-arrow.sl
   right: 75px;
 }
 
+body main#public #wrapper #main-content .popular .sliderProducts .productNavLink,
+body main#public #wrapper #main-content .novelty .sliderProducts .productNavLink {
+  text-decoration: none;
+  color: #2C373E;
+}
+
 body main#public #wrapper #main-content .popular .sliderProducts .item,
 body main#public #wrapper #main-content .novelty .sliderProducts .item {
   display: flex;
@@ -1406,6 +1412,11 @@ body main#public.catalog #wrapper #main-content .catalog .item {
   margin-top: 35px;
 }
 
+body main#public.catalog #wrapper #main-content .catalog .productNavLink {
+  text-decoration: none;
+  color: #2C373E;
+}
+
 body main#public.catalog #wrapper #main-content .catalog .item {
   display: flex;
   justify-content: space-between;
@@ -1556,6 +1567,10 @@ body main#public.account #wrapper #main-content .container-my:nth-child(2) {
 
 body main#public.account #wrapper #main-content .title-container {
   background: none;
+}
+
+body main#public.account #wrapper #main-content .left ul li:first-child a.active {
+  border-bottom: 1px solid #F4F7FA;
 }
 
 body main#public.account #wrapper #main-content .left ul li:first-child a:after {

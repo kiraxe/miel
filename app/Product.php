@@ -22,7 +22,7 @@ class Product extends Model
     }
 
     public function attributes() {
-        return $this->hasMany(ProductToCategory::class, 'product_id', 'product_id');
+        return $this->hasMany(ProductToCategory::class, 'product_id', 'product_id')->with('attributes');
     }
 
     public function productOptions() {

@@ -15,4 +15,9 @@ class ProductToCategory extends Model
      */
     protected $fillable = ['product_id', 'category_id'];
 
+
+    public function attributes() {
+        return $this->hasOne(Category::class, 'category_id', 'category_id')->with('attributes');
+    }
+
 }

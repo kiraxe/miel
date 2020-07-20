@@ -3,16 +3,29 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {getSettingsSelectors} from "../../../redux/Public/public-selectors";
+import {getIdSelector} from "../../../redux/auth-selectors";
 import ManagerInfo from "./ManagerInfo/ManagerInfo";
 import Navigation from "./Navigation/Navigation";
+import {getClientSelectors, getErrorSelector} from "../../../redux/Public/account-selectors";
+import {getAccount , editAccount} from "../../../redux/Public/account-reducer";
+import AccountForm from "./AccountForm/AccountForm";
 
 class  AccountContainer extends Component {
     constructor(props) {
         super(props);
     }
 
+    componentDidMount() {
+        this.props.getAccount(this.props.auth_client_id);
+    }
+
+
+    onEditSubmit = (formData) => {
+        this.props.editAccount(formData);
+    }
+
     render() {
-        console.log(this.props);
+
         return (
             <div id="main-content">
                 <div className="container-my">
@@ -32,6 +45,7 @@ class  AccountContainer extends Component {
                         </div>
                         <div className="col-md-8 col-lg-9 col-xl-9 center">
                             <div className="container-my">
+                                {this.props.match.params.page === 'company_data' &&
                                 <div className="row">
                                     <div className="title"><h1>Данные компании</h1></div>
                                     <div className="text">
@@ -39,49 +53,11 @@ class  AccountContainer extends Component {
                                             текст для текстовых блоков Осноной текст для текстовых Осноной текст для
                                             текстовых блоков Осноной текст для текстовых блоков Осноной текст для
                                             текстовых блоков.</p>
-                                        <p>Осноной текст для текстовых блоков Осноной текст для текстовых блоков Осноной
-                                            текст для текстовых блоков Осноной текст для текстовых Осноной текст для
-                                            текстовых блоков Осноной текст для текстовых блоков Осноной текст для
-                                            текстовых блоков.</p>
                                     </div>
-                                </div>
-                                <div className="row">
-                                    <form name="accountForm">
-                                        <div className="accountForm">
-                                            <div className="section">
-                                                <p><input type="text" placeholder="Логин" name="login"/></p>
-                                                <p>
-                                                    <input className="password" type="password" placeholder="Пароль"
-                                                           name="password"/>
-                                                        <label className="passwordAction"></label>
-                                                </p>
-                                                <p><input type="text" placeholder="Ф.И.О контактного лица" name="name"/>
-                                                </p>
-                                                <p><input type="text" placeholder="Телефон контактного лица"
-                                                          name="phone"/></p>
-                                                <p><input type="text" placeholder="E-mail контактного лица"
-                                                          name="email"/></p>
-                                                <p><input type="text" placeholder="Адрес для курьерской доставки"
-                                                          name="address"/></p>
-                                                <p><input type="text" placeholder="Почтовый адрес для документов"
-                                                          name="addressP"/></p>
-                                            </div>
-                                            <div className="section">
-                                                <p><input type="text" placeholder="Название компании" name="company"/>
-                                                </p>
-                                                <p><input type="text" placeholder="ИНН" name="inn"/></p>
-                                                <p><input type="text" placeholder="КПП" name="kpp"/></p>
-                                                <p><input type="text" placeholder="Р/С" name="pc"/></p>
-                                                <p><input type="text" placeholder="БИК" name="bik"/></p>
-                                                <p><input type="text" placeholder="К/С" name="ks"/></p>
-                                            </div>
-                                        </div>
-                                        <div className="button">
-                                            <input type="submit" value="Сохранить" name="submit"/>
-                                            <p>Нажимая «Сохранить», я соглашаюсь с <span>офертой</span></p>
-                                        </div>
-                                    </form>
-                                </div>
+                                </div>}
+                                {this.props.match.params.page === 'company_data' && <div className="row">
+                                    <AccountForm error={this.props.error} client={this.props.client} editAccount={this.onEditSubmit} />
+                                </div> || <div className="row">Страница находится в разработке</div>}
                             </div>
                         </div>
                     </div>
@@ -94,10 +70,13 @@ class  AccountContainer extends Component {
 let mapStateToProps = (state) => {
     return {
         settings: getSettingsSelectors(state),
+        client: getClientSelectors(state),
+        auth_client_id: getIdSelector(state),
+        error: getErrorSelector(state)
     }
 };
 
 export default compose(
     withRouter,
-    connect(mapStateToProps)
+    connect(mapStateToProps, {getAccount , editAccount})
 )(AccountContainer);

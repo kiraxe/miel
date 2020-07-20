@@ -93,4 +93,7 @@ Route::middleware(['auth:client','json.response'])->group(function () {
     //->me
     Route::get('/me_client', 'Api\AuthClientController@me')->name('me.client');
 
+    //account
+    Route::resource('account', 'Api\AccountPageController');
+
 });

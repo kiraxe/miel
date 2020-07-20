@@ -44,7 +44,7 @@ const ClientPopupForm = (props) => {
         userFeedback = (<ErrorsAlert error={errSer} />)
     }
 
-    let redirect = submitSucceeded && isLoggedIn ? (<Redirect to={"/account"}/>) : null;
+    let redirect = submitSucceeded && isLoggedIn ? (<Redirect to={"/account/company_data"}/>) : null;
 
     return (
         <>

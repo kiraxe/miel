@@ -40,7 +40,6 @@ export const getAuthUserData = (token, permission, type) => async (dispatch) => 
     } else if (type === 'api') {
         meData = await authAPI.me();
     }
-    console.log(meData);
     if(meData && !meData.data.error) {
         if (meData.data.user) {
             let {id, email, name} = meData.data.user;
@@ -57,7 +56,7 @@ export const login = (email, password, type) => async (dispatch) => {
     } else if ( type === 'api') {
         response = await authAPI.login(email, password);
     }
-    console.log(response);
+
     if (response && !response.data.error) {
         let token = response.data.token;
         let permission = response.data.permission;

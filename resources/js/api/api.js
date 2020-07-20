@@ -174,5 +174,15 @@ export const publicAPI = {
         return getAxiosSettings().get('index')
             .then(response => response)
             .catch(error => error.response);
-    }
+    },
+    getAccountPage(client_id) {
+        return getAxiosSettings().get(`account/${client_id}`)
+            .then(response => response)
+            .catch(error => error.response);
+    },
+    editAccountPage(client) {
+        return getAxiosSettings().put(`account/${client.id}`, client)
+            .then(response => response.data)
+            .catch(error => error.response)
+    },
 }

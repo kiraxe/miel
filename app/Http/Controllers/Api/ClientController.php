@@ -115,7 +115,7 @@ class ClientController extends BaseController
             $errorInfo = $exception->errorInfo;
 
             if ($errorInfo[0] === "23000") {
-                $messageErr = "Такой адрес электронной почты уже зарегистрирован";
+                $messageErr = "Такой адрес электронной почты или логин уже зарегистрирован";
             }
 
             return $this->sendError($messageErr);

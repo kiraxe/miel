@@ -64,6 +64,7 @@ class PublicContainer extends Component {
     onLogout = () => {
         let type = localStorage.getItem('type');
         this.props.logout(type);
+        this.props.history.push('/');
     }
 
     onAddSubmit = (formData) => {
@@ -92,9 +93,13 @@ class PublicContainer extends Component {
             return <Preloader/>
         }
 
+        let arr = this.props.match.url.split('/');
+
+        let className = arr[1];
+
         return (
             <>
-            <main id="public" className={this.props.match.url.replace('/', '')}>
+            <main id="public" className={className}>
                 <Navbar categories={this.props.categories} leftDropMenuHandler={this.leftDropMenuHandler} leftDropMenu={this.state.leftDropMenu} dropMenu={this.state.dropMenu}/>
                 <div id="wrapper">
                     <Header onLogout={this.onLogout} popUpOpen={this.popUpOpen} isLoggedIn={this.props.isLoggedIn} permission={this.props.permission} dropMenuHandler={this.dropMenuHandler} phone={this.props.settings.phone}/>
@@ -103,7 +108,7 @@ class PublicContainer extends Component {
                 </div>
             </main>
             <Popup
-                popUpClose={this.popUpClose} popUp={this.state.popUp} addClient={this.onAddSubmit} onLogin={this.onLogin} error={this.props.error} errorReg={this.props.errorReg} isLoggedIn={this.props.isLoggedIn} />
+                classNameElement={className} popUpClose={this.popUpClose} popUp={this.state.popUp} addClient={this.onAddSubmit} onLogin={this.onLogin} error={this.props.error} errorReg={this.props.errorReg} isLoggedIn={this.props.isLoggedIn} />
             </>
             )
     }

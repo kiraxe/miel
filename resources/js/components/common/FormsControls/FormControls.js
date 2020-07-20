@@ -31,7 +31,6 @@ const FormControl = ({idName, input, label, type, errSer, categories, ourCategor
 
 
 const renderField = ({ input, label, type, options, optionSelected, parent, meta: { touched, error } }) => {
-    //console.log(options);
     return (
         <div className="form-group">
                 {type === "select" && parent && <select {...input} className={"form-control"} ><option value={0}>Выберите опцию</option> {options ? options.map((item, key) => <option key={key} value={item.option_id}>{item.description.name}</option>): null}</select>
