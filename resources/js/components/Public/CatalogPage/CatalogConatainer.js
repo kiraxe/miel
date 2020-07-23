@@ -9,6 +9,7 @@ import CatalogPage from "./CatalogPage";
 import ProductContainer from "./Product/ProductContainer";
 
 
+
 class AccountContainer extends Component {
     constructor(props) {
         super(props);
@@ -106,7 +107,7 @@ let mapStateToProps = (state) => {
         categories: getCategoriesSelectors(state),
         products: getProductsSelectors(state),
         initialize: getInitializeSelectors(state),
-        totalProduct :getTotalProductSelectors(state)
+        totalProduct: getTotalProductSelectors(state),
     }
 
 

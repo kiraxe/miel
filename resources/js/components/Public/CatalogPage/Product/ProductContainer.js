@@ -3,8 +3,10 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {getProduct} from "../../../../redux/Public/productPublic-reduser";
-import {getProductSelectors} from "../../../../redux/Public/productPublic-selectors";
+import {getProductSelectors, getInitializeSelectors} from "../../../../redux/Public/productPublic-selectors";
 import Product from "./Product";
+import Preloader from "../../../common/Preloader/Preloader";
+import {getSettingsSelectors} from "../../../../redux/Public/public-selectors";
 
 
 
@@ -19,13 +21,29 @@ class AccountContainer extends Component {
 
 
     render() {
-        return <Product product={this.props.product}/>
+
+        if (!this.props.initialize) {
+            return <Preloader/>
+        }
+
+        return <Product
+            product={this.props.product}
+            productPage={this.props.match.params.id}
+            onPageHandler={this.props.onPageHandler}
+            dropLeftNavigationRun={this.props.dropLeftNavigationRun}
+            leftDropMenuHandler={this.props.leftDropMenuHandler}
+            categories={this.props.categories}
+            fromQuarterlyDate={this.props.settings.from}
+            toQuarterlyDate={this.props.settings.to}
+        />
     }
 }
 
 let mapStateToProps = (state) => {
     return {
-        product: getProductSelectors(state)
+        product: getProductSelectors(state),
+        initialize: getInitializeSelectors(state),
+        settings: getSettingsSelectors(state),
     }
 
 

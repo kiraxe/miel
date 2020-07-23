@@ -1,5 +1,6 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
+import ReactHtmlParser from "react-html-parser";
 
 
 const Item = (props) => {
@@ -14,7 +15,7 @@ const Item = (props) => {
                     <div className="title"><h2>{item.name}</h2></div>
                     <div className="article"><p>Арт. {item.article}</p></div>
                     <div className="text">
-                        <p>{item.detail}</p>
+                        <p>{ReactHtmlParser(item.detail)}</p>
                     </div>
                 </div>
                 <div className="costPanel">

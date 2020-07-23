@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Option;
 use App\Product;
 use App\ProductToCategory;
 use Illuminate\Support\Facades\Input;
@@ -28,20 +29,22 @@ class CatalogPageController extends BaseController
             $query = ProductToCategory::with('product')->where('category_id', $input);
             $countProducts = $query->count();
             $productToCategory = $query->offset($offset)->limit($limit)->get()->toArray();
+
             $products = [];
+
             foreach ($productToCategory as $key => $value) {
                 $products[] = $value['product'];
             }
         } else {
             $query = Product::with('attributes');
             $countProducts = $query->count();
-            $products = $query->offset($offset)->limit($limit)->get()->toArray();
+            $products = $query->offset($offset)->limit($limit)->get()->toArray();;
         }
 
         $result['products'] = $products;
         $result['totalProduct'] = $countProducts;
 
-        return $this->sendResponse($result, 'Catalog retrieved successfully.');
+        return $this->sendResponse($result, 'Product retrieved successfully.');
     }
 
     /**
@@ -52,8 +55,27 @@ class CatalogPageController extends BaseController
      */
     public function show($id)
     {
-        $product = Product::where('product_id', $id)->with('attributes')->get()->toArray();
 
-        return $this->sendResponse($product, 'Product retrieved successfully.');
+        $options = Option::with(['description', 'valueDescription'])->get();
+
+        $product = Product::find($id);
+
+        $opt = [];
+
+        foreach ($product->getProductOptions() as $k => $v) {
+            foreach ($options as $key => $value) {
+                if ($value->option_id === $v['option']) {
+                    $opt[] = (object)[
+                        'option_id' => $value->option_id,
+                        'name' => $value->description->name,
+                        'value' => $value->valueDescription
+                    ];
+                }
+            }
+        }
+
+        $product->options = $opt;
+
+        return $this->sendResponse($product->toArray(), 'Product retrieved successfully.');
     }
 }

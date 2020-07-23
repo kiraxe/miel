@@ -2,20 +2,21 @@ import React from "react";
 import Slider from "react-slick";
 import {SampleNextArrow, SamplePrevArrow} from "./Arrows/Arrows";
 import { NavLink} from 'react-router-dom';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 
 const SliderProducts = (props) => {
 
     const element = (item, key) => {
         let link = item.attributes.map(item => !item.attributes.parent_id ? item.attributes.link : "");
-        return <NavLink className="productNavLink item" key={key} to={`/${link}/${item.product_id}`}>
+        return <NavLink className="productNavLink item" key={key} to={`/shop/${link[0]}/${item.product_id}`}>
             <div className="itemContainer">
                 <div className="images"><img src={item.image} alt="prod" title="pen"/></div>
                 <div className="content">
                     <div className="title"><h2>{item.name}</h2></div>
                     <div className="article"><p>Арт. {item.article}</p></div>
                     <div className="text">
-                        <p>{item.detail}</p>
+                        <p>{ReactHtmlParser(item.detail)}</p>
                     </div>
                 </div>
                 <div className="costPanel">

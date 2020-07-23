@@ -746,13 +746,13 @@ body main#public #dropMenu header .leftMenu ul li {
   list-style-type: none;
 }
 
-body main#public #dropMenu header .leftMenu ul li:first-child a {
+body main#public #dropMenu header .leftMenu ul li.parent a {
   position: relative;
   padding: 15px 20px 15px 0;
   text-decoration: none;
 }
 
-body main#public #dropMenu header .leftMenu ul li:first-child a:after {
+body main#public #dropMenu header .leftMenu ul li.parent a:after {
   background: url("/images/next.svg") no-repeat 50%;
   background-size: contain;
   -o-background-size: contain;
@@ -768,7 +768,7 @@ body main#public #dropMenu header .leftMenu ul li:first-child a:after {
   transition: all 1s ease 0s;
 }
 
-body main#public #dropMenu header .leftMenu ul li:first-child a.active:after {
+body main#public #dropMenu header .leftMenu ul li.parent a.active:after {
   transform: translateY(-50%) rotate(-90deg);
 }
 
@@ -982,16 +982,16 @@ body main#public #wrapper #main-content .left ul li a.active {
   color: #F37021;
 }
 
-body main#public #wrapper #main-content .left ul li:first-child a {
+body main#public #wrapper #main-content .left ul li.parent a {
   position: relative;
   padding: 15px 20px 15px 0;
 }
 
-body main#public #wrapper #main-content .left ul li:first-child a.active {
+body main#public #wrapper #main-content .left ul li.parent a.active {
   border-bottom: none;
 }
 
-body main#public #wrapper #main-content .left ul li:first-child a:after {
+body main#public #wrapper #main-content .left ul li.parent a:after {
   background: url("/images/next.svg") no-repeat 50%;
   background-size: contain;
   -o-background-size: contain;
@@ -1007,7 +1007,7 @@ body main#public #wrapper #main-content .left ul li:first-child a:after {
   transition: all 1s ease 0s;
 }
 
-body main#public #wrapper #main-content .left ul li:first-child a.act:after {
+body main#public #wrapper #main-content .left ul li.parent a.act:after {
   transform: translateY(-50%) rotate(-90deg);
 }
 
@@ -18410,6 +18410,7 @@ fieldset[disabled] .rw-multiselect-tag {
 }
 
 #app .preloader {
+  background-color: #fff;
   display: flex;
   position: fixed;
   top: 0;
@@ -18541,7 +18542,7 @@ fieldset[disabled] .rw-multiselect-tag {
   cursor: pointer;
 }
 
-var map = {
+/* (ignored) */var map = {
 	"./af": "./node_modules/moment/locale/af.js",
 	"./af.js": "./node_modules/moment/locale/af.js",
 	"./ar": "./node_modules/moment/locale/ar.js",

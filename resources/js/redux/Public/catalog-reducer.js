@@ -42,7 +42,6 @@ export const setInitAC = () => ({type: SET_INIT});
 export const getCatalog = (page, offset, limit) => async dispatch => {
     dispatch(setInitAC());
     let response = await publicAPI.getCatalog(page, offset, limit);
-    console.log(response);
     if (response.success) {
         dispatch(setCatalogAC(response.data));
     }

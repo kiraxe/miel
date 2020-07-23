@@ -13,6 +13,7 @@ class MainContainer extends Component {
 
     componentDidMount() {
         //this.props.getIndexPage();
+        //this.props.getPublic();
     }
 
     render() {
