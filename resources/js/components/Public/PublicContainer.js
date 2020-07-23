@@ -17,6 +17,7 @@ import {getIndexPage} from "../../redux/Public/index-reducer";
 import {login, logout} from "../../redux/auth-reducer";
 import Popup from "./Popup/Popup";
 import {getErrorSelector, getIsLoggedInSelector, getPermissionSelectors} from "../../redux/auth-selectors";
+import CatalogConatainer from "./CatalogPage/CatalogConatainer";
 
 
 class PublicContainer extends Component {
@@ -95,7 +96,7 @@ class PublicContainer extends Component {
 
         let arr = this.props.match.url.split('/');
 
-        let className = arr[1];
+        let className = !parseInt(this.props.match.params.id) ? arr[1] : 'item';
 
         return (
             <>
@@ -103,7 +104,7 @@ class PublicContainer extends Component {
                 <Navbar categories={this.props.categories} leftDropMenuHandler={this.leftDropMenuHandler} leftDropMenu={this.state.leftDropMenu} dropMenu={this.state.dropMenu}/>
                 <div id="wrapper">
                     <Header onLogout={this.onLogout} popUpOpen={this.popUpOpen} isLoggedIn={this.props.isLoggedIn} permission={this.props.permission} dropMenuHandler={this.dropMenuHandler} phone={this.props.settings.phone}/>
-                    {this.props.match.path === "/" ? <MainContainer/> : this.props.match.path === "/account/:page?/" ? <AccountContainer/> : null}
+                    {this.props.match.path === "/" ? <MainContainer/> : this.props.match.path === "/account/:page?/" ? <AccountContainer/> : this.props.match.path === "/shop/:page?/:id?" ? <CatalogConatainer/> : null}
                     <Footer phone={this.props.settings.phone} social={this.props.settings.social}/>
                 </div>
             </main>

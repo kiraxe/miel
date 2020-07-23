@@ -19,13 +19,17 @@ class CreateProductsTable extends Migration
             $table->string('article');
             $table->text('detail')->nullable();
             $table->text('property')->nullable();
-            $table->decimal('price', 10, 2);
-            $table->decimal('percent', 10, 2);
-            $table->bigInteger('minfree');
-            $table->bigInteger('min');
+            $table->decimal('price_quarterly', 10, 2)->nullable();
+            $table->decimal('price', 10, 2)->nullable();
+            $table->decimal('price_second', 10, 2)->nullable();
+            $table->decimal('price_third', 10, 2)->nullable();
+            $table->bigInteger('min_quarterly')->nullable();
+            $table->bigInteger('min')->nullable();
+            $table->bigInteger('min_second')->nullable();
+            $table->bigInteger('min_third')->nullable();
             $table->text('image')->nullable();
-            $table->boolean('novelty')->default(0);
-            $table->boolean('popular')->default(0);
+            $table->boolean('novelty')->default(false);
+            $table->boolean('popular')->default(false);
             $table->timestamps();
         });
     }

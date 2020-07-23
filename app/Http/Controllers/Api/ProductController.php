@@ -41,7 +41,7 @@ class ProductController extends BaseController
 
         $products['options'] = $options;
 
-        return $this->sendResponse($products, 'Products retrieved successfully.');
+        return $this->sendResponse($products, 'Product retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
@@ -64,18 +64,17 @@ class ProductController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
-        $product = Product::create($input);
-
 
         if(isset($input['novelty'])) {
-            $input['novelty'] = ($input['novelty'] === 'true');
-            $product->novelty = $input['novelty'];
+            $input['novelty'] === 'true' ? $input['novelty'] = TRUE : $input['novelty'] = FALSE;
         }
 
-
         if(isset($input['popular'])) {
-            $input['popular'] = ($input['popular'] === 'true');
-            $product->popular = $input['popular'];
+            $input['popular'] === 'true' ? $input['popular'] = TRUE : $input['popular'] = FALSE;
+        }
+
+        if(empty($input['property']) || $input['property'] === 'null') {
+            $input['property'] = " ";
         }
 
         /*if (isset($input['categories_id'])) {
@@ -88,6 +87,8 @@ class ProductController extends BaseController
 
             $product->addAttributes($prod_to_cat);
         }*/
+
+        $product = Product::create($input);
 
         if (isset($input['categories_id'])) {
             $product->makeAttributes($input['categories_id']);
@@ -170,16 +171,21 @@ class ProductController extends BaseController
         }
 
         if(isset($input['novelty'])) {
-            $input['novelty'] = ($input['novelty'] === 'true');
+            $input['novelty'] === 'true' ? $input['novelty'] = TRUE : $input['novelty'] = FALSE;
             $product->novelty = $input['novelty'];
         }
 
 
         if(isset($input['popular'])) {
-            $input['popular'] = ($input['popular'] === 'true');
+            $input['popular'] === 'true' ? $input['popular'] = TRUE : $input['popular'] = FALSE;
             $product->popular = $input['popular'];
         }
 
+
+
+        if(empty($input['property']) || $input['property'] === 'null') {
+            $product->property = " ";
+        }
 
         if (isset($input['option'])) {
             $options = $product->makeProductOptions($input['option']);
@@ -191,10 +197,14 @@ class ProductController extends BaseController
         $product->detail = $input['detail'];
         $product->article = $input['article'];
         $product->property = $input['property'];
+        $product->price_quarterly = $input['price_quarterly'];
         $product->price = $input['price'];
-        $product->percent = $input['percent'];
-        $product->minfree = $input['minfree'];
+        $product->price_second = $input['price_second'];
+        $product->price_third = $input['price_third'];
+        $product->min_quarterly = $input['min_quarterly'];
         $product->min = $input['min'];
+        $product->min_second = $input['min_second'];
+        $product->min_third = $input['min_third'];
         $product->save();
 
         $product->toArray();

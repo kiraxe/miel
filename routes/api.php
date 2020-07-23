@@ -51,6 +51,8 @@ Route::middleware('json.response')->group(function () {
     Route::get('public', 'Api\PublicController@index');
     //-index
     Route::get('index', 'Api\IndexPageController@index');
+    //-catalog
+    Route::resource('catalog', 'Api\CatalogPageController');
 
 });
 

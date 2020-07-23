@@ -14,7 +14,7 @@ class IndexPageController extends BaseController
      */
     public function index()
     {
-        $categories = Category::with('attributes')->get()->toArray();
+        $categories = Category::with('attributes', 'children')->get()->toArray();
 
         $products = Product::with('attributes')->where('popular', 1)->orWhere('novelty', 1)->get()->toArray();
 

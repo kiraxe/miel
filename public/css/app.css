@@ -388,7 +388,7 @@ body main#public #wrapper #main-content .novelty {
 
 body main#public #wrapper #main-content .popular .title h1,
 body main#public #wrapper #main-content .novelty .title h1,
-body main#public.catalog #wrapper #main-content .catalogTitle .title h1,
+body main#public.shop #wrapper #main-content .catalogTitle .title h1,
 body main#public.account #wrapper #main-content .center .title h1,
 body main#public.basket #wrapper #main-content .block_1 .title h1,
 body main#public.basket #wrapper #main-content .block_2 .title h2,
@@ -409,7 +409,7 @@ body main#public.basket #wrapper #main-content .block_4 .title h2 {
 #popup .popup-box form[name="accountForm"] .accountForm .section .checkbox .checkInput .checkInputItem p,
 body main#public #wrapper #main-content .popular .text p,
 body main#public #wrapper #main-content .novelty .text p,
-body main#public.catalog #wrapper #main-content .catalogTitle .text p,
+body main#public.shop #wrapper #main-content .catalogTitle .text p,
 body main#public.account #wrapper #main-content .center .text p,
 body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartFirst .content .itemText p,
 body main#public.basket #wrapper #main-content .block_3 .checkbox .checkInput .checkInputItem p,
@@ -1007,7 +1007,7 @@ body main#public #wrapper #main-content .left ul li:first-child a:after {
   transition: all 1s ease 0s;
 }
 
-body main#public #wrapper #main-content .left ul li:first-child a.active:after {
+body main#public #wrapper #main-content .left ul li:first-child a.act:after {
   transform: translateY(-50%) rotate(-90deg);
 }
 
@@ -1030,6 +1030,10 @@ body main#public #wrapper #main-content .left ul li a span {
 
 body main#public #wrapper #main-content .left ul li .dropLeftNavigation {
   display: none;
+}
+
+body main#public #wrapper #main-content .left ul li .dropLeftNavigation.act {
+  display: block;
 }
 
 body main#public #wrapper #main-content .left ul li .dropLeftNavigation li.active {
@@ -1392,81 +1396,122 @@ body main#public #wrapper footer .social ul li a {
   text-decoration: none;
 }
 
-body main#public.catalog #wrapper #main-content {
+body main#public.shop #wrapper #main-content {
   padding-bottom: 80px;
 }
 
-body main#public.catalog #wrapper #main-content .title-container {
+body main#public.shop #wrapper #main-content .title-container {
   background: none;
 }
 
-body main#public.catalog #wrapper #main-content .catalogTitle .text p {
+body main#public.shop #wrapper #main-content .catalogTitle .text p {
   margin: 0;
 }
 
-body main#public.catalog #wrapper #main-content .catalog {
+body main#public.shop #wrapper #main-content .catalog {
+  min-height: 300px;
+}
+
+body main#public.shop #wrapper #main-content .catalog,
+body main#public.shop #wrapper #main-content .shop {
+  position: relative;
   padding-bottom: 50px;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item {
+body main#public.shop #wrapper #main-content .catalog .item,
+body main#public.shop #wrapper #main-content .shop .item {
   margin-top: 35px;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .productNavLink {
+body main#public.shop #wrapper #main-content .catalog .preloader,
+body main#public.shop #wrapper #main-content .shop .preloader {
+  background-color: rgba(255, 255, 255, 0.5);
+  display: none;
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+body main#public.shop #wrapper #main-content .catalog .preloader img,
+body main#public.shop #wrapper #main-content .shop .preloader img {
+  width: 30px;
+}
+
+body main#public.shop #wrapper #main-content .catalog .preloader.active,
+body main#public.shop #wrapper #main-content .shop .preloader.active {
+  display: flex;
+}
+
+body main#public.shop #wrapper #main-content .catalog .productNavLink,
+body main#public.shop #wrapper #main-content .shop .productNavLink {
   text-decoration: none;
   color: #2C373E;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item {
+body main#public.shop #wrapper #main-content .catalog .item,
+body main#public.shop #wrapper #main-content .shop .item {
   display: flex;
   justify-content: space-between;
   padding: 0 15px;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .itemContainer {
+body main#public.shop #wrapper #main-content .catalog .item .itemContainer,
+body main#public.shop #wrapper #main-content .shop .item .itemContainer {
   max-width: 228px;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .images {
+body main#public.shop #wrapper #main-content .catalog .item .images,
+body main#public.shop #wrapper #main-content .shop .item .images {
   background-color: #f8f8f9;
   border: 8px solid #E4ECF3;
   height: 195px;
   width: 195px;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .images.active,
-body main#public.catalog #wrapper #main-content .catalog .item .images:hover {
+body main#public.shop #wrapper #main-content .catalog .item .images.active,
+body main#public.shop #wrapper #main-content .catalog .item .images:hover,
+body main#public.shop #wrapper #main-content .shop .item .images.active,
+body main#public.shop #wrapper #main-content .shop .item .images:hover {
   border-color: #00AAAD;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .images img {
+body main#public.shop #wrapper #main-content .catalog .item .images img,
+body main#public.shop #wrapper #main-content .shop .item .images img {
   transform: translate(12px, 12px);
   box-shadow: 5px 5px 30px rgba(53, 65, 72, 0.1);
   height: calc(100% + 16px);
   width: calc(100% + 16px);
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .content {
+body main#public.shop #wrapper #main-content .catalog .item .content,
+body main#public.shop #wrapper #main-content .shop .item .content {
   margin-top: 60px;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .content .title h2 {
+body main#public.shop #wrapper #main-content .catalog .item .content .title h2,
+body main#public.shop #wrapper #main-content .shop .item .content .title h2 {
   font-family: PTSansBold;
   font-size: 16px;
   line-height: 21px;
   color: #2C373E;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .content .article p {
+body main#public.shop #wrapper #main-content .catalog .item .content .article p,
+body main#public.shop #wrapper #main-content .shop .item .content .article p {
   margin: 0;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .content .text p,
-body main#public.catalog #wrapper #main-content .catalog .item .content .article p {
+body main#public.shop #wrapper #main-content .catalog .item .content .text p,
+body main#public.shop #wrapper #main-content .catalog .item .content .article p,
+body main#public.shop #wrapper #main-content .shop .item .content .text p,
+body main#public.shop #wrapper #main-content .shop .item .content .article p {
   font-size: 0.875rem;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .costPanel {
+body main#public.shop #wrapper #main-content .catalog .item .costPanel,
+body main#public.shop #wrapper #main-content .shop .item .costPanel {
   display: flex;
   justify-content: space-between;
   font-family: PTSansBold;
@@ -1474,28 +1519,34 @@ body main#public.catalog #wrapper #main-content .catalog .item .costPanel {
   margin-bottom: 15px;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .costPanel p {
+body main#public.shop #wrapper #main-content .catalog .item .costPanel p,
+body main#public.shop #wrapper #main-content .shop .item .costPanel p {
   margin: 0;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .costPanel .cost p {
+body main#public.shop #wrapper #main-content .catalog .item .costPanel .cost p,
+body main#public.shop #wrapper #main-content .shop .item .costPanel .cost p {
   color: #2C373E;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .costPanel .count {
+body main#public.shop #wrapper #main-content .catalog .item .costPanel .count,
+body main#public.shop #wrapper #main-content .shop .item .costPanel .count {
   display: flex;
   align-items: center;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .costPanel .count img {
+body main#public.shop #wrapper #main-content .catalog .item .costPanel .count img,
+body main#public.shop #wrapper #main-content .shop .item .costPanel .count img {
   cursor: pointer;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .costPanel .count .number {
+body main#public.shop #wrapper #main-content .catalog .item .costPanel .count .number,
+body main#public.shop #wrapper #main-content .shop .item .costPanel .count .number {
   padding: 0 25px;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .button button {
+body main#public.shop #wrapper #main-content .catalog .item .button button,
+body main#public.shop #wrapper #main-content .shop .item .button button {
   background-color: #FFFFFF;
   border: 1px solid #C7D0D8;
   box-sizing: border-box;
@@ -1506,19 +1557,21 @@ body main#public.catalog #wrapper #main-content .catalog .item .button button {
   text-align: center;
 }
 
-body main#public.catalog #wrapper #main-content .catalog .item .button button.active,
-body main#public.catalog #wrapper #main-content .catalog .item .button button:hover {
+body main#public.shop #wrapper #main-content .catalog .item .button button.active,
+body main#public.shop #wrapper #main-content .catalog .item .button button:hover,
+body main#public.shop #wrapper #main-content .shop .item .button button.active,
+body main#public.shop #wrapper #main-content .shop .item .button button:hover {
   background-color: #F37021;
   border: 1px solid #F37021;
   color: #FFFFFF;
 }
 
-body main#public.catalog #wrapper #main-content .loadMore {
+body main#public.shop #wrapper #main-content .loadMore {
   padding-bottom: 40px;
   padding-top: 50px;
 }
 
-body main#public.catalog #wrapper #main-content .loadMore .buttonLoadMore button {
+body main#public.shop #wrapper #main-content .loadMore .buttonLoadMore button {
   padding: 10px 50px;
   border: none;
   background: #E4ECF3;
@@ -1528,32 +1581,32 @@ body main#public.catalog #wrapper #main-content .loadMore .buttonLoadMore button
   color: #2C373E;
 }
 
-body main#public.catalog #wrapper #main-content .separator {
+body main#public.shop #wrapper #main-content .separator {
   margin: 0;
   padding-bottom: 50px;
 }
 
-body main#public.catalog #wrapper #main-content .separator div.col-md-2 {
+body main#public.shop #wrapper #main-content .separator div.col-md-2 {
   height: 5px;
 }
 
-body main#public.catalog #wrapper #main-content .separator div.col-md-2:nth-child(1) {
+body main#public.shop #wrapper #main-content .separator div.col-md-2:nth-child(1) {
   background: #C9DB49;
 }
 
-body main#public.catalog #wrapper #main-content .separator div.col-md-2:nth-child(2) {
+body main#public.shop #wrapper #main-content .separator div.col-md-2:nth-child(2) {
   background: #00AAAD;
 }
 
-body main#public.catalog #wrapper #main-content .separator div.col-md-2:nth-child(3) {
+body main#public.shop #wrapper #main-content .separator div.col-md-2:nth-child(3) {
   background: #F37021;
 }
 
-body main#public.catalog #wrapper #main-content .separator div.col-md-2:nth-child(4) {
+body main#public.shop #wrapper #main-content .separator div.col-md-2:nth-child(4) {
   background: #812990;
 }
 
-body main#public.catalog #wrapper #main-content .separator div.col-md-2:nth-child(5) {
+body main#public.shop #wrapper #main-content .separator div.col-md-2:nth-child(5) {
   background: #FFCB05;
 }
 

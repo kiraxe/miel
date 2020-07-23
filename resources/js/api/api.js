@@ -185,4 +185,14 @@ export const publicAPI = {
             .then(response => response.data)
             .catch(error => error.response)
     },
+    getCatalog(page, offset, limit) {
+        return getAxiosSettings().get(`catalog/?page=${page}&offset=${offset}&limit=${limit}`)
+            .then(response => response.data)
+            .catch(error => error.response)
+    },
+    getProductPage(product_id) {
+        return getAxiosSettings().get(`catalog/${product_id}`)
+            .then(response => response)
+            .catch(error => error.response);
+    },
 }

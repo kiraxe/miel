@@ -37,7 +37,7 @@
               top: 50%;
               transition: all 1s ease 0s;
             }
-            &.active:after {
+            &.act:after {
               transform: translateY(-50%) rotate(-90deg);
             }
           }
@@ -59,6 +59,9 @@
         }
         .dropLeftNavigation {
           display:none;
+          &.act {
+              display: block;
+          }
           li {
             &.active {
               font-family: PTSansBold;

@@ -27,6 +27,7 @@ class CreateSettingsTable extends Migration
             $table->string('facebook')->nullable();
             $table->string('vk')->nullable();
             $table->string('instagram')->nullable();
+            $table->boolean('quarterly')->default(false);
             $table->timestamps();
         });
     }

@@ -36,6 +36,8 @@ export default class App extends Component {
 
                       <Route path="/account/:page?/" render={withSuspense(PublicContainer)}/>
 
+                      <Route path="/shop/:page?/:id?" render={withSuspense(PublicContainer)}/>
+
                       <Route exact path="/login" render={() => (<LoginContainer />)}/>
 
                       <Route path='/admin/:page?/:slug?/:id?' render={withSuspense(AdminContainer)}/>

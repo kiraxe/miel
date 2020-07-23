@@ -20,4 +20,8 @@ class ProductToCategory extends Model
         return $this->hasOne(Category::class, 'category_id', 'category_id')->with('attributes');
     }
 
+    public function product() {
+        return $this->belongsTo(Product::class, 'product_id', 'product_id')->with('attributes');
+    }
+
 }
