@@ -10,7 +10,7 @@ const Novelty = (props) => {
                     <div className="col-md-12 novelty">
                         <div className="title"><h1>Новинки</h1></div>
                         <div className="text"><p>Какое-то небольшое описание, не более чем на две строки</p></div>
-                        <SliderProducts novelty={props.novelty}/>
+                        <SliderProducts isLoggedIn={props.isLoggedIn} novelty={props.novelty}/>
                     </div>
                 </div>
             </div>

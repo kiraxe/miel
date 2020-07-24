@@ -19,7 +19,7 @@ class MainContainer extends Component {
     render() {
 
         return (
-            <MainContent categories={this.props.categories} popular={this.props.popular} novelty={this.props.novelty}/>
+            <MainContent isLoggedIn={this.props.isLoggedIn} categories={this.props.categories} popular={this.props.popular} novelty={this.props.novelty}/>
         )
     }
 }

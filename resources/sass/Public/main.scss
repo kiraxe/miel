@@ -335,6 +335,7 @@ body {
                   @import "select";
                   .selectContainer {
                     display: flex;
+                    flex-wrap: wrap;
                     margin: 15px -5px 0 -5px;
                   }
 

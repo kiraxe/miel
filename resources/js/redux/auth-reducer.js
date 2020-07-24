@@ -83,6 +83,8 @@ export const logout = (type) => async (dispatch) => {
        localStorage.removeItem('token');
        localStorage.removeItem('permission');
        localStorage.removeItem('type');
+       localStorage.removeItem('client');
+       localStorage.removeItem('cart');
        dispatch(setUserDataAC(null, null, null, false, null, null, null, false))
     }
 };

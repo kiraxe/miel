@@ -33,6 +33,7 @@ const Product = (props) => {
                                     <Info
                                         title={title}
                                         titleSecond={titleSecond}
+                                        product_id={props.product.product_id}
                                         article={props.product.article}
                                         detail={props.product.detail}
                                         property={props.product.property}
@@ -47,6 +48,9 @@ const Product = (props) => {
                                         minQuarterly={props.product.min_quarterly}
                                         fromQuarterlyDate={props.fromQuarterlyDate}
                                         toQuarterlyDate={props.toQuarterlyDate}
+                                        isLoggedIn={props.isLoggedIn}
+                                        addCartHandler={props.addCartHandler}
+                                        isFetching={props.isFetching}
                                     />
                                 </div>
                             </div>

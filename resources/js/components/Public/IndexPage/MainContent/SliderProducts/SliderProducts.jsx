@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import {SampleNextArrow, SamplePrevArrow} from "./Arrows/Arrows";
-import { NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 
@@ -28,7 +28,7 @@ const SliderProducts = (props) => {
                     </div>
                 </div>
                 <div className="button">
-                    <button>Корзина</button>
+                    {props.isLoggedIn && <button>Корзина</button> || <button>Корзина()</button> }
                 </div>
             </div>
         </NavLink>

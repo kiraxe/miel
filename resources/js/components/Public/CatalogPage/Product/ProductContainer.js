@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
@@ -7,16 +7,30 @@ import {getProductSelectors, getInitializeSelectors} from "../../../../redux/Pub
 import Product from "./Product";
 import Preloader from "../../../common/Preloader/Preloader";
 import {getSettingsSelectors} from "../../../../redux/Public/public-selectors";
+import {addCart,deleteCart} from "../../../../redux/Public/cart-reducer";
 
 
 
 class AccountContainer extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isFetching: false
+        }
     }
 
     componentDidMount() {
         this.props.getProduct(Number(this.props.productPage));
+    }
+
+    addCartHandler = (product) =>  {
+        this.setState({isFetching: true})
+        this.props.addCart(product);
+        setTimeout(() => this.setState({isFetching: false}), 2000);
+    }
+
+    deleteCartHandler = (product) => {
+        this.props.deleteCart(product)
     }
 
 
@@ -27,6 +41,7 @@ class AccountContainer extends Component {
         }
 
         return <Product
+            isFetching={this.state.isFetching}
             product={this.props.product}
             productPage={this.props.match.params.id}
             onPageHandler={this.props.onPageHandler}
@@ -35,6 +50,8 @@ class AccountContainer extends Component {
             categories={this.props.categories}
             fromQuarterlyDate={this.props.settings.from}
             toQuarterlyDate={this.props.settings.to}
+            isLoggedIn={this.props.isLoggedIn}
+            addCartHandler={this.addCartHandler}
         />
     }
 }
@@ -51,5 +68,5 @@ let mapStateToProps = (state) => {
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {getProduct})
+    connect(mapStateToProps, {getProduct, addCart, deleteCart})
 )(AccountContainer);

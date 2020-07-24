@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
 import {getSettingsSelectors} from "../../../redux/Public/public-selectors";
 import {getIdSelector} from "../../../redux/auth-selectors";
 import ManagerInfo from "./ManagerInfo/ManagerInfo";
@@ -9,6 +9,7 @@ import Navigation from "./Navigation/Navigation";
 import {getClientSelectors, getErrorSelector} from "../../../redux/Public/account-selectors";
 import {getAccount , editAccount} from "../../../redux/Public/account-reducer";
 import AccountForm from "./AccountForm/AccountForm";
+import {addCartClient} from '../../../redux/Public/cart-reducer'
 
 class  AccountContainer extends Component {
     constructor(props) {
@@ -19,12 +20,26 @@ class  AccountContainer extends Component {
         this.props.getAccount(this.props.auth_client_id);
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        this.props.addCartClient({
+            id: this.props.client.id,
+            name: this.props.client.name,
+            company: this.props.client.company,
+            phone: this.props.client.phone,
+            email: this.props.client.email
+        })
+    }
 
     onEditSubmit = (formData) => {
         this.props.editAccount(formData);
     }
 
     render() {
+
+
+        if (!this.props.isLoggedIn) {
+            return <Redirect to={"/"}/>
+        }
 
         return (
             <div id="main-content">
@@ -78,5 +93,5 @@ let mapStateToProps = (state) => {
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {getAccount , editAccount})
+    connect(mapStateToProps, {getAccount , editAccount, addCartClient})
 )(AccountContainer);

@@ -39,6 +39,7 @@ export const getAccount = (client_id) => async dispatch => {
     let response = await publicAPI.getAccountPage(client_id);
 
     if (response.data.success) {
+        localStorage.setItem('client', JSON.stringify(response.data.data.client));
         dispatch(setClienteleAccountAC(response.data));
     }
 };

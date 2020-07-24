@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import ReactHtmlParser from "react-html-parser";
 import {getCurrentDate, isDifferentDates} from "../../../../../utils/GetCurrentData"
 import Select from "../Select/Select";
+import loading from "../../../../../assets/images/loading.svg";
 
 const Info = (props) => {
 
@@ -30,9 +31,20 @@ const Info = (props) => {
 
     const [total, setTotal] = useState(props.price * props.min);
 
+
     let tl = props.title ? props.title.join(' ') : null;
 
 
+    const [options, setOptions] = useState(props.options ? props.options.map(item => {
+
+        return {
+            id:item.option_id,
+            name: item.name,
+            value: ""
+        }
+    }
+    ): null
+    )
 
     const addCountHandler = () => {
         if (currentDate < fromDate || currentDate > toDate ) {
@@ -40,6 +52,15 @@ const Info = (props) => {
         } else {
             setMinQuarterly(minQuarterly + 1);
         }
+    }
+
+    const onOptionHandler = (option) => {
+        let newArr = options ? options.map(item => item && item.id !== option.id ? item : null) : null;
+        let arr = [...newArr, option];
+        let result = arr.filter(item => {
+            return item !== undefined && item !== null;
+        });
+        setOptions(result);
     }
 
     const removeCountHandler = () => {
@@ -76,6 +97,8 @@ const Info = (props) => {
         }
     })
 
+    let titleToCart = props.titleSecond ? props.titleSecond : "";
+    titleToCart += " " + tl;
 
     return (
         <div className="info">
@@ -93,9 +116,9 @@ const Info = (props) => {
             </div>
             <div className="form">
                 <h2>Заказать товар</h2>
-                <form name="formCart" action="" methos="post">
+                <div className="formCart">
                     <div className="selectContainer">
-                        <Select options={props.options}/>
+                        <Select onOptionHandler={onOptionHandler} options={props.options}/>
                     </div>
                     <div className="costPanel">
                         <div className="cost"><p>{priceVariable} ₽ / шт.</p></div>
@@ -113,9 +136,18 @@ const Info = (props) => {
                         <p>Итого: <span>{total}</span> ₽</p>
                     </div>
                     <div className="button">
-                        <button>Добавить в корзину</button>
+                        {props.isLoggedIn && <button onClick={() => props.addCartHandler({
+                            product_id: props.product_id,
+                            article: props.article,
+                            name: titleToCart,
+                            options: options,
+                            unit_price: priceVariable,
+                            count: currentDate < fromDate || currentDate > toDate ? min : minQuarterly,
+                            total: total
+                        })
+                        }>Добавить в корзину {props.isFetching ? <img src={loading}/> : null}</button> || <button>Добавить в корзину()</button> }
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     )

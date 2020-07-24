@@ -16,8 +16,13 @@ import Preloader from "../common/Preloader/Preloader";
 import {getIndexPage} from "../../redux/Public/index-reducer";
 import {login, logout} from "../../redux/auth-reducer";
 import Popup from "./Popup/Popup";
-import {getErrorSelector, getIsLoggedInSelector, getPermissionSelectors} from "../../redux/auth-selectors";
+import {
+    getErrorSelector,
+    getIsLoggedInSelector,
+    getPermissionSelectors
+} from "../../redux/auth-selectors";
 import CatalogConatainer from "./CatalogPage/CatalogConatainer";
+import {addCartClient} from '../../redux/Public/cart-reducer'
 
 
 class PublicContainer extends Component {
@@ -36,6 +41,11 @@ class PublicContainer extends Component {
     componentDidMount() {
         this.props.getPublic();
         this.props.getIndexPage();
+        if(this.props.isLoggedIn && this.props.permission === 'Client')
+        {
+            this.props.addCartClient(JSON.parse(localStorage.getItem('client')));
+        }
+
     }
 
     dropMenuHandler = e => {
@@ -65,7 +75,7 @@ class PublicContainer extends Component {
     onLogout = () => {
         let type = localStorage.getItem('type');
         this.props.logout(type);
-        this.props.history.push('/');
+        setTimeout(() => this.props.history.push('/'), 2000);
     }
 
     onAddSubmit = (formData) => {
@@ -104,7 +114,7 @@ class PublicContainer extends Component {
                 <Navbar categories={this.props.categories} leftDropMenuHandler={this.leftDropMenuHandler} leftDropMenu={this.state.leftDropMenu} dropMenu={this.state.dropMenu}/>
                 <div id="wrapper">
                     <Header onLogout={this.onLogout} popUpOpen={this.popUpOpen} isLoggedIn={this.props.isLoggedIn} permission={this.props.permission} dropMenuHandler={this.dropMenuHandler} phone={this.props.settings.phone}/>
-                    {this.props.match.path === "/" ? <MainContainer/> : this.props.match.path === "/account/:page?/" ? <AccountContainer/> : this.props.match.path === "/shop/:page?/:id?" ? <CatalogConatainer/> : null}
+                    {this.props.match.path === "/" ? <MainContainer isLoggedIn={this.props.isLoggedIn}/> : this.props.match.path === "/account/:page?/" ? <AccountContainer permission={this.props.permission} isLoggedIn={this.props.isLoggedIn} /> : this.props.match.path === "/shop/:page?/:id?" ? <CatalogConatainer isLoggedIn={this.props.isLoggedIn}/> : null}
                     <Footer phone={this.props.settings.phone} social={this.props.settings.social}/>
                 </div>
             </main>
@@ -123,11 +133,11 @@ let mapStateToProps = (state) => {
         error: getErrorSelector(state),
         errorReg: getErrorRegSelectors(state),
         isLoggedIn: getIsLoggedInSelector(state),
-        permission: getPermissionSelectors(state)
+        permission: getPermissionSelectors(state),
     }
 };
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {getPublic, getIndexPage, addClient, login, logout})
+    connect(mapStateToProps, {getPublic, getIndexPage, addClient, login, logout, addCartClient})
 )(PublicContainer);

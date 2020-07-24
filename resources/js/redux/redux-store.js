@@ -16,6 +16,7 @@ import registrationReducer from "./Public/registration-reducer";
 import accountReducer from "./Public/account-reducer";
 import catalogReducer from "./Public/catalog-reducer";
 import productPublicReducer from "./Public/productPublic-reduser";
+import catReducer from "./Public/cart-reducer";
 
 let reducers = combineReducers({
     loginPage: loginReducer,
@@ -33,6 +34,7 @@ let reducers = combineReducers({
     accountPagePublic: accountReducer,
     registration: registrationReducer,
     productPublic: productPublicReducer,
+    cartPublic: catReducer,
     form: formReducer
 });
 

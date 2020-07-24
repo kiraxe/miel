@@ -17,7 +17,7 @@ const Popup = (props) => {
     let form = formVariable === "reg" ? <PopupForm permission={props.permission} isLoggedIn={props.isLoggedIn} errorReg={props.errorReg} addClient={props.addClient}/> : <PopupFormLogin permission={props.permission} isLoggedIn={props.isLoggedIn} error={props.error} onLogin={props.onLogin}/>
 
     return (
-        <div id="popup" style={props.popUp && props.classNameElement !== 'account' ? visibility : null}>
+        <div id="popup" style={props.popUp && props.classNameElement !== 'account' && !props.isLoggedIn ? visibility : null}>
             <div className="popup-box auth">
                 <div className="header">
                     <span onClick={props.popUpClose} className="popup-close"></span>

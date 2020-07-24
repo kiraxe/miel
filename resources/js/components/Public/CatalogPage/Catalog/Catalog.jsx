@@ -16,7 +16,7 @@ const Catalog = (props) => {
     return (
         <div className="row catalog">
             <div className={`preloader ${active}`}><img src={preloader}/></div>
-            <Item products={props.products}/>
+            <Item isLoggedIn={props.isLoggedIn} products={props.products}/>
         </div>
     )
 }

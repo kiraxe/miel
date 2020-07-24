@@ -27,7 +27,7 @@ const Item = (props) => {
                     </div>
                 </div>
                 <div className="button">
-                    <button>Корзина</button>
+                    {props.isLoggedIn && <button>Корзина</button> || <button>Корзина()</button>}
                 </div>
             </div>
         </NavLink>

@@ -84,8 +84,10 @@ class AccountContainer extends Component {
                     dropLeftNavigationRun={this.state.dropLeftNavigationRun}
                     leftDropMenuHandler={this.leftDropMenuHandler}
                     categories={this.props.categories}
+                    isLoggedIn={this.props.isLoggedIn}
                 /> ||
                 <CatalogPage
+                    isLoggedIn={this.props.isLoggedIn}
                     onPageHandler={onPageHandler}
                     dropLeftNavigationRun={this.state.dropLeftNavigationRun}
                     leftDropMenuHandler={this.leftDropMenuHandler}
