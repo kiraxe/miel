@@ -7,7 +7,9 @@ const ADD_CART_CLIENT = 'ADD_CART_CLIENT'
 const GET_CART = 'GET_CART';
 const EDIT_CART = 'EDIT_CART';
 const DELETE_CART = 'DELETE_CART';
-const SEND_ORDER = 'SEND_ORDER';
+const SET_QUARTERLY = 'SET_QUARTERLY';
+const SET_COMMENT = 'SET_COMMENT';
+const SET_DELIVERY = 'SET_DELIVERY';
 
 
 let initialState = {
@@ -21,7 +23,7 @@ let initialState = {
     delivery: null,
     cart: [],
     quarterly: false,
-    send: false,
+    comment: null,
     error: null
 }
 
@@ -87,15 +89,28 @@ const catReducer = (state = initialState, action) => {
                 ...state
             }
         }
+        case SET_QUARTERLY: {
+            return {
+                ...state,
+                quarterly: action.data
+            }
+        }
+        case SET_COMMENT: {
+            return {
+                ...state,
+                comment: action.data
+            }
+        }
+        case SET_DELIVERY: {
+            return {
+                ...state,
+                delivery: action.data
+            }
+        }
         case GET_CART: {
             let st = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : state;
             return {
                 ...st
-            }
-        }
-        case SEND_ORDER: {
-            return {
-                ...action.data
             }
         }
         default: {
@@ -107,10 +122,12 @@ const catReducer = (state = initialState, action) => {
 export const addCartAC = (data) => ({type: ADD_CART, data: data});
 export const addCartClientAC = (data) => ({type: ADD_CART_CLIENT, data: data});
 export const setCartAC = () => ({type: SET_CART});
+export const setQuarterlyAC = (data) => ({type: SET_QUARTERLY, data: data});
+export const setCommentAC = (data) => ({type: SET_COMMENT, data: data});
+export const setDeliveryAC = (data) => ({type: SET_DELIVERY, data: data});
 export const getCartAC = () => ({type: GET_CART});
 export const editCartAC = (data) => ({type: EDIT_CART, data: data});
 export const deleteCartAC = (data) => ({ type: DELETE_CART, data: data});
-export const sendCartAC = (data) => ({type: SEND_ORDER, data: data});
 
 
 export const addCart = (product) => async dispatch => {
@@ -148,9 +165,34 @@ export const deleteCart = (id) => async dispatch => {
         })
 }
 
-export const sendCart = () => async dispatch => {
+export const setQuarterly = (value) => async dispatch => {
 
+    let promise = dispatch(setQuarterlyAC(value));
+
+    Promise.all([promise])
+        .then(() => {
+            dispatch(setCartAC());
+        })
 }
 
+export const setComment = (comment) => async dispatch => {
+
+    let promise = dispatch(setCommentAC(comment));
+
+    Promise.all([promise])
+        .then(() => {
+            dispatch(setCartAC());
+        })
+}
+
+export const setDelivery = (delivery) => async dispatch => {
+
+    let promise = dispatch(setDeliveryAC(delivery));
+
+    Promise.all([promise])
+        .then(() => {
+            dispatch(setCartAC());
+        })
+}
 
 export default catReducer;

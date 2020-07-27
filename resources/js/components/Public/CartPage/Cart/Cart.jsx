@@ -5,6 +5,9 @@ import {forEach} from "react-bootstrap/cjs/ElementChildren";
 
 const Cart = (props) => {
 
+    const [dateFirst, setDateFirst] = useState(true);
+    const [dateSecond, setDateSecond] = useState(false);
+
     const [totalPrice, setTotalPrice] = useState(0);
 
     let products = props.cart ? props.cart.map((item, key) => item ? <Item key={item.product_id} deleteCartHandler={props.deleteCartHandler} editCartHandler={props.editCartHandler} settings={props.settings} item={item} /> : null): null;
@@ -19,7 +22,26 @@ const Cart = (props) => {
 
     useEffect(() => {
        setTotalPrice(price);
+       if (props.delivery === props.client.addressK ) {
+           setDateSecond(true);
+           setDateFirst(false);
+       }
     });
+
+    let onCheckboxHandler = (e) => {
+        let delivery = 'Коломенский проезд, д. 14';
+        if (e.target.name === "dateFirst") {
+            setDateFirst(true);
+            setDateSecond(false)
+        } else if (e.target.name === "dateSecond") {
+            setDateSecond(true)
+            setDateFirst(false);
+            delivery = props.client.addressK;
+        }
+
+        props.onDeliveryHandler(delivery);
+    }
+
 
     return (
         <div id="main-content">
@@ -52,31 +74,26 @@ const Cart = (props) => {
                             <div className="checkbox">
                                 <div className="checkInput">
                                     <div className="checkInputItem">
-                                        <input id="check1" type="checkbox" name="dateFirst"/>
+                                        <input onChange={onCheckboxHandler} id="check1" type="checkbox" checked={dateFirst} name="dateFirst"/>
                                             <label htmlFor="check1">Я заберу заказ сам по адресу Коломенский проезд, д.
                                                 14</label>
                                     </div>
                                     <div className="checkInputItem">
-                                        <input id="check2" type="checkbox" name="dateSecond"/>
+                                        <input onChange={onCheckboxHandler} id="check2" type="checkbox" checked={dateSecond} name="dateSecond"/>
                                             <label htmlFor="check2">Мне нужна доставка* по моему адресу (от 500
                                                 ₽)</label>
                                             <p>здесь указывается адрес для курьерской доставки из личного кабинета</p>
-                                    </div>
-                                    <div className="checkInputItem">
-                                        <input id="check3" type="checkbox" name="dateFirst"/>
-                                            <label htmlFor="check3">Другой адрес</label>
-                                            <p>здесь указывается другой адрес для курьерской доставки</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="text">
                                 <p>* Точную стоимость доставки узнайте у вашего менеджера по телефону: <a
-                                    href="tel:+79037792854">+7 (903) 779-28-54</a> или по e-mail: <a
-                                    href="mailto:suvenir@miel.ru">suvenir@miel.ru</a></p>
+                                    href={`tel:${props.settings.phone_manager}`}>{props.settings.phone_manager}</a> или по e-mail: <a
+                                    href={`mailto:${props.settings.manager_email}`}>{props.settings.manager_email}</a></p>
                             </div>
                             <div className="textarea">
                                 <p>Комментарий к заказу</p>
-                                <textarea placeholder="Введите текст комментария"></textarea>
+                                <textarea onChange={props.onCommentHandler} placeholder="Введите текст комментария" value={props.comment}></textarea>
                             </div>
                         </div>
                     </div>
@@ -89,7 +106,7 @@ const Cart = (props) => {
                                 <p>Общая сумма заказа:  <span> {totalPrice} ₽</span></p>
                             </div>
                             <div className="button">
-                                <button>Подтвердить заказ</button>
+                                {products.length > 0 && <button>Подтвердить заказ</button> || <button disabled>Подтвердить заказ</button>}
                                 <p>Нажимая «Сохранить», я соглашаюсь с <span>офертой</span></p>
                             </div>
                         </div>

@@ -26,7 +26,8 @@ class  AccountContainer extends Component {
             name: this.props.client.name,
             company: this.props.client.company,
             phone: this.props.client.phone,
-            email: this.props.client.email
+            email: this.props.client.email,
+            addressK: this.props.client.addressK
         })
     }
 
