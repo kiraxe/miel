@@ -8,8 +8,6 @@ const Item = (props) => {
     const [min, setMin] = useState(props.item.count);
     const [statMin, setStatMin] = useState(props.item.min);
 
-    console.log(props.item.product_id + "-" + props.item.count + '-' + min + '-' + minQuarterly);
-
     const [priceSecond, setPriceSecond] = useState(props.item.priceSecond);
     const [minSecond, setMinSecond] = useState(props.item.minSecond);
 
@@ -57,6 +55,27 @@ const Item = (props) => {
             }
         }
     }
+
+    useEffect(() => {
+        props.editCartHandler({
+            product_id: props.item.product_id,
+            article: props.item.article,
+            image:props.item.image,
+            name: props.item.name,
+            detail:props.item.detail,
+            options: props.item.options,
+            price: priceVariable,
+            count: currentDate < fromDate || currentDate > toDate ? min : minQuarterly,
+            priceSecond:props.item.priceSecond,
+            priceThird:props.item.priceThird,
+            priceQuarterly:props.item.priceQuarterly,
+            min:props.item.min,
+            minSecond:props.item.minSecond,
+            minThird:props.item.minThird,
+            minQuarterly:props.item.minQuarterly,
+            total: total
+        });
+    },[total])
 
     useEffect(() => {
         if (currentDate < fromDate || currentDate > toDate ) {

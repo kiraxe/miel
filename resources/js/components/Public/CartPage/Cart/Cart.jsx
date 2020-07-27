@@ -1,10 +1,25 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Item from "./Item/Item";
+import {forEach} from "react-bootstrap/cjs/ElementChildren";
 
 
 const Cart = (props) => {
 
-    let products = props.cart ? props.cart.map((item, key) => item ? <Item key={key} deleteCartHandler={props.deleteCartHandler} editCartHandler={props.editCartHandler} settings={props.settings} item={item} /> : null): null;
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    let products = props.cart ? props.cart.map((item, key) => item ? <Item key={item.product_id} deleteCartHandler={props.deleteCartHandler} editCartHandler={props.editCartHandler} settings={props.settings} item={item} /> : null): null;
+
+    let priceArr = props.cart ? props.cart.map((item, key) => item ? item.total : null): null;
+
+    let price = 0;
+
+    priceArr.forEach((item, i, arr) => {
+        price += item;
+    })
+
+    useEffect(() => {
+       setTotalPrice(price);
+    });
 
     return (
         <div id="main-content">
@@ -71,7 +86,7 @@ const Cart = (props) => {
                         <div className="block_4">
                             <div className="title"><h2>3. Подтвердите заказ</h2></div>
                             <div className="price">
-                                <p>Общая сумма заказа: <span> 88 956 ₽</span></p>
+                                <p>Общая сумма заказа:  <span> {totalPrice} ₽</span></p>
                             </div>
                             <div className="button">
                                 <button>Подтвердить заказ</button>

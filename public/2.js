@@ -519,19 +519,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Item_Item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Item/Item */ "./resources/js/components/Public/CartPage/Cart/Item/Item.jsx");
+/* harmony import */ var react_bootstrap_cjs_ElementChildren__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/cjs/ElementChildren */ "./node_modules/react-bootstrap/cjs/ElementChildren.js");
+/* harmony import */ var react_bootstrap_cjs_ElementChildren__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_cjs_ElementChildren__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
 var Cart = function Cart(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      totalPrice = _useState2[0],
+      setTotalPrice = _useState2[1];
+
   var products = props.cart ? props.cart.map(function (item, key) {
     return item ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Item_Item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      key: key,
+      key: item.product_id,
       deleteCartHandler: props.deleteCartHandler,
       editCartHandler: props.editCartHandler,
       settings: props.settings,
       item: item
     }) : null;
   }) : null;
+  var priceArr = props.cart ? props.cart.map(function (item, key) {
+    return item ? item.total : null;
+  }) : null;
+  var price = 0;
+  priceArr.forEach(function (item, i, arr) {
+    price += item;
+  });
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    setTotalPrice(price);
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "main-content"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -612,7 +642,7 @@ var Cart = function Cart(props) {
     className: "title"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "3. \u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 \u0437\u0430\u043A\u0430\u0437")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "price"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041E\u0431\u0449\u0430\u044F \u0441\u0443\u043C\u043C\u0430 \u0437\u0430\u043A\u0430\u0437\u0430: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " 88 956 \u20BD"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041E\u0431\u0449\u0430\u044F \u0441\u0443\u043C\u043C\u0430 \u0437\u0430\u043A\u0430\u0437\u0430:  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", totalPrice, " \u20BD"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "button"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041D\u0430\u0436\u0438\u043C\u0430\u044F \xAB\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C\xBB, \u044F \u0441\u043E\u0433\u043B\u0430\u0448\u0430\u044E\u0441\u044C \u0441 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u043E\u0444\u0435\u0440\u0442\u043E\u0439"))))))));
 };
@@ -666,8 +696,6 @@ var Item = function Item(props) {
       _useState6 = _slicedToArray(_useState5, 2),
       statMin = _useState6[0],
       setStatMin = _useState6[1];
-
-  console.log(props.item.product_id + "-" + props.item.count + '-' + min + '-' + minQuarterly);
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.item.priceSecond),
       _useState8 = _slicedToArray(_useState7, 2),
@@ -756,6 +784,26 @@ var Item = function Item(props) {
     }
   };
 
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    props.editCartHandler({
+      product_id: props.item.product_id,
+      article: props.item.article,
+      image: props.item.image,
+      name: props.item.name,
+      detail: props.item.detail,
+      options: props.item.options,
+      price: priceVariable,
+      count: currentDate < fromDate || currentDate > toDate ? min : minQuarterly,
+      priceSecond: props.item.priceSecond,
+      priceThird: props.item.priceThird,
+      priceQuarterly: props.item.priceQuarterly,
+      min: props.item.min,
+      minSecond: props.item.minSecond,
+      minThird: props.item.minThird,
+      minQuarterly: props.item.minQuarterly,
+      total: total
+    });
+  }, [total]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (currentDate < fromDate || currentDate > toDate) {
       if (min >= minSecond && min < minThird) {

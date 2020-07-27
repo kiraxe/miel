@@ -42,8 +42,6 @@ const catReducer = (state = initialState, action) => {
                 }
             })
 
-
-
             cart = cart.filter(function(x) {
                 return x !== undefined && x !== null;
             });
@@ -54,8 +52,18 @@ const catReducer = (state = initialState, action) => {
             }
         }
         case EDIT_CART : {
+
+            let cart = state.cart.map((item, key) => {
+                if(item.product_id === action.data.product_id) {
+                    return action.data;
+                } else {
+                    return item;
+                }
+            });
+
             return {
-                ...state
+                ...state,
+                cart: [...cart]
             }
         }
         case DELETE_CART : {
@@ -123,7 +131,12 @@ export const getCart = () => async  dispatch => {
 }
 
 export const editCart = (product) => async dispatch => {
-    dispatch(editCartAC(product));
+    let promise =  dispatch(editCartAC(product));
+
+    Promise.all([promise])
+        .then(() => {
+            dispatch(setCartAC());
+        })
 }
 
 export const deleteCart = (id) => async dispatch => {
