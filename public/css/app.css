@@ -2450,42 +2450,42 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
 }
 
 @media (max-width: 320px) {
-  html body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartFirst .content .itemText {
+  html body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartFirst .content .itemText {
     margin-left: -110px;
     margin-top: 20px;
   }
 
-  html body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .checkbox .checkInput {
+  html body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .checkbox .checkInput {
     flex-wrap: wrap;
   }
 
-  html body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .checkbox .checkInput .checkInputItem {
+  html body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .checkbox .checkInput .checkInputItem {
     width: 100% !important;
   }
 }
 
 @media (max-width: 360px) {
-  html body main#public#basket #wrapper #main-content {
+  html body main#public.basket #wrapper #main-content {
     padding-bottom: 60px;
   }
 
-  html body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .checkbox .checkInput .checkInputItem {
+  html body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .checkbox .checkInput .checkInputItem {
     width: auto;
   }
 
-  html body main#public#basket #wrapper #main-content .block_3 label {
+  html body main#public.basket #wrapper #main-content .block_3 label {
     line-height: 16px !important;
   }
 
-  html body main#public#basket #wrapper #main-content .block_3 .checkInputItem {
+  html body main#public.basket #wrapper #main-content .block_3 .checkInputItem {
     margin-top: 20px;
   }
 
-  html body main#public#basket #wrapper #main-content .block_3 .text {
+  html body main#public.basket #wrapper #main-content .block_3 .text {
     margin-top: 10px;
   }
 
-  html body main#public#basket #wrapper #main-content .block_4 .button button {
+  html body main#public.basket #wrapper #main-content .block_4 .button button {
     width: 100%;
   }
 
@@ -2716,28 +2716,28 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
 }
 
 @media (max-width: 576px) {
-  html body main#public#basket #wrapper #main-content .block_2 .cart .item {
+  html body main#public.basket #wrapper #main-content .block_2 .cart .item {
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 0;
   }
 
-  html body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartFirst {
+  html body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartFirst {
     grid-column-gap: 10px;
   }
 
-  html body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .checkbox {
+  html body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .checkbox {
     margin-left: 0 !important;
   }
 
-  html body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .costPanelItem {
+  html body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .costPanelItem {
     margin-left: 0 !important;
   }
 
-  html body main#public#basket #wrapper #main-content .block_3 .text p {
+  html body main#public.basket #wrapper #main-content .block_3 .text p {
     width: 100%;
   }
 
-  html body main#public#basket #wrapper #main-content .block_3 .textarea textarea {
+  html body main#public.basket #wrapper #main-content .block_3 .textarea textarea {
     height: 180px;
     width: 100%;
   }
@@ -2802,24 +2802,24 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
 }
 
 @media (max-width: 768px) {
-  body main#public#basket #wrapper #main-content .block_1 {
+  body main#public.basket #wrapper #main-content .block_1 {
     margin-top: 60px;
   }
 
-  body main#public#basket #wrapper #main-content .block_1 .title h1 {
+  body main#public.basket #wrapper #main-content .block_1 .title h1 {
     margin-bottom: 50px;
   }
 
-  body main#public#basket #wrapper #main-content .block_3 .checkbox .checkInput .checkInputItem p {
+  body main#public.basket #wrapper #main-content .block_3 .checkbox .checkInput .checkInputItem p {
     width: 100%;
     margin-left: 20px;
   }
 
-  body main#public#basket #wrapper #main-content .block_3 .text p {
+  body main#public.basket #wrapper #main-content .block_3 .text p {
     width: 60%;
   }
 
-  body main#public#basket #wrapper #main-content .block_3 .textarea textarea {
+  body main#public.basket #wrapper #main-content .block_3 .textarea textarea {
     width: 70%;
   }
 
@@ -2855,41 +2855,41 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
 }
 
 @media (max-width: 720px) {
-  body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartSecond {
+  body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond {
     grid-template-columns: 100% 100% !important;
     grid-template-rows: auto auto;
   }
 
-  body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .costPanelItem {
+  body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .costPanelItem {
     margin-left: 120px;
     grid-area: 2/1;
   }
 }
 
 @media (max-width: 1100px) {
-  body main#public#basket #wrapper #main-content .block_2 .cart .item {
+  body main#public.basket #wrapper #main-content .block_2 .cart .item {
     grid-template-rows: auto auto;
   }
 
-  body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartFirst {
+  body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartFirst {
     grid-area: 1/1/span 1/span 3;
   }
 
-  body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartSecond {
+  body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond {
     grid-area: 2/1/span 2/span 3;
     grid-column-gap: 0;
     grid-template-columns: 1fr 0.5fr;
   }
 
-  body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .checkbox {
+  body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .checkbox {
     margin-left: 120px;
   }
 
-  body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .checkbox .titleCheck {
+  body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .checkbox .titleCheck {
     margin-top: 0;
   }
 
-  body main#public#basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .costPanelItem .costPanel {
+  body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .costPanelItem .costPanel {
     margin-top: 0;
   }
 }

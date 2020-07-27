@@ -11,7 +11,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'detail', 'article', 'price', 'property','percent', 'minfree', 'min', 'novelty', 'options'
+        'name', 'detail', 'article', 'price', 'property','percent', 'min', 'novelty', 'options', 'price_quarterly', 'price_second', 'price_third', 'min_quarterly', 'min', 'min_second', 'min_third', 'popular'
     ];
 
     protected $primaryKey = 'product_id';

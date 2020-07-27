@@ -11,7 +11,7 @@ const RightPanel = (props) => {
                 && <a onClick={props.onLogout} className="login" href="#"><span>Выход</span></a>
                 || props.isLoggedIn && props.permission === "Admin" && <NavLink className="login" to={'/admin'}><span>Админ-панель</span></NavLink> || <a onClick={props.popUpOpen} className="login" href="#"><span>Вход</span></a>
                 }</div>
-                <div><a className="cart" href="#"><span>Корзина</span></a></div>
+                <div><NavLink className="cart" to="/basket"><span>Корзина</span></NavLink></div>
             </div>
         </div>
     )

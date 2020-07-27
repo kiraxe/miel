@@ -66,11 +66,11 @@ class ProductController extends BaseController
 
 
         if(isset($input['novelty'])) {
-            $input['novelty'] === 'true' ? $input['novelty'] = TRUE : $input['novelty'] = FALSE;
+            $input['novelty'] === 'true' || $input['novelty'] === '1' ? $input['novelty'] = TRUE : $input['novelty'] = FALSE;
         }
 
         if(isset($input['popular'])) {
-            $input['popular'] === 'true' ? $input['popular'] = TRUE : $input['popular'] = FALSE;
+            $input['popular'] === 'true' || $input['popular'] === '1' ? $input['popular'] = TRUE : $input['popular'] = FALSE;
         }
 
         if(empty($input['property']) || $input['property'] === 'null') {
@@ -171,13 +171,13 @@ class ProductController extends BaseController
         }
 
         if(isset($input['novelty'])) {
-            $input['novelty'] === 'true' ? $input['novelty'] = TRUE : $input['novelty'] = FALSE;
+            $input['novelty'] === 'true' || $input['novelty'] === '1'  ? $input['novelty'] = TRUE : $input['novelty'] = FALSE;
             $product->novelty = $input['novelty'];
         }
 
 
         if(isset($input['popular'])) {
-            $input['popular'] === 'true' ? $input['popular'] = TRUE : $input['popular'] = FALSE;
+            $input['popular'] === 'true' || $input['popular'] === '1' ? $input['popular'] = TRUE : $input['popular'] = FALSE;
             $product->popular = $input['popular'];
         }
 

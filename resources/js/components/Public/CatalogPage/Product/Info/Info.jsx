@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import ReactHtmlParser from "react-html-parser";
-import {getCurrentDate, isDifferentDates} from "../../../../../utils/GetCurrentData"
+import {getCurrentDate, isDifferentDates, replaceStr} from "../../../../../utils/GetCurrentData"
 import Select from "../Select/Select";
 import loading from "../../../../../assets/images/loading.svg";
 
@@ -20,10 +20,11 @@ const Info = (props) => {
     const [minQuarterly, setMinQuarterly] = useState(props.minQuarterly);
     const [statMinQuarterly, setStatMinQuarterly] = useState(props.minQuarterly);
 
+    let from = replaceStr(props.fromQuarterlyDate, '-', '/');
+    let to = replaceStr(props.toQuarterlyDate, '-', '/');
 
-    const [fromDate, setFromDate] = useState(new Date(props.fromQuarterlyDate));
-    const [toDate, setToDate] = useState(new Date(props.toQuarterlyDate));
-
+    const [fromDate, setFromDate] = useState(new Date(from));
+    const [toDate, setToDate] = useState(new Date(to));
 
     const [priceVariable, setPriceVariable] = useState(props.price);
 
@@ -139,10 +140,18 @@ const Info = (props) => {
                         {props.isLoggedIn && <button onClick={() => props.addCartHandler({
                             product_id: props.product_id,
                             article: props.article,
+                            image: props.image,
                             name: titleToCart,
                             options: options,
-                            unit_price: priceVariable,
+                            price: priceVariable,
                             count: currentDate < fromDate || currentDate > toDate ? min : minQuarterly,
+                            priceSecond:props.priceSecond,
+                            priceThird:props.priceThird,
+                            priceQuarterly:props.priceQuarterly,
+                            min:props.min,
+                            minSecond:props.minSecond,
+                            minThird:props.minThird,
+                            minQuarterly:props.minQuarterly,
                             total: total
                         })
                         }>Добавить в корзину {props.isFetching ? <img src={loading}/> : null}</button> || <button>Добавить в корзину()</button> }

@@ -34,6 +34,7 @@ const Product = (props) => {
                                         title={title}
                                         titleSecond={titleSecond}
                                         product_id={props.product.product_id}
+                                        image={props.product.image}
                                         article={props.product.article}
                                         detail={props.product.detail}
                                         property={props.product.property}

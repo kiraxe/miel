@@ -6,6 +6,7 @@ import Catalog from "./Catalog/Catalog";
 import LoadMore from "./LoadMore/LoadMore";
 import Separator from "./Separator";
 import SliderProducts from "../IndexPage/MainContent/SliderProducts/SliderProducts";
+import Item from "../IndexPage/MainContent/SliderProducts/Item/Item";
 
 const CatalogPage = (props) => {
     return (
@@ -25,7 +26,7 @@ const CatalogPage = (props) => {
                     <div className="col-md-12 col-xl-9 center">
                         <div className="container-my">
                             <CatalogTitle/>
-                            <Catalog isLoggedIn={props.isLoggedIn} initialize={props.initialize} products={props.products}/>
+                            <Catalog isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} initialize={props.initialize} products={props.products}/>
                             {props.products.length !== props.totalProduct && <LoadMore onLoadHandler={props.onLoadHandler}/> || null}
                             <Separator/>
                             <div className="row">
@@ -33,7 +34,7 @@ const CatalogPage = (props) => {
                                     <div className="title"><h1>Новинки</h1></div>
                                     <div className="text"><p>Какое-то небольшое описание, не более чем на две строки</p>
                                     </div>
-                                    <SliderProducts isLoggedIn={props.isLoggedIn} novelty={props.novelty} slidesToShow={3} />
+                                    <SliderProducts isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} novelty={props.novelty} slidesToShow={3} />
                                 </div>
                             </div>
                         </div>

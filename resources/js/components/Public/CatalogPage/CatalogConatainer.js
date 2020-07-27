@@ -7,6 +7,8 @@ import {getProductsSelectors, getInitializeSelectors, getTotalProductSelectors} 
 import {getCatalog} from "../../../redux/Public/catalog-reducer";
 import CatalogPage from "./CatalogPage";
 import ProductContainer from "./Product/ProductContainer";
+import {getSettingsSelectors} from "../../../redux/Public/public-selectors";
+import {addCart} from '../../../redux/Public/cart-reducer';
 
 
 
@@ -18,7 +20,15 @@ class AccountContainer extends Component {
             dropLeftNavigationRun: false,
             offset: 0,
             limit: 2,
+            isFetching: false
+
         }
+    }
+
+    addCartHandler = (product) =>  {
+        this.setState({isFetching: true})
+        this.props.addCart(product);
+        setTimeout(() => this.setState({isFetching: false}), 1000);
     }
 
     componentDidMount() {
@@ -76,6 +86,8 @@ class AccountContainer extends Component {
             this.props.getCatalog(page, this.state.offset, this.state.limit);
         }
 
+        console.log(this.props.settings);
+
         return (
             <>
                 { parseInt(this.props.match.params.id) && <ProductContainer
@@ -97,6 +109,9 @@ class AccountContainer extends Component {
                     products={this.props.products}
                     onLoadHandler={this.onLoadHandler}
                     totalProduct={this.props.totalProduct}
+                    settings={this.props.settings}
+                    addCartHandler={this.addCartHandler}
+                    isFetching={this.state.isFetching}
                 />}
             </>
         )
@@ -110,6 +125,7 @@ let mapStateToProps = (state) => {
         products: getProductsSelectors(state),
         initialize: getInitializeSelectors(state),
         totalProduct: getTotalProductSelectors(state),
+        settings: getSettingsSelectors(state)
     }
 
 
@@ -117,5 +133,5 @@ let mapStateToProps = (state) => {
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {getCatalog})
+    connect(mapStateToProps, {getCatalog, addCart})
 )(AccountContainer);

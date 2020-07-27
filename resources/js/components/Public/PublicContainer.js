@@ -8,6 +8,7 @@ import Navbar from "./Navbar/Navbar";
 import Header from "./Header/Header";
 import MainContainer from './IndexPage/MainContainer';
 import AccountContainer from './AccountPage/AccountContainer';
+import CartContainer from './CartPage/CartController';
 import Footer from "./Footer/Footer";
 import {getPublic} from "../../redux/Public/public-reducer";
 import {addClient} from "../../redux/Public/registration-reducer";
@@ -22,7 +23,7 @@ import {
     getPermissionSelectors
 } from "../../redux/auth-selectors";
 import CatalogConatainer from "./CatalogPage/CatalogConatainer";
-import {addCartClient} from '../../redux/Public/cart-reducer'
+import {addCartClient, getCart} from '../../redux/Public/cart-reducer'
 
 
 class PublicContainer extends Component {
@@ -41,6 +42,7 @@ class PublicContainer extends Component {
     componentDidMount() {
         this.props.getPublic();
         this.props.getIndexPage();
+        this.props.getCart();
         if(this.props.isLoggedIn && this.props.permission === 'Client')
         {
             this.props.addCartClient(JSON.parse(localStorage.getItem('client')));
@@ -114,7 +116,7 @@ class PublicContainer extends Component {
                 <Navbar categories={this.props.categories} leftDropMenuHandler={this.leftDropMenuHandler} leftDropMenu={this.state.leftDropMenu} dropMenu={this.state.dropMenu}/>
                 <div id="wrapper">
                     <Header onLogout={this.onLogout} popUpOpen={this.popUpOpen} isLoggedIn={this.props.isLoggedIn} permission={this.props.permission} dropMenuHandler={this.dropMenuHandler} phone={this.props.settings.phone}/>
-                    {this.props.match.path === "/" ? <MainContainer isLoggedIn={this.props.isLoggedIn}/> : this.props.match.path === "/account/:page?/" ? <AccountContainer permission={this.props.permission} isLoggedIn={this.props.isLoggedIn} /> : this.props.match.path === "/shop/:page?/:id?" ? <CatalogConatainer isLoggedIn={this.props.isLoggedIn}/> : null}
+                    {this.props.match.path === "/" && !!Object.keys(this.props.settings).length ? <MainContainer isLoggedIn={this.props.isLoggedIn}/> : this.props.match.path === "/account/:page?/" && !!Object.keys(this.props.settings).length ? <AccountContainer permission={this.props.permission} isLoggedIn={this.props.isLoggedIn} /> : this.props.match.path === "/shop/:page?/:id?" && !!Object.keys(this.props.settings).length ? <CatalogConatainer isLoggedIn={this.props.isLoggedIn}/> : this.props.match.path === "/basket" && !!Object.keys(this.props.settings).length ? <CartContainer isLoggedIn={this.props.isLoggedIn}/>: null}
                     <Footer phone={this.props.settings.phone} social={this.props.settings.social}/>
                 </div>
             </main>
@@ -139,5 +141,5 @@ let mapStateToProps = (state) => {
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {getPublic, getIndexPage, addClient, login, logout, addCartClient})
+    connect(mapStateToProps, {getPublic, getIndexPage, addClient, login, logout, addCartClient, getCart})
 )(PublicContainer);

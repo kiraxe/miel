@@ -3,38 +3,12 @@ import Slider from "react-slick";
 import {SampleNextArrow, SamplePrevArrow} from "./Arrows/Arrows";
 import {NavLink} from 'react-router-dom';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import Item from "./Item/Item";
 
 
 const SliderProducts = (props) => {
 
-    const element = (item, key) => {
-        let link = item.attributes.map(item => !item.attributes.parent_id ? item.attributes.link : "");
-        return <NavLink className="productNavLink item" key={key} to={`/shop/${link[0]}/${item.product_id}`}>
-            <div className="itemContainer">
-                <div className="images"><img src={item.image} alt="prod" title="pen"/></div>
-                <div className="content">
-                    <div className="title"><h2>{item.name}</h2></div>
-                    <div className="article"><p>Арт. {item.article}</p></div>
-                    <div className="text">
-                        <p>{ReactHtmlParser(item.detail)}</p>
-                    </div>
-                </div>
-                <div className="costPanel">
-                    <div className="cost"><p>{item.price} ₽ / шт.</p></div>
-                    <div className="count">
-                        <div className="remove"><img src="/images/minus.png"/></div>
-                        <div className="number">50</div>
-                        <div className="add"><img src="/images/plus.png"/></div>
-                    </div>
-                </div>
-                <div className="button">
-                    {props.isLoggedIn && <button>Корзина</button> || <button>Корзина()</button> }
-                </div>
-            </div>
-        </NavLink>
-    }
-
-    let elements = props.popular ? props.popular.map((item, key) => element(item, key)) : props.novelty ? props.novelty.map((item, key) => element(item, key)): null;
+    let elements = props.popular ? props.popular.map((item, key) => <Item isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} key={key} itm={item} />) : props.novelty ? props.novelty.map((item, key) => <Item isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} key={key} itm={item} />): null;
 
     let slidesToShow = props.slidesToShow ? props.slidesToShow : null;
 

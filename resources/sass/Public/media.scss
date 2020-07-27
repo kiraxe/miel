@@ -5,7 +5,7 @@
   html {
     body {
       main#public {
-        &#basket {
+        &.basket {
           #wrapper {
             #main-content {
               .block_1 {
@@ -53,7 +53,7 @@
   html {
     body {
       main#public {
-        &#basket {
+        &.basket {
           #wrapper {
             #main-content {
               padding-bottom: 60px;
@@ -321,7 +321,7 @@
   html {
     body {
       main#public {
-        &#basket {
+        &.basket {
           #wrapper {
             #main-content {
               .block_2 {
@@ -453,7 +453,7 @@
 @media (max-width: 768px) {
   body {
     main#public {
-      &#basket {
+      &.basket {
         #wrapper {
           #main-content {
             .block_1 {
@@ -551,7 +551,7 @@
 @media (max-width: 720px) {
   body {
     main#public {
-      &#basket {
+      &.basket {
         #wrapper {
           #main-content {
             .block_1 {
@@ -590,7 +590,7 @@
 @media (max-width: 1100px) {
   body {
     main#public {
-      &#basket {
+      &.basket {
         #wrapper {
           #main-content {
             .block_2 {
