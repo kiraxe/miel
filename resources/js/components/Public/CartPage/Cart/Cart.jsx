@@ -93,7 +93,7 @@ const Cart = (props) => {
                             </div>
                             <div className="textarea">
                                 <p>Комментарий к заказу</p>
-                                <textarea onChange={props.onCommentHandler} placeholder="Введите текст комментария" value={props.comment}></textarea>
+                                <textarea onChange={props.onCommentHandler} placeholder="Введите текст комментария" value={props.comment ? props.comment : ""}></textarea>
                             </div>
                         </div>
                     </div>

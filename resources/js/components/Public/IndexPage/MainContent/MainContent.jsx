@@ -10,9 +10,9 @@ const MainContent = (props) => {
             <div className="container-my">
                 <Title/>
                 <Navigation categories={props.categories}/>
-                <Popular isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} popular={props.popular} categories={props.categories} />
+                <Popular popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} popular={props.popular} categories={props.categories} />
             </div>
-            <Novelty isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} novelty={props.novelty} categories={props.categories}/>
+            <Novelty popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} novelty={props.novelty} categories={props.categories}/>
         </div>
     )
 }

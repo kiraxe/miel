@@ -26,7 +26,7 @@ const CatalogPage = (props) => {
                     <div className="col-md-12 col-xl-9 center">
                         <div className="container-my">
                             <CatalogTitle/>
-                            <Catalog isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} initialize={props.initialize} products={props.products}/>
+                            <Catalog popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} initialize={props.initialize} products={props.products}/>
                             {props.products.length !== props.totalProduct && <LoadMore onLoadHandler={props.onLoadHandler}/> || null}
                             <Separator/>
                             <div className="row">
@@ -34,7 +34,7 @@ const CatalogPage = (props) => {
                                     <div className="title"><h1>Новинки</h1></div>
                                     <div className="text"><p>Какое-то небольшое описание, не более чем на две строки</p>
                                     </div>
-                                    <SliderProducts isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} novelty={props.novelty} slidesToShow={3} />
+                                    <SliderProducts popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} novelty={props.novelty} slidesToShow={3} />
                                 </div>
                             </div>
                         </div>

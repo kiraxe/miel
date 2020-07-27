@@ -29,7 +29,7 @@ class MainContainer extends Component {
 
     render() {
         return (
-            <MainContent isFetching={this.state.isFetching} settings={this.props.settings} addCartHandler={this.addCartHandler} isLoggedIn={this.props.isLoggedIn} categories={this.props.categories} popular={this.props.popular} novelty={this.props.novelty}/>
+            <MainContent popUpOpen={this.props.popUpOpen} isFetching={this.state.isFetching} settings={this.props.settings} addCartHandler={this.addCartHandler} isLoggedIn={this.props.isLoggedIn} categories={this.props.categories} popular={this.props.popular} novelty={this.props.novelty}/>
         )
     }
 }

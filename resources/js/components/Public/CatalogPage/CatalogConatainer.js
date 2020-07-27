@@ -86,13 +86,12 @@ class AccountContainer extends Component {
             this.props.getCatalog(page, this.state.offset, this.state.limit);
         }
 
-        console.log(this.props.settings);
-
         return (
             <>
                 { parseInt(this.props.match.params.id) && <ProductContainer
                     productPage={this.props.match.params.id}
                     onPageHandler={onPageHandler}
+                    popUpOpen={this.props.popUpOpen}
                     dropLeftNavigationRun={this.state.dropLeftNavigationRun}
                     leftDropMenuHandler={this.leftDropMenuHandler}
                     categories={this.props.categories}
@@ -112,6 +111,7 @@ class AccountContainer extends Component {
                     settings={this.props.settings}
                     addCartHandler={this.addCartHandler}
                     isFetching={this.state.isFetching}
+                    popUpOpen={this.props.popUpOpen}
                 />}
             </>
         )

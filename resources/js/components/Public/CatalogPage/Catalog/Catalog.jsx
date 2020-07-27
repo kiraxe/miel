@@ -14,7 +14,7 @@ const Catalog = (props) => {
 
     let active = load ? 'active' : "";
 
-    let products = props.products ? props.products.map((item, key) => <Item key={key} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} item={item}/>) : null;
+    let products = props.products ? props.products.map((item, key) => <Item popUpOpen={props.popUpOpen} key={key} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} item={item}/>) : null;
 
     return (
         <div className="row catalog">

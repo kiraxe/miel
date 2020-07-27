@@ -5,6 +5,7 @@ export const rus = {
             'categories' : 'Категории',
             'clientele' : 'Клиенты',
             'options' : 'Опции',
+            'orders' : 'Заказы',
             'settings' : 'Настройки',
             'logout' : 'Выход'
         }
@@ -111,6 +112,31 @@ export const rus = {
                 'email' : 'Введите email',
                 'password' : 'Введите пароль'
             },
+        },
+        'orders': {
+            'title' : "Заказы",
+            'table' : {
+                'id' : 'Номер',
+                'action': 'Действия',
+            },
+            'show' : {
+                'title' : 'Заказ',
+                'order_detail': {
+                    'title' : 'Детали заказа'
+                },
+                'client': {
+                    'title' : 'Клиент'
+                },
+                'delivery' : {
+                    'title' : 'Доставка'
+                },
+                'cart' : {
+                    'title': 'Корзина'
+                },
+                'comment': {
+                    'title': 'Комментарий'
+                }
+            }
         },
         'settings': {
             'title': "Настройки",

@@ -52,6 +52,7 @@ class AccountContainer extends Component {
             toQuarterlyDate={this.props.settings.to}
             isLoggedIn={this.props.isLoggedIn}
             addCartHandler={this.addCartHandler}
+            popUpOpen={this.props.popUpOpen}
         />
     }
 }

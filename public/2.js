@@ -661,7 +661,7 @@ var Cart = function Cart(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
     onChange: props.onCommentHandler,
     placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0442\u0435\u043A\u0441\u0442 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u044F",
-    value: props.comment
+    value: props.comment ? props.comment : ""
   }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1124,6 +1124,7 @@ var Catalog = function Catalog(props) {
   var active = load ? 'active' : "";
   var products = props.products ? props.products.map(function (item, key) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Item_Item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      popUpOpen: props.popUpOpen,
       key: key,
       isFetching: props.isFetching,
       settings: props.settings,
@@ -1372,7 +1373,9 @@ var Item = function Item(props) {
       width: '20px'
     },
     src: _assets_images_loading_svg__WEBPACK_IMPORTED_MODULE_3___default.a
-  }) : null) || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "\u041A\u043E\u0440\u0437\u0438\u043D\u0430()"))));
+  }) : null) || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: props.popUpOpen
+  }, "\u041A\u043E\u0440\u0437\u0438\u043D\u0430"))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Item);
@@ -1531,10 +1534,10 @@ var AccountContainer = /*#__PURE__*/function (_Component) {
         _this2.props.getCatalog(page, _this2.state.offset, _this2.state.limit);
       };
 
-      console.log(this.props.settings);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, parseInt(this.props.match.params.id) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Product_ProductContainer__WEBPACK_IMPORTED_MODULE_8__["default"], {
         productPage: this.props.match.params.id,
         onPageHandler: onPageHandler,
+        popUpOpen: this.props.popUpOpen,
         dropLeftNavigationRun: this.state.dropLeftNavigationRun,
         leftDropMenuHandler: this.leftDropMenuHandler,
         categories: this.props.categories,
@@ -1552,7 +1555,8 @@ var AccountContainer = /*#__PURE__*/function (_Component) {
         totalProduct: this.props.totalProduct,
         settings: this.props.settings,
         addCartHandler: this.addCartHandler,
-        isFetching: this.state.isFetching
+        isFetching: this.state.isFetching,
+        popUpOpen: this.props.popUpOpen
       }));
     }
   }]);
@@ -1632,6 +1636,7 @@ var CatalogPage = function CatalogPage(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container-my"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CatalogTitle_CatalogTitle__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Catalog_Catalog__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    popUpOpen: props.popUpOpen,
     isFetching: props.isFetching,
     settings: props.settings,
     addCartHandler: props.addCartHandler,
@@ -1649,6 +1654,7 @@ var CatalogPage = function CatalogPage(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "\u041D\u043E\u0432\u0438\u043D\u043A\u0438")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041A\u0430\u043A\u043E\u0435-\u0442\u043E \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435, \u043D\u0435 \u0431\u043E\u043B\u0435\u0435 \u0447\u0435\u043C \u043D\u0430 \u0434\u0432\u0435 \u0441\u0442\u0440\u043E\u043A\u0438")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_IndexPage_MainContent_SliderProducts_SliderProducts__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    popUpOpen: props.popUpOpen,
     isFetching: props.isFetching,
     settings: props.settings,
     addCartHandler: props.addCartHandler,
@@ -2114,7 +2120,9 @@ var Info = function Info(props) {
     }
   }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443 ", props.isFetching ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: _assets_images_loading_svg__WEBPACK_IMPORTED_MODULE_4___default.a
-  }) : null) || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443()")))));
+  }) : null) || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: props.popUpOpen
+  }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443")))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Info);
@@ -2198,7 +2206,8 @@ var Product = function Product(props) {
     toQuarterlyDate: props.toQuarterlyDate,
     isLoggedIn: props.isLoggedIn,
     addCartHandler: props.addCartHandler,
-    isFetching: props.isFetching
+    isFetching: props.isFetching,
+    popUpOpen: props.popUpOpen
   })))))))) || null);
 };
 
@@ -2320,7 +2329,8 @@ var AccountContainer = /*#__PURE__*/function (_Component) {
         fromQuarterlyDate: this.props.settings.from,
         toQuarterlyDate: this.props.settings.to,
         isLoggedIn: this.props.isLoggedIn,
-        addCartHandler: this.addCartHandler
+        addCartHandler: this.addCartHandler,
+        popUpOpen: this.props.popUpOpen
       });
     }
   }]);
@@ -2867,6 +2877,7 @@ var MainContainer = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MainContent_MainContent__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        popUpOpen: this.props.popUpOpen,
         isFetching: this.state.isFetching,
         settings: this.props.settings,
         addCartHandler: this.addCartHandler,
@@ -2927,6 +2938,7 @@ var MainContent = function MainContent(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Title_Title__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Navigation_Navigation__WEBPACK_IMPORTED_MODULE_2__["default"], {
     categories: props.categories
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Popular_Popular__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    popUpOpen: props.popUpOpen,
     isFetching: props.isFetching,
     settings: props.settings,
     addCartHandler: props.addCartHandler,
@@ -2934,6 +2946,7 @@ var MainContent = function MainContent(props) {
     popular: props.popular,
     categories: props.categories
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Novelty_Novelty__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    popUpOpen: props.popUpOpen,
     isFetching: props.isFetching,
     settings: props.settings,
     addCartHandler: props.addCartHandler,
@@ -3043,6 +3056,7 @@ var Novelty = function Novelty(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "\u041D\u043E\u0432\u0438\u043D\u043A\u0438")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041A\u0430\u043A\u043E\u0435-\u0442\u043E \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435, \u043D\u0435 \u0431\u043E\u043B\u0435\u0435 \u0447\u0435\u043C \u043D\u0430 \u0434\u0432\u0435 \u0441\u0442\u0440\u043E\u043A\u0438")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SliderProducts_SliderProducts__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    popUpOpen: props.popUpOpen,
     isFetching: props.isFetching,
     settings: props.settings,
     addCartHandler: props.addCartHandler,
@@ -3080,6 +3094,7 @@ var Popular = function Popular(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "\u041F\u043E\u043F\u0443\u043B\u044F\u0440\u043D\u044B\u0435 \u0442\u043E\u0432\u0430\u0440\u044B")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041A\u0430\u043A\u043E\u0435-\u0442\u043E \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435, \u043D\u0435 \u0431\u043E\u043B\u0435\u0435 \u0447\u0435\u043C \u043D\u0430 \u0434\u0432\u0435 \u0441\u0442\u0440\u043E\u043A\u0438")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SliderProducts_SliderProducts__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    popUpOpen: props.popUpOpen,
     isFetching: props.isFetching,
     settings: props.settings,
     addCartHandler: props.addCartHandler,
@@ -3363,7 +3378,9 @@ var Item = function Item(props) {
       width: '20px'
     },
     src: _assets_images_loading_svg__WEBPACK_IMPORTED_MODULE_3___default.a
-  }) : null) || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "\u041A\u043E\u0440\u0437\u0438\u043D\u0430()"))));
+  }) : null) || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: props.popUpOpen
+  }, "\u041A\u043E\u0440\u0437\u0438\u043D\u0430"))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Item);
@@ -3398,6 +3415,7 @@ __webpack_require__.r(__webpack_exports__);
 var SliderProducts = function SliderProducts(props) {
   var elements = props.popular ? props.popular.map(function (item, key) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Item_Item__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      popUpOpen: props.popUpOpen,
       isFetching: props.isFetching,
       settings: props.settings,
       addCartHandler: props.addCartHandler,
@@ -3407,6 +3425,7 @@ var SliderProducts = function SliderProducts(props) {
     });
   }) : props.novelty ? props.novelty.map(function (item, key) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Item_Item__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      popUpOpen: props.popUpOpen,
       isFetching: props.isFetching,
       settings: props.settings,
       addCartHandler: props.addCartHandler,
@@ -4383,11 +4402,13 @@ var PublicContainer = /*#__PURE__*/function (_Component) {
         dropMenuHandler: this.dropMenuHandler,
         phone: this.props.settings.phone
       }), this.props.match.path === "/" && !!Object.keys(this.props.settings).length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_IndexPage_MainContainer__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        popUpOpen: this.popUpOpen,
         isLoggedIn: this.props.isLoggedIn
       }) : this.props.match.path === "/account/:page?/" && !!Object.keys(this.props.settings).length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AccountPage_AccountContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
         permission: this.props.permission,
         isLoggedIn: this.props.isLoggedIn
       }) : this.props.match.path === "/shop/:page?/:id?" && !!Object.keys(this.props.settings).length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CatalogPage_CatalogConatainer__WEBPACK_IMPORTED_MODULE_20__["default"], {
+        popUpOpen: this.popUpOpen,
         isLoggedIn: this.props.isLoggedIn
       }) : this.props.match.path === "/basket" && !!Object.keys(this.props.settings).length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CartPage_CartController__WEBPACK_IMPORTED_MODULE_10__["default"], {
         isLoggedIn: this.props.isLoggedIn

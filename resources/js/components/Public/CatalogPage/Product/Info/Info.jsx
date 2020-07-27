@@ -154,7 +154,7 @@ const Info = (props) => {
                             minQuarterly:props.minQuarterly,
                             total: total
                         })
-                        }>Добавить в корзину {props.isFetching ? <img src={loading}/> : null}</button> || <button>Добавить в корзину()</button> }
+                        }>Добавить в корзину {props.isFetching ? <img src={loading}/> : null}</button> || <button onClick={props.popUpOpen}>Добавить в корзину</button> }
                     </div>
                 </div>
             </div>

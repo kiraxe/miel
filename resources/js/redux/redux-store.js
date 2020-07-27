@@ -17,6 +17,7 @@ import accountReducer from "./Public/account-reducer";
 import catalogReducer from "./Public/catalog-reducer";
 import productPublicReducer from "./Public/productPublic-reduser";
 import catReducer from "./Public/cart-reducer";
+import ordersReducer from "./orders-reducer";
 
 let reducers = combineReducers({
     loginPage: loginReducer,
@@ -27,6 +28,7 @@ let reducers = combineReducers({
     clienteleAdmin: clienteleReducer,
     categoriesAdmin: categoriesReducer,
     settingsAdmin: settingsReducer,
+    ordersAdmin: ordersReducer,
     optionsAdmin: optionsReducer,
     public: publicReducer,
     indexPagePublic: indexPageReducer,

@@ -119,7 +119,7 @@ const Item = (props) => {
                         minQuarterly:props.itm.min_quarterly,
                         total: total
                     })
-                    }>Корзина {props.isFetching ? <img style={{width: '20px'}} src={loading}/> : null}</button> || <button>Корзина()</button> }
+                    }>Корзина {props.isFetching ? <img style={{width: '20px'}} src={loading}/> : null}</button> || <button onClick={props.popUpOpen}>Корзина</button> }
                 </div>
             </div>
         </div>)

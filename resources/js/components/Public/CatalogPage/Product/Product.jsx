@@ -52,6 +52,7 @@ const Product = (props) => {
                                         isLoggedIn={props.isLoggedIn}
                                         addCartHandler={props.addCartHandler}
                                         isFetching={props.isFetching}
+                                        popUpOpen={props.popUpOpen}
                                     />
                                 </div>
                             </div>
