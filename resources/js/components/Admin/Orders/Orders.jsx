@@ -13,6 +13,11 @@ const Orders = (props) => {
                     <thead className="thead-dark">
                     <tr>
                         <th scope="col">{LanguageRus.page.orders.table.id}</th>
+                        <th scope="col">{LanguageRus.page.orders.table.company}</th>
+                        <th scope="col">{LanguageRus.page.orders.table.status}</th>
+                        <th scope="col">{LanguageRus.page.orders.table.date}</th>
+                        <th scope="col">{LanguageRus.page.orders.table.type}</th>
+                        <th scope="col">{LanguageRus.page.orders.table.total}</th>
                         <th scope="col">{LanguageRus.page.orders.table.action}</th>
                     </tr>
                     </thead>

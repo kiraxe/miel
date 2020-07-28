@@ -54,6 +54,8 @@ Route::middleware('json.response')->group(function () {
     //-catalog
     Route::resource('catalog', 'Api\CatalogPageController');
 
+    Route::resource('orders_admin', 'Api\OrderController');
+
 });
 
 // private routes
@@ -68,6 +70,9 @@ Route::middleware(['auth:api','json.response'])->group(function () {
 
     //->me
     Route::get('/me', 'Api\AuthController@me')->name('me.api');
+
+    //order
+    Route::resource('/order', 'Api\OrderController');
 
     //->product
     //Route::resource('/products', 'Api\ProductController');
@@ -96,6 +101,9 @@ Route::middleware(['auth:client','json.response'])->group(function () {
     Route::get('/me_client', 'Api\AuthClientController@me')->name('me.client');
 
     //account
-    Route::resource('account', 'Api\AccountPageController');
+    Route::resource('/account', 'Api\AccountPageController');
+
+    //order
+    Route::post('/order', 'Api\OrdersPublicController@add');
 
 });

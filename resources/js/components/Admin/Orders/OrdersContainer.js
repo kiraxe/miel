@@ -31,8 +31,9 @@ class OrdersContainer extends React.Component {
 
     render() {
 
+        console.log(this.props);
         let orders = !this.props.match.params.slug ? <Orders onDelete={this.onDelete} page={this.props.match.params.page} url={this.props.match.url} orders={this.props.orders}/>:
-            this.props.match.params.slug === 'show' && this.props.match.params.id ?  <OrderShow error={this.props.error} id={this.props.match.params.id} select={this.props.select}  order={this.props.orders ? this.props.orders.filter(item => item.order_id == this.props.match.params.id ) : null}/> : null
+            this.props.match.params.slug === 'show' && this.props.match.params.id ?  <OrderShow error={this.props.error} id={this.props.match.params.id}  order={this.props.orders ? this.props.orders.filter(item => item.order_id === this.props.match.params.id ) : null}/> : null
 
         let paginator = this.props.paginator.total_page > 1 ? <Paginator onGetPage={this.onGetPageOrders} paginator={this.props.paginator}/> : null;
 

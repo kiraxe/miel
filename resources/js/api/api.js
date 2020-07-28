@@ -115,6 +115,11 @@ export const adminAPI = {
             .then(response => response.data)
             .catch(error => error.response)
     },
+    getOrders(page) {
+        return getAxiosSettings().get(`orders_admin/?page=${page}`)
+            .then(response => response.data)
+            .catch(error => error.response);
+    },
 
 };
 
@@ -193,6 +198,11 @@ export const publicAPI = {
     getProductPage(product_id) {
         return getAxiosSettings().get(`catalog/${product_id}`)
             .then(response => response)
+            .catch(error => error.response);
+    },
+    addOrder(order) {
+        return getAxiosSettings().post('order', order)
+            .then(response => response.data)
             .catch(error => error.response);
     },
 }

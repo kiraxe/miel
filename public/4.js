@@ -1287,7 +1287,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var Order = function Order(props) {
   var buttons = ['show'];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.order_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.order_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.client.company), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.order_type.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.total), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
     onDelete: props.onDelete,
     page: props.page,
     buttons: buttons,
@@ -1318,6 +1318,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var OrderShow = function OrderShow(props) {
+  console.log(props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "title"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.orders.show.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1328,7 +1329,7 @@ var OrderShow = function OrderShow(props) {
     className: 'title'
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.orders.show.order_detail.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: 'content'
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"].Item, null, "\u041D\u043E\u043C\u0435\u0440 : \u21161"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"].Item, null, "\u0414\u0430\u0442\u0430 : 21-07-2020"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"].Item, null, "\u0422\u0438\u043F : \u041A\u0432\u0430\u0440\u0442\u0430\u043B\u044C\u043D\u044B\u0439")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"].Item, null, "\u041D\u043E\u043C\u0435\u0440 : \u2116", props.order.order_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"].Item, null, "\u0414\u0430\u0442\u0430 : 21-07-2020"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"].Item, null, "\u0422\u0438\u043F : \u041A\u0432\u0430\u0440\u0442\u0430\u043B\u044C\u043D\u044B\u0439")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
     col: "md"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: 'title'
@@ -1411,6 +1412,16 @@ var Orders = function Orders(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "col"
   }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.orders.table.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.orders.table.company), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.orders.table.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.orders.table.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.orders.table.type), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.orders.table.total), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "col"
   }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.orders.table.action))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, props.orders ? props.orders.map(function (p, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Order__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -1517,6 +1528,7 @@ var OrdersContainer = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      console.log(this.props);
       var orders = !this.props.match.params.slug ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Orders__WEBPACK_IMPORTED_MODULE_8__["default"], {
         onDelete: this.onDelete,
         page: this.props.match.params.page,
@@ -1525,9 +1537,8 @@ var OrdersContainer = /*#__PURE__*/function (_React$Component) {
       }) : this.props.match.params.slug === 'show' && this.props.match.params.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderShow_OrderShow__WEBPACK_IMPORTED_MODULE_7__["default"], {
         error: this.props.error,
         id: this.props.match.params.id,
-        select: this.props.select,
         order: this.props.orders ? this.props.orders.filter(function (item) {
-          return item.order_id == _this2.props.match.params.id;
+          return item.order_id === _this2.props.match.params.id;
         }) : null
       }) : null;
       var paginator = this.props.paginator.total_page > 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Paginator_Paginator__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -3586,6 +3597,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ButtonPanel = function ButtonPanel(props) {
+  console.log(props);
   var buttons = props.buttons.map(function (b, index) {
     var link = b === "edit" ? props.url + "/" + b + "/" + props.elementId : b === "show" ? props.url + "/" + b + "/" + props.elementId : b === 'add' ? props.url + "/" + b : null;
     return b === "edit" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {

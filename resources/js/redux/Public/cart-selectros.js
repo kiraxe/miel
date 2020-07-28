@@ -15,3 +15,8 @@ export const getCommentSelectors = (state) => {
 export const getDeliverySelectors = (state) => {
     return state.cartPublic.delivery;
 }
+
+export const getTotalSelectors = (state) => {
+    return state.cartPublic.total;
+}
+

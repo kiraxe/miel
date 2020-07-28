@@ -1,5 +1,5 @@
-import {publicAPI} from '../../api/api';
-import {initializedSuccessAC} from "../app-reducer";
+import {adminAPI, publicAPI} from '../../api/api';
+import {addCategoryAC} from "../category-reducer";
 
 const SET_CART = 'SET_CART'
 const ADD_CART = 'ADD_CART';
@@ -10,6 +10,8 @@ const DELETE_CART = 'DELETE_CART';
 const SET_QUARTERLY = 'SET_QUARTERLY';
 const SET_COMMENT = 'SET_COMMENT';
 const SET_DELIVERY = 'SET_DELIVERY';
+const SET_TOTAL = 'SET_TOTAL';
+const SEND_ORDER = 'SEND_ORDER';
 
 
 let initialState = {
@@ -22,8 +24,9 @@ let initialState = {
     },
     delivery: null,
     cart: [],
-    quarterly: false,
+    quarterly: null,
     comment: null,
+    total: null,
     error: null
 }
 
@@ -107,10 +110,28 @@ const catReducer = (state = initialState, action) => {
                 delivery: action.data
             }
         }
+        case SET_TOTAL: {
+            return {
+                ...state,
+                total: action.data
+            }
+        }
         case GET_CART: {
             let st = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : state;
             return {
                 ...st
+            }
+        }
+        case SEND_ORDER: {
+            localStorage.removeItem('cart');
+            return {
+                ...state,
+                delivery: null,
+                cart: [],
+                quarterly: null,
+                comment: null,
+                total: null,
+                error: null
             }
         }
         default: {
@@ -125,9 +146,11 @@ export const setCartAC = () => ({type: SET_CART});
 export const setQuarterlyAC = (data) => ({type: SET_QUARTERLY, data: data});
 export const setCommentAC = (data) => ({type: SET_COMMENT, data: data});
 export const setDeliveryAC = (data) => ({type: SET_DELIVERY, data: data});
+export const setTotalAC = (data) => ({type: SET_TOTAL, data: data});
 export const getCartAC = () => ({type: GET_CART});
 export const editCartAC = (data) => ({type: EDIT_CART, data: data});
 export const deleteCartAC = (data) => ({ type: DELETE_CART, data: data});
+export const sendOrderAC = (error) => ({type: SEND_ORDER, error: error})
 
 
 export const addCart = (product) => async dispatch => {
@@ -193,6 +216,26 @@ export const setDelivery = (delivery) => async dispatch => {
         .then(() => {
             dispatch(setCartAC());
         })
+}
+
+export const setTotal = (total) => async dispatch => {
+
+    let promise = dispatch(setTotalAC(total));
+
+    Promise.all([promise])
+        .then(() => {
+            dispatch(setCartAC());
+        })
+}
+
+export const sendOrder = (order) => async dispatch => {
+    let response = await publicAPI.addOrder(order);
+    console.log(response);
+    if (response.success) {
+        dispatch(sendOrderAC());
+    } else {
+        dispatch(addCategoryAC(response.data.message));
+    }
 }
 
 export default catReducer;

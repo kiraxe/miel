@@ -1,13 +1,12 @@
 import {adminAPI} from "../api/api";
+import {setProductsAC} from "./products-reducer";
 
 const SET_ORDERS = 'SET_ORDERS';
 const DELETE_ORDER = 'DELETE_ORDER';
 const SHOW_ORDER = 'EDIT_ORDER';
 
 let initialState = {
-    orders: [
-        {order_id: 1}
-    ],
+    orders: [],
     paginator: {
         total_page : null,
         current_page : null,
@@ -66,6 +65,11 @@ export const deleteOrderAC = (data) => ({type: DELETE_ORDER, data: data});
 export const showOrderAC = (data) => ({type: SHOW_ORDER, data: data});
 
 export const getOrders = (page) => async dispatch => {
+    let response = await adminAPI.getOrders(page);
+    console.log(response);
+    if (response.success) {
+        dispatch(setOrdersAC(response.data));
+    }
 }
 
 export const deleteOrder = (id) => async dispatch => {

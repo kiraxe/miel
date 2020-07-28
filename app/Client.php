@@ -47,4 +47,8 @@ class Client extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function orders() {
+        $this->hasMany(Orders::class, 'id', 'client_id');
+    }
 }

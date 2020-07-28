@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Item from "./Item/Item";
-import {forEach} from "react-bootstrap/cjs/ElementChildren";
+import loading from "../../../../assets/images/loading.svg";
 
 
 const Cart = (props) => {
@@ -21,22 +21,30 @@ const Cart = (props) => {
     })
 
     useEffect(() => {
+        props.delivery ? props.onDeliveryHandler(props.delivery) : props.onDeliveryHandler(1) ;
+    }, [])
+
+    useEffect(() => {
        setTotalPrice(price);
-       if (props.delivery === props.client.addressK ) {
+       if (props.delivery === null ) {
            setDateSecond(true);
            setDateFirst(false);
        }
     });
 
+    useEffect(() => {
+        props.onTotalHandler(price);
+    }, [price]);
+
     let onCheckboxHandler = (e) => {
-        let delivery = 'Коломенский проезд, д. 14';
+        let delivery = 1;
         if (e.target.name === "dateFirst") {
             setDateFirst(true);
             setDateSecond(false)
         } else if (e.target.name === "dateSecond") {
             setDateSecond(true)
             setDateFirst(false);
-            delivery = props.client.addressK;
+            delivery = null;
         }
 
         props.onDeliveryHandler(delivery);
@@ -106,7 +114,7 @@ const Cart = (props) => {
                                 <p>Общая сумма заказа:  <span> {totalPrice} ₽</span></p>
                             </div>
                             <div className="button">
-                                {products.length > 0 && <button>Подтвердить заказ</button> || <button disabled>Подтвердить заказ</button>}
+                                {products.length > 0 && <button onClick={props.onSendOrderHandler}>Подтвердить заказ {props.isFetching ? <img style={{width: '20px'}} src={loading}/> : null}</button> || <button disabled>Подтвердить заказ</button>}
                                 <p>Нажимая «Сохранить», я соглашаюсь с <span>офертой</span></p>
                             </div>
                         </div>

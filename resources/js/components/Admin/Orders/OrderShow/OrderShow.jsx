@@ -3,6 +3,7 @@ import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import {rus as LanguageRus} from "../../Language";
 
 const OrderShow = (props) => {
+    console.log(props);
     return(
         <>
         <div className="title"><h1>{LanguageRus.page.orders.show.title}</h1></div>
@@ -12,7 +13,7 @@ const OrderShow = (props) => {
                     <div className={'title'}><h5>{LanguageRus.page.orders.show.order_detail.title}</h5></div>
                     <div className={'content'}>
                         <ListGroup>
-                            <ListGroup.Item>Номер : №1</ListGroup.Item>
+                            <ListGroup.Item>Номер : №{props.order.order_id}</ListGroup.Item>
                             <ListGroup.Item>Дата : 21-07-2020</ListGroup.Item>
                             <ListGroup.Item>Тип : Квартальный</ListGroup.Item>
                         </ListGroup>

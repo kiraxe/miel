@@ -7,6 +7,11 @@ const Order = (props) => {
     return (
         <tr>
             <td>{props.order.order_id}</td>
+            <td>{props.order.client.company}</td>
+            <td>{props.order.status}</td>
+            <td>{props.order.order_type.name}</td>
+            <td>{props.order.total}</td>
+            <td>{props.order.created_at}</td>
             <td><ButtonPanelContainer onDelete={props.onDelete} page={props.page} buttons={buttons} elementId={props.order.order_id}  url={props.url}/></td>
         </tr>
     )

@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 
 
 let ButtonPanel = (props) => {
+    console.log(props);
     let buttons = props.buttons.map( (b, index) => {
         let link = b === "edit" ? props.url + "/" + b + "/" + props.elementId :
                    b === "show" ? props.url + "/" + b + "/" + props.elementId :
