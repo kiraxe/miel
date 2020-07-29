@@ -14,7 +14,7 @@ const OrderShow = (props) => {
                     <div className={'title'}><h5>{LanguageRus.page.orders.show.order_detail.title}</h5></div>
                     <div className={'content'}>
                         <ListGroup>
-                            <ListGroup.Item>Номер : №{props.order[0].order_id}</ListGroup.Item>
+                            <ListGroup.Item>№ : {props.order[0].order_id}</ListGroup.Item>
                             <ListGroup.Item>Дата : {props.order[0].created_at}</ListGroup.Item>
                             <ListGroup.Item>Тип : {props.order[0].order_type.name}</ListGroup.Item>
                         </ListGroup>
