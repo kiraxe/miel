@@ -23,7 +23,8 @@ import {
     getPermissionSelectors
 } from "../../redux/auth-selectors";
 import CatalogConatainer from "./CatalogPage/CatalogConatainer";
-import {addCartClient, getCart} from '../../redux/Public/cart-reducer'
+import {addCartClient, getCart, setOrderIdNull} from '../../redux/Public/cart-reducer'
+import {getOrderIdSelectors} from '../../redux/Public/cart-selectros'
 
 
 class PublicContainer extends Component {
@@ -72,6 +73,7 @@ class PublicContainer extends Component {
         this.setState({
             popUp: false
         })
+        this.props.setOrderIdNull();
     }
 
     onLogout = () => {
@@ -121,7 +123,7 @@ class PublicContainer extends Component {
                 </div>
             </main>
             <Popup
-                classNameElement={className} popUpClose={this.popUpClose} popUp={this.state.popUp} addClient={this.onAddSubmit} onLogin={this.onLogin} error={this.props.error} errorReg={this.props.errorReg} isLoggedIn={this.props.isLoggedIn} />
+                settings={this.props.settings} orderId={this.props.orderId} classNameElement={className} popUpClose={this.popUpClose} popUp={this.state.popUp} addClient={this.onAddSubmit} onLogin={this.onLogin} error={this.props.error} errorReg={this.props.errorReg} isLoggedIn={this.props.isLoggedIn} />
             </>
             )
     }
@@ -136,10 +138,11 @@ let mapStateToProps = (state) => {
         errorReg: getErrorRegSelectors(state),
         isLoggedIn: getIsLoggedInSelector(state),
         permission: getPermissionSelectors(state),
+        orderId: getOrderIdSelectors(state)
     }
 };
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {getPublic, getIndexPage, addClient, login, logout, addCartClient, getCart})
+    connect(mapStateToProps, {getPublic, getIndexPage, addClient, login, logout, addCartClient, getCart, setOrderIdNull})
 )(PublicContainer);

@@ -87,6 +87,6 @@ class OrdersPublicController extends BaseController
 
         }
 
-        return $this->sendResponse([], 'Orders created successfully.');
+        return $this->sendResponse(['id' => $order->order_id], 'Orders created successfully.');
     }
 }

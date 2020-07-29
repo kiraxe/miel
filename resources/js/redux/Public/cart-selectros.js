@@ -20,3 +20,7 @@ export const getTotalSelectors = (state) => {
     return state.cartPublic.total;
 }
 
+export const getOrderIdSelectors = (state) => {
+    return state.cartPublic.order_id;
+}
+

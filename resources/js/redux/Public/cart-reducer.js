@@ -11,10 +11,12 @@ const SET_QUARTERLY = 'SET_QUARTERLY';
 const SET_COMMENT = 'SET_COMMENT';
 const SET_DELIVERY = 'SET_DELIVERY';
 const SET_TOTAL = 'SET_TOTAL';
+const SET_ORDER_ID_NULL = 'SET_ORDER_ID_NULL';
 const SEND_ORDER = 'SEND_ORDER';
 
 
 let initialState = {
+    order_id: null,
     client: {
         id: null,
         name: null,
@@ -126,12 +128,20 @@ const catReducer = (state = initialState, action) => {
             localStorage.removeItem('cart');
             return {
                 ...state,
+                order_id: action.data.data.id,
                 delivery: null,
                 cart: [],
                 quarterly: null,
                 comment: null,
                 total: null,
                 error: null
+            }
+        }
+        case SET_ORDER_ID_NULL: {
+            localStorage.removeItem('cart');
+            return {
+                ...state,
+                order_id: null
             }
         }
         default: {
@@ -147,10 +157,11 @@ export const setQuarterlyAC = (data) => ({type: SET_QUARTERLY, data: data});
 export const setCommentAC = (data) => ({type: SET_COMMENT, data: data});
 export const setDeliveryAC = (data) => ({type: SET_DELIVERY, data: data});
 export const setTotalAC = (data) => ({type: SET_TOTAL, data: data});
+export const setOrderIdNullAC = () => ({type: SET_ORDER_ID_NULL});
 export const getCartAC = () => ({type: GET_CART});
 export const editCartAC = (data) => ({type: EDIT_CART, data: data});
 export const deleteCartAC = (data) => ({ type: DELETE_CART, data: data});
-export const sendOrderAC = (error) => ({type: SEND_ORDER, error: error})
+export const sendOrderAC = (data, error) => ({type: SEND_ORDER, data:{data, error}})
 
 
 export const addCart = (product) => async dispatch => {
@@ -232,10 +243,14 @@ export const sendOrder = (order) => async dispatch => {
     let response = await publicAPI.addOrder(order);
     console.log(response);
     if (response.success) {
-        dispatch(sendOrderAC());
+        dispatch(sendOrderAC(response.data, null));
     } else {
-        dispatch(addCategoryAC(response.data.message));
+        dispatch(sendOrderAC([], response.data.message));
     }
+}
+
+export const setOrderIdNull = () => async dispatch => {
+    dispatch(setOrderIdNullAC());
 }
 
 export default catReducer;
