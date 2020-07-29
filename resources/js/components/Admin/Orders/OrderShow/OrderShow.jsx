@@ -3,19 +3,20 @@ import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import {rus as LanguageRus} from "../../Language";
 
 const OrderShow = (props) => {
-    console.log(props);
+    let products = props.order[0] && props.order[0].cart.cart_to_product ? props.order[0].cart.cart_to_product.map((item, key) => <tr key={key}><th scope="row">{key + 1}</th><td>{item.order_detail.article}</td><td><img src={item.order_detail.image}/></td><td>{item.order_detail.product_name}</td><td>{item.order_detail.unit_price} руб.</td><td>2</td><td>{item.order_detail.total_price} руб.</td></tr>) : null
     return(
         <>
         <div className="title"><h1>{LanguageRus.page.orders.show.title}</h1></div>
+            {props.order[0] &&
         <div className="content">
             <Row>
                 <Col col="md">
                     <div className={'title'}><h5>{LanguageRus.page.orders.show.order_detail.title}</h5></div>
                     <div className={'content'}>
                         <ListGroup>
-                            <ListGroup.Item>Номер : №{props.order.order_id}</ListGroup.Item>
-                            <ListGroup.Item>Дата : 21-07-2020</ListGroup.Item>
-                            <ListGroup.Item>Тип : Квартальный</ListGroup.Item>
+                            <ListGroup.Item>Номер : №{props.order[0].order_id}</ListGroup.Item>
+                            <ListGroup.Item>Дата : {props.order[0].created_at}</ListGroup.Item>
+                            <ListGroup.Item>Тип : {props.order[0].order_type.name}</ListGroup.Item>
                         </ListGroup>
                     </div>
                 </Col>
@@ -23,9 +24,10 @@ const OrderShow = (props) => {
                     <div className={'title'}><h5>{LanguageRus.page.orders.show.client.title}</h5></div>
                     <div className={'content'}>
                         <ListGroup>
-                            <ListGroup.Item>ФИО : Альбертян Артем Петрович</ListGroup.Item>
-                            <ListGroup.Item>Телефон : +79037188521</ListGroup.Item>
-                            <ListGroup.Item>Организация : Офис на Курской</ListGroup.Item>
+                            <ListGroup.Item>ФИО : {props.order[0].client.name}</ListGroup.Item>
+                            <ListGroup.Item>Телефон : {props.order[0].client.phone}</ListGroup.Item>
+                            <ListGroup.Item>Email : {props.order[0].client.email}</ListGroup.Item>
+                            <ListGroup.Item>Организация : {props.order[0].client.company}</ListGroup.Item>
                         </ListGroup>
                     </div>
                 </Col>
@@ -33,7 +35,7 @@ const OrderShow = (props) => {
                     <div className={'title'}><h5>{LanguageRus.page.orders.show.delivery.title}</h5></div>
                     <div className={'content'}>
                         <ListGroup>
-                            <ListGroup.Item>Адрес доставки : г.Москва Воронежская 44-1-101</ListGroup.Item>
+                            <ListGroup.Item>{!props.order[0].cart.delivery ? `Адрес доставки : ${props.order[0].client.addressK}` : `Самовывоз: ${props.order[0].cart.delivery.address}`}</ListGroup.Item>
                         </ListGroup>
                     </div>
                 </Col>
@@ -45,6 +47,8 @@ const OrderShow = (props) => {
                         <thead>
                         <tr>
                             <th scope="col">№</th>
+                            <th scope="col">Артикул</th>
+                            <th scope="col">Картинка</th>
                             <th scope="col">Продукт</th>
                             <th scope="col">Цена за ед</th>
                             <th scope="col">Количество</th>
@@ -52,27 +56,7 @@ const OrderShow = (props) => {
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Флешка</td>
-                            <td>450 руб.</td>
-                            <td>2</td>
-                            <td>900 руб.</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Флешка</td>
-                            <td>450 руб.</td>
-                            <td>2</td>
-                            <td>900 руб.</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Флешка</td>
-                            <td>450 руб.</td>
-                            <td>2</td>
-                            <td>900 руб.</td>
-                        </tr>
+                        {products}
                         </tbody>
                     </table>
                     <table className="table" style={{width: '300px'}}>
@@ -83,7 +67,7 @@ const OrderShow = (props) => {
                         </thead>
                         <tbody>
                         <tr>
-                            <td>1900 руб.</td>
+                            <td>{props.order[0].total} руб.</td>
                         </tr>
                         </tbody>
                     </table>
@@ -93,14 +77,11 @@ const OrderShow = (props) => {
                 <Col col="md">
                     <div className={'title'}><h5>{LanguageRus.page.orders.show.comment.title}</h5></div>
                     <div className={'content'}>
-                        <p>В рамках спецификации современных стандартов, некоторые особенности внутренней политики представляют собой
-                        не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть ограничены исключительно образом мышления!
-                        А ещё диаграммы связей призваны к ответу. Повседневная практика показывает, что выбранный нами
-                        инновационный путь, в своём классическом представлении, допускает внедрение поэтапного и последовательного развития общества.</p>
+                        <p>{props.order[0].comment.comment}</p>
                     </div>
                 </Col>
             </Row>
-        </div>
+        </div>}
         </>
     )
 }
