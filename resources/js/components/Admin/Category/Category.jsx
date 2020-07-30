@@ -8,7 +8,7 @@ const Category = (props) => {
         <tr>
             <td>{props.category.category_id}</td>
             <td>{props.category.image && <img src={props.category.image}/> || <img src={"/storage/no-image.jpg"}/>}</td>
-            <td>{props.category.attributes ? props.category.attributes.name : null}</td>
+            <td>{props.category.attributes.name ? props.category.attributes.name : null}</td>
             <td>{props.category.parentNames}</td>
             <td><ButtonPanelContainer onDelete={props.onDelete} page={props.page} buttons={buttons} elementId={props.category.category_id}  url={props.url}/></td>
         </tr>
