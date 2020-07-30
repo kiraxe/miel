@@ -14,7 +14,7 @@ class UpdateCategory extends Migration
     public function up()
     {
         Schema::table('category', function (Blueprint $table) {
-            //
+            $table->boolean('main_menu')->default(false);
         });
     }
 
@@ -26,7 +26,7 @@ class UpdateCategory extends Migration
     public function down()
     {
         Schema::table('category', function (Blueprint $table) {
-            //
+            $table->boolean('main_menu')->default(false);
         });
     }
 }
