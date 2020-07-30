@@ -12,7 +12,7 @@ class SelectForm
         $category = collect([]);
 
         foreach ($queryGet as $value) {
-            $category->push(['category_id' => $value->category_id, 'name' => $value->attributes->name]);
+            $category->push(['category_id' => $value->category_id, 'name' => $value->attributes ? $value->attributes->name : ""]);
         }
 
         return $category;
