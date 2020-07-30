@@ -66,7 +66,17 @@ class CategoryController extends BaseController
 
         $category = Category::create($input);
 
-        $category->attributes()->create(['name' => $input['name'], 'description' => isset($input['description']) ? $input['description'] : '']);
+        $description = "";
+
+        if (isset($input['description'])) {
+            if (empty($input['description']) || $input['description'] === 'null') {
+                $description = " ";
+            } else {
+                $description = $input['description'];
+            }
+        }
+
+        $category->attributes()->create(['name' => $input['name'], 'description' => $description]);
 
         $image = $request->file('image');
 
@@ -132,10 +142,20 @@ class CategoryController extends BaseController
             settype($input['parent_id'], "null");
         }
 
+        $description = "";
+
+        if (isset($input['description'])) {
+            if (empty($input['description']) || $input['description'] === 'null') {
+                $description = " ";
+            } else {
+                $description = $input['description'];
+            }
+        }
+
         $category->parent_id = $input['parent_id'];
         $category->link = $input['link'];
 
-        $category->attributes()->update(['name' => $input['name'], 'description' => $input['description']]);
+        $category->attributes()->update(['name' => $input['name'], 'description' => $description]);
 
         $category->save();
 
