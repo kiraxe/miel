@@ -39,6 +39,7 @@ footer {
       li {
         list-style-type: none;
         display: inline-block;
+        margin-left: 3px;
         $count: 0;
         @for $i from 1 through 4 {
           &:nth-child(#{$i}) a {
