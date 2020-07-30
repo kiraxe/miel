@@ -5,11 +5,6 @@ const Links = (props) => {
 
     const [leftDropMenu, setLeftDropMenu] = useState(false);
 
-    useEffect(() => {
-        setLeftDropMenu(props.dropLeftNavigationRun);
-    });
-
-
     const leftDropMenuHandler = page => {
 
         if (leftDropMenu) {
