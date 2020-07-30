@@ -52,9 +52,9 @@ Route::middleware('json.response')->group(function () {
     //-index
     Route::get('index', 'Api\IndexPageController@index');
     //-catalog
-    Route::resource('catalog', 'Api\CatalogPageController');
+    Route::resource('/catalog', 'Api\CatalogPageController');
 
-    Route::resource('orders_admin', 'Api\OrderController');
+    Route::resource('/orders_admin', 'Api\OrderController');
 
 });
 
@@ -88,6 +88,7 @@ Route::middleware(['auth:api','json.response'])->group(function () {
 
     //->options
     //Route::resource('/options', 'Api\OptionController');
+
 
 });
 

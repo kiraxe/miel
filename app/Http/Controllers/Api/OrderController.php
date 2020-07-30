@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api;
+use App\Cart;
+use App\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Orders;
@@ -71,21 +73,18 @@ class OrderController extends BaseController
 
         $input = $request->all();
 
-        $validator = Validator::make($input, [
+        /*$validator = Validator::make($input, [
             'total' => 'required',
         ]);
 
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());
-        }
+        }*/
 
         if(isset($input['status'])) {
             $input['status'] === 'true' || $input['status'] === '1' ? $input['status'] = TRUE : $input['status'] = FALSE;
             $order->status = $input['status'];
         }
-
-        $order->total = $input['order'];
-
 
         $order->save();
 
@@ -99,9 +98,15 @@ class OrderController extends BaseController
      * @param  int  $order_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Orders $order)
+    public function destroy($order_id)
     {
+        $order = Orders::find($order_id);
+        $cart_id = $order->cart_id;
         $order->delete();
+        $cart = Cart::where('cart_id', $cart_id);
+        $cart->delete();
+        $OrderDetail = OrderDetail::where('order_id', $order_id);
+        $OrderDetail->delete();
 
         return $this->sendResponse($order->toArray(), 'Order deleted successfully.');
     }

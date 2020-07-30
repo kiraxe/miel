@@ -7,7 +7,7 @@ const getAxiosSettings = () => {
     let token = localStorage.getItem('token');
 
     return axios.create({
-        baseURL: 'https://347752-co08057.tmweb.ru:8080/api/',
+        baseURL: 'https://localhost:8080/api/',
         headers: {
             //"X-Requested-With": 'XMLHttpRequest',
             "Authorization" : 'Bearer ' +  token,
@@ -119,6 +119,10 @@ export const adminAPI = {
         return getAxiosSettings().get(`orders_admin/?page=${page}`)
             .then(response => response.data)
             .catch(error => error.response);
+    },
+    deleteOrder(order_id) {
+        return getAxiosSettings().delete(`orders_admin/${order_id}`)
+            .then(response => response.data);
     },
 
 };

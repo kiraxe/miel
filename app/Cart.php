@@ -6,6 +6,8 @@ class Cart extends Model
 {
     protected $table = 'cart';
 
+    protected $primaryKey = 'cart_id';
+
     public $timestamps = true;
 
     /**

@@ -3,7 +3,7 @@ import ButtonPanelContainer from "../../common/ButtonsPanel/ButtonPanelContainer
 import { rus as LanguageRus} from '../Language';
 
 const Order = (props) => {
-    let buttons = ['show'];
+    let buttons = ['show', 'delete'];
     return (
         <tr>
             <td>{props.order.order_id}</td>

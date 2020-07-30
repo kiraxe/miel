@@ -1,5 +1,5 @@
 import {adminAPI} from "../api/api";
-import {setProductsAC} from "./products-reducer";
+import {deleteProductAC, setProductsAC} from "./products-reducer";
 
 const SET_ORDERS = 'SET_ORDERS';
 const DELETE_ORDER = 'DELETE_ORDER';
@@ -73,6 +73,9 @@ export const getOrders = (page) => async dispatch => {
 }
 
 export const deleteOrder = (id) => async dispatch => {
+    let response = await adminAPI.deleteOrder(id);
+    console.log(response);
+    dispatch(deleteOrderAC(response.data));
 }
 
 export const showOrder = (id) => async dispatch => {

@@ -1067,6 +1067,7 @@ body main#public #wrapper #main-content .left ul li .dropLeftNavigation li a:bef
 body main#public #wrapper #main-content .navigation nav {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin: 0 -15px;
 }
 
@@ -1074,7 +1075,7 @@ body main#public #wrapper #main-content .navigation nav .menu-item {
   transform: translate(15px, 15px);
   background: #F4F7FA;
   flex: 0 0 auto;
-  margin: 0 15px;
+  margin: 20px 15px;
   height: 225px;
   width: 225px;
 }
@@ -1372,6 +1373,7 @@ body main#public #wrapper footer .social ul {
 body main#public #wrapper footer .social ul li {
   list-style-type: none;
   display: inline-block;
+  margin-left: 3px;
 }
 
 body main#public #wrapper footer .social ul li:nth-child(1) a {

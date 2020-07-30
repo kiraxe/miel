@@ -1531,16 +1531,6 @@ var AccountContainer = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "leftDropMenuHandler", function (page) {
-      if (_this.state.dropLeftNavigationRun) {
-        _this.setState({
-          dropLeftNavigationRun: false
-        });
-      } else {
-        _this.setState({
-          dropLeftNavigationRun: true
-        });
-      }
-
       _this.props.getCatalog(page, _this.state.offset, _this.state.limit);
     });
 
@@ -1557,7 +1547,6 @@ var AccountContainer = /*#__PURE__*/function (_Component) {
     });
 
     _this.state = {
-      dropLeftNavigationRun: false,
       offset: 0,
       limit: 2,
       isFetching: false
@@ -1806,14 +1795,28 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Links = function Links(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.dropLeftNavigationRun),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       leftDropMenu = _useState2[0],
       setLeftDropMenu = _useState2[1];
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setLeftDropMenu(props.dropLeftNavigationRun);
-  });
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      catId = _useState4[0],
+      setCatId = _useState4[1];
+
+  var leftDropMenuHandler = function leftDropMenuHandler(page) {
+    setCatId(page);
+
+    if (leftDropMenu) {
+      setLeftDropMenu(false);
+    } else {
+      setLeftDropMenu(true);
+    }
+
+    props.leftDropMenuHandler(page);
+  };
+
   var className = leftDropMenu ? "act" : "";
   var categories = props.categories ? props.categories.map(function (item, key) {
     return item.children.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -1821,12 +1824,12 @@ var Links = function Links(props) {
       key: key
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
       onClick: function onClick() {
-        return props.leftDropMenuHandler(item.category_id);
+        return leftDropMenuHandler(item.category_id);
       },
-      className: "dropLeftNavigationRun ".concat(className),
+      className: "dropLeftNavigationRun ".concat(catId === item.category_id ? className : ''),
       to: "/shop/".concat(item.link)
     }, item.attributes.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-      className: "dropLeftNavigation ".concat(className)
+      className: "dropLeftNavigation ".concat(catId === item.category_id ? className : '')
     }, props.categories.map(function (it, key) {
       return it.parent_id === item.category_id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         onClick: function onClick() {
@@ -1834,7 +1837,7 @@ var Links = function Links(props) {
         },
         key: key
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-        to: it.link
+        to: "/shop/".concat(it.link)
       }, it.attributes.name)) : null;
     }))) : !item.parent_id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       onClick: function onClick() {
@@ -2711,7 +2714,7 @@ var Bars = function Bars(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "#"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "images/bars.svg"
+    src: "/images/bars.svg"
   })));
 };
 
@@ -3029,7 +3032,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var MenuItem = function MenuItem(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, props.categories ? props.categories.map(function (item, key) {
-    return !item.parent_id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    return item.main_menu ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: key,
       className: "menu-item"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3381,7 +3384,13 @@ var Item = function Item(props) {
     className: "article"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u0410\u0440\u0442. ", props.itm.article)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react_html_parser__WEBPACK_IMPORTED_MODULE_2___default()(props.itm.detail)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      height: '35px',
+      display: "inline-block",
+      overflow: 'hidden'
+    }
+  }, react_html_parser__WEBPACK_IMPORTED_MODULE_2___default()(props.itm.detail)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "costPanel"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cost"
@@ -3603,31 +3612,45 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Links = function Links(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.leftDropMenu),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       leftDropMenu = _useState2[0],
       setLeftDropMenu = _useState2[1];
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setLeftDropMenu(props.leftDropMenu);
-  });
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      catId = _useState4[0],
+      setCatId = _useState4[1];
+
+  var leftDropMenuHandler = function leftDropMenuHandler(page) {
+    setCatId(page);
+
+    if (leftDropMenu) {
+      setLeftDropMenu(false);
+    } else {
+      setLeftDropMenu(true);
+    }
+  };
+
   var className = leftDropMenu ? "active" : "";
   var categories = props.categories ? props.categories.map(function (item, key) {
     return item.children.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       className: 'parent',
       key: key
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-      onClick: props.leftDropMenuHandler,
+      onClick: function onClick() {
+        return leftDropMenuHandler(item.category_id);
+      },
       activeClassName: "act",
-      className: "leftDropMenuRun ".concat(className),
+      className: "leftDropMenuRun ".concat(catId === item.category_id ? className : ''),
       to: "/shop/".concat(item.link)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u0413\u041A \xAB\u041C\u0418\u042D\u041B\u042C\xBB"), " ", item.attributes.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-      className: "leftDropMenu ".concat(className)
+      className: "leftDropMenu ".concat(catId === item.category_id ? className : '')
     }, props.categories.map(function (it, key) {
       return it.parent_id === item.category_id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         key: key
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-        to: it.link
+        to: "/shop/".concat(it.link)
       }, it.attributes.name)) : null;
     }))) : !item.parent_id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: key
@@ -3781,6 +3804,8 @@ var Popup = function Popup(props) {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (props.orderId) {
       setVariableForm('order');
+    } else if (!props.orderId && formVariable === 'order') {
+      setVariableForm('reg');
     }
   });
   var form = formVariable === "reg" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PopupForm_PopupForm__WEBPACK_IMPORTED_MODULE_1__["default"], {

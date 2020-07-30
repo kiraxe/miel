@@ -224,7 +224,7 @@ var Category = function Category(props) {
     src: props.category.image
   }) || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: "/storage/no-image.jpg"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.category.attributes.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.category.parentNames), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.category.attributes ? props.category.attributes.name : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.category.parentNames), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
     onDelete: props.onDelete,
     page: props.page,
     buttons: buttons,
@@ -519,6 +519,17 @@ var CategoryEditForm = function CategoryEditForm(props) {
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["File"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.image
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-check"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "form-check-label",
+    htmlFor: "categoryMainMenu"
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.main_menu), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "checkbox",
+    idName: "categoryMainMenu",
+    name: "main_menu",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Checkbox"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.main_menu
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.parent), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
     idName: "categoryParent",
@@ -655,6 +666,17 @@ var CategoryNewForm = function CategoryNewForm(props) {
     change: change,
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["File"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.image
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-check"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "form-check-label",
+    htmlFor: "categoryMainMenu"
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.main_menu), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "checkbox",
+    idName: "categoryMainMenu",
+    name: "main_menu",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Checkbox"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.main_menu
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.parent), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
@@ -1286,7 +1308,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Order = function Order(props) {
-  var buttons = ['show'];
+  var buttons = ['show', 'delete'];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.order_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.client.company), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.order_type.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.total), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
     onDelete: props.onDelete,
     page: props.page,

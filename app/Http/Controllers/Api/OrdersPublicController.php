@@ -45,7 +45,7 @@ class OrdersPublicController extends BaseController
 
 
         $order = Orders::create([
-            'cart_id' => $cart->id,
+            'cart_id' => $cart->cart_id,
             'client_id' => $client_input->id,
             'total' => $input['total'],
             'type_id' => $orderType_input
@@ -53,7 +53,7 @@ class OrdersPublicController extends BaseController
 
         if (!is_null($comment_input)) {
             $comment = Comment::create([
-                'cart_id' => $cart->id,
+                'cart_id' => $cart->cart_id,
                 'client_id' => $client_input->id,
                 'order_id' => $order->order_id,
                 'comment' => $comment_input
@@ -79,7 +79,7 @@ class OrdersPublicController extends BaseController
             ]);
 
             $cartToProduct = CartToProduct::create([
-                'cart_id' => $cart->id,
+                'cart_id' => $cart->cart_id,
                 'order_detail_id' => $orderDetail->id
             ]);
 

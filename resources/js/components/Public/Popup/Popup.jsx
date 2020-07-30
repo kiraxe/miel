@@ -18,6 +18,8 @@ const Popup = (props) => {
     useEffect(() => {
         if (props.orderId) {
             setVariableForm('order');
+        } else if(!props.orderId && formVariable === 'order') {
+            setVariableForm('reg');
         }
     })
 
