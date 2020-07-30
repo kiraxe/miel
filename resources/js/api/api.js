@@ -7,7 +7,7 @@ const getAxiosSettings = () => {
     let token = localStorage.getItem('token');
 
     return axios.create({
-        baseURL: 'https://347752-co08057.tmweb.ru/api/',
+        baseURL: 'https://347752-co08057.tmweb.ru:8080/api/',
         headers: {
             //"X-Requested-With": 'XMLHttpRequest',
             "Authorization" : 'Bearer ' +  token,

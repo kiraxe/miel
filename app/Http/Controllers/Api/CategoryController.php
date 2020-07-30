@@ -66,7 +66,7 @@ class CategoryController extends BaseController
 
         $category = Category::create($input);
 
-        $category->attributes()->create(['name' => $input['name'], 'description' => $input['description']]);
+        $category->attributes()->create(['name' => $input['name'], 'description' => isset($input['description']) ? $input['description'] : '']);
 
         $image = $request->file('image');
 
