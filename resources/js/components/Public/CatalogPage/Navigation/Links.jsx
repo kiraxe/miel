@@ -3,16 +3,28 @@ import {NavLink} from "react-router-dom";
 
 const Links = (props) => {
 
-    const [leftDropMenu, setLeftDropMenu] = useState(props.dropLeftNavigationRun);
+    const [leftDropMenu, setLeftDropMenu] = useState(false);
 
     useEffect(() => {
         setLeftDropMenu(props.dropLeftNavigationRun);
     });
 
+
+    const leftDropMenuHandler = page => {
+
+        if (leftDropMenu) {
+            setLeftDropMenu(false)
+        } else {
+            setLeftDropMenu(true)
+        }
+
+        props.leftDropMenuHandler(page)
+    }
+
     let className = leftDropMenu ? "act" : "";
 
     let categories = props.categories ? props.categories.map((item, key) => {
-        return  item.children.length ? <li className={'parent'} key={key}><NavLink onClick={() => props.leftDropMenuHandler(item.category_id)} className={`dropLeftNavigationRun ${className}`} to={`/shop/${item.link}`} >{item.attributes.name}</NavLink><ul className={`dropLeftNavigation ${className}`}>{ props.categories.map((it, key) => it.parent_id === item.category_id ? <li onClick={() => props.onPageHandler(it.category_id)} key={key}><NavLink to={it.link}>{it.attributes.name}</NavLink></li> : null)}</ul></li> : !item.parent_id ? <li onClick={() => props.onPageHandler(item.category_id)} key={key}><NavLink to={`/shop/${item.link}`} >{item.attributes.name}</NavLink></li> : null
+        return  item.children.length ? <li className={'parent'} key={key}><NavLink onClick={() => leftDropMenuHandler(item.category_id)} className={`dropLeftNavigationRun ${className}`} to={`/shop/${item.link}`} >{item.attributes.name}</NavLink><ul className={`dropLeftNavigation ${className}`}>{ props.categories.map((it, key) => it.parent_id === item.category_id ? <li onClick={() => props.onPageHandler(it.category_id)} key={key}><NavLink to={it.link}>{it.attributes.name}</NavLink></li> : null)}</ul></li> : !item.parent_id ? <li onClick={() => props.onPageHandler(item.category_id)} key={key}><NavLink to={`/shop/${item.link}`} >{item.attributes.name}</NavLink></li> : null
     } ) : null;
 
     return (

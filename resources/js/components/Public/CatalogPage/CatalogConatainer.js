@@ -17,7 +17,6 @@ class AccountContainer extends Component {
         super(props);
 
         this.state = {
-            dropLeftNavigationRun: false,
             offset: 0,
             limit: 2,
             isFetching: false
@@ -53,16 +52,6 @@ class AccountContainer extends Component {
     }
 
     leftDropMenuHandler = page => {
-
-        if (this.state.dropLeftNavigationRun) {
-            this.setState({
-                dropLeftNavigationRun: false
-            })
-        } else {
-            this.setState({
-                dropLeftNavigationRun: true
-            })
-        }
         this.props.getCatalog(page, this.state.offset, this.state.limit);
     }
 
