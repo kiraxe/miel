@@ -87,9 +87,9 @@ const Item = (props) => {
             <NavLink className="productNavLink" to={`/shop/${link[0]}/${props.itm.product_id}`}><div className="images"><img src={props.itm.image} alt="prod" title="pen"/></div></NavLink>
                 <div className="content">
                     <div className="title"><h2>{props.itm.name}</h2></div>
-                    <div className="article"><p style={{height: '35px',display: "inline-block", overflow: 'hidden'}}>Арт. {props.itm.article}</p></div>
+                    <div className="article"><p>Арт. {props.itm.article}</p></div>
                     <div className="text">
-                        <p>{ReactHtmlParser(props.itm.detail)}</p>
+                        <p style={{height: '35px',display: "inline-block", overflow: 'hidden'}} >{ReactHtmlParser(props.itm.detail)}</p>
                     </div>
                 </div>
                 <div className="costPanel">
