@@ -64,6 +64,10 @@ class CategoryController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
+        if(isset($input['main_menu'])) {
+            $input['main_menu'] === 'true' || $input['main_menu'] === '1' ? $input['main_menu'] = TRUE : $input['main_menu'] = FALSE;
+        }
+
         $category = Category::create($input);
 
         $description = "";
@@ -150,6 +154,11 @@ class CategoryController extends BaseController
             } else {
                 $description = $input['description'];
             }
+        }
+
+        if(isset($input['main_menu'])) {
+            $input['main_menu'] === 'true' || $input['main_menu'] === '1'  ? $input['main_menu'] = TRUE : $input['main_menu'] = FALSE;
+            $category->main_menu = $input['main_menu'];
         }
 
         $category->parent_id = $input['parent_id'];

@@ -47,6 +47,10 @@ const CategoryEditForm = (props) => {
             <div className="form-group">
                 <Field type="file" idName="categoryFiles" name={"image"} change={change} component={File} label={LanguageRus.page.categories.table.image} />
             </div>
+            <div className="form-check">
+                <label className="form-check-label" htmlFor="categoryMainMenu">{LanguageRus.page.products.table.main_menu}</label>
+                <Field type="checkbox" idName="categoryMainMenu" name={"main_menu"} component={Checkbox} label={LanguageRus.page.products.table.main_menu} />
+            </div>
             <div className="form-group">
                 <label>{LanguageRus.page.categories.table.parent}</label>
                 <Field idName="categoryParent" multiple={false} name={"parent_id"} ourCategory={id} select={select} component={Select}/>
