@@ -100,8 +100,6 @@ class PublicContainer extends Component {
             })
         }
 
-        console.log(page);
-
         this.props.getCatalog(page, this.state.offset, this.state.limit);
     }
 
