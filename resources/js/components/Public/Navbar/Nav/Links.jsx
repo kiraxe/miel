@@ -16,6 +16,8 @@ const Links = (props) => {
             setLeftDropMenu(true)
         }
 
+        props.leftDropMenuHandler(page);
+
     }
 
     let className = leftDropMenu ? "active" : "";

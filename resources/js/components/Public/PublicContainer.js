@@ -25,6 +25,7 @@ import {
 import CatalogConatainer from "./CatalogPage/CatalogConatainer";
 import {addCartClient, getCart, setOrderIdNull} from '../../redux/Public/cart-reducer'
 import {getOrderIdSelectors} from '../../redux/Public/cart-selectros'
+import {getCatalog} from '../../redux/Public/catalog-reducer';
 
 
 class PublicContainer extends Component {
@@ -36,6 +37,8 @@ class PublicContainer extends Component {
             dropMenu: false,
             leftDropMenu: false,
             dropLeftNavigationRun: false,
+            offset: 0,
+            limit: 2,
             popUp: false
         }
     }
@@ -86,7 +89,7 @@ class PublicContainer extends Component {
         this.props.addClient(formData);
     }
 
-    leftDropMenuHandler = e => {
+    leftDropMenuHandler = page => {
         if (this.state.leftDropMenu) {
             this.setState({
                 leftDropMenu: false
@@ -96,6 +99,8 @@ class PublicContainer extends Component {
                 leftDropMenu: true
             })
         }
+
+        this.props.getCatalog(page, this.state.offset, this.state.limit);
     }
 
     onLogin = (formData) => {
@@ -144,5 +149,5 @@ let mapStateToProps = (state) => {
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {getPublic, getIndexPage, addClient, login, logout, addCartClient, getCart, setOrderIdNull})
+    connect(mapStateToProps, {getPublic, getIndexPage, addClient, login, logout, addCartClient, getCart, setOrderIdNull, getCatalog})
 )(PublicContainer);
