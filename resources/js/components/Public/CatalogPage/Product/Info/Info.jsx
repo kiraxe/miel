@@ -81,6 +81,34 @@ const Info = (props) => {
     }
 
     useEffect(() => {
+
+        setPrice(props.price);
+        setMin(props.min);
+        setStatMin(props.min);
+        setPriceSecond(props.priceSecond);
+        setMinSecond(props.minSecond);
+        setPriceThird(props.priceThird);
+        setMinThird(props.minThird);
+        setPriceQuarterly(props.priceQuarterly);
+        setMinQuarterly(props.minQuarterly);
+        setStatMinQuarterly(props.minQuarterly);
+
+        let from = replaceStr(props.fromQuarterlyDate, '-', '/');
+        let to = replaceStr(props.toQuarterlyDate, '-', '/');
+
+        setFromDate(new Date(from));
+        setToDate(new Date(to));
+
+        setPriceVariable(props.price);
+        setCurrentDate(new Date(getCurrentDate()));
+
+        setTotal(props.price * props.min)
+
+
+    }, [price])
+
+    useEffect(() => {
+
         if (currentDate < fromDate || currentDate > toDate ) {
             if (min >= minSecond && min < minThird) {
                 setPriceVariable(priceSecond);

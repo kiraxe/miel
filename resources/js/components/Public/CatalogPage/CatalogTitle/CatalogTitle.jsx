@@ -5,8 +5,6 @@ const CatalogTitle = (props) => {
 
     let page = !!props.page.id ? props.page.id : props.page.page;
 
-
-
     let cat = props.categories ? props.categories.filter(item => {
         let str = item.link.split('/');
         console.log(str);
