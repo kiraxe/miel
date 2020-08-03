@@ -105,7 +105,7 @@ const Info = (props) => {
         setTotal(props.price * props.min)
 
 
-    }, [price])
+    }, [props.price])
 
     useEffect(() => {
 

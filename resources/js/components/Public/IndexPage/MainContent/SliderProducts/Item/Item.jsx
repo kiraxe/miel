@@ -60,7 +60,7 @@ const Item = (props) => {
         setTotal(props.itm.price * props.itm.min)
 
 
-    }, [price])
+    }, [props.itm.price])
 
     const addCountHandler = () => {
         if (currentDate < fromDate || currentDate > toDate ) {

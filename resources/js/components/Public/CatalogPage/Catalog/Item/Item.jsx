@@ -66,7 +66,7 @@ const Item = (props) => {
         setTotal(props.item.price * props.item.min)
 
 
-    }, [price])
+    }, [props.item.price])
 
 
     const removeCountHandler = () => {

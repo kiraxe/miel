@@ -10,8 +10,6 @@ const CatalogTitle = (props) => {
         return str[str.length - 1] === page ? item : null;
     }) : null;
 
-    console.log(cat);
-
     return(
         <div className="row catalogTitle">
             <div className="col-md-12">

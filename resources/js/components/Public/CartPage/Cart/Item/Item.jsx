@@ -55,7 +55,7 @@ const Item = (props) => {
         setTotal(props.item.total);
 
 
-    }, [price])
+    }, [props.item.price])
 
 
     const addCountHandler = () => {

@@ -7,7 +7,6 @@ const Catalog = (props) => {
 
     const [load, setLoad] = useState(false);
 
-
     useEffect(() => {
         !props.initialize ? setLoad(true) : setLoad(false);
     })
