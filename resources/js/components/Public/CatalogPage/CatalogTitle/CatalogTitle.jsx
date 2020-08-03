@@ -9,12 +9,10 @@ const CatalogTitle = (props) => {
     let cat = props.categories ? props.categories.filter(item => page === item.link ? item : null) : null;
 
 
-    console.log(cat);
-
     return(
         <div className="row catalogTitle">
             <div className="col-md-12">
-                <div className="title"><h1>Весь каталог</h1></div>
+                <div className="title"><h1>{cat[0].attributes.name}</h1></div>
                 <div className="text"><p>Какое-то небольшое описание, не более чем на две строки</p>
                 </div>
             </div>
