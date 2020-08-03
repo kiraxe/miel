@@ -7,7 +7,6 @@ const CatalogTitle = (props) => {
 
     let cat = props.categories ? props.categories.filter(item => {
         let str = item.link.split('/');
-        console.log(str);
         return str[str.length - 1] === page ? item : null;
     }) : null;
 
