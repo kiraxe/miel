@@ -155,7 +155,7 @@ const Item = (props) => {
                             <div className="add"><img onClick={addCountHandler} src="/images/plus.png"/></div>
                         </div>
                     </div>
-                    <div className="price">Итого: {total} ₽</div>
+                    <div className="price">Итого: {total.toFixed(2)} ₽</div>
                 </div>
             </div>
             <div className="cross"><img onClick={() => props.deleteCartHandler(props.item.product_id)} src="/images/cross.svg"/></div>

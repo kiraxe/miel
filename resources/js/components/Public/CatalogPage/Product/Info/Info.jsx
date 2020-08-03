@@ -162,7 +162,7 @@ const Info = (props) => {
                     </div>
                     <div className="total">
                         <input className="total__hedden" type="hidden" name="total"/>
-                        <p>Итого: <span>{total}</span> ₽</p>
+                        <p>Итого: <span>{total.toFixed(2)}</span> ₽</p>
                     </div>
                     <div className="button">
                         {props.isLoggedIn && <button onClick={() => props.addCartHandler({
