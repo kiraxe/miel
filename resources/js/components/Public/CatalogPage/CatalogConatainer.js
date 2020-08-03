@@ -9,6 +9,7 @@ import CatalogPage from "./CatalogPage";
 import ProductContainer from "./Product/ProductContainer";
 import {getSettingsSelectors} from "../../../redux/Public/public-selectors";
 import {addCart} from '../../../redux/Public/cart-reducer';
+import {getCartSelectors} from "../../../redux/Public/cart-selectros";
 
 
 
@@ -87,6 +88,7 @@ class AccountContainer extends Component {
                     isLoggedIn={this.props.isLoggedIn}
                 /> ||
                 <CatalogPage
+                    cart={this.props.cart}
                     isLoggedIn={this.props.isLoggedIn}
                     onPageHandler={onPageHandler}
                     dropLeftNavigationRun={this.state.dropLeftNavigationRun}
@@ -115,7 +117,8 @@ let mapStateToProps = (state) => {
         products: getProductsSelectors(state),
         initialize: getInitializeSelectors(state),
         totalProduct: getTotalProductSelectors(state),
-        settings: getSettingsSelectors(state)
+        settings: getSettingsSelectors(state),
+        cart: getCartSelectors(state)
     }
 
 
