@@ -31,6 +31,7 @@ const Product = (props) => {
                                 <Image image={props.product.image}/>
                                 <div className="col-md-6 col-lg-7 productCardContent">
                                     <Info
+                                        key={props.product.product_id}
                                         title={title}
                                         titleSecond={titleSecond}
                                         product_id={props.product.product_id}

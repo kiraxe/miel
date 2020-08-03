@@ -41,6 +41,7 @@ class AccountContainer extends Component {
         }
 
         return <Product
+            key={this.props.product.product_id}
             isFetching={this.state.isFetching}
             product={this.props.product}
             productPage={this.props.match.params.id}
