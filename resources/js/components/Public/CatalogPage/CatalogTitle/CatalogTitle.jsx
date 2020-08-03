@@ -7,9 +7,7 @@ const CatalogTitle = (props) => {
 
     let str = page.split('/');
 
-    console.log(str);
-
-    let cat = props.categories ? props.categories.filter(item => page === item.link ? item : null) : null;
+    let cat = props.categories ? props.categories.filter(item => str === item.link ? item : null) : null;
 
     return(
         <div className="row catalogTitle">
