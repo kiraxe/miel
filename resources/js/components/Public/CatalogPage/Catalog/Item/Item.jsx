@@ -106,6 +106,8 @@ const Item = (props) => {
 
     let link = props.item.attributes.map(item => !item.attributes.parent_id ? item.attributes.link : "");
 
+    let className = "";
+
     if (props.cart) {
         for (const element of props.cart) {
             if (element.product_id === props.itm.product_id) {
