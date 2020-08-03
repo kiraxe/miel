@@ -129,7 +129,7 @@ const Item = (props) => {
                 <div className="content">
                     <div className="itemTitle"><h2>{props.item.name}</h2></div>
                     <div className="article">Арт. {props.item.article}</div>
-                    <div className="itemText"><p>{ReactHtmlParser(props.item.detail)}</p></div>
+                    <div className="itemText"><p style={{height: '65px',display: "inline-block", overflow: 'hidden'}}>{ReactHtmlParser(props.item.detail)}</p></div>
                 </div>
             </div>
             <div className="itemPartSecond">
