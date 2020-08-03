@@ -75,6 +75,8 @@ class AccountContainer extends Component {
             this.props.getCatalog(page, this.state.offset, this.state.limit);
         }
 
+        console.log(this.props);
+
         return (
             <>
                 { parseInt(this.props.match.params.id) && <ProductContainer
