@@ -635,7 +635,7 @@
 @media (max-width: 1024px) {
   body {
     main#public {
-      &#catalog, &#item {
+      &.shop, &#item {
         .left {
           display: none;
         }
