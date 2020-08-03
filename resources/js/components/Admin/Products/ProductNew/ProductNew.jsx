@@ -122,6 +122,6 @@ const ProductNewForm = (props) => {
     )
 }
 
-const ProductNewReduxForm = reduxForm({form:"ProductNew", validate, asyncBlurFields: ['name', 'detail', 'price']})(ProductNewForm);
+const ProductNewReduxForm = reduxForm({form:"ProductNew", validate, asyncBlurFields: ['name', 'detail']})(ProductNewForm);
 
 export default ProductNew;
