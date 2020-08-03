@@ -56,7 +56,7 @@ class AccountContainer extends Component {
     }
 
     onLoadHandler = () => {
-        let limit = this.state.limit < this.props.totalProduct ? this.state.limit + 1 : this.state.limit;
+        let limit = this.state.limit < this.props.totalProduct ? this.state.limit + 6 : this.state.limit;
         let page = this.getPage();
 
         this.setState({
