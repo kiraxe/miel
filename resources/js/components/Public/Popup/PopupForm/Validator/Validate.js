@@ -20,6 +20,14 @@ const validate = (values, allValues, props) => {
         errors.password = LanguageRus.page.clientele.error.password;
     }
 
+    if (!values.addressK) {
+        errors.addressK = LanguageRus.page.clientele.error.addressK;
+    }
+
+    if (!values.addressP) {
+        errors.addressP = LanguageRus.page.clientele.error.addressP;
+    }
+
 
     return errors;
 

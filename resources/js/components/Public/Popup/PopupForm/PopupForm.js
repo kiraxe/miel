@@ -85,7 +85,7 @@ const ClientPopupForm = (props) => {
     )
 }
 
-const ClientPopupReduxForm = reduxForm({form:"PopupForm", validate, asyncBlurFields: ['name', 'email', 'phone']})(ClientPopupForm);
+const ClientPopupReduxForm = reduxForm({form:"PopupForm", validate, asyncBlurFields: ['login','password', 'name', 'email', 'phone', 'addressK', 'addressP']})(ClientPopupForm);
 
 export default PopupForm;
 
