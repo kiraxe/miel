@@ -8,6 +8,8 @@ import Info from "../../../../CatalogPage/Product/Info/Info";
 
 const Item = (props) => {
 
+    console.log(props);
+
     const [price, setPrice] = useState(props.itm.price);
     const [min, setMin] = useState(props.itm.min);
     const [statMin, setStatMin] = useState(props.itm.min);
