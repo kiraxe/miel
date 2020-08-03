@@ -6,6 +6,7 @@ import {getCategoriesSelectors, getPopularSelectors, getNoveltySelectors, getIni
 import {getIndexPage} from "../../../redux/Public/index-reducer";
 import {getSettingsSelectors} from "../../../redux/Public/public-selectors";
 import {addCart} from '../../../redux/Public/cart-reducer';
+import {getCartSelectors} from '../../../redux/Public/cart-selectros';
 
 class MainContainer extends Component {
 
@@ -29,7 +30,7 @@ class MainContainer extends Component {
 
     render() {
         return (
-            <MainContent popUpOpen={this.props.popUpOpen} isFetching={this.state.isFetching} settings={this.props.settings} addCartHandler={this.addCartHandler} isLoggedIn={this.props.isLoggedIn} categories={this.props.categories} popular={this.props.popular} novelty={this.props.novelty}/>
+            <MainContent cart={this.props.cart} popUpOpen={this.props.popUpOpen} isFetching={this.state.isFetching} settings={this.props.settings} addCartHandler={this.addCartHandler} isLoggedIn={this.props.isLoggedIn} categories={this.props.categories} popular={this.props.popular} novelty={this.props.novelty}/>
         )
     }
 }
@@ -40,7 +41,8 @@ let mapStateToProps = (state) => {
         popular: getPopularSelectors(state),
         novelty: getNoveltySelectors(state),
         initialize: getInitializeSelectros(state),
-        settings: getSettingsSelectors(state)
+        settings: getSettingsSelectors(state),
+        cart: getCartSelectors(state)
     }
 };
 

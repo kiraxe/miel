@@ -8,7 +8,7 @@ const Popular = (props) => {
             <div className="col-md-12 popular">
                 <div className="title"><h1>Популярные товары</h1></div>
                 <div className="text"><p>Какое-то небольшое описание, не более чем на две строки</p></div>
-                <SliderProducts popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} popular={props.popular}/>
+                <SliderProducts cart={props.cart} popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} popular={props.popular}/>
             </div>
         </div>
     )
