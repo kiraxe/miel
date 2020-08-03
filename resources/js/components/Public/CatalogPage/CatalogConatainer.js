@@ -75,8 +75,6 @@ class AccountContainer extends Component {
             this.props.getCatalog(page, this.state.offset, this.state.limit);
         }
 
-        console.log(this.props);
-
         return (
             <>
                 { parseInt(this.props.match.params.id) && <ProductContainer
@@ -103,6 +101,7 @@ class AccountContainer extends Component {
                     addCartHandler={this.addCartHandler}
                     isFetching={this.state.isFetching}
                     popUpOpen={this.props.popUpOpen}
+                    page={this.props.match.params}
                 />}
             </>
         )

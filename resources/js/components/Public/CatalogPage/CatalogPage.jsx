@@ -25,7 +25,7 @@ const CatalogPage = (props) => {
                     </div>
                     <div className="col-md-12 col-xl-9 center">
                         <div className="container-my">
-                            <CatalogTitle/>
+                            <CatalogTitle categories={props.categories} page={props.page} />
                             <Catalog popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} initialize={props.initialize} products={props.products}/>
                             {props.products.length !== props.totalProduct && <LoadMore onLoadHandler={props.onLoadHandler}/> || null}
                             <Separator/>
