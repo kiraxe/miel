@@ -8,8 +8,6 @@ import Info from "../../../../CatalogPage/Product/Info/Info";
 
 const Item = (props) => {
 
-    console.log(props);
-
     const [price, setPrice] = useState(props.itm.price);
     const [min, setMin] = useState(props.itm.min);
     const [statMin, setStatMin] = useState(props.itm.min);
@@ -111,10 +109,12 @@ const Item = (props) => {
 
     let className = "";
 
-    for(const element of props.cart) {
-        if(element.product_id === props.itm.product_id) {
-            className = "active";
-            break;
+    if (props.cart) {
+        for (const element of props.cart) {
+            if (element.product_id === props.itm.product_id) {
+                className = "active";
+                break;
+            }
         }
     }
 
