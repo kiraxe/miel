@@ -30,6 +30,33 @@ const Item = (props) => {
 
     const [total, setTotal] = useState(props.item.total);
 
+    useEffect(() => {
+
+        setPrice(props.item.price);
+        setMin(props.item.count);
+        setStatMin(props.item.min);
+        setPriceSecond(props.item.priceSecond);
+        setMinSecond(props.item.minSecond);
+        setPriceThird(props.item.priceThird);
+        setMinThird(props.item.minThird);
+        setPriceQuarterly(props.item.priceQuarterly);
+        setMinQuarterly(props.item.minQuarterly);
+        setStatMinQuarterly(props.item.minQuarterly);
+
+        let from = replaceStr(props.settings.from, '-', '/');
+        let to = replaceStr(props.settings.to, '-', '/');
+
+        setFromDate(new Date(from));
+        setToDate(new Date(to));
+
+        setPriceVariable(props.item.price);
+        setCurrentDate(new Date(getCurrentDate()));
+
+        setTotal(props.item.total);
+
+
+    }, [price])
+
 
     const addCountHandler = () => {
         if (currentDate < fromDate || currentDate > toDate ) {
