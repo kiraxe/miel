@@ -109,7 +109,7 @@ const Item = (props) => {
 
     let className = "";
 
-    for(const element of this.props.cart) {
+    for(const element of props.cart) {
         if(element.product_id === props.itm.product_id) {
             className = "active";
             break;
@@ -136,7 +136,7 @@ const Item = (props) => {
                     </div>
                 </div>
                 <div className="button">
-                    {props.isLoggedIn && <button style={{display: 'flex'}} onClick={() => props.addCartHandler({
+                    {props.isLoggedIn && <button className={className} style={{display: 'flex'}} onClick={() => props.addCartHandler({
                         product_id: props.itm.product_id,
                         article: props.itm.article,
                         image:props.itm.image,
@@ -154,7 +154,7 @@ const Item = (props) => {
                         minQuarterly:props.itm.min_quarterly,
                         total: total
                     })
-                    }>Корзина {props.isFetching ? <img style={{width: '20px'}} src={loading}/> : null}</button> || <button onClick={props.popUpOpen}>Корзина</button> }
+                    }>Корзина {props.isFetching ? <img style={{width: '20px'}} src={loading}/> : null}</button> || <button className={className} onClick={props.popUpOpen}>Корзина</button> }
                 </div>
             </div>
         </div>)
