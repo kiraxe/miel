@@ -6,9 +6,7 @@ const CatalogTitle = (props) => {
     let page = !!props.page.id ? props.page.id : props.page.page;
 
 
-    let cat = props.categories ? props.categories.filter(item => page === item.link ? item : null) : null;
-
-    console.log(cat);
+    let cat = props.categories ? props.categories.filter(item => item.link.search(page) != -1 ? item : null) : null;
 
     return(
         <div className="row catalogTitle">
