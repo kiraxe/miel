@@ -110,7 +110,7 @@ const Item = (props) => {
 
     if (props.cart) {
         for (const element of props.cart) {
-            if (element.product_id === props.itm.product_id) {
+            if (element.product_id === props.item.product_id) {
                 className = "active";
                 break;
             }
