@@ -13,7 +13,7 @@ const CatalogTitle = (props) => {
     return(
         <div className="row catalogTitle">
             <div className="col-md-12">
-                <div className="title"><h1>{cat[0].attributes.name}</h1></div>
+                <div className="title"><h1>{cat[0] ? cat[0].attributes.name : null}</h1></div>
                 <div className="text"><p>Какое-то небольшое описание, не более чем на две строки</p>
                 </div>
             </div>
