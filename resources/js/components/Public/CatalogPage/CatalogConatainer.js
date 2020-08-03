@@ -18,7 +18,7 @@ class AccountContainer extends Component {
 
         this.state = {
             offset: 0,
-            limit: 2,
+            limit: 6,
             isFetching: false
 
         }
