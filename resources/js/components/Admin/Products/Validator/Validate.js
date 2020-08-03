@@ -12,6 +12,10 @@ const validate = values => {
         errors.detail = LanguageRus.page.products.error.detail;
     }
 
+    if (!values.article) {
+        errors.article = LanguageRus.page.products.error.article;
+    }
+
     if (!values.price_quarterly) {
         errors.price_quarterly = LanguageRus.page.products.error.price_quarterly;
     }

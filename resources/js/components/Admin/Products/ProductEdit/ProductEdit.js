@@ -138,6 +138,6 @@ const ProductEditForm = (props) => {
     )
 }
 
-const ProductEditReduxForm = reduxForm({form:"ProductEdit", validate, asyncBlurFields: ['name', 'detail']})(ProductEditForm);
+const ProductEditReduxForm = reduxForm({form:"ProductEdit", validate, asyncBlurFields: ['name', 'detail', 'article', 'price']})(ProductEditForm);
 
 export default ProductEdit;
