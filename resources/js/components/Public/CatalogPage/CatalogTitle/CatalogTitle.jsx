@@ -8,8 +8,10 @@ const CatalogTitle = (props) => {
     let cat = props.categories ? props.categories.filter(item => {
         let str = item.link.split('/');
         console.log(str);
-        return str === page ? item : null;
+        return str[str.length - 1] === page ? item : null;
     }) : null;
+
+    console.log(cat);
 
     return(
         <div className="row catalogTitle">
