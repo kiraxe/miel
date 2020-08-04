@@ -6,6 +6,7 @@ export const rus = {
             'clientele' : 'Клиенты',
             'options' : 'Опции',
             'orders' : 'Заказы',
+            'messages' : 'Сообщения',
             'settings' : 'Настройки',
             'logout' : 'Выход'
         }
@@ -146,6 +147,30 @@ export const rus = {
                     'title': 'Комментарий'
                 }
             }
+        },
+
+        'messages': {
+            'title' : "Сообщения клиентов",
+            'table' : {
+                'id' : 'Номер',
+                'message' : 'Сообщение',
+                'company': 'Название офиса',
+                'name': 'ФИО',
+                'date': 'Дата',
+                'action': 'Действия',
+            },
+            'show' : {
+                'title' : 'Сообщение',
+                'message': {
+                    'title' : 'Сообщение'
+                },
+                'client': {
+                    'title' : 'Клиент'
+                },
+            },
+            'error' : {
+                'message' : 'Cообщение',
+            },
         },
         'settings': {
             'title': "Настройки",

@@ -26,6 +26,7 @@ import CatalogConatainer from "./CatalogPage/CatalogConatainer";
 import {addCartClient, getCart, setOrderIdNull} from '../../redux/Public/cart-reducer'
 import {getCartSelectors, getOrderIdSelectors} from '../../redux/Public/cart-selectros'
 import {getCatalog} from '../../redux/Public/catalog-reducer';
+import {getSendSelectors} from "../../redux/Public/message-selectros";
 
 
 class PublicContainer extends Component {
@@ -128,7 +129,7 @@ class PublicContainer extends Component {
                 </div>
             </main>
             <Popup
-                settings={this.props.settings} orderId={this.props.orderId} classNameElement={className} popUpClose={this.popUpClose} popUp={this.state.popUp} addClient={this.onAddSubmit} onLogin={this.onLogin} error={this.props.error} errorReg={this.props.errorReg} isLoggedIn={this.props.isLoggedIn} />
+                send={this.props.send} settings={this.props.settings} orderId={this.props.orderId} classNameElement={className} popUpClose={this.popUpClose} popUp={this.state.popUp} addClient={this.onAddSubmit} onLogin={this.onLogin} error={this.props.error} errorReg={this.props.errorReg} isLoggedIn={this.props.isLoggedIn} />
             </>
             )
     }
@@ -144,7 +145,8 @@ let mapStateToProps = (state) => {
         isLoggedIn: getIsLoggedInSelector(state),
         permission: getPermissionSelectors(state),
         orderId: getOrderIdSelectors(state),
-        cart: getCartSelectors(state)
+        cart: getCartSelectors(state),
+        send: getSendSelectors()
     }
 };
 

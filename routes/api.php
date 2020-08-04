@@ -56,6 +56,8 @@ Route::middleware('json.response')->group(function () {
 
     Route::resource('/orders_admin', 'Api\OrderController');
 
+    Route::resource('/message', 'Api\MessageController');
+
 });
 
 // private routes
@@ -106,5 +108,8 @@ Route::middleware(['auth:client','json.response'])->group(function () {
 
     //order
     Route::post('/order', 'Api\OrdersPublicController@add');
+
+    //message
+    Route::post('/message', 'Api\MessageController@store');
 
 });

@@ -41,8 +41,8 @@ class OrdersPublicController extends BaseController
         $cart = Cart::create([
             'client_id' => $client_input->id,
             'delivery_id' => $delivery_id,
+            'order_id' => 1
         ]);
-
 
         $order = Orders::create([
             'cart_id' => $cart->cart_id,
@@ -50,6 +50,10 @@ class OrdersPublicController extends BaseController
             'total' => $input['total'],
             'type_id' => $orderType_input
         ]);
+
+        $cart->order_id = $order->order_id;
+
+        $cart->save();
 
         if (!is_null($comment_input)) {
             $comment = Comment::create([
@@ -87,6 +91,6 @@ class OrdersPublicController extends BaseController
 
         }
 
-        return $this->sendResponse(['id' => $order->order_id], 'Orders created successfully.');
+        return $this->sendResponse(['id' => $order->order_id], 'Messages created successfully.');
     }
 }

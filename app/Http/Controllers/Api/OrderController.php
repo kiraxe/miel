@@ -21,7 +21,7 @@ class OrderController extends BaseController
 
         $orders = $query->paginate(5);
 
-        return $this->sendResponse($orders->toArray(), 'Orders retrieved successfully.');
+        return $this->sendResponse($orders->toArray(), 'Messages retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
@@ -45,7 +45,7 @@ class OrderController extends BaseController
 
         $orders->toArray();
 
-        return $this->sendResponse($orders, 'Orders created successfully.');
+        return $this->sendResponse($orders, 'Messages created successfully.');
     }
     /**
      * Display the specified resource.
@@ -57,9 +57,9 @@ class OrderController extends BaseController
     {
         $order = Orders::find($order_id);
         if (is_null($order)) {
-            return $this->sendError('Order not found.');
+            return $this->sendError('Message not found.');
         }
-        return $this->sendResponse($order->toArray(), 'Order retrieved successfully.');
+        return $this->sendResponse($order->toArray(), 'Message retrieved successfully.');
     }
     /**
      * Update the specified resource in storage.
@@ -90,7 +90,7 @@ class OrderController extends BaseController
 
         $order->toArray();
 
-        return $this->sendResponse($order, 'Order updated successfully.');
+        return $this->sendResponse($order, 'Message updated successfully.');
     }
     /**
      * Remove the specified resource from storage.
@@ -108,6 +108,6 @@ class OrderController extends BaseController
         $OrderDetail = OrderDetail::where('order_id', $order_id);
         $OrderDetail->delete();
 
-        return $this->sendResponse($order->toArray(), 'Order deleted successfully.');
+        return $this->sendResponse($order->toArray(), 'Message deleted successfully.');
     }
 }

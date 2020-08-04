@@ -30,6 +30,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Settings_SettingsContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Settings/SettingsContainer */ "./resources/js/components/Admin/Settings/SettingsContainer.js");
 /* harmony import */ var _Options_OptionsContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Options/OptionsContainer */ "./resources/js/components/Admin/Options/OptionsContainer.js");
 /* harmony import */ var _Orders_OrdersContainer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Orders/OrdersContainer */ "./resources/js/components/Admin/Orders/OrdersContainer.js");
+/* harmony import */ var _Message_MessagesContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Message/MessagesContainer */ "./resources/js/components/Admin/Message/MessagesContainer.js");
+
 
 
 
@@ -53,7 +55,7 @@ var Admin = function Admin(props) {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-lg-12"
-  }, props.page == 'products' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Products_ProductsContainer__WEBPACK_IMPORTED_MODULE_3__["default"], null) : null, props.page == 'categories' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Category_CategoryContainer__WEBPACK_IMPORTED_MODULE_5__["default"], null) : null, props.page == 'clientele' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_lientele_ClienteleContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null) : null, props.page == 'options' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Options_OptionsContainer__WEBPACK_IMPORTED_MODULE_7__["default"], null) : null, props.page == 'orders' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Orders_OrdersContainer__WEBPACK_IMPORTED_MODULE_8__["default"], null) : null, props.page == 'settings' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Settings_SettingsContainer__WEBPACK_IMPORTED_MODULE_6__["default"], null) : null))));
+  }, props.page == 'products' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Products_ProductsContainer__WEBPACK_IMPORTED_MODULE_3__["default"], null) : null, props.page == 'categories' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Category_CategoryContainer__WEBPACK_IMPORTED_MODULE_5__["default"], null) : null, props.page == 'clientele' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_lientele_ClienteleContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null) : null, props.page == 'messages' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Message_MessagesContainer__WEBPACK_IMPORTED_MODULE_9__["default"], null) : null, props.page == 'options' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Options_OptionsContainer__WEBPACK_IMPORTED_MODULE_7__["default"], null) : null, props.page == 'orders' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Orders_OrdersContainer__WEBPACK_IMPORTED_MODULE_8__["default"], null) : null, props.page == 'settings' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Settings_SettingsContainer__WEBPACK_IMPORTED_MODULE_6__["default"], null) : null))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Admin);
@@ -783,6 +785,261 @@ var Header = function Header(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Header);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Message/Message.jsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/Admin/Message/Message.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../common/ButtonsPanel/ButtonPanelContainer */ "./resources/js/components/common/ButtonsPanel/ButtonPanelContainer.js");
+/* harmony import */ var _Language__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Language */ "./resources/js/components/Admin/Language.js");
+
+
+
+
+var Message = function Message(props) {
+  var buttons = ['show', 'delete'];
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.message.message_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.message.message), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.message.client.company), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.message.client.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.message.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    onDelete: props.onDelete,
+    page: props.page,
+    buttons: buttons,
+    elementId: props.message.message_id,
+    url: props.url
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Message);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Message/MessageShow/MessageShow.jsx":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Admin/Message/MessageShow/MessageShow.jsx ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var _Language__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Language */ "./resources/js/components/Admin/Language.js");
+
+
+
+
+var MessageShow = function MessageShow(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "title"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.messages.show.title)), props.message[0] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
+    col: "md"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: 'title'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.messages.show.client.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: 'content'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"].Item, null, "\u2116 : ", props.message[0].message_id, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"].Item, null, "\u0424\u0418\u041E : ", props.message[0].client.name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"].Item, null, "\u041A\u043E\u043C\u043F\u0430\u043D\u0438\u044F : ", props.message[0].client.company, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"].Item, null, "\u0422\u0435\u043B\u0435\u0444\u043E\u043D : ", props.message[0].client.phone, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ListGroup"].Item, null, "Email : ", props.message[0].client.email))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
+    col: "md"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: 'title'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.messages.show.message.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: 'content'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.message[0].message))))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (MessageShow);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Message/Messages.jsx":
+/*!************************************************************!*\
+  !*** ./resources/js/components/Admin/Message/Messages.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Message */ "./resources/js/components/Admin/Message/Message.jsx");
+/* harmony import */ var _Language__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Language */ "./resources/js/components/Admin/Language.js");
+
+
+
+
+var Messages = function Messages(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "title"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.messages.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    className: "table"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", {
+    className: "thead-dark"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.messages.table.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.messages.table.message), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.messages.table.company), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.messages.table.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.messages.table.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
+  }, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.messages.table.action))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, props.messages ? props.messages.map(function (p, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Message__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      onDelete: props.onDelete,
+      page: props.page,
+      url: props.url,
+      message: p,
+      key: index
+    });
+  }) : null))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Messages);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Message/MessagesContainer.js":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/Admin/Message/MessagesContainer.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Paginator_Paginator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../common/Paginator/Paginator */ "./resources/js/components/common/Paginator/Paginator.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _redux_messageAdmin_selectros__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../redux/messageAdmin-selectros */ "./resources/js/redux/messageAdmin-selectros.js");
+/* harmony import */ var _redux_messageAdmin_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../redux/messageAdmin-reducer */ "./resources/js/redux/messageAdmin-reducer.js");
+/* harmony import */ var _MessageShow_MessageShow__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./MessageShow/MessageShow */ "./resources/js/components/Admin/Message/MessageShow/MessageShow.jsx");
+/* harmony import */ var _Messages__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Messages */ "./resources/js/components/Admin/Message/Messages.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+
+var MessagesContainer = /*#__PURE__*/function (_React$Component) {
+  _inherits(MessagesContainer, _React$Component);
+
+  var _super = _createSuper(MessagesContainer);
+
+  function MessagesContainer(props) {
+    var _this;
+
+    _classCallCheck(this, MessagesContainer);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "onGetPageMessages", function (e) {
+      var page = e.target.getAttribute('page');
+
+      _this.props.getMessages(page);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onDelete", function (e) {
+      var elementId = e.currentTarget.getAttribute('data-element');
+
+      _this.props.deleteMessage(elementId);
+    });
+
+    return _this;
+  }
+
+  _createClass(MessagesContainer, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.getMessages(1);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var messages = !this.props.match.params.slug ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Messages__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        onDelete: this.onDelete,
+        page: this.props.match.params.page,
+        url: this.props.match.url,
+        messages: this.props.messages
+      }) : this.props.match.params.slug === 'show' && this.props.match.params.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MessageShow_MessageShow__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        error: this.props.error,
+        id: this.props.match.params.id,
+        message: this.props.messages ? this.props.messages.filter(function (item) {
+          return item.message_id == _this2.props.match.params.id;
+        }) : null
+      }) : null;
+      var paginator = this.props.paginator.total_page > 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Paginator_Paginator__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        onGetPage: this.onGetPageMessages,
+        paginator: this.props.paginator
+      }) : null;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, messages, !this.props.match.params.slug && paginator);
+    }
+  }]);
+
+  return MessagesContainer;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    messages: Object(_redux_messageAdmin_selectros__WEBPACK_IMPORTED_MODULE_5__["getMessagesSelectors"])(state),
+    error: Object(_redux_messageAdmin_selectros__WEBPACK_IMPORTED_MODULE_5__["getMessagesErrorSelector"])(state),
+    paginator: Object(_redux_messageAdmin_selectros__WEBPACK_IMPORTED_MODULE_5__["getMessagesPaginatorSelector"])(state)
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_3__["compose"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, {
+  getMessages: _redux_messageAdmin_reducer__WEBPACK_IMPORTED_MODULE_6__["getMessages"],
+  deleteMessage: _redux_messageAdmin_reducer__WEBPACK_IMPORTED_MODULE_6__["deleteMessage"],
+  showMessage: _redux_messageAdmin_reducer__WEBPACK_IMPORTED_MODULE_6__["showMessage"]
+}), react_router_dom__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(MessagesContainer));
 
 /***/ }),
 
@@ -2780,6 +3037,10 @@ var Navbar = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", {
         className: "fa fa-user-circle"
       }, "\xA0"), " ", _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].sidebar.menu.clientele)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        to: "/admin/messages"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", {
+        className: "fa fa-comment"
+      }, "\xA0"), " ", _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].sidebar.menu.messages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         to: "/admin/options"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", {
         className: "fa fa-filter"
@@ -4029,6 +4290,32 @@ var getErrorSelector = function getErrorSelector(state) {
 };
 var getPaginatorSelector = function getPaginatorSelector(state) {
   return state.clienteleAdmin.paginator;
+};
+
+/***/ }),
+
+/***/ "./resources/js/redux/messageAdmin-selectros.js":
+/*!******************************************************!*\
+  !*** ./resources/js/redux/messageAdmin-selectros.js ***!
+  \******************************************************/
+/*! exports provided: getMessagesSelectors, getMessagesErrorSelector, getMessagesPaginatorSelector */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMessagesSelectors", function() { return getMessagesSelectors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMessagesErrorSelector", function() { return getMessagesErrorSelector; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMessagesPaginatorSelector", function() { return getMessagesPaginatorSelector; });
+/* harmony import */ var reselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reselect */ "./node_modules/reselect/es/index.js");
+
+var getMessagesSelectors = function getMessagesSelectors(state) {
+  return state.messageAdmin.messages;
+};
+var getMessagesErrorSelector = function getMessagesErrorSelector(state) {
+  return state.messageAdmin.error;
+};
+var getMessagesPaginatorSelector = function getMessagesPaginatorSelector(state) {
+  return state.messageAdmin.paginator;
 };
 
 /***/ }),

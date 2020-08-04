@@ -7,6 +7,7 @@ import CategoryContainer from "./Category/CategoryContainer";
 import SettingsContainer from "./Settings/SettingsContainer";
 import OptionsContainer from "./Options/OptionsContainer";
 import OrdersContainer from "./Orders/OrdersContainer";
+import MessagesContainer from "./Message/MessagesContainer";
 
 const Admin = (props) => {
     return (
@@ -19,6 +20,7 @@ const Admin = (props) => {
                         {props.page == 'products' ? <ProductsContainer/> : null}
                         {props.page == 'categories' ? <CategoryContainer/> : null}
                         {props.page == 'clientele' ? <ClienteleContainer/> : null}
+                        {props.page == 'messages' ? <MessagesContainer/> : null}
                         {props.page == 'options' ? <OptionsContainer/> : null}
                         {props.page == 'orders' ? <OrdersContainer/> : null}
                         {props.page == 'settings' ? <SettingsContainer/> : null}

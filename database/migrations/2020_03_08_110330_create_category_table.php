@@ -17,6 +17,8 @@ class CreateCategoryTable extends Migration
         Schema::create('category', function (Blueprint $table) {
             $table->bigIncrements('category_id');
             $table->string('image', 255)->nullable();
+            $table->text('text')->nullable();
+            $table->boolean('main_menu')->default(false);
             $table->integer('sort_order')->unsigned()->nullable();
             $table->boolean('status')->default(0);
             $table->string('link', 255);

@@ -18,6 +18,8 @@ import catalogReducer from "./Public/catalog-reducer";
 import productPublicReducer from "./Public/productPublic-reduser";
 import catReducer from "./Public/cart-reducer";
 import ordersReducer from "./orders-reducer";
+import messageAdminReducer from "./messageAdmin-reducer";
+import messagePublicReducer from "./Public/message-reducer"
 
 let reducers = combineReducers({
     loginPage: loginReducer,
@@ -37,6 +39,8 @@ let reducers = combineReducers({
     registration: registrationReducer,
     productPublic: productPublicReducer,
     cartPublic: catReducer,
+    messageAdmin: messageAdminReducer,
+    messagePublic: messagePublicReducer,
     form: formReducer
 });
 

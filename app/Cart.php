@@ -15,7 +15,7 @@ class Cart extends Model
      *
      * @var array
      */
-    protected $fillable = ['client_id', 'delivery_id', 'cart_to_product'];
+    protected $fillable = ['client_id', 'delivery_id', 'cart_to_product', 'order_id'];
 
 
     public function cartToProduct() {

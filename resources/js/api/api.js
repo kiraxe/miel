@@ -125,6 +125,16 @@ export const adminAPI = {
             .then(response => response.data);
     },
 
+    getMessages(page) {
+        return getAxiosSettings().get(`message/?page=${page}`)
+            .then(response => response.data)
+            .catch(error => error.response);
+    },
+    deleteMessage(message_id) {
+        return getAxiosSettings().delete(`message/${message_id}`)
+            .then(response => response.data);
+    },
+
 };
 
 export const authAPI = {
@@ -206,6 +216,11 @@ export const publicAPI = {
     },
     addOrder(order) {
         return getAxiosSettings().post('order', order)
+            .then(response => response.data)
+            .catch(error => error.response);
+    },
+    addMessage(message) {
+        return getAxiosSettings().post('message', message)
             .then(response => response.data)
             .catch(error => error.response);
     },
