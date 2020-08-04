@@ -129,6 +129,41 @@ const Info = (props) => {
     let titleToCart = props.titleSecond ? props.titleSecond : "";
     titleToCart += " " + tl;
 
+    const handleChange = (e) => {
+        if (currentDate < fromDate || currentDate > toDate ) {
+            setMin(Number(e.target.value));
+        } else {
+            setMinQuarterly(Number(e.target.value));
+        }
+    }
+
+    const handlerBlur = (e) => {
+        if (currentDate < fromDate || currentDate > toDate ) {
+            if (e.target.value < statMin && min < statMin) {
+                setMin(Number(statMin));
+            }
+        } else {
+            if (minQuarterly < statMinQuarterly && e.target.value < statMinQuarterly) {
+                setMinQuarterly(Number(statMinQuarterly));
+            }
+        }
+    }
+
+    const handlerKeyDown = (e) => {
+        if (e.keyCode === 13) {
+            e.target.blur();
+            if (currentDate < fromDate || currentDate > toDate ) {
+                if (e.target.value < statMin && min < statMin) {
+                    setMin(Number(statMin));
+                }
+            } else {
+                if (minQuarterly < statMinQuarterly && e.target.value < statMinQuarterly) {
+                    setMinQuarterly(Number(statMinQuarterly));
+                }
+            }
+        }
+    }
+
     return (
         <div className="info">
             <div className="title"><h1>{props.titleSecond ? props.titleSecond : null} <span>{tl}</span></h1></div>
@@ -156,7 +191,7 @@ const Info = (props) => {
                                    name="count"/>
                             <div className="remove"><img onClick={removeCountHandler} src="/images/minus.png"/>
                             </div>
-                            <div className="number">{currentDate < fromDate || currentDate > toDate ? min : minQuarterly}</div>
+                            <div className="number"><input onBlur={handlerBlur} onKeyDown={handlerKeyDown} onChange={handleChange} type="text" maxLength="5" value={currentDate < fromDate || currentDate > toDate ? min : minQuarterly}/></div>
                             <div className="add"><img onClick={addCountHandler} src="/images/plus.png"/></div>
                         </div>
                     </div>

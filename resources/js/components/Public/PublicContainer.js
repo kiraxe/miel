@@ -24,7 +24,7 @@ import {
 } from "../../redux/auth-selectors";
 import CatalogConatainer from "./CatalogPage/CatalogConatainer";
 import {addCartClient, getCart, setOrderIdNull} from '../../redux/Public/cart-reducer'
-import {getOrderIdSelectors} from '../../redux/Public/cart-selectros'
+import {getCartSelectors, getOrderIdSelectors} from '../../redux/Public/cart-selectros'
 import {getCatalog} from '../../redux/Public/catalog-reducer';
 
 
@@ -122,7 +122,7 @@ class PublicContainer extends Component {
             <main id="public" className={className}>
                 <Navbar categories={this.props.categories} leftDropMenuHandler={this.leftDropMenuHandler} leftDropMenu={this.state.leftDropMenu} dropMenu={this.state.dropMenu}/>
                 <div id="wrapper">
-                    <Header onLogout={this.onLogout} popUpOpen={this.popUpOpen} isLoggedIn={this.props.isLoggedIn} permission={this.props.permission} dropMenuHandler={this.dropMenuHandler} phone={this.props.settings.phone}/>
+                    <Header cart={this.props.cart} onLogout={this.onLogout} popUpOpen={this.popUpOpen} isLoggedIn={this.props.isLoggedIn} permission={this.props.permission} dropMenuHandler={this.dropMenuHandler} phone={this.props.settings.phone}/>
                     {this.props.match.path === "/" && !!Object.keys(this.props.settings).length ? <MainContainer popUpOpen={this.popUpOpen} isLoggedIn={this.props.isLoggedIn}/> : this.props.match.path === "/account/:page?/" && !!Object.keys(this.props.settings).length ? <AccountContainer permission={this.props.permission} isLoggedIn={this.props.isLoggedIn} /> : this.props.match.path === "/shop/:page?/:id?" && !!Object.keys(this.props.settings).length ? <CatalogConatainer popUpOpen={this.popUpOpen} isLoggedIn={this.props.isLoggedIn}/> : this.props.match.path === "/basket" && !!Object.keys(this.props.settings).length ? <CartContainer isLoggedIn={this.props.isLoggedIn}/>: null}
                     <Footer phone={this.props.settings.phone} social={this.props.settings.social}/>
                 </div>
@@ -143,7 +143,8 @@ let mapStateToProps = (state) => {
         errorReg: getErrorRegSelectors(state),
         isLoggedIn: getIsLoggedInSelector(state),
         permission: getPermissionSelectors(state),
-        orderId: getOrderIdSelectors(state)
+        orderId: getOrderIdSelectors(state),
+        cart: getCartSelectors(state)
     }
 };
 

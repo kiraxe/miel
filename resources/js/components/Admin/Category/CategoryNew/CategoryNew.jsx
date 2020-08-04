@@ -41,6 +41,10 @@ const CategoryNewForm = (props) => {
                 <Field type="text" idName="categoryDescription" name={"description"} component={Input} label={LanguageRus.page.categories.table.description} />
             </div>
             <div className="form-group">
+                <label>{LanguageRus.page.categories.table.text}</label>
+                <Field type="text" idName="categoryText" name={"text"} component={Textarea} label={LanguageRus.page.categories.table.text} />
+            </div>
+            <div className="form-group">
                 <Field type="file" idName="categoryFiles" name={"image"} change={change} component={File} label={LanguageRus.page.categories.table.image} />
             </div>
             <div className="form-check">

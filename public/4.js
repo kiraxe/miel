@@ -511,6 +511,14 @@ var CategoryEditForm = function CategoryEditForm(props) {
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.description
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.text), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "categoryText",
+    name: "text",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Textarea"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.text
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
     type: "file",
     idName: "categoryFiles",
@@ -657,6 +665,14 @@ var CategoryNewForm = function CategoryNewForm(props) {
     name: "description",
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.description
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.text), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "categoryText",
+    name: "text",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Textarea"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.text
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
@@ -1918,7 +1934,7 @@ var ProductEditForm = function ProductEditForm(props) {
 var ProductEditReduxForm = Object(redux_form__WEBPACK_IMPORTED_MODULE_2__["reduxForm"])({
   form: "ProductEdit",
   validate: _Validator_Validate__WEBPACK_IMPORTED_MODULE_4__["default"],
-  asyncBlurFields: ['name', 'detail', 'price']
+  asyncBlurFields: ['name', 'detail', 'article', 'price']
 })(ProductEditForm);
 /* harmony default export */ __webpack_exports__["default"] = (ProductEdit);
 
@@ -2184,7 +2200,7 @@ var ProductNewForm = function ProductNewForm(props) {
 var ProductNewReduxForm = Object(redux_form__WEBPACK_IMPORTED_MODULE_2__["reduxForm"])({
   form: "ProductNew",
   validate: _Validator_Validate__WEBPACK_IMPORTED_MODULE_4__["default"],
-  asyncBlurFields: ['name', 'detail', 'price']
+  asyncBlurFields: ['name', 'detail', 'article', 'price']
 })(ProductNewForm);
 /* harmony default export */ __webpack_exports__["default"] = (ProductNew);
 

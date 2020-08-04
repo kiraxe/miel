@@ -74,7 +74,7 @@ class ProductController extends BaseController
         }
 
         if(empty($input['property']) || $input['property'] === 'null') {
-            $input['property'] = " ";
+            $input['property'] = "";
         }
 
         /*if (isset($input['categories_id'])) {

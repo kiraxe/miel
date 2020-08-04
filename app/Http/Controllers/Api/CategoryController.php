@@ -161,8 +161,13 @@ class CategoryController extends BaseController
             $category->main_menu = $input['main_menu'];
         }
 
+        if(empty($input['text']) || $input['text'] === 'null') {
+            $input['text'] = "";
+        }
+
         $category->parent_id = $input['parent_id'];
         $category->link = $input['link'];
+        $category->text = $input['text'];
 
         $category->attributes()->update(['name' => $input['name'], 'description' => $description]);
 

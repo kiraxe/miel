@@ -439,6 +439,40 @@ body main#public.basket #wrapper #main-content .block_4 .price {
   max-width: 20%;
 }
 
+.circle {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 50px;
+  height: 20px;
+  width: 20px;
+  background-color: #F37021;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+}
+
+.accountMenu {
+  display: none;
+  border-radius: 10px;
+  position: absolute;
+  list-style-type: none;
+  background-color: aliceblue;
+  margin: 0;
+  padding: 0;
+  width: 175px;
+  z-index: 999;
+}
+
+.accountMenu li {
+  padding: 10px;
+}
+
+.accountMenu li:hover {
+  color: #2C373E;
+}
+
 @font-face {
   font-family: 'PTSansRegular';
   src: url(/fonts/PTSans-Regular.ttf?4ea26cd5e7f64894d6c2451446f7dda5) format("truetype");
@@ -1294,7 +1328,14 @@ body main#public #wrapper #main-content .novelty .sliderProducts .item .costPane
 
 body main#public #wrapper #main-content .popular .sliderProducts .item .costPanel .count .number,
 body main#public #wrapper #main-content .novelty .sliderProducts .item .costPanel .count .number {
-  padding: 0 25px;
+  padding: 0 15px;
+}
+
+body main#public #wrapper #main-content .popular .sliderProducts .item .costPanel .count .number input,
+body main#public #wrapper #main-content .novelty .sliderProducts .item .costPanel .count .number input {
+  text-align: center;
+  width: 45px;
+  border: none;
 }
 
 body main#public #wrapper #main-content .popular .sliderProducts .item .button button,
@@ -1545,7 +1586,14 @@ body main#public.shop #wrapper #main-content .shop .item .costPanel .count img {
 
 body main#public.shop #wrapper #main-content .catalog .item .costPanel .count .number,
 body main#public.shop #wrapper #main-content .shop .item .costPanel .count .number {
-  padding: 0 25px;
+  padding: 0 15px;
+}
+
+body main#public.shop #wrapper #main-content .catalog .item .costPanel .count .number input,
+body main#public.shop #wrapper #main-content .shop .item .costPanel .count .number input {
+  text-align: center;
+  width: 45px;
+  border: none;
 }
 
 body main#public.shop #wrapper #main-content .catalog .item .button button,
@@ -2073,7 +2121,15 @@ body main#public.item #wrapper #main-content .productCard .productCardContent .i
 body main#public.item #wrapper #main-content .productCard .productCardContent .info .description .costPanel .count .number,
 body main#public.item #wrapper #main-content .productCard .productCardContent .info .property .costPanel .count .number,
 body main#public.item #wrapper #main-content .productCard .productCardContent .info .form .costPanel .count .number {
-  padding: 0 25px;
+  padding: 0 15px;
+}
+
+body main#public.item #wrapper #main-content .productCard .productCardContent .info .description .costPanel .count .number input,
+body main#public.item #wrapper #main-content .productCard .productCardContent .info .property .costPanel .count .number input,
+body main#public.item #wrapper #main-content .productCard .productCardContent .info .form .costPanel .count .number input {
+  text-align: center;
+  width: 45px;
+  border: none;
 }
 
 body main#public.item #wrapper #main-content .productCard .productCardContent .info .description .costPanel,
@@ -2292,7 +2348,13 @@ body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSec
 body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .costPanelItem .costPanel .count .number {
   font-size: 1rem;
   text-align: center;
-  padding: 0 25px;
+  padding: 0 15px;
+}
+
+body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .costPanelItem .costPanel .count .number input {
+  text-align: center;
+  width: 45px;
+  border: none;
 }
 
 body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .costPanelItem .price {
@@ -2897,7 +2959,7 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
 }
 
 @media (max-width: 1024px) {
-  body main#public#catalog .left,
+  body main#public.shop .left,
   body main#public#item .left {
     display: none;
   }
