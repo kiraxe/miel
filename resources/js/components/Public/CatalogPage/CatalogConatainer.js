@@ -34,15 +34,21 @@ class AccountContainer extends Component {
     componentDidMount() {
         if (!this.state.productPage) {
             let page = this.getPage();
+            console.log(page);
             page ? this.props.getCatalog(page, this.state.offset, this.state.limit) : this.props.getCatalog(null, this.state.offset, this.state.limit);
         }
     }
 
     getPage = () => {
         let params = this.props.match.params.page;
+        let id = this.props.match.params.id;
         let category = this.props.categories ? this.props.categories.filter((item, key) => {
             let link = item.link.split('/');
-            if (link[link.length - 1] === params) {
+            if (!!id) {
+                if (link[link.length - 1] === id) {
+                    return item;
+                }
+            } else if (link[link.length - 1] === params) {
                 return item;
             }
         }) : null;

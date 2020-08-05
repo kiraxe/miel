@@ -1,5 +1,6 @@
-import {authAPI} from "../api/api";
-import {authClientAPI} from "../api/api";
+import {authAPI, publicAPI, authClientAPI} from "../api/api";
+import {addCartClient} from "./Public/cart-reducer";
+import {getAccount} from "./Public/account-reducer";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -63,7 +64,29 @@ export const login = (email, password, type) => async (dispatch) => {
         localStorage.setItem('token', token);
         localStorage.setItem('permission', permission);
         localStorage.setItem('type', type);
-        dispatch(getAuthUserData(token, permission, type))
+
+        if (permission === 'Client') {
+
+            let promise = dispatch(getAuthUserData(token, permission, type))
+            let promise1 = dispatch(getAccount(response.data.id));
+
+            Promise.all([promise, promise1])
+                .then(data => {
+                    dispatch(addCartClient({
+                        id: data[1].data.data.client.id,
+                        name: data[1].data.data.client.name,
+                        company: data[1].data.data.client.company,
+                        phone: data[1].data.data.client.phone,
+                        email: data[1].data.data.client.email,
+                        addressK: data[1].data.data.client.addressK
+                    }))
+                })
+
+        } else if (permission === 'Admin') {
+            dispatch(getAuthUserData(token, permission, type));
+        }
+
+
     } else {
         dispatch(setUserDataAC(null, null, null, false, null, null, response.data.error, false))
     }

@@ -9,6 +9,7 @@ import Navigation from "./Navigation/Navigation";
 import {getClientSelectors, getErrorSelector} from "../../../redux/Public/account-selectors";
 import {getAccount , editAccount} from "../../../redux/Public/account-reducer";
 import AccountForm from "./AccountForm/AccountForm";
+import AccountOrders from "./AccountOrders/AccountOrders";
 import {addCartClient} from '../../../redux/Public/cart-reducer'
 
 class  AccountContainer extends Component {
@@ -17,18 +18,18 @@ class  AccountContainer extends Component {
     }
 
     componentDidMount() {
-        this.props.getAccount(this.props.auth_client_id);
+        //this.props.getAccount(this.props.auth_client_id);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        this.props.addCartClient({
+        /*this.props.addCartClient({
             id: this.props.client.id,
             name: this.props.client.name,
             company: this.props.client.company,
             phone: this.props.client.phone,
             email: this.props.client.email,
             addressK: this.props.client.addressK
-        })
+        })*/
     }
 
     onEditSubmit = (formData) => {
@@ -56,7 +57,7 @@ class  AccountContainer extends Component {
                         <div className="col-md-4 col-lg-3 col-xl-3 left">
                             <div className="container-my">
                                 <Navigation/>
-                                <ManagerInfo settings={this.props.settings}/>
+                                <ManagerInfo popUpOpen={this.props.popUpOpen} settings={this.props.settings}/>
                             </div>
                         </div>
                         <div className="col-md-8 col-lg-9 col-xl-9 center">
@@ -73,7 +74,7 @@ class  AccountContainer extends Component {
                                 </div>}
                                 {this.props.match.params.page === 'company_data' && <div className="row">
                                     <AccountForm error={this.props.error} client={this.props.client} editAccount={this.onEditSubmit} />
-                                </div> || <div className="row">Страница находится в разработке</div>}
+                                </div> || this.props.match.params.page === 'orders' && <AccountOrders/> || <div className="row">Страница находится в разработке</div>}
                             </div>
                         </div>
                     </div>

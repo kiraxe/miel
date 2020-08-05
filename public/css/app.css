@@ -445,6 +445,7 @@ body main#public.basket #wrapper #main-content .block_4 .price {
   right: 0;
   top: 0;
   border-radius: 50px;
+  padding: 0 !important;
   height: 20px;
   width: 20px;
   background-color: #F37021;
@@ -471,6 +472,17 @@ body main#public.basket #wrapper #main-content .block_4 .price {
 
 .accountMenu li:hover {
   color: #2C373E;
+}
+
+#noFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#noFound div {
+  text-align: center;
 }
 
 @font-face {
@@ -2553,26 +2565,34 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
     width: 100%;
   }
 
-  html body main#public#item #wrapper #main-content .productCard .productCardSliderContent .productCardImage {
+  html body main#public.item #wrapper #main-content .productCard .productCardContent .info {
+    margin-top: 50px;
+  }
+
+  html body main#public.item #wrapper #main-content .productCard .productCardContent .info .title {
     display: none;
   }
 
-  html body main#public#item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider {
+  html body main#public.item #wrapper #main-content .productCard .productCardSliderContent .productCardImage {
+    display: block;
+  }
+
+  html body main#public.item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider {
     margin-top: 0;
     padding-left: 20px;
   }
 
-  html body main#public#item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-arrow {
+  html body main#public.item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-arrow {
     display: none !important;
   }
 
-  html body main#public#item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list {
+  html body main#public.item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list {
     overflow: visible;
     width: auto !important;
     margin: 0 -20px;
   }
 
-  html body main#public#item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide {
+  html body main#public.item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide {
     border: none;
     background: #F4F7FA;
     transform: translate(15px, 15px);
@@ -2581,31 +2601,31 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
     height: 184px;
   }
 
-  html body main#public#item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider {
+  html body main#public.item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider {
     transform: translate(-15px, -15px);
   }
 
-  html body main#public#item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider[attr-border="1"] {
+  html body main#public.item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider[attr-border="1"] {
     border-bottom: 4px solid #C9DB49;
   }
 
-  html body main#public#item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider[attr-border="2"] {
+  html body main#public.item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider[attr-border="2"] {
     border-bottom: 4px solid #00AAAD;
   }
 
-  html body main#public#item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider[attr-border="3"] {
+  html body main#public.item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider[attr-border="3"] {
     border-bottom: 4px solid #F37021;
   }
 
-  html body main#public#item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider[attr-border="4"] {
+  html body main#public.item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider[attr-border="4"] {
     border-bottom: 4px solid #812990;
   }
 
-  html body main#public#item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider[attr-border="5"] {
+  html body main#public.item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider[attr-border="5"] {
     border-bottom: 4px solid #FFCB05;
   }
 
-  html body main#public#item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider img {
+  html body main#public.item #wrapper #main-content .productCard .productCardSliderContent .productCardSlider .slick-list .item.slick-slide .productCardImageFrameSlider img {
     box-shadow: 5px 5px 30px rgba(53, 65, 72, 0.1);
   }
 
@@ -2651,8 +2671,12 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
 }
 
 @media (max-width: 420px) {
-  html body main#public#catalog .loadMore .buttonLoadMore button {
+  html body main#public.catalog .loadMore .buttonLoadMore button {
     width: 100%;
+  }
+
+  html body main#public.item #wrapper #main-content .productCard .productCardContent .info {
+    margin-top: 50px;
   }
 
   html body main#public #wrapper #main-content .title-container {
@@ -2843,25 +2867,29 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
 }
 
 @media (max-width: 767px) {
-  body main#public#account #wrapper #main-content {
+  body main#public.account #wrapper #main-content {
     padding-bottom: 50px;
   }
 
-  body main#public#account #wrapper #main-content .container-my:nth-child(2) {
+  body main#public.account #wrapper #main-content .container-my:nth-child(2) {
     margin-top: 0;
   }
 
-  body main#public#account #wrapper #main-content .left .leftNavigation {
+  body main#public.account #wrapper #main-content .left .leftNavigation {
     box-shadow: 0px 0px 30px rgba(53, 65, 72, 0.1);
     padding: 0 15px;
   }
 
-  body main#public#account #wrapper #main-content .center {
+  body main#public.account #wrapper #main-content .center {
     margin-top: 50px;
   }
 
-  body main#public#account #wrapper #main-content .center .row {
+  body main#public.account #wrapper #main-content .center .row {
     padding-left: 0;
+  }
+
+  body main#public.item #wrapper #main-content .productCard .productCardContent .info .title {
+    display: none;
   }
 }
 
@@ -2887,25 +2915,29 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
     width: 70%;
   }
 
-  body main#public#catalog #main-content {
+  body main#public.catalog #main-content {
     padding-bottom: 50px;
   }
 
-  body main#public#account #wrapper #main-content .center form[name="accountForm"] .accountForm .section {
+  body main#public.account #wrapper #main-content .center form[name="accountForm"] .accountForm .section {
     width: calc(100% - 15px);
   }
 
-  body main#public#item #wrapper #main-content {
+  body main#public.item #wrapper #main-content {
     margin-top: 50px;
     padding-bottom: 0;
   }
 
-  body main#public#item #wrapper #main-content .center {
+  body main#public.item #wrapper #main-content .center {
     padding: 0;
   }
 
-  body main#public#item #wrapper #main-content .productCard .productCardContent .info {
+  body main#public.item #wrapper #main-content .productCard .productCardContent .info {
     padding-left: 0;
+  }
+
+  body main#public.item #wrapper #main-content .productCard .productCardContent .info .title {
+    display: none;
   }
 
   body main#public #wrapper #main-content .navigation nav {
@@ -2960,11 +2992,11 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
 
 @media (max-width: 1024px) {
   body main#public.shop .left,
-  body main#public#item .left {
+  body main#public.item .left {
     display: none;
   }
 
-  body main#public#item #wrapper #main-content .hidden-title {
+  body main#public.item #wrapper #main-content .hidden-title {
     display: block;
   }
 

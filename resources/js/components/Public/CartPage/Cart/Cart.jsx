@@ -90,7 +90,6 @@ const Cart = (props) => {
                                         <input onChange={onCheckboxHandler} id="check2" type="checkbox" checked={dateSecond} name="dateSecond"/>
                                             <label htmlFor="check2">Мне нужна доставка* по моему адресу (от 500
                                                 ₽)</label>
-                                            <p>здесь указывается адрес для курьерской доставки из личного кабинета</p>
                                     </div>
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 import Circle from "./Circle";
 
@@ -15,6 +15,12 @@ const RightPanel = (props) => {
             setAccountMenu(false);
         }
     }
+
+    useEffect(() => {
+        if (!props.menuAccount) {
+            setAccountMenu(false);
+        }
+    })
 
     let style = {
         display: 'block'

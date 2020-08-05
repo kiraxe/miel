@@ -27,7 +27,7 @@ const ClientPopupFormLogin = (props) => {
         userFeedback = (<ErrorsAlert error={errSer} />)
     }
 
-    let redirect = submitSucceeded && isLoggedIn ? (<Redirect to={"/account/company_data"}/>) : null;
+    //let redirect = submitSucceeded && isLoggedIn ? (<Redirect to={"/account/company_data"}/>) : null;
 
 
     submitSucceeded || submitFailed || errSer ? setTimeout(() => {setFetching(false)}, 2000) : null;
@@ -45,7 +45,6 @@ const ClientPopupFormLogin = (props) => {
 
     return (
         <>
-            {redirect && redirect ||
             <form onSubmit={handleSubmit} name="accountForm">
                 {errSer && <div className="error">
                     {userFeedback}
@@ -63,7 +62,7 @@ const ClientPopupFormLogin = (props) => {
                 <div className="button">
                     <button onClick={() => setFetching(true)} type="submit" disabled={submitting}>Войти {isFetching ? <img src={loading}/> : null}</button>
                 </div>
-            </form>}
+            </form>
         </>
     )
 }

@@ -11,7 +11,7 @@ const ManagerInfo = (props) => {
                 <p className="manager">Ваш менеджер: {props.settings.manager_name} <br/>
                     <a href={`mailto: ${props.settings.manager_email}`}>{props.settings.manager_email}</a></p>
             </div>
-            <Button/>
+            <Button popUpOpen={props.popUpOpen} />
         </div>
     )
 }

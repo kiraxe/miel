@@ -8,8 +8,6 @@ class Message extends Model
 
     protected $primaryKey = 'message_id';
 
-    public $timestamps = false;
-
     /**
      * The attributes that are mass assignable.
      *

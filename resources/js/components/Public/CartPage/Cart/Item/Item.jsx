@@ -168,19 +168,6 @@ const Item = (props) => {
                 </div>
             </div>
             <div className="itemPartSecond">
-                <div className="checkbox">
-                    <div className="titleCheck">Выберите срок поставки:</div>
-                    <div className="checkInput">
-                        <div className="checkInputItem">
-                            <input id="checkFirst" type="checkbox" name="dateFirst"/>
-                            <label htmlFor="checkFirst">до 15.03.2020</label>
-                        </div>
-                        <div className="checkInputItem">
-                            <input id="checkSecond" type="checkbox" name="dateSecond"/>
-                            <label htmlFor="checkSecond">до 31.03.2020 <span> (-15%)</span></label>
-                        </div>
-                    </div>
-                </div>
                 <div className="costPanelItem">
                     <div className="costPanel">
                         <div className="cost"><p>{priceVariable} ₽ / шт.</p></div>

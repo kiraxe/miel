@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import LoginContainer from "./Login/LoginContainer";
 import RegisterPage from './Register/RegisterPage';
 import Preloader from "./common/Preloader/Preloader";
+import NotFound from "./NoFound/NoFound";
 import {withSuspense} from "../hoc/withSuspense";
 
 /**********************/
@@ -43,6 +44,8 @@ export default class App extends Component {
                       <Route exact path="/login" render={() => (<LoginContainer />)}/>
 
                       <Route path='/admin/:page?/:slug?/:id?' render={withSuspense(AdminContainer)}/>
+
+                      <Route path="*" render={() => (<NotFound/>)} />
 
                   </Switch>
               </>

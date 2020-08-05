@@ -11,7 +11,7 @@ const Header = (props) => {
                 <div className="row flex-nowrap">
                     <Bars dropMenuHandler={props.dropMenuHandler}/>
                     <Logo/>
-                    <RightPanel cart={props.cart} onLogout={props.onLogout} popUpOpen={props.popUpOpen} isLoggedIn={props.isLoggedIn} permission={props.permission} phone={props.phone}/>
+                    <RightPanel menuAccount={props.menuAccount} cart={props.cart} onLogout={props.onLogout} popUpOpen={props.popUpOpen} isLoggedIn={props.isLoggedIn} permission={props.permission} phone={props.phone}/>
                 </div>
             </div>
         </header>

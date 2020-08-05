@@ -3,7 +3,7 @@ import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import {rus as LanguageRus} from "../../Language";
 
 const OrderShow = (props) => {
-    let products = props.order[0] && props.order[0].cart.cart_to_product ? props.order[0].cart.cart_to_product.map((item, key) => <tr key={key}><th scope="row">{key + 1}</th><td>{item.order_detail.article}</td><td><img src={item.order_detail.image}/></td><td>{item.order_detail.product_name}</td><td>{item.order_detail.unit_price} руб.</td><td>2</td><td>{item.order_detail.total_price} руб.</td></tr>) : null
+    let products = props.order[0] && props.order[0].cart.cart_to_product ? props.order[0].cart.cart_to_product.map((item, key) => <tr key={key}><th scope="row">{key + 1}</th><td>{item.order_detail.article}</td><td><img src={item.order_detail.image}/></td><td>{item.order_detail.product_name}</td><td>{item.order_detail.unit_price} руб.</td><td>{item.order_detail.count}</td><td>{item.order_detail.total_price} руб.</td></tr>) : null
     return(
         <>
         <div className="title"><h1>{LanguageRus.page.orders.show.title}</h1></div>

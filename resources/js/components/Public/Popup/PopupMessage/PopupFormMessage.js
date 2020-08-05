@@ -9,7 +9,7 @@ import {Redirect} from 'react-router-dom';
 
 
 const PopupFormMessage = (props) => {
-    return <ClientPopupMessageReduxForm isLoggedIn={props.isLoggedIn} errSer={props.error} isFetching={props.isFetching} onSubmit={props.onLogin}/>
+    return <ClientPopupMessageReduxForm clientId={props.clientId} isLoggedIn={props.isLoggedIn} errSer={props.error} isFetching={props.isFetching} onSubmit={props.onSendMessage}/>
 };
 
 
@@ -17,9 +17,7 @@ const ClientPopupFormMessage = (props) => {
 
     const [isFetching, setFetching] = useState(false);
 
-    const [passwordVisibility, setPasswordVisibility] = useState('view');
-
-    const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed, err, change, isLoggedIn} = props;
+    const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed, err, change, isLoggedIn, clientId} = props;
 
     let userFeedback;
 
@@ -27,28 +25,24 @@ const ClientPopupFormMessage = (props) => {
         userFeedback = (<ErrorsAlert error={errSer} />)
     }
 
-    let redirect = submitSucceeded && isLoggedIn ? (<Redirect to={"/account/company_data"}/>) : null;
-
-
     submitSucceeded || submitFailed || errSer ? setTimeout(() => {setFetching(false)}, 2000) : null;
 
     return (
         <>
-            {redirect && redirect ||
-            <form onSubmit={handleSubmit} name="accountFormMessage">
+            <form onSubmit={handleSubmit} name="accountForm">
                 {errSer && <div className="error">
                     {userFeedback}
                 </div>}
                 <div className="accountForm">
-                    <div className="section">
-                        <p><Field type="hidden" idName="clientHidden" change={change} name={"type"} component={Hidden} label={""} val={"client"} /></p>
-                        <p><Field type="text" idName="clientMessage" name={"message"} component={Textarea} label={"message"} /></p>
+                    <div style={{width: 'calc(100% - 15px)'}} className="section">
+                        <p><Field type="hidden" idName="clientHidden" change={change} name={"type"} component={Hidden} label={""} val={clientId} /></p>
+                        <p><Field type="text" idName="clientMessage" name={"message"} component={Textarea} label={"Сообщение"} /></p>
                     </div>
                 </div>
                 <div className="button">
                     <button onClick={() => setFetching(true)} type="submit" disabled={submitting}>Отправить {isFetching ? <img src={loading}/> : null}</button>
                 </div>
-            </form>}
+            </form>
         </>
     )
 }

@@ -44,12 +44,11 @@ const ClientPopupForm = (props) => {
         userFeedback = (<ErrorsAlert error={errSer} />)
     }
 
-    let redirect = submitSucceeded && isLoggedIn ? (<Redirect to={"/account/company_data"}/>) : null;
+    //let redirect = submitSucceeded && isLoggedIn ? (<Redirect to={"/account/company_data"}/>) : null;
 
     return (
         <>
-        {redirect && redirect ||
-        <form onSubmit={handleSubmit} name="accountForm">
+            <form onSubmit={handleSubmit} name="accountForm">
             {errSer && <div className="error">
                 {userFeedback}
             </div>}
@@ -80,7 +79,7 @@ const ClientPopupForm = (props) => {
                 <button onClick={() => setFetching(true)} type="submit" disabled={submitting}>Зарегистрироваться {isFetching ? <img src={loading}/> : null}</button>
                 <p>Нажимая «Сохранить», я соглашаюсь с <span>офертой</span></p>
             </div>
-        </form>}
+        </form>
         </>
     )
 }

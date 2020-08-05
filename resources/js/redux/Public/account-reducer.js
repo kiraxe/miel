@@ -2,6 +2,7 @@ import {adminAPI, publicAPI} from "../../api/api";
 
 const SET_ACCOUNT = 'SET_ACCOUNT';
 const EDIT_ACCOUNT = 'EDIT_ACCOUNT';
+const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
 
 let initialState = {
     client: {},
@@ -24,6 +25,12 @@ let accountReducer = (state = initialState, action) => {
                 error: action.error
             }
         }
+        case DELETE_ACCOUNT: {
+            return  {
+                ...state,
+                client: {}
+            }
+        }
         default:
             return state
     }
@@ -33,6 +40,7 @@ let accountReducer = (state = initialState, action) => {
 
 
 export const setClienteleAccountAC = (data) => ({type: SET_ACCOUNT, data: data});
+export const setDeleteAccountAC = () => ({type: DELETE_ACCOUNT});
 export const editClienteleAccountAC = (data, error) => ({type: EDIT_ACCOUNT, data: data, error: error});
 
 export const getAccount = (client_id) => async dispatch => {
@@ -41,6 +49,8 @@ export const getAccount = (client_id) => async dispatch => {
     if (response.data.success) {
         localStorage.setItem('client', JSON.stringify(response.data.data.client));
         dispatch(setClienteleAccountAC(response.data));
+
+        return response;
     }
 };
 
@@ -52,6 +62,10 @@ export const editAccount = (client) => async dispatch => {
         dispatch(editClienteleAccountAC([], response.data.message));
     }
 
+}
+
+export const deleteAccount = () => async dispatch => {
+    dispatch(setDeleteAccountAC());
 }
 
 export default accountReducer;

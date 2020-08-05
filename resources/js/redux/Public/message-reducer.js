@@ -1,4 +1,5 @@
-import {adminAPI, publicAPI} from '../../api/api';
+import {publicAPI} from '../../api/api';
+import {setCartAC} from "./cart-reducer";
 
 
 const SET_MESSAGE = 'SET_MESSAGE'
@@ -32,7 +33,7 @@ const messagePublicReducer = (state = initialState, action) => {
             return {
                 ...state,
                 message: null,
-                send: action.data.error ? false : true,
+                send: true,
                 error: action.data.error ? action.data.error : null
             }
         }
@@ -50,12 +51,12 @@ export const setMessage = (message) => async dispatch => {
     dispatch(setMessageAC(message));
 }
 
-export  const setSend = () => async  dispatch => {
+export const setSend = () => async  dispatch => {
     dispatch(setSendAC())
 }
 
-export const sendMessage = (message) => async dispatch => {
-    let response = await publicAPI.addMessage(message);
+export const sendMessage = (data) => async dispatch => {
+    let response = await publicAPI.addMessage(data);
     console.log(response);
     if (response.success) {
         dispatch(sendMessageAC(response.data, null));

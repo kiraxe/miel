@@ -185,7 +185,7 @@ const Info = (props) => {
                         <Select onOptionHandler={onOptionHandler} options={props.options}/>
                     </div>
                     <div className="costPanel">
-                        <div className="cost"><p>{priceVariable} ₽ / шт.</p></div>
+                        <div className="cost"><p><span style={{fontSize: '20px', color: '#2C373E'}}>{priceVariable}</span> ₽ / шт.</p></div>
                         <div className="count">
                             <input className="costPanel__hidden" type="hidden"
                                    name="count"/>

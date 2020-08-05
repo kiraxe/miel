@@ -39,7 +39,10 @@ class MessageController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
-        $message = Message::create($input);
+        $message = Message::create([
+            'client_id' => $input['type'],
+            'message' => $input['message']
+        ]);
 
         $message->toArray();
 
