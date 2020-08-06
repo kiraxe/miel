@@ -35,11 +35,19 @@ export const Items = ({paginator, onGetPage, props}) => {
 
 }
 
+export const ItemFirst = ({paginator, onGetPage, props}) => {
+    return <>{paginator.current_page > 1 && <li className="page-item"><a onClick={onGetPage} page={1} className="page-link" href="#">&#171;</a></li>}</>
+}
+
 export const ItemPrev = ({paginator, onGetPage, props}) => {
-    return <>{paginator.current_page !== 1 && <li className="page-item"><a onClick={onGetPage} page={paginator.current_page - 1} className="page-link" href="#">&laquo;</a></li>}</>
+    return <>{paginator.current_page !== 1 && <li className="page-item"><a onClick={onGetPage} page={paginator.current_page - 1} className="page-link" href="#">&#8249;</a></li>}</>
 }
 
 export const ItemNext = ({paginator, onGetPage, props}) => {
-    return <>{paginator.current_page !== paginator.total_page && <li className="page-item"><a onClick={onGetPage} page={paginator.current_page + 1} className="page-link" href="#">&raquo;</a></li>}</>
+    return <>{paginator.current_page !== paginator.total_page && <li className="page-item"><a onClick={onGetPage} page={paginator.current_page + 1} className="page-link" href="#">&#8250;</a></li>}</>
+}
+
+export const ItemLast = ({paginator, onGetPage, props}) => {
+    return <>{paginator.current_page !== paginator.total_page && <li className="page-item"><a onClick={onGetPage} page={paginator.total_page} className="page-link" href="#">&#187;</a></li>}</>
 }
 

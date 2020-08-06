@@ -4063,14 +4063,16 @@ var mapStateToProps = function mapStateToProps(state) {
 /*!************************************************************!*\
   !*** ./resources/js/components/common/Paginator/Items.jsx ***!
   \************************************************************/
-/*! exports provided: Items, ItemPrev, ItemNext */
+/*! exports provided: Items, ItemFirst, ItemPrev, ItemNext, ItemLast */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Items", function() { return Items; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ItemFirst", function() { return ItemFirst; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ItemPrev", function() { return ItemPrev; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ItemNext", function() { return ItemNext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ItemLast", function() { return ItemLast; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
@@ -4118,10 +4120,23 @@ var Items = function Items(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, elements);
 };
-var ItemPrev = function ItemPrev(_ref2) {
+var ItemFirst = function ItemFirst(_ref2) {
   var paginator = _ref2.paginator,
       onGetPage = _ref2.onGetPage,
       props = _ref2.props;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, paginator.current_page > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "page-item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    onClick: onGetPage,
+    page: 1,
+    className: "page-link",
+    href: "#"
+  }, "\xAB")));
+};
+var ItemPrev = function ItemPrev(_ref3) {
+  var paginator = _ref3.paginator,
+      onGetPage = _ref3.onGetPage,
+      props = _ref3.props;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, paginator.current_page !== 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "page-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -4129,17 +4144,30 @@ var ItemPrev = function ItemPrev(_ref2) {
     page: paginator.current_page - 1,
     className: "page-link",
     href: "#"
-  }, "\xAB")));
+  }, "\u2039")));
 };
-var ItemNext = function ItemNext(_ref3) {
-  var paginator = _ref3.paginator,
-      onGetPage = _ref3.onGetPage,
-      props = _ref3.props;
+var ItemNext = function ItemNext(_ref4) {
+  var paginator = _ref4.paginator,
+      onGetPage = _ref4.onGetPage,
+      props = _ref4.props;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, paginator.current_page !== paginator.total_page && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "page-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     onClick: onGetPage,
     page: paginator.current_page + 1,
+    className: "page-link",
+    href: "#"
+  }, "\u203A")));
+};
+var ItemLast = function ItemLast(_ref5) {
+  var paginator = _ref5.paginator,
+      onGetPage = _ref5.onGetPage,
+      props = _ref5.props;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, paginator.current_page !== paginator.total_page && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "page-item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    onClick: onGetPage,
+    page: paginator.total_page,
     className: "page-link",
     href: "#"
   }, "\xBB")));
@@ -4167,7 +4195,7 @@ var Paginator = function Paginator(props) {
     "aria-label": "Page navigation example"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "pagination"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Items__WEBPACK_IMPORTED_MODULE_1__["ItemPrev"], props), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Items__WEBPACK_IMPORTED_MODULE_1__["Items"], props), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Items__WEBPACK_IMPORTED_MODULE_1__["ItemNext"], props))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Items__WEBPACK_IMPORTED_MODULE_1__["ItemFirst"], props), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Items__WEBPACK_IMPORTED_MODULE_1__["ItemPrev"], props), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Items__WEBPACK_IMPORTED_MODULE_1__["Items"], props), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Items__WEBPACK_IMPORTED_MODULE_1__["ItemNext"], props), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Items__WEBPACK_IMPORTED_MODULE_1__["ItemLast"], props))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Paginator);
