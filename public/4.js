@@ -1677,7 +1677,7 @@ var OrderShow = function OrderShow(props) {
     className: 'title'
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, _Language__WEBPACK_IMPORTED_MODULE_2__["rus"].page.orders.show.comment.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: 'content'
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.order[0].comment.comment))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.order[0].comment && props.order[0].comment.comment))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (OrderShow);

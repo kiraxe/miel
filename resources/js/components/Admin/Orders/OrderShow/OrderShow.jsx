@@ -77,7 +77,7 @@ const OrderShow = (props) => {
                 <Col col="md">
                     <div className={'title'}><h5>{LanguageRus.page.orders.show.comment.title}</h5></div>
                     <div className={'content'}>
-                        <p>{props.order[0].comment.comment}</p>
+                        <p>{props.order[0].comment && props.order[0].comment.comment}</p>
                     </div>
                 </Col>
             </Row>
