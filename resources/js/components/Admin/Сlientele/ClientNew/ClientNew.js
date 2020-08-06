@@ -45,6 +45,14 @@ const ClientNewForm = (props) => {
                 <Field type="text" idName="clientCompany" className={"form-control"} name={"company"} component={Input} label={LanguageRus.page.clientele.table.company} />
             </div>
             <div className="form-group">
+                <label>{LanguageRus.page.clientele.table.name_legal_entity}</label>
+                <Field type="text" idName="clientNameLegalEntity" className={"form-control"} name={"name_legal_entity"} component={Input} label={LanguageRus.page.clientele.table.name_legal_entity} />
+            </div>
+            <div className="form-group">
+                <label>{LanguageRus.page.clientele.table.legal_entity}</label>
+                <Field type="text" idName="clientLegalEntity" className={"form-control"} name={"legal_entity"} component={Input} label={LanguageRus.page.clientele.table.legal_entity} />
+            </div>
+            <div className="form-group">
                 <label>{LanguageRus.page.clientele.table.addressK}</label>
                 <Field type="text" idName="clientAddressK" className={"form-control"} name={"addressK"} component={Input} label={LanguageRus.page.clientele.table.addressK} />
             </div>

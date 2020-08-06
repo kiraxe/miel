@@ -55,7 +55,9 @@ const AccountFormEdit = (props) => {
 
                 </div>
                 <div className="section">
-                    <p><Field type="text" idName="clientAccountCompany" className={"form-control"} name={"company"} component={Input} label={'Название компании'} /></p>
+                    <p><Field type="text" idName="clientAccountCompany" className={"form-control"} name={"company"} component={Input} label={'Название офиса / подразделение'} /></p>
+                    <p><Field type="text" idName="clientNameLegalEntity" className={"form-control"} name={"name_legal_entity"} component={Input} label={LanguageRus.page.clientele.table.name_legal_entity} /></p>
+                    <p><Field type="text" idName="clientLegalEntity" className={"form-control"} name={"legal_entity"} component={Input} label={LanguageRus.page.clientele.table.legal_entity} /></p>
                     <p><Field type="text" idName="clientAccountInn" className={"form-control"} name={"inn"} component={Input} label={LanguageRus.page.clientele.table.inn} /></p>
                     <p><Field type="text" idName="clientAccountKpp" className={"form-control"} name={"kpp"} component={Input} label={LanguageRus.page.clientele.table.kpp} /></p>
                     <p><Field type="text" idName="clientAccountRs" className={"form-control"} name={"rs"} component={Input} label={LanguageRus.page.clientele.table.rs} /></p>

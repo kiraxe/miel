@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api;
 use App\Client;
+use App\Orders;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
@@ -24,6 +25,22 @@ class AccountPageController extends BaseController
         $result['client'] = $client;
 
         return $this->sendResponse($result, 'accountPage retrieved successfully.');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getOrders($id) {
+
+        $orders = Orders::where('client_id', $id)->with(['cart', 'orderType'])->get()->toArray();
+
+        $result = [];
+
+        $result['orders'] = $orders;
+        return $this->sendResponse($result, 'AccountOrders retrieved successfully.');
     }
 
     /**
@@ -55,6 +72,8 @@ class AccountPageController extends BaseController
         $client->addressK = $input['addressK'];
         $client->addressP = $input['addressP'];
         $client->company = $input['company'];
+        $client->name_legal_entity = $input['name_legal_entity'];
+        $client->legal_entity = $input['legal_entity'];
         $client->inn = $input['inn'];
         $client->kpp = $input['kpp'];
         $client->rs = $input['rs'];

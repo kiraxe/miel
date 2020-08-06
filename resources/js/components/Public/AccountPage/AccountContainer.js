@@ -6,8 +6,8 @@ import {getSettingsSelectors} from "../../../redux/Public/public-selectors";
 import {getIdSelector} from "../../../redux/auth-selectors";
 import ManagerInfo from "./ManagerInfo/ManagerInfo";
 import Navigation from "./Navigation/Navigation";
-import {getClientSelectors, getErrorSelector} from "../../../redux/Public/account-selectors";
-import {getAccount , editAccount} from "../../../redux/Public/account-reducer";
+import {getClientSelectors, getErrorSelector, getOrdersSelector} from "../../../redux/Public/account-selectors";
+import {getAccount , editAccount, getOrders} from "../../../redux/Public/account-reducer";
 import AccountForm from "./AccountForm/AccountForm";
 import AccountOrders from "./AccountOrders/AccountOrders";
 import {addCartClient} from '../../../redux/Public/cart-reducer'
@@ -18,7 +18,8 @@ class  AccountContainer extends Component {
     }
 
     componentDidMount() {
-        //this.props.getAccount(this.props.auth_client_id);
+        this.props.getAccount(this.props.auth_client_id);
+        this.props.getOrders(this.props.auth_client_id);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -74,7 +75,7 @@ class  AccountContainer extends Component {
                                 </div>}
                                 {this.props.match.params.page === 'company_data' && <div className="row">
                                     <AccountForm error={this.props.error} client={this.props.client} editAccount={this.onEditSubmit} />
-                                </div> || this.props.match.params.page === 'orders' && <AccountOrders/> || <div className="row">Страница находится в разработке</div>}
+                                </div> || this.props.match.params.page === 'orders' && <AccountOrders orders={this.props.orders} /> || <div className="row">Страница находится в разработке</div>}
                             </div>
                         </div>
                     </div>
@@ -89,11 +90,12 @@ let mapStateToProps = (state) => {
         settings: getSettingsSelectors(state),
         client: getClientSelectors(state),
         auth_client_id: getIdSelector(state),
+        orders: getOrdersSelector(state),
         error: getErrorSelector(state)
     }
 };
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {getAccount , editAccount, addCartClient})
+    connect(mapStateToProps, {getAccount , editAccount, addCartClient, getOrders})
 )(AccountContainer);

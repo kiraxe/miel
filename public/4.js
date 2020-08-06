@@ -3249,6 +3249,24 @@ var ClientEditForm = function ClientEditForm(props) {
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.company
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.name_legal_entity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "clientNameLegalEntity",
+    className: "form-control",
+    name: "name_legal_entity",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.name_legal_entity
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.legal_entity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "clientLegalEntity",
+    className: "form-control",
+    name: "legal_entity",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.legal_entity
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressK), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
     type: "text",
     idName: "clientAddressK",
@@ -3473,6 +3491,24 @@ var ClientNewForm = function ClientNewForm(props) {
     name: "company",
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.company
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.name_legal_entity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "clientNameLegalEntity",
+    className: "form-control",
+    name: "name_legal_entity",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.name_legal_entity
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.legal_entity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "clientLegalEntity",
+    className: "form-control",
+    name: "legal_entity",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.legal_entity
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.addressK), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {

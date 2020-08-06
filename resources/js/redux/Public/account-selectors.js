@@ -7,3 +7,7 @@ export const getClientSelectors = (state) => {
 export const getErrorSelector = (state) => {
     return state.accountPagePublic.error;
 }
+
+export const getOrdersSelector = (state) => {
+    return state.accountPagePublic.orders;
+}

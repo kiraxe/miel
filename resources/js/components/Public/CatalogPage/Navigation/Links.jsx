@@ -23,7 +23,7 @@ const Links = (props) => {
 
     let categories = props.categories ? props.categories.map((item, key) => {
         return  item.children.length ? <li className={'parent'} key={key}><NavLink onClick={() => leftDropMenuHandler(item.category_id)} className={`dropLeftNavigationRun ${catId === item.category_id ? className : ''}`} to={`/shop/${item.link}`} >{item.attributes.name}</NavLink><ul className={`dropLeftNavigation ${catId === item.category_id ? className : ''}`}>{ props.categories.map((it, key) => it.parent_id === item.category_id ? <li onClick={() => props.onPageHandler(it.category_id)} key={key}><NavLink to={`/shop/${it.link}`}>{it.attributes.name}</NavLink></li> : null)}</ul></li> : !item.parent_id ? <li onClick={() => props.onPageHandler(item.category_id)} key={key}><NavLink to={`/shop/${item.link}`} >{item.attributes.name}</NavLink></li> : null
-    } ) : null;
+    }) : null;
 
     return (
         <>{categories}</>

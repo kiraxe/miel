@@ -389,6 +389,8 @@ body main#public #wrapper #main-content .novelty {
 body main#public #wrapper #main-content .popular .title h1,
 body main#public #wrapper #main-content .novelty .title h1,
 body main#public.shop #wrapper #main-content .catalogTitle .title h1,
+body main#public.account #wrapper #main-content .center .accountOrders .accountOrders__title h2,
+body main#public.account #wrapper #main-content .center .accountOrders .accountOrders__content .accountOrders__item .accountOrders__block .accountOrders__blockTitle h2,
 body main#public.account #wrapper #main-content .center .title h1,
 body main#public.basket #wrapper #main-content .block_1 .title h1,
 body main#public.basket #wrapper #main-content .block_2 .title h2,
@@ -410,6 +412,7 @@ body main#public.basket #wrapper #main-content .block_4 .title h2 {
 body main#public #wrapper #main-content .popular .text p,
 body main#public #wrapper #main-content .novelty .text p,
 body main#public.shop #wrapper #main-content .catalogTitle .text p,
+body main#public.account #wrapper #main-content .center .accountOrders .accountOrders__total,
 body main#public.account #wrapper #main-content .center .text p,
 body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartFirst .content .itemText p,
 body main#public.basket #wrapper #main-content .block_3 .checkbox .checkInput .checkInputItem p,
@@ -1738,6 +1741,55 @@ body main#public.account #wrapper #main-content .left .button button {
 body main#public.account #wrapper #main-content .center .row {
   padding-top: 10px;
   padding-left: 15px;
+}
+
+body main#public.account #wrapper #main-content .center .accountOrders .accountOrders__title {
+  margin-bottom: 15px;
+}
+
+body main#public.account #wrapper #main-content .center .accountOrders .accountOrders__content {
+  background-color: #fff;
+  box-shadow: 0px 0px 30px rgba(44, 55, 62, 0.1);
+}
+
+body main#public.account #wrapper #main-content .center .accountOrders .accountOrders__content .accountOrders__item {
+  border-bottom: 1px solid #E2EAF1;
+  display: flex;
+  padding: 20px;
+}
+
+body main#public.account #wrapper #main-content .center .accountOrders .accountOrders__content .accountOrders__item:last-child {
+  border-bottom: none;
+}
+
+body main#public.account #wrapper #main-content .center .accountOrders .accountOrders__content .accountOrders__item .accountOrders__image img {
+  height: 100px;
+  width: 100px;
+}
+
+body main#public.account #wrapper #main-content .center .accountOrders .accountOrders__content .accountOrders__item .accountOrders__block .accountOrders__blockTitle h2 {
+  font-size: 1rem;
+}
+
+body main#public.account #wrapper #main-content .center .accountOrders .accountOrders__content .accountOrders__item .accountOrders__price p {
+  margin-bottom: .5rem;
+}
+
+body main#public.account #wrapper #main-content .center .accountOrders .accountOrders__content .accountOrders__item .accountOrders__priceTotal p {
+  color: #F37021;
+  font-family: PTSansBold;
+  margin-bottom: .5rem;
+  line-height: 21px;
+}
+
+body main#public.account #wrapper #main-content .center .accountOrders .accountOrders__total {
+  margin-top: 25px;
+  color: #2C373E;
+}
+
+body main#public.account #wrapper #main-content .center .accountOrders .accountOrders__total span {
+  font-family: PTSansBold;
+  font-size: 1.875rem;
 }
 
 body main#public.account #wrapper #main-content .center .text p {

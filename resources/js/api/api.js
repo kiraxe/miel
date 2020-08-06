@@ -199,6 +199,11 @@ export const publicAPI = {
             .then(response => response)
             .catch(error => error.response);
     },
+    getAccountOrders(client_id) {
+        return getAxiosSettings().get(`orders_account/${client_id}`)
+            .then(response => response)
+            .catch(error => error.response);
+    },
     editAccountPage(client) {
         return getAxiosSettings().put(`account/${client.id}`, client)
             .then(response => response.data)

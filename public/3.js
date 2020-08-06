@@ -82,7 +82,9 @@ var AccountContainer = /*#__PURE__*/function (_Component) {
 
   _createClass(AccountContainer, [{
     key: "componentDidMount",
-    value: function componentDidMount() {//this.props.getAccount(this.props.auth_client_id);
+    value: function componentDidMount() {
+      this.props.getAccount(this.props.auth_client_id);
+      this.props.getOrders(this.props.auth_client_id);
     }
   }, {
     key: "componentDidUpdate",
@@ -142,7 +144,9 @@ var AccountContainer = /*#__PURE__*/function (_Component) {
         error: this.props.error,
         client: this.props.client,
         editAccount: this.onEditSubmit
-      })) || this.props.match.params.page === 'orders' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AccountOrders_AccountOrders__WEBPACK_IMPORTED_MODULE_11__["default"], null) || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })) || this.props.match.params.page === 'orders' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AccountOrders_AccountOrders__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        orders: this.props.orders
+      }) || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, "\u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430 \u043D\u0430\u0445\u043E\u0434\u0438\u0442\u0441\u044F \u0432 \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u043A\u0435"))))));
     }
@@ -156,6 +160,7 @@ var mapStateToProps = function mapStateToProps(state) {
     settings: Object(_redux_Public_public_selectors__WEBPACK_IMPORTED_MODULE_4__["getSettingsSelectors"])(state),
     client: Object(_redux_Public_account_selectors__WEBPACK_IMPORTED_MODULE_8__["getClientSelectors"])(state),
     auth_client_id: Object(_redux_auth_selectors__WEBPACK_IMPORTED_MODULE_5__["getIdSelector"])(state),
+    orders: Object(_redux_Public_account_selectors__WEBPACK_IMPORTED_MODULE_8__["getOrdersSelector"])(state),
     error: Object(_redux_Public_account_selectors__WEBPACK_IMPORTED_MODULE_8__["getErrorSelector"])(state)
   };
 };
@@ -163,7 +168,8 @@ var mapStateToProps = function mapStateToProps(state) {
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_1__["compose"])(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"], Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, {
   getAccount: _redux_Public_account_reducer__WEBPACK_IMPORTED_MODULE_9__["getAccount"],
   editAccount: _redux_Public_account_reducer__WEBPACK_IMPORTED_MODULE_9__["editAccount"],
-  addCartClient: _redux_Public_cart_reducer__WEBPACK_IMPORTED_MODULE_12__["addCartClient"]
+  addCartClient: _redux_Public_cart_reducer__WEBPACK_IMPORTED_MODULE_12__["addCartClient"],
+  getOrders: _redux_Public_account_reducer__WEBPACK_IMPORTED_MODULE_9__["getOrders"]
 }))(AccountContainer));
 
 /***/ }),
@@ -321,7 +327,21 @@ var AccountFormEdit = function AccountFormEdit(props) {
     className: "form-control",
     name: "company",
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
-    label: 'Название компании'
+    label: 'Название офиса / подразделение'
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "clientNameLegalEntity",
+    className: "form-control",
+    name: "name_legal_entity",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
+    label: _Admin_Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.name_legal_entity
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "clientLegalEntity",
+    className: "form-control",
+    name: "legal_entity",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
+    label: _Admin_Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.clientele.table.legal_entity
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
     type: "text",
     idName: "clientAccountInn",
@@ -427,57 +447,98 @@ var validate = function validate(values, allValues, props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-html-parser */ "./node_modules/react-html-parser/lib/index.js");
-/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Order_Order__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Order/Order */ "./resources/js/components/Public/AccountPage/AccountOrders/Order/Order.js");
+/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-html-parser */ "./node_modules/react-html-parser/lib/index.js");
+/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 
 var AccountOrders = function AccountOrders(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-12"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "block_2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "1. \u041F\u0440\u043E\u0432\u0435\u0440\u044C\u0442\u0435 \u0437\u0430\u043A\u0430\u0437 \u0438 \u0432\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0434\u0430\u0442\u0443 \u043F\u043E\u0441\u0442\u0430\u0432\u043A\u0438")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "itemPartFirst"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "images"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    style: {
-      width: '100px'
-    },
-    src: ""
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "itemTitle"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "article"
-  }, "\u0410\u0440\u0442. "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "itemText"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    style: {
-      height: '52px',
-      display: "inline-block",
-      overflow: 'hidden'
-    }
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "itemPartSecond"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "costPanelItem"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "price"
-  }, "\u0418\u0442\u043E\u0433\u043E: 2000 \u20BD"))))))));
+  var orders = props.orders ? props.orders.map(function (item, key) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Order_Order__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: key,
+      order: item
+    });
+  }) : null;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, orders);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (AccountOrders);
+
+/***/ }),
+
+/***/ "./resources/js/components/Public/AccountPage/AccountOrders/Item/Item.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Public/AccountPage/AccountOrders/Item/Item.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Item = function Item(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "accountOrders__item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "accountOrders__image col-md-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: props.product.image
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "accountOrders__block col-md-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "accountOrders__blockTitle"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, props.product.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "accountOrders__blockArticle"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u0410\u0440\u0442. ", props.product.article))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "accountOrders__price col-md-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u0426\u0435\u043D\u0430 \u0437\u0430 \u0448\u0442\u0443\u043A\u0443: ", props.product.unit_price, " \u20BD / \u0448\u0442."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E: ", props.product.count)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "accountOrders__priceTotal col-md-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u0418\u0442\u043E\u0433\u043E: ", props.product.total_price, " \u20BD")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Item);
+
+/***/ }),
+
+/***/ "./resources/js/components/Public/AccountPage/AccountOrders/Order/Order.js":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/Public/AccountPage/AccountOrders/Order/Order.js ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Item_Item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Item/Item */ "./resources/js/components/Public/AccountPage/AccountOrders/Item/Item.js");
+
+
+
+var Order = function Order(props) {
+  var products = props.order.cart.cart_to_product ? props.order.cart.cart_to_product.map(function (item, key) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Item_Item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: key,
+      product: item.order_detail
+    });
+  }) : null;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row accountOrders"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "accountOrders__title col-md-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "\u0417\u0430\u043A\u0430\u0437 ", props.order.order_id, " \u043E\u0442 ", props.order.created_at)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "accountOrders__content col-md-12"
+  }, products), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "accountOrders__total col-md-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041E\u0431\u0449\u0430\u044F \u0441\u0443\u043C\u043C\u0430 \u0437\u0430\u043A\u0430\u0437\u0430: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", props.order.total, " \u20BD"))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Order);
 
 /***/ }),
 
@@ -5385,13 +5446,14 @@ var mapStateToProps = function mapStateToProps(state) {
 /*!********************************************************!*\
   !*** ./resources/js/redux/Public/account-selectors.js ***!
   \********************************************************/
-/*! exports provided: getClientSelectors, getErrorSelector */
+/*! exports provided: getClientSelectors, getErrorSelector, getOrdersSelector */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClientSelectors", function() { return getClientSelectors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getErrorSelector", function() { return getErrorSelector; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOrdersSelector", function() { return getOrdersSelector; });
 /* harmony import */ var reselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reselect */ "./node_modules/reselect/es/index.js");
 
 var getClientSelectors = function getClientSelectors(state) {
@@ -5399,6 +5461,9 @@ var getClientSelectors = function getClientSelectors(state) {
 };
 var getErrorSelector = function getErrorSelector(state) {
   return state.accountPagePublic.error;
+};
+var getOrdersSelector = function getOrdersSelector(state) {
+  return state.accountPagePublic.orders;
 };
 
 /***/ }),

@@ -1,0 +1,56 @@
+.accountOrders {
+    .accountOrders__title {
+        h2 {
+            @extend %productsTitle;
+        }
+        margin-bottom: 15px;
+    }
+    .accountOrders__content {
+        background-color: #fff;
+        box-shadow: 0px 0px 30px rgba(44, 55, 62, 0.1);
+        .accountOrders__item {
+            &:last-child {
+                border-bottom: none;
+            }
+            border-bottom: 1px solid #E2EAF1;
+            display: flex;
+            padding: 20px;
+            .accountOrders__image {
+                img {
+                    height: 100px;
+                    width: 100px
+                }
+            }
+            .accountOrders__block {
+                .accountOrders__blockTitle {
+                    h2 {
+                        @extend %productsTitle;
+                        font-size: 1rem;
+                    }
+                }
+            }
+            .accountOrders__price {
+                p {
+                    margin-bottom: .5rem;
+                }
+            }
+            .accountOrders__priceTotal {
+                p {
+                    color: #F37021;
+                    font-family: $MainFontFamilyBold;
+                    margin-bottom: .5rem;
+                    line-height: 21px;
+                }
+            }
+        }
+    }
+    .accountOrders__total {
+        @extend %productsText;
+        margin-top: 25px;
+        color: $titleColor;
+        span {
+            font-family: $MainFontFamilyBold;
+            font-size: 1.875rem;
+        }
+    }
+}

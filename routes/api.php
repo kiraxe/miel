@@ -106,6 +106,9 @@ Route::middleware(['auth:client','json.response'])->group(function () {
     //account
     Route::resource('/account', 'Api\AccountPageController');
 
+    //account orders
+    Route::get('orders_account/{id}', 'Api\AccountPageController@getOrders')->name('getOrders.client');;
+
     //order
     Route::post('/order', 'Api\OrdersPublicController@add');
 

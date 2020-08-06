@@ -101,6 +101,8 @@ class ClientController extends BaseController
         $client->addressK = $input['addressK'];
         $client->addressP = $input['addressP'];
         $client->company = $input['company'];
+        $client->name_legal_entity = $input['name_legal_entity'];
+        $client->legal_entity = $input['legal_entity'];
         $client->inn = $input['inn'];
         $client->kpp = $input['kpp'];
         $client->rs = $input['rs'];
