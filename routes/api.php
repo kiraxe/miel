@@ -47,16 +47,26 @@ Route::middleware('json.response')->group(function () {
     //->options
     Route::resource('/options', 'Api\OptionController');
 
+    //-orders_admin
+    Route::resource('/orders_admin', 'Api\OrderController')->only([
+        'index', 'show', 'destroy', 'store'
+    ]);
+
+    //Route::get('orders_admin', 'Api\OrderController@index');
+    //Route::get('orders_admin/{order_id}', 'Api\OrderController@show');
+    //Route::post('orders_admin', 'Api\OrderController@store');
+    Route::put('orders_admin/{order}', 'Api\OrderController@update');
+    //Route::delete('orders_admin/{order_id}', 'Api\OrderController@delete');
+
+    //-message
+    Route::resource('/message', 'Api\MessageController');
+
     //-Public
     Route::get('public', 'Api\PublicController@index');
     //-index
     Route::get('index', 'Api\IndexPageController@index');
     //-catalog
     Route::resource('/catalog', 'Api\CatalogPageController');
-
-    Route::resource('/orders_admin', 'Api\OrderController');
-
-    Route::resource('/message', 'Api\MessageController');
 
 });
 
@@ -73,8 +83,9 @@ Route::middleware(['auth:api','json.response'])->group(function () {
     //->me
     Route::get('/me', 'Api\AuthController@me')->name('me.api');
 
+
     //order
-    Route::resource('/order', 'Api\OrderController');
+    //Route::resource('/order', 'Api\OrderController');
 
     //->product
     //Route::resource('/products', 'Api\ProductController');

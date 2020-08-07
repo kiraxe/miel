@@ -10,6 +10,7 @@ import {getClientSelectors, getErrorSelector, getOrdersSelector} from "../../../
 import {getAccount , editAccount, getOrders} from "../../../redux/Public/account-reducer";
 import AccountForm from "./AccountForm/AccountForm";
 import AccountOrders from "./AccountOrders/AccountOrders";
+import AccountArchive from "./AccountArchive/AccountArchive";
 import {addCartClient} from '../../../redux/Public/cart-reducer'
 
 class  AccountContainer extends Component {
@@ -75,7 +76,7 @@ class  AccountContainer extends Component {
                                 </div>}
                                 {this.props.match.params.page === 'company_data' && <div className="row">
                                     <AccountForm error={this.props.error} client={this.props.client} editAccount={this.onEditSubmit} />
-                                </div> || this.props.match.params.page === 'orders' && <AccountOrders orders={this.props.orders} /> || <div className="row">Страница находится в разработке</div>}
+                                </div> || this.props.match.params.page === 'orders' && <AccountOrders orders={this.props.orders} /> || this.props.match.params.page === 'archive' && <AccountArchive orders={this.props.orders}/>}
                             </div>
                         </div>
                     </div>

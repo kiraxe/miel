@@ -1581,8 +1581,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Order = function Order(props) {
-  var buttons = ['show', 'delete'];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.order_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.client.company), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.order_type.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.total), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  var buttons = ['show', 'delete', 'edit'];
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.order_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.client.company), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.status ? "Активный заказ" : "Заказ закрыт"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.order_type.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.total), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.order.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ButtonsPanel_ButtonPanelContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
     onDelete: props.onDelete,
     page: props.page,
     buttons: buttons,
@@ -1592,6 +1592,135 @@ var Order = function Order(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Order);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Orders/OrderEdit/OrderEdit.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/Admin/Orders/OrderEdit/OrderEdit.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Language__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Language */ "./resources/js/components/Admin/Language.js");
+/* harmony import */ var redux_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-form */ "./node_modules/redux-form/es/index.js");
+/* harmony import */ var _assets_images_loading_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../assets/images/loading.svg */ "./resources/js/assets/images/loading.svg");
+/* harmony import */ var _assets_images_loading_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_assets_images_loading_svg__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Validator_Validate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Validator/Validate */ "./resources/js/components/Admin/Orders/Validator/Validate.js");
+/* harmony import */ var _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/FormsControls/FormControls */ "./resources/js/components/common/FormsControls/FormControls.js");
+/* harmony import */ var react_bootstrap_Tabs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/Tabs */ "./node_modules/react-bootstrap/esm/Tabs.js");
+/* harmony import */ var react_bootstrap_Tab__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap/Tab */ "./node_modules/react-bootstrap/esm/Tab.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+var OrderEdit = function OrderEdit(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "title"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.orders.edit.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(OrderEditReduxForm, {
+    errSer: props.error,
+    order: props.order[0],
+    onSubmit: props.editOrder
+  })));
+};
+
+var OrderEditForm = function OrderEditForm(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isFetching = _useState2[0],
+      setFetching = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('general'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      key = _useState4[0],
+      setKey = _useState4[1];
+
+  var handleSubmit = props.handleSubmit,
+      pristine = props.pristine,
+      reset = props.reset,
+      submitting = props.submitting,
+      errSer = props.errSer,
+      submitSucceeded = props.submitSucceeded,
+      submitFailed = props.submitFailed,
+      initialize = props.initialize,
+      order = props.order;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    initialize(_objectSpread({}, order));
+  }, [order]);
+  submitSucceeded || submitFailed || errSer ? setTimeout(function () {
+    setFetching(false);
+  }, 3000) : null;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    id: "ordersForm",
+    onSubmit: handleSubmit,
+    className: "form"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Tabs__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    id: "controlled-tab-example",
+    activeKey: key,
+    onSelect: function onSelect(k) {
+      return setKey(k);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Tab__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    eventKey: "general",
+    title: "\u0421\u0442\u0430\u0442\u0443\u0441"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-check"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "form-check-label",
+    htmlFor: "ordersStatus"
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.orders.table.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "checkbox",
+    idName: "ordersStatus",
+    name: "status",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Checkbox"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.orders.table.status
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return setFetching(true);
+    },
+    type: "submit",
+    className: "btn btn-primary",
+    disabled: submitting
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.orders.edit.button, " ", isFetching ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: _assets_images_loading_svg__WEBPACK_IMPORTED_MODULE_3___default.a
+  }) : null), errSer === null && submitSucceeded && isFetching && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: 'success'
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.orders.edit.success));
+};
+
+var OrderEditReduxForm = Object(redux_form__WEBPACK_IMPORTED_MODULE_2__["reduxForm"])({
+  form: "OrderEdit"
+})(OrderEditForm);
+/* harmony default export */ __webpack_exports__["default"] = (OrderEdit);
 
 /***/ }),
 
@@ -1758,6 +1887,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_orders_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../redux/orders-reducer */ "./resources/js/redux/orders-reducer.js");
 /* harmony import */ var _OrderShow_OrderShow__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./OrderShow/OrderShow */ "./resources/js/components/Admin/Orders/OrderShow/OrderShow.jsx");
 /* harmony import */ var _Orders__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Orders */ "./resources/js/components/Admin/Orders/Orders.jsx");
+/* harmony import */ var _OrderEdit_OrderEdit__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./OrderEdit/OrderEdit */ "./resources/js/components/Admin/Orders/OrderEdit/OrderEdit.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1792,6 +1922,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var OrdersContainer = /*#__PURE__*/function (_React$Component) {
   _inherits(OrdersContainer, _React$Component);
 
@@ -1808,6 +1939,10 @@ var OrdersContainer = /*#__PURE__*/function (_React$Component) {
       var page = e.target.getAttribute('page');
 
       _this.props.getOrders(page);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onEditSubmit", function (formData) {
+      _this.props.editOrder(formData);
     });
 
     _defineProperty(_assertThisInitialized(_this), "onDelete", function (e) {
@@ -1840,6 +1975,13 @@ var OrdersContainer = /*#__PURE__*/function (_React$Component) {
         order: this.props.orders ? this.props.orders.filter(function (item) {
           return item.order_id == _this2.props.match.params.id;
         }) : null
+      }) : this.props.match.params.slug === 'edit' && this.props.match.params.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderEdit_OrderEdit__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        editOrder: this.onEditSubmit,
+        error: this.props.error,
+        id: this.props.match.params.id,
+        order: this.props.orders ? this.props.orders.filter(function (item) {
+          return item.order_id == _this2.props.match.params.id;
+        }) : null
       }) : null;
       var paginator = this.props.paginator.total_page > 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Paginator_Paginator__WEBPACK_IMPORTED_MODULE_1__["default"], {
         onGetPage: this.onGetPageOrders,
@@ -1863,8 +2005,30 @@ var mapStateToProps = function mapStateToProps(state) {
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_3__["compose"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, {
   getOrders: _redux_orders_reducer__WEBPACK_IMPORTED_MODULE_6__["getOrders"],
   deleteOrder: _redux_orders_reducer__WEBPACK_IMPORTED_MODULE_6__["deleteOrder"],
-  showOrder: _redux_orders_reducer__WEBPACK_IMPORTED_MODULE_6__["showOrder"]
+  showOrder: _redux_orders_reducer__WEBPACK_IMPORTED_MODULE_6__["showOrder"],
+  editOrder: _redux_orders_reducer__WEBPACK_IMPORTED_MODULE_6__["editOrder"]
 }), react_router_dom__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(OrdersContainer));
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Orders/Validator/Validate.js":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/Admin/Orders/Validator/Validate.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Language__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Language */ "./resources/js/components/Admin/Language.js");
+
+
+var validate = function validate(values) {
+  var errors = {};
+  return errors;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (validate);
 
 /***/ }),
 
@@ -2001,7 +2165,7 @@ var ProductEditForm = function ProductEditForm(props) {
     initialize(_objectSpread(_objectSpread({}, product), {}, {
       categories_id: attributes
     }));
-  }, []);
+  }, [product]);
   submitSucceeded || submitFailed || errSer ? setTimeout(function () {
     setFetching(false);
   }, 3000) : null;

@@ -1365,12 +1365,17 @@ body main#public #wrapper #main-content .novelty .sliderProducts .item .button b
   text-align: center;
 }
 
-body main#public #wrapper #main-content .popular .sliderProducts .item .button button.active,
 body main#public #wrapper #main-content .popular .sliderProducts .item .button button:hover,
-body main#public #wrapper #main-content .novelty .sliderProducts .item .button button.active,
 body main#public #wrapper #main-content .novelty .sliderProducts .item .button button:hover {
   background-color: #F37021;
   border: 1px solid #F37021;
+  color: #FFFFFF;
+}
+
+body main#public #wrapper #main-content .popular .sliderProducts .item .button button.active,
+body main#public #wrapper #main-content .novelty .sliderProducts .item .button button.active {
+  background-color: #9959a4;
+  border: 1px solid #9959a4;
   color: #FFFFFF;
 }
 
@@ -1623,12 +1628,17 @@ body main#public.shop #wrapper #main-content .shop .item .button button {
   text-align: center;
 }
 
-body main#public.shop #wrapper #main-content .catalog .item .button button.active,
 body main#public.shop #wrapper #main-content .catalog .item .button button:hover,
-body main#public.shop #wrapper #main-content .shop .item .button button.active,
 body main#public.shop #wrapper #main-content .shop .item .button button:hover {
   background-color: #F37021;
   border: 1px solid #F37021;
+  color: #FFFFFF;
+}
+
+body main#public.shop #wrapper #main-content .catalog .item .button button.active,
+body main#public.shop #wrapper #main-content .shop .item .button button.active {
+  background-color: #9959a4;
+  border: 1px solid #9959a4;
   color: #FFFFFF;
 }
 

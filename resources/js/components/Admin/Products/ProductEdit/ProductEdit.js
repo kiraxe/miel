@@ -38,7 +38,7 @@ const ProductEditForm = (props) => {
 
     useEffect(() => {
         initialize({...product, categories_id: attributes});
-    }, []);
+    }, [product]);
 
     submitSucceeded || submitFailed || errSer ? setTimeout(() => {setFetching(false)}, 3000) : null;
 

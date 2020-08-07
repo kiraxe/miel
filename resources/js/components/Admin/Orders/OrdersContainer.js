@@ -4,9 +4,10 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
 import {getOrdersSelectors, getOrdersErrorSelector, getOrdersPaginatorSelector} from '../../../redux/orders-selectors'
-import {getOrders, deleteOrder, showOrder} from "../../../redux/orders-reducer";
+import {getOrders, deleteOrder, showOrder, editOrder} from "../../../redux/orders-reducer";
 import OrderShow from "./OrderShow/OrderShow";
 import Orders from "./Orders"
+import OrderEdit from "./OrderEdit/OrderEdit";
 
 
 class OrdersContainer extends React.Component {
@@ -24,6 +25,10 @@ class OrdersContainer extends React.Component {
         this.props.getOrders(page);
     }
 
+    onEditSubmit = (formData) => {
+        this.props.editOrder(formData);
+    }
+
     onDelete = (e) => {
         let elementId = e.currentTarget.getAttribute('data-element');
         this.props.deleteOrder(elementId);
@@ -32,7 +37,8 @@ class OrdersContainer extends React.Component {
     render() {
 
         let orders = !this.props.match.params.slug ? <Orders onDelete={this.onDelete} page={this.props.match.params.page} url={this.props.match.url} orders={this.props.orders}/>:
-            this.props.match.params.slug === 'show' && this.props.match.params.id ?  <OrderShow error={this.props.error} id={this.props.match.params.id}  order={this.props.orders ? this.props.orders.filter(item => item.order_id == this.props.match.params.id ) : null}/> : null
+            this.props.match.params.slug === 'show' && this.props.match.params.id ?  <OrderShow error={this.props.error} id={this.props.match.params.id}  order={this.props.orders ? this.props.orders.filter(item => item.order_id == this.props.match.params.id ) : null}/> :
+            this.props.match.params.slug === 'edit' && this.props.match.params.id ?  <OrderEdit editOrder={this.onEditSubmit} error={this.props.error} id={this.props.match.params.id}  order={this.props.orders ? this.props.orders.filter(item => item.order_id == this.props.match.params.id ) : null}/> : null
 
         let paginator = this.props.paginator.total_page > 1 ? <Paginator onGetPage={this.onGetPageOrders} paginator={this.props.paginator}/> : null;
 
@@ -55,6 +61,6 @@ let mapStateToProps = (state) => {
 
 
 export default compose(
-    connect(mapStateToProps, {getOrders, deleteOrder, showOrder}),
+    connect(mapStateToProps, {getOrders, deleteOrder, showOrder, editOrder}),
     withRouter,
 )(OrdersContainer);

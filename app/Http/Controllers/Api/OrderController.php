@@ -21,7 +21,7 @@ class OrderController extends BaseController
 
         $orders = $query->paginate(5);
 
-        return $this->sendResponse($orders->toArray(), 'Messages retrieved successfully.');
+        return $this->sendResponse($orders->toArray(), 'Orders retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
@@ -45,7 +45,7 @@ class OrderController extends BaseController
 
         $orders->toArray();
 
-        return $this->sendResponse($orders, 'Messages created successfully.');
+        return $this->sendResponse($orders, 'Orders created successfully.');
     }
     /**
      * Display the specified resource.
@@ -59,7 +59,7 @@ class OrderController extends BaseController
         if (is_null($order)) {
             return $this->sendError('Message not found.');
         }
-        return $this->sendResponse($order->toArray(), 'Message retrieved successfully.');
+        return $this->sendResponse($order->toArray(), 'Order retrieved successfully.');
     }
     /**
      * Update the specified resource in storage.
@@ -88,9 +88,13 @@ class OrderController extends BaseController
 
         $order->save();
 
+        $order = $order->with(['cart','client','comment', 'orderType'])->get();
+
         $order->toArray();
 
-        return $this->sendResponse($order, 'Message updated successfully.');
+        $order[0]['status'] = $input['status'];
+
+        return $this->sendResponse($order, 'Order updated successfully.');
     }
     /**
      * Remove the specified resource from storage.

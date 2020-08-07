@@ -66,11 +66,18 @@
       line-height: 18px;
       text-align: center;
 
-      &.active, &:hover {
+      &:hover {
         background-color: #F37021;
         border: 1px solid #F37021;
         color: #FFFFFF;
       }
+
+      &.active {
+          background-color: #9959a4;
+          border: 1px solid #9959a4;
+          color: #FFFFFF;
+      }
+
     }
   }
 }

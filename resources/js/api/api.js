@@ -120,11 +120,16 @@ export const adminAPI = {
             .then(response => response.data)
             .catch(error => error.response);
     },
+    editOrder(order) {
+        let formData = getFormData(order, "PUT");
+        return getAxiosSettings().post(`orders_admin/${order.order_id}`, formData, {headers:{'Content-Type' : 'multipart/form-data'}})
+            .then(response => response.data)
+            .catch(error => error.response)
+    },
     deleteOrder(order_id) {
         return getAxiosSettings().delete(`orders_admin/${order_id}`)
             .then(response => response.data);
     },
-
     getMessages(page) {
         return getAxiosSettings().get(`message/?page=${page}`)
             .then(response => response.data)

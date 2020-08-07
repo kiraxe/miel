@@ -148,7 +148,12 @@ export const rus = {
                 'comment': {
                     'title': 'Комментарий'
                 }
-            }
+            },
+            'edit' : {
+                'title' : 'Редактировать',
+                'button' : 'Обновить',
+                'success' : 'Обновление...'
+            },
         },
 
         'messages': {

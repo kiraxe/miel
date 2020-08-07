@@ -4,7 +4,7 @@ import ReactHtmlParser from "react-html-parser";
 
 const AccountOrders = (props) => {
 
-    let orders = props.orders ? props.orders.map((item, key) => <Order key={key} order={item} />) : null;
+    let orders = props.orders ? props.orders.map((item, key) => item.status ? <Order key={key} order={item} /> : null) : null;
     return (
         <>
         {orders}
