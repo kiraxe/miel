@@ -3,7 +3,7 @@ import {rus as LanguageRus} from "../../Language";
 import {Field, reduxForm} from "redux-form";
 import loading from '../../../../assets/images/loading.svg';
 //import Validator from "../Validator/Validate.js";
-import {Input} from '../../../common/FormsControls/FormControls';
+import {Input, Textarea} from '../../../common/FormsControls/FormControls';
 import {renderDateTimePicker} from '../../../common/FormsControls/FormControls';
 
 
@@ -30,6 +30,14 @@ const SettingsForm = (props) => {
 
     return (
         <form id="settingsForm" onSubmit={handleSubmit} className="form" >
+            <div className="form-group">
+                <label>{LanguageRus.page.settings.description_main_page}</label>
+                <Field type="text" idName="settingsDescriptionMainPage" name={"description_main_page"} component={Textarea} label={LanguageRus.page.settings.description_main_page} />
+            </div>
+            <div className="form-group">
+                <label>{LanguageRus.page.settings.description_other_page}</label>
+                <Field type="text" idName="settingsDescriptionOtherPage" name={"description_other_page"} component={Textarea} label={LanguageRus.page.settings.description_other_page} />
+            </div>
             <div className="form-group">
                 <label>{LanguageRus.page.settings.phone}</label>
                 <Field type="text" idName="settingsPhone" name={"phone"} component={Input} label={LanguageRus.page.settings.phone} />

@@ -12,7 +12,7 @@ const CatalogPage = (props) => {
     return (
         <div id="main-content">
             <div className="container-my">
-                <Title/>
+                <Title settings={props.settings} />
             </div>
             <div className="container-my">
                 <div className="row">

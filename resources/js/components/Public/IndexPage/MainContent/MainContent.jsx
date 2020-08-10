@@ -8,7 +8,7 @@ const MainContent = (props) => {
     return (
         <div id="main-content">
             <div className="container-my">
-                <Title/>
+                <Title settings={props.settings} />
                 <Navigation categories={props.categories}/>
                 <Popular cart={props.cart} popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} popular={props.popular} categories={props.categories} />
             </div>

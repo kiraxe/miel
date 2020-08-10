@@ -61,6 +61,10 @@ const ProductEditForm = (props) => {
                         <Field type="text" idName="productArticle" name={"article"} component={Input} label={LanguageRus.page.products.table.article} />
                     </div>
                     <div className="form-group">
+                        <label>{LanguageRus.page.products.table.description_min}</label>
+                        <Field type="textarea" idName="productDetailMin" name={"detail_min"} component={Textarea} label={LanguageRus.page.products.table.description_min} />
+                    </div>
+                    <div className="form-group">
                         <label>{LanguageRus.page.products.table.description}</label>
                         <Field type="textarea" idName="productDetail" name={"detail"} component={Textarea} label={LanguageRus.page.products.table.description} />
                     </div>

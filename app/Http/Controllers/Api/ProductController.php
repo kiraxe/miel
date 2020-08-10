@@ -77,6 +77,15 @@ class ProductController extends BaseController
             $input['property'] = "";
         }
 
+
+        if(empty($input['detail']) || $input['detail'] === 'null') {
+            $input['detail'] = "";
+        }
+
+        if(empty($input['detail_min']) || $input['detail_min'] === 'null') {
+            $input['detail_min'];
+        }
+
         /*if (isset($input['categories_id'])) {
 
             $categories_id = explode(",", $input['categories_id']);
@@ -187,6 +196,14 @@ class ProductController extends BaseController
             $product->property = " ";
         }
 
+        if(empty($input['detail']) || $input['detail'] === 'null') {
+            $product->detail = " ";
+        }
+
+        if(empty($input['detail_min']) || $input['detail_min'] === 'null') {
+            $product->detail_min = " ";
+        }
+
         if (isset($input['option'])) {
             $options = $product->makeProductOptions($input['option']);
         } else {
@@ -195,6 +212,7 @@ class ProductController extends BaseController
 
         $product->name = $input['name'];
         $product->detail = $input['detail'];
+        $product->detail_min = $input['detail_min'];
         $product->article = $input['article'];
         $product->property = $input['property'];
         $product->price_quarterly = $input['price_quarterly'];

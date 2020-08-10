@@ -2200,6 +2200,14 @@ var ProductEditForm = function ProductEditForm(props) {
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.article
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.description_min), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "textarea",
+    idName: "productDetailMin",
+    name: "detail_min",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Textarea"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.description_min
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
     type: "textarea",
     idName: "productDetail",
@@ -2465,6 +2473,14 @@ var ProductNewForm = function ProductNewForm(props) {
     name: "article",
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Input"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.article
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.description_min), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "textarea",
+    idName: "productDetailMin",
+    name: "detail_min",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Textarea"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.description_min
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
@@ -3006,6 +3022,22 @@ var SettingsForm = function SettingsForm(props) {
     onSubmit: handleSubmit,
     className: "form"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.description_main_page), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "settingsDescriptionMainPage",
+    name: "description_main_page",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_4__["Textarea"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.description_main_page
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.description_other_page), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "settingsDescriptionOtherPage",
+    name: "description_other_page",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_4__["Textarea"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.description_other_page
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
     type: "text",

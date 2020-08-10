@@ -161,7 +161,7 @@ const Item = (props) => {
                     <div className="title"><h2>{props.itm.name}</h2></div>
                     <div className="article"><p>Арт. {props.itm.article}</p></div>
                     <div className="text">
-                        <p style={{height: '53px',display: "inline-block", overflow: 'hidden'}} >{ReactHtmlParser(props.itm.detail)}</p>
+                        <p style={{height: '53px',display: "inline-block", overflow: 'hidden'}} >{ReactHtmlParser(props.itm.detail_min)}</p>
                     </div>
                 </div>
                 <div className="costPanel">
