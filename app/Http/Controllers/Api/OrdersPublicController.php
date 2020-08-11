@@ -8,10 +8,13 @@ use App\Comment;
 use App\CartToProduct;
 use App\OrderDetail;
 use Validator;
+use App\Mail\OrderShipped;
+use Illuminate\Support\Facades\Mail;
 
 class OrdersPublicController extends BaseController
 {
 
+    protected $ord;
     /**
      * Display a listing of the resource.
      *
@@ -90,6 +93,13 @@ class OrdersPublicController extends BaseController
             $order->save();
 
         }
+
+        $ord = [
+            'order_id' => $order->order_id,
+            'total' => $order->total
+        ];
+
+        Mail::to($request->user())->send(new OrderShipped($ord));
 
         return $this->sendResponse(['id' => $order->order_id], 'Messages created successfully.');
     }

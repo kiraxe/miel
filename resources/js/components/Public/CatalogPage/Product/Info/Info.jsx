@@ -185,7 +185,7 @@ const Info = (props) => {
                         <Select onOptionHandler={onOptionHandler} options={props.options}/>
                     </div>
                     <div className="costPanel">
-                        <div className="cost"><p><span style={{fontSize: '20px', color: '#2C373E'}}>{priceVariable}</span> ₽ / шт.</p></div>
+                        <div className="cost"><p><span style={{fontSize: '20px', color: '#2C373E'}}>{parseFloat(priceVariable)}</span> ₽ / шт.</p></div>
                         <div className="count">
                             <input className="costPanel__hidden" type="hidden"
                                    name="count"/>
@@ -197,7 +197,7 @@ const Info = (props) => {
                     </div>
                     <div className="total">
                         <input className="total__hedden" type="hidden" name="total"/>
-                        <p>Итого: <span>{total.toFixed(2)}</span> ₽</p>
+                        <p>Итого: <span>{parseFloat(total.toFixed(2))}</span> ₽</p>
                     </div>
                     <div className="button">
                         {props.isLoggedIn && <button onClick={() => props.addCartHandler({

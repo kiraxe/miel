@@ -35,7 +35,7 @@ const RightPanel = (props) => {
                    <a onClick={accountMenuHandler} className="login" href="#"><span className='loginSpan'>Кабинет</span></a>
                    <ul style={accountMenu && style || {}} className="accountMenu">
                         <li><NavLink onClick={accountMenuHandler} to="/account/company_data">Личные данные</NavLink></li>
-                        <li><a onClick={() => {props.onLogout(); accountMenuHandler(); }} href="#"><span>Выход</span></a></li>
+                        <li><a onClick={() => {props.onLogout(); accountMenuHandler(); }} href="#">Выход</a></li>
                    </ul>
                    </>
                 || props.isLoggedIn && props.permission === "Admin" && <NavLink className="login" to={'/admin'}><span>Админ-панель</span></NavLink> || <a onClick={props.popUpOpen} className="login" href="#"><span>Вход</span></a>

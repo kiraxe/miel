@@ -13,7 +13,7 @@ const Order = (props) => {
                 {products}
             </div>
             <div className="accountOrders__total col-md-12">
-                <p>Общая сумма заказа: <span> {props.order.total} ₽</span></p>
+                <p>Общая сумма заказа: <span> {parseFloat(props.order.total)} ₽</span></p>
             </div>
         </div>
     )

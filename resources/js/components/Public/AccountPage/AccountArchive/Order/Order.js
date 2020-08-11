@@ -27,7 +27,7 @@ const Order = (props) => {
                 {products.length > 1 && <a style={{color: '#F37021'}} className="loadOrderAccount" onClick={loadHandler} href="#">{ !load && 'Показать еще' || 'Убрать'}</a>}
             </div>
             <div className="accountOrders__total col-md-12">
-                <p>Общая сумма заказа: <span> {props.order.total} ₽</span></p>
+                <p>Общая сумма заказа: <span> {parseFloat(props.order.total)} ₽</span></p>
             </div>
         </div>
     )

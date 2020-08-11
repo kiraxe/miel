@@ -8,6 +8,7 @@ import {getOrders, deleteOrder, showOrder, editOrder} from "../../../redux/order
 import OrderShow from "./OrderShow/OrderShow";
 import Orders from "./Orders"
 import OrderEdit from "./OrderEdit/OrderEdit";
+import Export from "./Export/Export";
 
 
 class OrdersContainer extends React.Component {
@@ -34,6 +35,10 @@ class OrdersContainer extends React.Component {
         this.props.deleteOrder(elementId);
     }
 
+    onExport = (e) => {
+        //e.preventDefault();
+    }
+
     render() {
 
         let orders = !this.props.match.params.slug ? <Orders onDelete={this.onDelete} page={this.props.match.params.page} url={this.props.match.url} orders={this.props.orders}/>:
@@ -46,6 +51,7 @@ class OrdersContainer extends React.Component {
             <>
                 {orders}
                 {!this.props.match.params.slug && paginator}
+                <Export onExport={this.onExport}/>
             </>
         )
     }

@@ -2733,6 +2733,11 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
 }
 
 @media (max-width: 420px) {
+  html body main#public .accountMenu {
+    left: -130px;
+    top: 30px;
+  }
+
   html body main#public.catalog .loadMore .buttonLoadMore button {
     width: 100%;
   }

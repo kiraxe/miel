@@ -1563,6 +1563,37 @@ var mapStateToProps = function mapStateToProps(state) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Admin/Orders/Export/Export.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/Admin/Orders/Export/Export.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Export = function Export(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      marginTop: '30px',
+      cursor: 'pointer'
+    },
+    className: "export"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    onClick: props.onExport,
+    href: "/api/export",
+    target: "_blank"
+  }, "\u0421\u043A\u0430\u0447\u0430\u0442\u044C xls \u0444\u0430\u0439\u043B"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Export);
+
+/***/ }),
+
 /***/ "./resources/js/components/Admin/Orders/Order.jsx":
 /*!********************************************************!*\
   !*** ./resources/js/components/Admin/Orders/Order.jsx ***!
@@ -1888,6 +1919,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _OrderShow_OrderShow__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./OrderShow/OrderShow */ "./resources/js/components/Admin/Orders/OrderShow/OrderShow.jsx");
 /* harmony import */ var _Orders__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Orders */ "./resources/js/components/Admin/Orders/Orders.jsx");
 /* harmony import */ var _OrderEdit_OrderEdit__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./OrderEdit/OrderEdit */ "./resources/js/components/Admin/Orders/OrderEdit/OrderEdit.js");
+/* harmony import */ var _Export_Export__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Export/Export */ "./resources/js/components/Admin/Orders/Export/Export.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1911,6 +1943,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -1951,6 +1984,9 @@ var OrdersContainer = /*#__PURE__*/function (_React$Component) {
       _this.props.deleteOrder(elementId);
     });
 
+    _defineProperty(_assertThisInitialized(_this), "onExport", function (e) {//e.preventDefault();
+    });
+
     return _this;
   }
 
@@ -1987,7 +2023,9 @@ var OrdersContainer = /*#__PURE__*/function (_React$Component) {
         onGetPage: this.onGetPageOrders,
         paginator: this.props.paginator
       }) : null;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, orders, !this.props.match.params.slug && paginator);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, orders, !this.props.match.params.slug && paginator, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Export_Export__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        onExport: this.onExport
+      }));
     }
   }]);
 

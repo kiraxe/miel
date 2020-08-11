@@ -194,6 +194,10 @@
   html {
     body {
       main#public {
+        .accountMenu {
+            left: -130px;
+            top: 30px;
+        }
         &.catalog {
           .loadMore {
             .buttonLoadMore {

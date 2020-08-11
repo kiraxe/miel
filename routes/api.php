@@ -127,3 +127,5 @@ Route::middleware(['auth:client','json.response'])->group(function () {
     Route::post('/message', 'Api\MessageController@store');
 
 });
+
+Route::get('/export', 'Api\OrderController@export')->name('export.api');

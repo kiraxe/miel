@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Orders;
 use Validator;
+use App\Exports\OrdersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends BaseController
 {
@@ -113,5 +115,14 @@ class OrderController extends BaseController
         $OrderDetail->delete();
 
         return $this->sendResponse($order->toArray(), 'Message deleted successfully.');
+    }
+
+
+    public function export(Request $request) {
+
+        $collection = Orders::with(['cart','client','comment', 'orderType'])->where('status', 1)->get()->toArray();
+
+        return (new OrdersExport($collection))->download('orders.xls', \Maatwebsite\Excel\Excel::XLS);
+
     }
 }

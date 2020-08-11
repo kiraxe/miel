@@ -13,11 +13,11 @@ const Item = (props) => {
                 </div>
             </div>
             <div className="accountOrders__price col-md-3">
-                <p>Цена за штуку: {props.product.unit_price} ₽ / шт.</p>
+                <p>Цена за штуку: {parseFloat(props.product.unit_price)} ₽ / шт.</p>
                 <p>Количество: {props.product.count}</p>
             </div>
             <div className="accountOrders__priceTotal col-md-3">
-                <p>Итого: {props.product.total_price} ₽</p>
+                <p>Итого: {parseFloat(props.product.total_price)} ₽</p>
             </div>
         </div>
     )
