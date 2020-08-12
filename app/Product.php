@@ -53,6 +53,10 @@ class Product extends Model
         }
     }
 
+    public function getSlider() {
+        $this->hasOne(Sliders::class, 'product_id', 'product_id')->with('images');
+    }
+
     public function deleteProductOptionsValue($option_value_id = null) {
         if ($option_value_id) {
             $this->productOptionsValue()->whereNotIn('option_value_id', $option_value_id)->delete();

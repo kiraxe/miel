@@ -114,6 +114,11 @@ const ProductNewForm = (props) => {
                         <Field type="file" idName="productFiles" name={"image"} change={change} component={File} label={LanguageRus.page.products.table.image} />
                     </div>
                 </Tab>
+                <Tab eventKey="slider" title="Слайдер">
+                    <div className="form-group">
+                        <Field type="file" idName="productFiles" multiple={true} name={"slider"} change={change} component={File} label={LanguageRus.page.products.table.slider} />
+                    </div>
+                </Tab>
                 <Tab eventKey="option" title="Опции">
                     <FieldArray title={'Значение'} name="option" options={options} component={optionMultiple} type={"select"} />
                 </Tab>

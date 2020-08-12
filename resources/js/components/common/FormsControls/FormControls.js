@@ -170,12 +170,13 @@ export const renderDateTimePicker = ({ input: { onChange, value }, showTime }) =
         value={!value ? null : new Date(value)}
     />
 
-export const File = ({idName, input, label, type, errSer, change, width, meta: {touched, error}, ...props}) => {
+export const File = ({idName, input, label, type, errSer, change, width, multiple, meta: {touched, error}, ...props}) => {
 
     const [files, setFiles] = useState([]);
+
     const {getRootProps, getInputProps} = useDropzone({
         accept: 'image/*',
-        multiple:false,
+        multiple: !!multiple,
         onDrop: acceptedFiles => {
             setFiles(acceptedFiles.map(file => Object.assign(file, {
                 preview: URL.createObjectURL(file)
@@ -190,12 +191,24 @@ export const File = ({idName, input, label, type, errSer, change, width, meta: {
         files.forEach(file => URL.revokeObjectURL(file.preview));
     }}, [files]);
 
-    const onDeleteImage = () => {
-        setFiles([]);
-        change(input.name, "");
+    const onDeleteImage = (e) => {
+        if (!multiple) {
+            setFiles([]);
+            change(input.name, "");
+        } else {
+            let name = e.target.getAttribute('data-name');
+            let images = files.map(item => item.name !== name ? item : null);
+
+            images = images.filter(function(x) {
+                return x !== undefined && x !== null;
+            });
+
+            setFiles([...images]);
+            change(input.name, "");
+        }
     }
 
-    const thumbs = files.map(file => (<div style={width ? {'width': width} : {}} className={'thumb'} key={file.name}><i onClick={onDeleteImage} className="fa fa-times h" aria-hidden="true"></i><div className={'thumbInner'}><img src={file.preview}/></div></div>));
+    const thumbs = files.map(file => (<div style={width ? {'width': width} : {}} className={'thumb'} key={file.name}><i onClick={onDeleteImage} data-name={file.name} className="fa fa-times h" aria-hidden="true"></i><div className={'thumbInner'}><img src={file.preview}/></div></div>));
 
     const placeholder = thumbs.length === 0 ? [input.value].map( (item, key) => (<div style={width ? {'width': width} : {}} key={key} className={'thumb'} >{item && <i onClick={onDeleteImage} className="fa fa-times" aria-hidden="true"></i>}<div className={'thumbInner'}>{item && <img src={item}/>}</div></div>)): null;
 

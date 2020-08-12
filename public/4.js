@@ -2375,6 +2375,19 @@ var ProductEditForm = function ProductEditForm(props) {
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["File"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.image
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Tab__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    eventKey: "slider",
+    title: "\u0421\u043B\u0430\u0439\u0434\u0435\u0440"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "file",
+    idName: "productFiles",
+    multiple: true,
+    name: "slider",
+    change: change,
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["File"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.slider
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Tab__WEBPACK_IMPORTED_MODULE_7__["default"], {
     eventKey: "option",
     title: "\u041E\u043F\u0446\u0438\u0438"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["FieldArray"], {
@@ -2649,6 +2662,19 @@ var ProductNewForm = function ProductNewForm(props) {
     change: change,
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["File"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.image
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Tab__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    eventKey: "slider",
+    title: "\u0421\u043B\u0430\u0439\u0434\u0435\u0440"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "file",
+    idName: "productFiles",
+    multiple: true,
+    name: "slider",
+    change: change,
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["File"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.slider
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Tab__WEBPACK_IMPORTED_MODULE_7__["default"], {
     eventKey: "option",
     title: "\u041E\u043F\u0446\u0438\u0438"

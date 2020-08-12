@@ -31,6 +31,7 @@ export const rus = {
                 'min_second': 'Минимальное количество',
                 'min_third': 'Минимальное количество',
                 'image': 'Картинка',
+                'slider': 'Слайдер',
                 'novelty' : 'Новинка',
                 'popular' : 'Популярный',
                 'action': 'Действия'
