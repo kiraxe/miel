@@ -3007,6 +3007,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_images_loading_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../assets/images/loading.svg */ "./resources/js/assets/images/loading.svg");
 /* harmony import */ var _assets_images_loading_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_assets_images_loading_svg__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../common/FormsControls/FormControls */ "./resources/js/components/common/FormsControls/FormControls.js");
+/* harmony import */ var react_bootstrap_Tabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap/Tabs */ "./node_modules/react-bootstrap/esm/Tabs.js");
+/* harmony import */ var react_bootstrap_Tab__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/Tab */ "./node_modules/react-bootstrap/esm/Tab.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3027,6 +3035,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var Settings = function Settings(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "title"
@@ -3034,7 +3044,7 @@ var Settings = function Settings(props) {
     className: "content"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SettingsReduxForm, {
     errSer: props.error,
-    initialValues: props.settings[0],
+    settings: props.settings[0],
     onSubmit: props.editSettings
   })));
 };
@@ -3045,13 +3055,24 @@ var SettingsForm = function SettingsForm(props) {
       isFetching = _useState2[0],
       setFetching = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('general'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      key = _useState4[0],
+      setKey = _useState4[1];
+
   var handleSubmit = props.handleSubmit,
       pristine = props.pristine,
       reset = props.reset,
       submitting = props.submitting,
       errSer = props.errSer,
       submitSucceeded = props.submitSucceeded,
-      submitFailed = props.submitFailed;
+      change = props.change,
+      submitFailed = props.submitFailed,
+      settings = props.settings,
+      initialize = props.initialize;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    initialize(_objectSpread({}, settings));
+  }, [settings]);
   submitSucceeded || submitFailed || errSer ? setTimeout(function () {
     setFetching(false);
   }, 2000) : null;
@@ -3059,23 +3080,16 @@ var SettingsForm = function SettingsForm(props) {
     id: "settingsForm",
     onSubmit: handleSubmit,
     className: "form"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Tabs__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    id: "controlled-tab-example",
+    activeKey: key,
+    onSelect: function onSelect(k) {
+      return setKey(k);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Tab__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    eventKey: "general",
+    title: "\u041E\u0441\u043D\u043E\u0432\u043D\u044B\u0435"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.description_main_page), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    type: "text",
-    idName: "settingsDescriptionMainPage",
-    name: "description_main_page",
-    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_4__["Textarea"],
-    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.description_main_page
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.description_other_page), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-    type: "text",
-    idName: "settingsDescriptionOtherPage",
-    name: "description_other_page",
-    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_4__["Textarea"],
-    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.description_other_page
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
     type: "text",
@@ -3173,7 +3187,65 @@ var SettingsForm = function SettingsForm(props) {
     showTime: false,
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_4__["renderDateTimePicker"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.to
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Tab__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    eventKey: "index",
+    title: "\u0411\u0430\u043D\u043D\u0435\u0440 \u043D\u0430 \u0433\u043B\u0430\u0432\u043D\u043E\u0439 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0435"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.title_main_page), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "settingsTitleMainPage",
+    name: "title_main_page",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_4__["Textarea"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.title_main_page
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.description_main_page), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "settingsDescriptionMainPage",
+    name: "description_main_page",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_4__["Textarea"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.description_main_page
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "file",
+    idName: "settingsBannerMainPage",
+    width: "100%",
+    name: "banner_main_page",
+    change: change,
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_4__["File"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.banner_main_page
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Tab__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    eventKey: "catalog",
+    title: "\u0411\u0430\u043D\u043D\u0435\u0440 \u043D\u0430 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0435 \u043A\u0430\u0442\u0430\u043B\u043E\u0433"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.title_other_page), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "settingsOtherMainPage",
+    name: "title_other_page",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_4__["Textarea"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.title_other_page
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.description_other_page), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "text",
+    idName: "settingsDescriptionOtherPage",
+    name: "description_other_page",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_4__["Textarea"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.description_other_page
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "file",
+    idName: "settingsBannerOtherPage",
+    width: "100%",
+    name: "banner_other_page",
+    change: change,
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_4__["File"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.settings.banner_other_page
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return setFetching(true);
     },

@@ -952,7 +952,7 @@ var Cart = function Cart(props) {
     className: "title"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "3. \u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 \u0437\u0430\u043A\u0430\u0437")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "price"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041E\u0431\u0449\u0430\u044F \u0441\u0443\u043C\u043C\u0430 \u0437\u0430\u043A\u0430\u0437\u0430:  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", totalPrice, " \u20BD"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041E\u0431\u0449\u0430\u044F \u0441\u0443\u043C\u043C\u0430 \u0437\u0430\u043A\u0430\u0437\u0430:  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", parseFloat(totalPrice), " \u20BD"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "button"
   }, products.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: props.onSendOrderHandler
@@ -1230,7 +1230,7 @@ var Item = function Item(props) {
     className: "costPanel"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cost"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, priceVariable, " \u20BD / \u0448\u0442.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, parseFloat(priceVariable), " \u20BD / \u0448\u0442.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "count"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "remove"
@@ -1253,7 +1253,7 @@ var Item = function Item(props) {
     src: "/images/plus.png"
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "price"
-  }, "\u0418\u0442\u043E\u0433\u043E: ", total.toFixed(2), " \u20BD"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "\u0418\u0442\u043E\u0433\u043E: ", parseFloat(total.toFixed(2)), " \u20BD"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cross"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     onClick: function onClick() {
@@ -1984,7 +1984,6 @@ var AccountContainer = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       if (!this.state.productPage) {
         var page = this.getPage();
-        console.log(page);
         page ? this.props.getCatalog(page, this.state.offset, this.state.limit) : this.props.getCatalog(null, this.state.offset, this.state.limit);
       }
     }
@@ -3166,13 +3165,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Title = function Title(props) {
+  var background = {
+    background: "url(".concat(props.settings.banner_other_page, ") no-repeat center center")
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
+    className: "row",
+    style: props.settings.banner_other_page ? background : {}
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-12 title-container"
+    className: "col-md-12 title-container",
+    style: props.settings.banner_other_page ? {
+      background: 'none'
+    } : {}
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "\u041A\u0430\u0442\u0430\u043B\u043E\u0433 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u0441\u0443\u0432\u0435\u043D\u0438\u0440\u043D\u043E\u0439 \u043F\u0440\u043E\u0434\u0443\u043A\u0446\u0438\u0438"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.settings.title_other_page))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.settings.description_other_page)))));
 };
@@ -4288,6 +4294,12 @@ var SliderProducts = function SliderProducts(props) {
         slidesToShow: 1,
         slidesToScroll: 1
       }
+    }, {
+      breakpoint: 420,
+      settings: {
+        centerMode: true,
+        slidesToShow: 1
+      }
     }]
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4316,13 +4328,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Title = function Title(props) {
+  var background = {
+    background: "url(".concat(props.settings.banner_main_page, ") no-repeat center center")
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
+    className: "row",
+    style: props.settings.banner_main_page ? background : {}
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-12 title-container"
+    className: "col-md-12 title-container",
+    style: props.settings.banner_main_page ? {
+      background: 'none'
+    } : {}
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "\u0421\u0443\u0432\u0435\u043D\u0438\u0440\u043D\u0430\u044F \u043F\u0440\u043E\u0434\u0443\u043A\u0446\u0438\u044F ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u041C\u0418\u042D\u041B\u042C"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.settings.title_main_page))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.settings.description_main_page)))));
 };
@@ -4403,6 +4422,7 @@ var Links = function Links(props) {
     var val = {};
 
     if (clsName !== 'menuArrow') {
+      props.dropMenuClose();
       props.leftDropMenuHandler(page);
     } else {
       e.preventDefault();
@@ -4471,11 +4491,17 @@ var Links = function Links(props) {
       return it.parent_id === item.category_id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         key: key
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        onClick: function onClick(e) {
+          return leftDropMenuHandler(e, item.category_id);
+        },
         to: "/shop/".concat(it.link)
       }, it.attributes.name)) : null;
     }))) : !item.parent_id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: key
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+      onClick: function onClick(e) {
+        return leftDropMenuHandler(e, item.category_id);
+      },
       to: "/shop/".concat(item.link)
     }, item.category_id === 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u0413\u041A \xAB\u041C\u0418\u042D\u041B\u042C\xBB") : "", " ", item.attributes.name)) : null;
   }) : null;
@@ -4503,6 +4529,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var Nav = function Nav(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Links__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    dropMenuClose: props.dropMenuClose,
     categories: props.categories,
     leftDropMenu: props.leftDropMenu,
     leftDropMenuHandler: props.leftDropMenuHandler
@@ -4567,6 +4594,7 @@ var Navbar = function Navbar(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "leftMenu"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Nav_Nav__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    dropMenuClose: props.dropMenuClose,
     categories: props.categories,
     leftDropMenu: props.leftDropMenu,
     leftDropMenuHandler: props.leftDropMenuHandler
@@ -5492,6 +5520,12 @@ var PublicContainer = /*#__PURE__*/function (_Component) {
       }
     });
 
+    _defineProperty(_assertThisInitialized(_this), "dropMenuClose", function () {
+      _this.setState({
+        dropMenu: false
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_this), "popUpOpen", function (e) {
       var message = e.target.getAttribute('data-title');
 
@@ -5619,6 +5653,7 @@ var PublicContainer = /*#__PURE__*/function (_Component) {
         id: "public",
         className: className
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Navbar_Navbar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        dropMenuClose: this.dropMenuClose,
         categories: this.props.categories,
         leftDropMenuHandler: this.leftDropMenuHandler,
         leftDropMenu: this.state.leftDropMenu,

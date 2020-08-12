@@ -162,6 +162,7 @@ class ProductController extends BaseController
 
         $image = $request->file('image');
 
+
         if ($product->image && !empty($image)) {
             Storage::disk('public')->delete(str_replace($this->storagePath,"", $product->image));
             $product->image = $this->storagePath.$image->store("uploads/$this->storageProductsPath"."$product->product_id", 'public');

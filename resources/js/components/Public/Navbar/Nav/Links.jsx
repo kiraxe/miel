@@ -29,6 +29,7 @@ const Links = (props) => {
 
 
         if (clsName !== 'menuArrow') {
+            props.dropMenuClose();
             props.leftDropMenuHandler(page);
         } else {
             e.preventDefault();
@@ -70,7 +71,7 @@ const Links = (props) => {
     }
 
     let categories = props.categories ? props.categories.map((item, key) => {
-        return  item.children.length > 0 ? <li className={'parent'} key={key}><NavLink onClick={(e) => leftDropMenuHandler(e, item.category_id)} activeClassName="act" className={`leftDropMenuRun ${leftDropMenu[item.category_id] ? "active" : ''}`} to={`/shop/${item.link}`} >{item.attributes.name}<span style={arrowStyle} className="menuArrow"></span></NavLink><ul className={`leftDropMenu ${leftDropMenu[item.category_id] ? "active" : ''}`}>{ props.categories.map((it, key) => it.parent_id === item.category_id ? <li key={key}><NavLink to={`/shop/${it.link}`} >{it.attributes.name}</NavLink></li> : null)}</ul></li> : !item.parent_id ? <li key={key}><NavLink to={`/shop/${item.link}`} >{item.category_id === 1 ? <span>ГК «МИЭЛЬ»</span> : ""} {item.attributes.name}</NavLink></li> : null
+        return  item.children.length > 0 ? <li className={'parent'} key={key}><NavLink onClick={(e) => leftDropMenuHandler(e, item.category_id)} activeClassName="act" className={`leftDropMenuRun ${leftDropMenu[item.category_id] ? "active" : ''}`} to={`/shop/${item.link}`} >{item.attributes.name}<span style={arrowStyle} className="menuArrow"></span></NavLink><ul className={`leftDropMenu ${leftDropMenu[item.category_id] ? "active" : ''}`}>{ props.categories.map((it, key) => it.parent_id === item.category_id ? <li key={key}><NavLink onClick={(e) => leftDropMenuHandler(e, item.category_id)} to={`/shop/${it.link}`} >{it.attributes.name}</NavLink></li> : null)}</ul></li> : !item.parent_id ? <li key={key}><NavLink onClick={(e) => leftDropMenuHandler(e, item.category_id)} to={`/shop/${item.link}`} >{item.category_id === 1 ? <span>ГК «МИЭЛЬ»</span> : ""} {item.attributes.name}</NavLink></li> : null
     } ) : null;
 
     return(

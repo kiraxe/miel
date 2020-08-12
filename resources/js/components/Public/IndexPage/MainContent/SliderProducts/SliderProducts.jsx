@@ -42,6 +42,13 @@ const SliderProducts = (props) => {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                 }
+            },
+            {
+                breakpoint: 420,
+                settings: {
+                    centerMode: true,
+                    slidesToShow: 1
+                }
             }
 
         ]

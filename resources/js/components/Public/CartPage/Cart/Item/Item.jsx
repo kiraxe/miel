@@ -170,14 +170,14 @@ const Item = (props) => {
             <div className="itemPartSecond">
                 <div className="costPanelItem">
                     <div className="costPanel">
-                        <div className="cost"><p>{priceVariable} ₽ / шт.</p></div>
+                        <div className="cost"><p>{parseFloat(priceVariable)} ₽ / шт.</p></div>
                         <div className="count">
                             <div className="remove"><img onClick={removeCountHandler} src="/images/minus.png"/></div>
                             <div className="number"><input onBlur={handlerBlur} onKeyDown={handlerKeyDown} onChange={handleChange} type="text" maxLength="5" value={currentDate < fromDate || currentDate > toDate ? min : minQuarterly}/></div>
                             <div className="add"><img onClick={addCountHandler} src="/images/plus.png"/></div>
                         </div>
                     </div>
-                    <div className="price">Итого: {total.toFixed(2)} ₽</div>
+                    <div className="price">Итого: {parseFloat(total.toFixed(2))} ₽</div>
                 </div>
             </div>
             <div className="cross"><img onClick={() => props.deleteCartHandler(props.item.product_id)} src="/images/cross.svg"/></div>

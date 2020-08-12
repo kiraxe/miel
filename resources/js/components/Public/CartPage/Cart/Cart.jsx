@@ -110,7 +110,7 @@ const Cart = (props) => {
                         <div className="block_4">
                             <div className="title"><h2>3. Подтвердите заказ</h2></div>
                             <div className="price">
-                                <p>Общая сумма заказа:  <span> {totalPrice} ₽</span></p>
+                                <p>Общая сумма заказа:  <span> {parseFloat(totalPrice)} ₽</span></p>
                             </div>
                             <div className="button">
                                 {products.length > 0 && <button onClick={props.onSendOrderHandler}>Подтвердить заказ {props.isFetching ? <img style={{width: '20px'}} src={loading}/> : null}</button> || <button disabled>Подтвердить заказ</button>}

@@ -445,8 +445,8 @@ body main#public.basket #wrapper #main-content .block_4 .price {
 .circle {
   display: none;
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 10px;
+  top: -13px;
   border-radius: 50px;
   padding: 0 !important;
   height: 20px;
@@ -1385,7 +1385,13 @@ body main#public #wrapper #main-content .noveltyBlock {
   background: url("/images/vector.png") no-repeat bottom right #9959A4;
 }
 
+body main#public #wrapper #main-content .noveltyBlock .container-my {
+  max-width: 1270px !important;
+}
+
 body main#public #wrapper #main-content .noveltyBlock .novelty {
+  padding-right: 30px;
+  padding-left: 30px;
   margin-top: -100px;
   background-color: #FFFFFF;
   box-shadow: 5px 5px 30px rgba(53, 65, 72, 0.1);
@@ -2733,6 +2739,10 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
 }
 
 @media (max-width: 420px) {
+  html body .sliderProducts .slick-list {
+    padding-left: 0 !important;
+  }
+
   html body main#public .accountMenu {
     left: -130px;
     top: 30px;
@@ -2886,6 +2896,18 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
 
   html body main#public.basket #wrapper #main-content .block_2 .cart .item .itemPartSecond .costPanelItem {
     margin-left: 0 !important;
+  }
+
+  html body main#public.basket #wrapper #main-content .block_2 .cart .item .cross {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    width: 15px;
+  }
+
+  html body main#public.basket #wrapper #main-content .block_2 .cart .item .cross img {
+    width: 100%;
   }
 
   html body main#public.basket #wrapper #main-content .block_3 .text p {
@@ -3150,6 +3172,8 @@ body main#public.basket #wrapper #main-content .block_4 .button p span {
 
   body main#public #wrapper #main-content .noveltyBlock .novelty {
     margin-top: 0;
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 
@@ -18662,7 +18686,7 @@ fieldset[disabled] .rw-multiselect-tag {
 
 #app #admin main#adminMain .content .form,
 #app #login main#adminMain .content .form {
-  max-width: 500px;
+  max-width: 585px;
   width: 100%;
 }
 

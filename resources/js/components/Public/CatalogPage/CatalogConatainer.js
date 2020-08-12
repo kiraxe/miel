@@ -34,7 +34,6 @@ class AccountContainer extends Component {
     componentDidMount() {
         if (!this.state.productPage) {
             let page = this.getPage();
-            console.log(page);
             page ? this.props.getCatalog(page, this.state.offset, this.state.limit) : this.props.getCatalog(null, this.state.offset, this.state.limit);
         }
     }

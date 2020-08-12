@@ -26,7 +26,7 @@ export const setSettingsAC = (data) => ({type: SET_SETTINGS, data: data});
 
 export const getSettings = () => async dispatch => {
     let response = await adminAPI.getSettings();
-
+    console.log(response);
     if (response.success) {
         dispatch(setSettingsAC(response.data));
     }

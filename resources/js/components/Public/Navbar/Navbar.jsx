@@ -20,7 +20,7 @@ const Navbar = (props) => {
             <header>
                 <div className="leftMenu">
                     <nav>
-                        <Nav categories={props.categories} leftDropMenu={props.leftDropMenu} leftDropMenuHandler={props.leftDropMenuHandler}/>
+                        <Nav dropMenuClose={props.dropMenuClose} categories={props.categories} leftDropMenu={props.leftDropMenu} leftDropMenuHandler={props.leftDropMenuHandler}/>
                     </nav>
                 </div>
             </header>

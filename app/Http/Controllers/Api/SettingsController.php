@@ -14,6 +14,7 @@ class SettingsController extends BaseController
     public function index()
     {
         $settings = Settings::find(1);
+
         return $this->sendResponse($settings->toArray(), 'Settings retrieved successfully.');
     }
 
@@ -35,6 +36,12 @@ class SettingsController extends BaseController
 
         $settings = Settings::find($id);
 
+        $banner_main_page = $request->file('banner_main_page');
+        $banner_other_page = $request->file('banner_other_page');
+
+        $settings->banner_main_page = $settings->uploadBanner($settings->banner_main_page, "main", $input['banner_main_page'], $banner_main_page);
+        $settings->banner_other_page = $settings->uploadBanner($settings->banner_other_page, 'catalog', $input['banner_other_page'], $banner_other_page);
+
         $from = explode("T", $input['from']);
         $to = explode("T", $input['to']);
 
@@ -42,6 +49,8 @@ class SettingsController extends BaseController
         $settings->to = $to[0];
         $settings->phone = $input['phone'];
         $settings->description_main_page = $input['description_main_page'];
+        $settings->title_main_page = $input['title_main_page'];
+        $settings->title_other_page = $input['title_other_page'];
         $settings->description_other_page = $input['description_other_page'];
         $settings->worktime = $input['worktime'];
         $settings->email = $input['email'];

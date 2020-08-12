@@ -88,7 +88,7 @@ export const adminAPI = {
     },
     editSettings(settings) {
         let formData = getFormData(settings, "PUT");
-        return getAxiosSettings().put(`settings/${settings.id}`, settings)
+        return getAxiosSettings().post(`settings/${settings.id}`, formData,{headers:{'Content-Type' : 'multipart/form-data'}})
             .then(response => response.data)
             .catch(error => error.response)
     },

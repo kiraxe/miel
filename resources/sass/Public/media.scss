@@ -52,6 +52,7 @@
 @media (max-width: 360px) {
   html {
     body {
+
       main#public {
         &.basket {
           #wrapper {
@@ -193,6 +194,11 @@
 @media (max-width: 420px) {
   html {
     body {
+        .sliderProducts {
+            .slick-list {
+                padding-left: 0!important;
+            }
+        }
       main#public {
         .accountMenu {
             left: -130px;
@@ -369,6 +375,16 @@
                         margin-left: 0 !important;
                       }
                     }
+                      .cross {
+                          cursor: pointer;
+                          position: absolute;
+                          top: 5px;
+                          right: 8px;
+                          width: 15px;
+                          img {
+                              width: 100%;
+                          }
+                      }
                   }
                 }
               }
@@ -797,7 +813,9 @@
 
           .noveltyBlock {
             .novelty {
-              margin-top: 0;
+                margin-top: 0;
+                padding-right: 15px;
+                padding-left: 15px;
             }
           }
         }

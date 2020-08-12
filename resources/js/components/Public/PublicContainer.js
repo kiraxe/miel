@@ -80,6 +80,12 @@ class PublicContainer extends Component {
         }
     }
 
+    dropMenuClose = () => {
+        this.setState({
+            dropMenu: false
+        })
+    }
+
     popUpOpen = (e) => {
 
         let message = e.target.getAttribute('data-title');
@@ -171,7 +177,7 @@ class PublicContainer extends Component {
         return (
             <>
             <main onClick={this.menuAccountHandler} id="public" className={className}>
-                <Navbar categories={this.props.categories} leftDropMenuHandler={this.leftDropMenuHandler} leftDropMenu={this.state.leftDropMenu} dropMenu={this.state.dropMenu}/>
+                <Navbar dropMenuClose={this.dropMenuClose} categories={this.props.categories} leftDropMenuHandler={this.leftDropMenuHandler} leftDropMenu={this.state.leftDropMenu} dropMenu={this.state.dropMenu}/>
                 <div id="wrapper">
                     <Header menuAccount={this.state.menuAccount} cart={this.props.cart} onLogout={this.onLogout} popUpOpen={this.popUpOpen} isLoggedIn={this.props.isLoggedIn} permission={this.props.permission} dropMenuHandler={this.dropMenuHandler} phone={this.props.settings.phone}/>
                     {this.props.match.path === "/" && !!Object.keys(this.props.settings).length ? <MainContainer popUpOpen={this.popUpOpen} isLoggedIn={this.props.isLoggedIn}/> : this.props.match.path === "/account/:page?/" && !!Object.keys(this.props.settings).length ? <AccountContainer popUpOpen={this.popUpOpen} permission={this.props.permission} isLoggedIn={this.props.isLoggedIn} /> : this.props.match.path === "/shop/:page?/:id?" && !!Object.keys(this.props.settings).length ? <CatalogConatainer popUpOpen={this.popUpOpen} isLoggedIn={this.props.isLoggedIn}/> : this.props.match.path === "/basket" && !!Object.keys(this.props.settings).length ? <CartContainer isLoggedIn={this.props.isLoggedIn}/>: null}
