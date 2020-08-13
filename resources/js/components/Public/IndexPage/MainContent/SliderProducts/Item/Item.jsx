@@ -102,6 +102,7 @@ const Item = (props) => {
             setPriceVariable(priceQuarterly);
             setTotal(minQuarterly * priceQuarterly);
         }
+
     })
 
 

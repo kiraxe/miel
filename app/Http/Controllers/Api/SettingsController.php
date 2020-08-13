@@ -45,6 +45,7 @@ class SettingsController extends BaseController
         $from = explode("T", $input['from']);
         $to = explode("T", $input['to']);
 
+
         $settings->from = $from[0];
         $settings->to = $to[0];
         $settings->phone = $input['phone'];

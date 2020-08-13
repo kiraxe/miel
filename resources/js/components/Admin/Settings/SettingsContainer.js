@@ -16,6 +16,7 @@ class SettingsContainer extends React.Component{
     }
 
     onEditSubmit = (formData) => {
+        console.log(formData);
         this.props.editSettings(formData);
     }
 

@@ -2,6 +2,7 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -15,6 +16,10 @@ class Product extends Model
     ];
 
     protected $primaryKey = 'product_id';
+
+
+    private $storagePath = "/storage/";
+    private $storageProductsPath = "products/";
 
 
     public function getAttributeCatId() {
@@ -45,6 +50,36 @@ class Product extends Model
         $this->attributes()->createMany($record);
     }
 
+    public function addSlider() {
+        $this->slider()->updateOrCreate(['product_id' => $this->__get('product_id')]);
+    }
+
+    public function makeSlider($slider) {
+
+        $this->addSlider();
+
+        $id = $this->__get('product_id');
+
+        $images = $this->sliderModel()->images()->get();
+
+        if ($images) {
+            foreach ($images as $image) {
+                Storage::disk('public')->delete(str_replace($this->storagePath, "", $image->image));
+            }
+        }
+
+        $this->sliderModel()->deleteImg();
+
+        if (!empty($slider)) {
+            foreach ($slider as $slide) {
+                foreach ($slide as $s) {
+                    $file = $this->storagePath.$s->store("uploads/$this->storageProductsPath" . "$id" . "/slider", 'public');
+                    $this->sliderModel()->images()->create(['image' => $file]);
+                }
+            }
+        }
+    }
+
     public function deleteProductOption($option_id = null) {
         if ($option_id) {
             $this->productOptions()->whereNotIn('option_id', $option_id)->delete();
@@ -53,8 +88,12 @@ class Product extends Model
         }
     }
 
-    public function getSlider() {
-        $this->hasOne(Sliders::class, 'product_id', 'product_id')->with('images');
+    public function slider() {
+        return $this->hasOne(Sliders::class, 'product_id', 'product_id')->with('images');
+    }
+
+    public function sliderModel() {
+        return $this->hasOne(Sliders::class, 'product_id', 'product_id')->getModel();
     }
 
     public function deleteProductOptionsValue($option_value_id = null) {

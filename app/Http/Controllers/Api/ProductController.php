@@ -22,7 +22,7 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        $query = Product::with('attributes');
+        $query = Product::with(['attributes', 'slider']);
 
         $category = Category::with('attributes')->get();
 
@@ -161,6 +161,12 @@ class ProductController extends BaseController
         }
 
         $image = $request->file('image');
+
+        $slider = $request->file('slider');
+
+
+
+        $product->makeSlider($slider);
 
 
         if ($product->image && !empty($image)) {

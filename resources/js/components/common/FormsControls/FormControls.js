@@ -162,10 +162,10 @@ export const Select = (props) => {
     return <FormControl {...props}><select multiple={props.multiple} {...props.input} id={props.idName} className={"form-control"} >{!props.multiple && <option value={0}>Выберите</option>}{options}</select></FormControl>
 }
 
-export const renderDateTimePicker = ({ input: { onChange, value }, showTime }) =>
+export const renderDateTimePicker = ({ input: { onChange, value}, showTime }) =>
     <DateTimePicker
         onChange={onChange}
-        format="YYYY-MM-DD"
+        format={"YYYY-MM-DD"}
         time={showTime}
         value={!value ? null : new Date(value)}
     />

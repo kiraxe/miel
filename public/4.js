@@ -2381,7 +2381,7 @@ var ProductEditForm = function ProductEditForm(props) {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
     type: "file",
-    idName: "productFiles",
+    idName: "productSlider",
     multiple: true,
     name: "slider",
     change: change,
@@ -2669,7 +2669,7 @@ var ProductNewForm = function ProductNewForm(props) {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
     type: "file",
-    idName: "productFiles",
+    idName: "productSlider",
     multiple: true,
     name: "slider",
     change: change,
@@ -2977,6 +2977,8 @@ var SettingsContainer = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "onEditSubmit", function (formData) {
+      console.log(formData);
+
       _this.props.editSettings(formData);
     });
 

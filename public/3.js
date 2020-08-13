@@ -1041,7 +1041,7 @@ var Item = function Item(props) {
       priceQuarterly = _useState16[0],
       setPriceQuarterly = _useState16[1];
 
-  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.item.minQuarterly),
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.item.count),
       _useState18 = _slicedToArray(_useState17, 2),
       minQuarterly = _useState18[0],
       setMinQuarterly = _useState18[1];
@@ -1088,7 +1088,7 @@ var Item = function Item(props) {
     setPriceThird(props.item.priceThird);
     setMinThird(props.item.minThird);
     setPriceQuarterly(props.item.priceQuarterly);
-    setMinQuarterly(props.item.minQuarterly);
+    setMinQuarterly(props.item.count);
     setStatMinQuarterly(props.item.minQuarterly);
     var from = Object(_utils_GetCurrentData__WEBPACK_IMPORTED_MODULE_2__["replaceStr"])(props.settings.from, '-', '/');
     var to = Object(_utils_GetCurrentData__WEBPACK_IMPORTED_MODULE_2__["replaceStr"])(props.settings.to, '-', '/');
@@ -5965,7 +5965,7 @@ var getCurrentDate = function getCurrentDate() {
     mm = '0' + mm;
   }
 
-  var td = yyyy + '/' + mm + '/' + dd;
+  var td = yyyy + '-' + mm + '-' + dd;
   return td;
 };
 var isDifferentDates = function isDifferentDates(d1, d2) {

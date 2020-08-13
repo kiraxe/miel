@@ -10,7 +10,7 @@ export const getCurrentDate = () => {
     if(dd<10){dd='0'+dd}
     if(mm<10){mm='0'+mm}
 
-    let td = yyyy+'/'+mm+'/'+dd;
+    let td = yyyy+'-'+mm+'-'+dd;
 
     return td;
 }

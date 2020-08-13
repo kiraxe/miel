@@ -15,10 +15,14 @@ class Sliders extends Model
      *
      * @var array
      */
-    protected $fillable = ['slider_id', 'product_id'];
+    protected $fillable = ['product_id'];
 
     public function images() {
         return $this->hasMany(SliderImg::class, 'slider_id', 'slider_id');
+    }
+
+    public function deleteImg() {
+        $this->images()->delete();
     }
 
 }

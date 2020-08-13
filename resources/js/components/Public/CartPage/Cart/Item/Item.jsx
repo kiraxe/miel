@@ -15,7 +15,7 @@ const Item = (props) => {
     const [minThird, setMinThird] = useState(props.item.minThird);
 
     const [priceQuarterly, setPriceQuarterly] = useState(props.item.priceQuarterly);
-    const [minQuarterly, setMinQuarterly] = useState(props.item.minQuarterly);
+    const [minQuarterly, setMinQuarterly] = useState(props.item.count);
     const [statMinQuarterly, setStatMinQuarterly] = useState(props.item.minQuarterly);
 
     let from = replaceStr(props.settings.from, '-', '/');
@@ -40,7 +40,7 @@ const Item = (props) => {
         setPriceThird(props.item.priceThird);
         setMinThird(props.item.minThird);
         setPriceQuarterly(props.item.priceQuarterly);
-        setMinQuarterly(props.item.minQuarterly);
+        setMinQuarterly(props.item.count);
         setStatMinQuarterly(props.item.minQuarterly);
 
         let from = replaceStr(props.settings.from, '-', '/');
