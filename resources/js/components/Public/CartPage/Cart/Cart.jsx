@@ -112,7 +112,10 @@ const Cart = (props) => {
                                     href={`mailto:${props.settings.manager_email}`}>{props.settings.manager_email}</a></p>
                             </div>
                             <div className="textarea">
-                                <p>Комментарий к заказу*</p>
+                                <div className="title"><h2>3. Комментарий к заказу*</h2></div>
+                                <p>Если в вашем заказе присутствует продукция, для которой доступны размеры, пожалуйста, укажите количество продукции каждого размера. <br/>
+
+                                    Если такой продукции в заказе нет, оставьте любой комментарий или поставьте прочерк.</p>
                                 <textarea onChange={props.onCommentHandler} placeholder="Введите текст комментария" value={props.comment ? props.comment : ""}></textarea>
                                 <p style={require ? {display: 'none'} : error} >Поле обязателно для заполнения</p>
                             </div>
@@ -122,7 +125,7 @@ const Cart = (props) => {
                 <div className="row">
                     <div className="col-md-12">
                         <div className="block_4">
-                            <div className="title"><h2>3. Подтвердите заказ</h2></div>
+                            <div className="title"><h2>4. Подтвердите заказ</h2></div>
                             <div className="price">
                                 <p>Общая сумма заказа:  <span> {parseFloat(totalPrice)} ₽</span></p>
                             </div>
