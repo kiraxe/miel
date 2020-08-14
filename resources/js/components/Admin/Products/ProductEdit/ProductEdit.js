@@ -80,6 +80,10 @@ const ProductEditForm = (props) => {
                         <label className="form-check-label" htmlFor="productPopular">{LanguageRus.page.products.table.popular}</label>
                         <Field type="checkbox" idName="productPopular" name={"popular"} component={Checkbox} label={LanguageRus.page.products.table.popular} />
                     </div>
+                    <div className="form-check">
+                        <label className="form-check-label" htmlFor="productActive">{LanguageRus.page.products.table.active}</label>
+                        <Field type="checkbox" idName="productActive" name={"active"} component={Checkbox} label={LanguageRus.page.products.table.active} />
+                    </div>
                 </Tab>
                 <Tab eventKey="price" title="Цена">
                     <div className="form-group">

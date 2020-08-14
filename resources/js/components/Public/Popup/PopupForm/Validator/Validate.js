@@ -28,6 +28,10 @@ const validate = (values, allValues, props) => {
         errors.addressP = LanguageRus.page.clientele.error.addressP;
     }
 
+    if (!values.company) {
+        errors.company = LanguageRus.page.clientele.error.company;
+    }
+
 
     return errors;
 

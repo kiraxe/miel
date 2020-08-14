@@ -36,10 +36,10 @@ class OrdersExport implements FromCollection, WithColumnFormatting,ShouldAutoSiz
 
         foreach($this->data as $key => $value) {
 
-            array_push($this->columns, $value['client']['company']);
+            $this->columns[] = $value['client']['company'];
 
             foreach ($value['cart']['cart_to_product'] as $k => $v) {
-                array_push($this->products, $v['order_detail']['product_name']);
+                $this->products[] = $v['order_detail']['product_name'];
             }
 
         }
@@ -62,19 +62,22 @@ class OrdersExport implements FromCollection, WithColumnFormatting,ShouldAutoSiz
                 }
             }
 
-            $arrResult = [$product_total_count, $value, ""];
-
+            $arrResult = [$product_total_count, $value, "-"];
             $product_total_count = 0;
 
-            foreach($this->data as $k => $v) {
+            foreach ($this->data as $k => $v) {
+
                 foreach ($v['cart']['cart_to_product'] as $ky => $val) {
-                    if($val['order_detail']['product_name'] === $value) {
-                        array_push($arrResult, $val['order_detail']['count']);
+                    if ($val['order_detail']['product_name'] === $value) {
+                        if ($k > 0) $arrResult[] = "";
+                        $arrResult[] = $val['order_detail']['count'];
                     }
                 }
             }
 
-            array_push($this->collect, $arrResult);
+
+
+            $this->collect[] = $arrResult;
         }
 
 

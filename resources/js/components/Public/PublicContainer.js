@@ -22,6 +22,7 @@ import {
     getIsLoggedInSelector,
     getPermissionSelectors,
     getIdSelector,
+    getNameSelector,
 } from "../../redux/auth-selectors";
 import {deleteAccount} from "../../redux/Public/account-reducer";
 import CatalogConatainer from "./CatalogPage/CatalogConatainer";
@@ -185,7 +186,7 @@ class PublicContainer extends Component {
                 </div>
             </main>
             <Popup
-                clientId={this.props.clientId}  send={this.props.send} onSendMessage={this.onSendMessage} messagePopup={this.state.messagePopup} settings={this.props.settings} orderId={this.props.orderId} classNameElement={className} popUpClose={this.popUpClose} popUp={this.state.popUp} addClient={this.onAddSubmit} onLogin={this.onLogin} error={this.props.error} errorReg={this.props.errorReg} isLoggedIn={this.props.isLoggedIn} />
+                clientName={this.props.clientName} clientId={this.props.clientId}  send={this.props.send} onSendMessage={this.onSendMessage} messagePopup={this.state.messagePopup} settings={this.props.settings} orderId={this.props.orderId} classNameElement={className} popUpClose={this.popUpClose} popUp={this.state.popUp} addClient={this.onAddSubmit} onLogin={this.onLogin} error={this.props.error} errorReg={this.props.errorReg} isLoggedIn={this.props.isLoggedIn} />
             </>
             )
     }
@@ -203,7 +204,8 @@ let mapStateToProps = (state) => {
         orderId: getOrderIdSelectors(state),
         cart: getCartSelectors(state),
         send: getSendSelectors(state),
-        clientId: getIdSelector(state)
+        clientId: getIdSelector(state),
+        clientName: getNameSelector(state)
     }
 };
 

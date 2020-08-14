@@ -51,6 +51,10 @@ const CategoryNewForm = (props) => {
                 <label className="form-check-label" htmlFor="categoryMainMenu">{LanguageRus.page.categories.table.main_menu}</label>
                 <Field type="checkbox" idName="categoryMainMenu" name={"main_menu"} component={Checkbox} label={LanguageRus.page.categories.table.main_menu} />
             </div>
+            <div className="form-check">
+                <label className="form-check-label" htmlFor="categoryActive">{LanguageRus.page.categories.table.active}</label>
+                <Field type="checkbox" idName="categoryActive" name={"active"} component={Checkbox} label={LanguageRus.page.categories.table.active} />
+            </div>
             <div className="form-group">
                 <label>{LanguageRus.page.categories.table.parent}</label>
                 <Field idName="categoryParent" multiple={false} name={"parent_id"} ourCategory={id} select={select} component={Select}/>

@@ -8,7 +8,7 @@ import Item from "./Item/Item";
 
 const SliderProducts = (props) => {
 
-    let elements = props.popular ? props.popular.map((item, key) => <Item cart={props.cart} popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} key={key} itm={item} />) : props.novelty ? props.novelty.map((item, key) => <Item popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} key={key} itm={item} />): null;
+    //let elements = props.popular ? props.popular.map((item, key) => <Item cart={props.cart} popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} key={key} itm={item} />) : props.novelty ? props.novelty.map((item, key) => <Item popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} key={key} itm={item} />): null;
 
     let slidesToShow = props.slidesToShow ? props.slidesToShow : null;
 
@@ -56,7 +56,7 @@ const SliderProducts = (props) => {
     return (
         <div className="sliderProducts">
             <Slider {...settings}>
-                {elements}
+                {props.elements}
             </Slider>
         </div>
     )

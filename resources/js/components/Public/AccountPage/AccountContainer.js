@@ -76,7 +76,7 @@ class  AccountContainer extends Component {
                                 </div>}
                                 {this.props.match.params.page === 'company_data' && <div className="row">
                                     <AccountForm error={this.props.error} client={this.props.client} editAccount={this.onEditSubmit} />
-                                </div> || this.props.match.params.page === 'orders' && <AccountOrders orders={this.props.orders} /> || this.props.match.params.page === 'archive' && <AccountArchive orders={this.props.orders}/>}
+                                </div> || this.props.match.params.page === 'orders' && <AccountOrders orders={this.props.orders} /> || this.props.match.params.page === 'archive' && <AccountArchive orders={this.props.orders}/> || this.props.match.params.page === 'accounting' && <p>Cтраница находится в разработке</p>}
                             </div>
                         </div>
                     </div>

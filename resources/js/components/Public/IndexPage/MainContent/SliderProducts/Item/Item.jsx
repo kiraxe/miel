@@ -3,7 +3,6 @@ import {NavLink} from "react-router-dom";
 import ReactHtmlParser from "react-html-parser";
 import loading from "../../../../../../assets/images/loading.svg";
 import {getCurrentDate, replaceStr} from "../../../../../../utils/GetCurrentData";
-import Info from "../../../../CatalogPage/Product/Info/Info";
 
 
 const Item = (props) => {
@@ -34,6 +33,8 @@ const Item = (props) => {
     const [currentDate, setCurrentDate] = useState(new Date(getCurrentDate()))
 
     const [total, setTotal] = useState(props.itm.price * props.itm.min);
+
+    const [className, setClassName] = useState('');
 
     useEffect(() => {
 
@@ -103,21 +104,24 @@ const Item = (props) => {
             setTotal(minQuarterly * priceQuarterly);
         }
 
+        if (props.cart) {
+            for (const element of props.cart) {
+                if (element.product_id === props.itm.product_id) {
+                    setClassName("active");
+                    break;
+                }
+            }
+        }
+
     })
+
+    let onButtonActive = (e) => {
+        //e.target.setAttribute('class', 'active');
+        //setClassName('active');
+    }
 
 
     let link = props.itm.attributes.map(item => !item.attributes.parent_id ? item.attributes.link : "");
-
-    let className = "";
-
-    if (props.cart) {
-        for (const element of props.cart) {
-            if (element.product_id === props.itm.product_id) {
-                className = "active";
-                break;
-            }
-        }
-    }
 
     const handleChange = (e) => {
         if (currentDate < fromDate || currentDate > toDate ) {
@@ -174,7 +178,7 @@ const Item = (props) => {
                     </div>
                 </div>
                 <div className="button">
-                    {props.isLoggedIn && <button className={className} style={{display: 'flex'}} onClick={() => props.addCartHandler({
+                    {props.isLoggedIn && <button className={className} style={{display: 'flex'}} onClick={(e) => {props.addCartHandler({
                         product_id: props.itm.product_id,
                         article: props.itm.article,
                         image:props.itm.image,
@@ -191,7 +195,9 @@ const Item = (props) => {
                         minThird:props.itm.min_third,
                         minQuarterly:props.itm.min_quarterly,
                         total: total
-                    })
+                    });
+                    onButtonActive(e);
+                    }
                     }>Корзина {props.isFetching ? <img style={{width: '20px'}} src={loading}/> : null}</button> || <button className={className} onClick={props.popUpOpen}>Корзина</button> }
                 </div>
             </div>

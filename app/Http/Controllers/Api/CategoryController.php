@@ -68,6 +68,10 @@ class CategoryController extends BaseController
             $input['main_menu'] === 'true' || $input['main_menu'] === '1' ? $input['main_menu'] = TRUE : $input['main_menu'] = FALSE;
         }
 
+        if(isset($input['active'])) {
+            $input['active'] === 'true' || $input['active'] === '1' ? $input['active'] = TRUE : $input['active'] = FALSE;
+        }
+
         $category = Category::create($input);
 
         $description = "";
@@ -159,6 +163,11 @@ class CategoryController extends BaseController
         if(isset($input['main_menu'])) {
             $input['main_menu'] === 'true' || $input['main_menu'] === '1'  ? $input['main_menu'] = TRUE : $input['main_menu'] = FALSE;
             $category->main_menu = $input['main_menu'];
+        }
+
+        if(isset($input['active'])) {
+            $input['active'] === 'true' || $input['active'] === '1'  ? $input['active'] = TRUE : $input['active'] = FALSE;
+            $category->active = $input['active'];
         }
 
         if(empty($input['text']) || $input['text'] === 'null') {

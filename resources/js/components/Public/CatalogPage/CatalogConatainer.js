@@ -20,8 +20,8 @@ class AccountContainer extends Component {
         this.state = {
             offset: 0,
             limit: 6,
-            isFetching: false
-
+            isFetching: false,
+            scroll: window.pageYOffset
         }
     }
 
@@ -36,6 +36,10 @@ class AccountContainer extends Component {
             let page = this.getPage();
             page ? this.props.getCatalog(page, this.state.offset, this.state.limit) : this.props.getCatalog(null, this.state.offset, this.state.limit);
         }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        window.scrollTo(0, this.state.scroll);
     }
 
     getPage = () => {
@@ -61,7 +65,12 @@ class AccountContainer extends Component {
         this.props.getCatalog(page, this.state.offset, this.state.limit);
     }
 
-    onLoadHandler = () => {
+    onLoadHandler = (e) => {
+
+        this.setState({
+            scroll: window.pageYOffset
+        })
+
         let limit = this.state.limit < this.props.totalProduct ? this.state.limit + 6 : this.state.limit;
         let page = this.getPage();
 

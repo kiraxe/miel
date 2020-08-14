@@ -9,6 +9,9 @@ import SliderProducts from "../IndexPage/MainContent/SliderProducts/SliderProduc
 import Item from "../IndexPage/MainContent/SliderProducts/Item/Item";
 
 const CatalogPage = (props) => {
+
+    let elements = props.novelty ? props.novelty.map((item, key) => <Item cart={props.cart} popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} key={key} itm={item} />): null;
+
     return (
         <div id="main-content">
             <div className="container-my">
@@ -34,7 +37,7 @@ const CatalogPage = (props) => {
                                     <div className="title"><h1>Новинки</h1></div>
                                     <div className="text"><p>Какое-то небольшое описание, не более чем на две строки</p>
                                     </div>
-                                    <SliderProducts popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} novelty={props.novelty} slidesToShow={3} />
+                                    <SliderProducts popUpOpen={props.popUpOpen} isFetching={props.isFetching} settings={props.settings} addCartHandler={props.addCartHandler} isLoggedIn={props.isLoggedIn} elements={elements} slidesToShow={3} />
                                 </div>
                             </div>
                         </div>

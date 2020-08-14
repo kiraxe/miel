@@ -149,6 +149,10 @@ export const Hidden = (props) => {
     return <FormControl {...props}><input id={props.idName} {...props.input} type={props.type} placeholder={props.label} value={props.val} /></FormControl>
 }
 
+export const HiddenName = (props) => {
+    return <FormControl {...props}><input id={props.idName} {...props.input}  placeholder={props.label} value={props.val} /></FormControl>
+}
+
 export const Textarea = (props) => {
     return <FormControl {...props}><textarea id={props.idName} className={"form-control"} {...props.input} type={props.type} placeholder={props.label} /></FormControl>
 }
@@ -185,7 +189,11 @@ export const File = ({idName, input, label, type, errSer, change, width, multipl
     });
 
     useEffect(() => {
-        input.onChange(files[0]);
+        if (!multiple) {
+            input.onChange(files[0]);
+        } else {
+            input.onChange(...files);
+        }
         return () => {
         // Make sure to revoke the data uris to avoid memory leaks
         files.forEach(file => URL.revokeObjectURL(file.preview));
@@ -215,7 +223,7 @@ export const File = ({idName, input, label, type, errSer, change, width, multipl
     return (
         <section id={'files'} >
             <div {...getRootProps({className: 'dropzone'})}>
-                <input id={idName} name={input.name} {...getInputProps()} />
+                <input id={idName} name={input.name} {...getInputProps() } />
                 <p>{label}</p>
             </div>
             <aside className={'thumbsContainer'}>

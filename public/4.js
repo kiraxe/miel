@@ -540,6 +540,17 @@ var CategoryEditForm = function CategoryEditForm(props) {
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Checkbox"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.main_menu
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-check"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "form-check-label",
+    htmlFor: "categoryActive"
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.active), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "checkbox",
+    idName: "categoryActive",
+    name: "active",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Checkbox"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.active
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.parent), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
     idName: "categoryParent",
@@ -695,6 +706,17 @@ var CategoryNewForm = function CategoryNewForm(props) {
     name: "main_menu",
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Checkbox"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.main_menu
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-check"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "form-check-label",
+    htmlFor: "categoryActive"
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.active), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "checkbox",
+    idName: "categoryActive",
+    name: "active",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Checkbox"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.active
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.categories.table.parent), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
@@ -2282,6 +2304,17 @@ var ProductEditForm = function ProductEditForm(props) {
     name: "popular",
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Checkbox"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.popular
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-check"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "form-check-label",
+    htmlFor: "productActive"
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.active), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "checkbox",
+    idName: "productActive",
+    name: "active",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Checkbox"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.active
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Tab__WEBPACK_IMPORTED_MODULE_7__["default"], {
     eventKey: "price",
     title: "\u0426\u0435\u043D\u0430"
@@ -2570,6 +2603,17 @@ var ProductNewForm = function ProductNewForm(props) {
     name: "popular",
     component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Checkbox"],
     label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.popular
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-check"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "form-check-label",
+    htmlFor: "productActive"
+  }, _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.active), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(redux_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    type: "checkbox",
+    idName: "productActive",
+    name: "active",
+    component: _common_FormsControls_FormControls__WEBPACK_IMPORTED_MODULE_5__["Checkbox"],
+    label: _Language__WEBPACK_IMPORTED_MODULE_1__["rus"].page.products.table.active
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Tab__WEBPACK_IMPORTED_MODULE_7__["default"], {
     eventKey: "price",
     title: "\u0426\u0435\u043D\u0430"

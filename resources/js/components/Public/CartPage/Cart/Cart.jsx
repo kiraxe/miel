@@ -10,6 +10,8 @@ const Cart = (props) => {
 
     const [totalPrice, setTotalPrice] = useState(0);
 
+    const [require, setRequire] = useState(true);
+
     let products = props.cart ? props.cart.map((item, key) => item ? <Item key={item.product_id} deleteCartHandler={props.deleteCartHandler} editCartHandler={props.editCartHandler} settings={props.settings} item={item} /> : null): null;
 
     let priceArr = props.cart ? props.cart.map((item, key) => item ? item.total : null): null;
@@ -50,6 +52,19 @@ const Cart = (props) => {
         props.onDeliveryHandler(delivery);
     }
 
+    let error = {
+        display: 'block',
+        color: "red",
+    }
+
+    let onButtonClick = () => {
+        console.log(props.comment);
+        if (props.comment && props.comment !== "") {
+            setRequire(true);
+        } else {
+            setRequire(false);
+        }
+    }
 
     return (
         <div id="main-content">
@@ -99,8 +114,9 @@ const Cart = (props) => {
                                     href={`mailto:${props.settings.manager_email}`}>{props.settings.manager_email}</a></p>
                             </div>
                             <div className="textarea">
-                                <p>Комментарий к заказу</p>
+                                <p>Комментарий к заказу*</p>
                                 <textarea onChange={props.onCommentHandler} placeholder="Введите текст комментария" value={props.comment ? props.comment : ""}></textarea>
+                                <p style={require ? {display: 'none'} : error} >Поле обязателно для заполнения</p>
                             </div>
                         </div>
                     </div>
@@ -113,7 +129,7 @@ const Cart = (props) => {
                                 <p>Общая сумма заказа:  <span> {parseFloat(totalPrice)} ₽</span></p>
                             </div>
                             <div className="button">
-                                {products.length > 0 && <button onClick={props.onSendOrderHandler}>Подтвердить заказ {props.isFetching ? <img style={{width: '20px'}} src={loading}/> : null}</button> || <button disabled>Подтвердить заказ</button>}
+                                {products.length > 0 && <button onClick={() => {props.onSendOrderHandler(); onButtonClick();}}>Подтвердить заказ {props.isFetching ? <img style={{width: '20px'}} src={loading}/> : null}</button> || <button disabled>Подтвердить заказ</button>}
                                 <p>Нажимая «Сохранить», я соглашаюсь с <span>офертой</span></p>
                             </div>
                         </div>

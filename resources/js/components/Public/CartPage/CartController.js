@@ -14,7 +14,8 @@ class AccountContainer extends Component {
         super(props);
         this.state = {
             isFetching: false,
-            textarea: this.props.comment
+            textarea: this.props.comment,
+            require: false
         }
     }
 
@@ -44,9 +45,11 @@ class AccountContainer extends Component {
     }
 
     onCommentHandler = (e) => {
+
         this.props.setComment(e.target.value)
         this.setState({
-            textarea: e.target.value
+            textarea: e.target.value,
+            require: e.target.value !== ""
         })
     }
 
@@ -59,15 +62,21 @@ class AccountContainer extends Component {
     }
 
     onSendOrderHandler = () => {
+
+        if (!this.state.require) {
+            return false;
+        }
+
         let forData = new FormData()
+
         let order = this.props.order;
 
-        for(let key in order) {
+        for (let key in order) {
             if (key !== 'error') {
                 if (key === 'client' || key === 'cart') {
-                    forData.append(key, JSON.stringify(order[key]));
+                        forData.append(key, JSON.stringify(order[key]));
                 } else {
-                    forData.append(key, order[key]);
+                        forData.append(key, order[key]);
                 }
             }
         }
@@ -75,6 +84,7 @@ class AccountContainer extends Component {
         this.setState({isFetching: true})
         this.props.sendOrder(forData);
         setTimeout(() => this.setState({isFetching: false}), 1000);
+
     }
 
     render() {

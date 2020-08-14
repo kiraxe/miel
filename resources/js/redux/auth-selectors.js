@@ -16,4 +16,8 @@ export const getIdSelector = (state) => {
     return state.auth.id;
 }
 
+export const getNameSelector = (state) => {
+    return state.auth.name;
+}
+
 

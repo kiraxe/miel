@@ -73,6 +73,10 @@ class ProductController extends BaseController
             $input['popular'] === 'true' || $input['popular'] === '1' ? $input['popular'] = TRUE : $input['popular'] = FALSE;
         }
 
+        if(isset($input['active'])) {
+            $input['active'] === 'true' || $input['active'] === '1' ? $input['active'] = TRUE : $input['active'] = FALSE;
+        }
+
         if(empty($input['property']) || $input['property'] === 'null') {
             $input['property'] = "";
         }
@@ -166,7 +170,7 @@ class ProductController extends BaseController
 
 
 
-        $product->makeSlider($slider);
+        //$product->makeSlider($slider);
 
 
         if ($product->image && !empty($image)) {
@@ -197,7 +201,10 @@ class ProductController extends BaseController
             $product->popular = $input['popular'];
         }
 
-
+        if(isset($input['active'])) {
+            $input['active'] === 'true' || $input['active'] === '1' ? $input['active'] = TRUE : $input['active'] = FALSE;
+            $product->active = $input['active'];
+        }
 
         if(empty($input['property']) || $input['property'] === 'null') {
             $product->property = " ";

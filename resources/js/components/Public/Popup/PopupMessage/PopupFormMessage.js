@@ -3,13 +3,13 @@ import {Field, reduxForm} from "redux-form";
 import loading from '../../../../assets/images/loading.svg';
 import validate from '../PopupFormLogin/Validator/Validate';
 import {rus as LanguageRus} from "../../../Admin/Language";
-import {Input, Hidden, Textarea} from '../../../common/FormsControls/FormControls';
+import {Input, Hidden, Textarea, HiddenName} from '../../../common/FormsControls/FormControls';
 import ErrorsAlert from "../../../Errors/ErrorsAlert";
 import {Redirect} from 'react-router-dom';
 
 
 const PopupFormMessage = (props) => {
-    return <ClientPopupMessageReduxForm clientId={props.clientId} isLoggedIn={props.isLoggedIn} errSer={props.error} isFetching={props.isFetching} onSubmit={props.onSendMessage}/>
+    return <ClientPopupMessageReduxForm clientName={props.clientName} clientId={props.clientId} isLoggedIn={props.isLoggedIn} errSer={props.error} isFetching={props.isFetching} onSubmit={props.onSendMessage}/>
 };
 
 
@@ -17,7 +17,7 @@ const ClientPopupFormMessage = (props) => {
 
     const [isFetching, setFetching] = useState(false);
 
-    const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed, err, change, isLoggedIn, clientId} = props;
+    const { handleSubmit, pristine, reset, submitting, errSer, submitSucceeded, submitFailed, err, change, isLoggedIn, clientId, clientName} = props;
 
     let userFeedback;
 

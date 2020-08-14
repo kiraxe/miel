@@ -1,8 +1,10 @@
 <?php
 namespace App\Http\Controllers\Api;
+use App\Mail\MessageAdmin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Message;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 
 class MessageController extends BaseController
@@ -39,10 +41,19 @@ class MessageController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
+
         $message = Message::create([
             'client_id' => $input['type'],
             'message' => $input['message']
         ]);
+
+
+        $mess = [
+            'name' => $input['type'],
+            'message' => $input['message']
+        ];
+
+        Mail::to($request->user())->send(new MessageAdmin($mess));
 
         $message->toArray();
 

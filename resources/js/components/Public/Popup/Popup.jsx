@@ -91,7 +91,7 @@ const Popup = (props) => {
                     <h2>{!props.send && "Напишите менеджеру" || "Ваше сообщение отправлено!"}</h2>
                 </div>
                 <div className="content">
-                    {!props.send && <PopupFormMessage onSendMessage={props.onSendMessage} clientId={props.clientId}/> || <PopupMessage settings={props.settings} />}
+                    {!props.send && <PopupFormMessage onSendMessage={props.onSendMessage} clientName={props.clientName} clientId={props.clientId}/> || <PopupMessage settings={props.settings} />}
                 </div>
             </div>
         </div>}

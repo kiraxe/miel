@@ -14,9 +14,11 @@ let initialState = {
 let indexPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_INDEX_PAGE: {
+
+            let categories = action.data.data.categories.filter(item => !item.active);
             return {
                 ...state,
-                categories: [...action.data.data.categories],
+                categories: [...categories],
                 popular: [...action.data.data.popular],
                 novelty: [...action.data.data.novelty],
                 initialize: true

@@ -70,12 +70,12 @@ class Product extends Model
 
         $this->sliderModel()->deleteImg();
 
+
         if (!empty($slider)) {
+            return $slider;
             foreach ($slider as $slide) {
-                foreach ($slide as $s) {
-                    $file = $this->storagePath.$s->store("uploads/$this->storageProductsPath" . "$id" . "/slider", 'public');
-                    $this->sliderModel()->images()->create(['image' => $file]);
-                }
+                $file = $this->storagePath.$slide->store("uploads/$this->storageProductsPath" . "$id" . "/slider", 'public');
+                $this->sliderModel()->images()->create(['image' => $file]);
             }
         }
     }
